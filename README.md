@@ -3,9 +3,13 @@ Group Project for CSC207
 
 **User Stories:**
 Carolina -- I stumble across a recommended recipe that I am not in the mood for at the moment, but may want to cook later. 
+
 Rosie -- As a cook, I would want to know what ingredients I have left in my inventory and what I should buy. 
+
 Ciel -- As a user, I want to find recipes that fit my dietary restrictions. 
+
 Jiayun -- As a user, I would like to utilize all my existing ingredients so they don’t expire and go to waste. 
+
 Ryan (Team) -- As a college student, I want to know what good dishes to cook with my ingredients.
 
 **Notes**
