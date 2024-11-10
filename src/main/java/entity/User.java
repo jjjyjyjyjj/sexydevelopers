@@ -11,7 +11,7 @@ public class User {
     private Map<String, Boolean> dietaryPreferences;
     private Fridge fridge;
     private int prepTime;
-    private List<RecipeBank> favoriteRecipes;
+    private List<Recipe> favoriteRecipes;
 
     public User(String username, String password, Map<String, Boolean> dietaryPreferences) {
         this.username = username;

@@ -2,7 +2,7 @@ package entity;
 
 import java.util.Map;
 
-public class RecipeBank {
+public class Recipe {
     private String name;
     private Map<String, Integer> ingredients;
     private String instructions;
@@ -10,3 +10,5 @@ public class RecipeBank {
     private int prepTime;
     private Map<String, Boolean> dietaryInfo;
 }
+
+
