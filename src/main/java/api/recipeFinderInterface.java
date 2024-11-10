@@ -1,5 +1,6 @@
 package api;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 
@@ -17,6 +18,6 @@ public interface recipeFinderInterface {
      * @param ignorePantry whether to ignore typical pantry items, such as water, salt, flour, etc.
      * @return the list of recipes that can be made with given ingredients
      */
-    List<Map<String, Object>> getRecipeByIngredient(List<String> ingredients, int number, int ranking, boolean ignorePantry);
+    List<Map<String, Object>> getRecipeByIngredient(List<String> ingredients, int number, int ranking, boolean ignorePantry) throws IOException;
 
 }
