@@ -25,3 +25,20 @@ Ryan (Team) -- As a college student, I want to know what good dishes to cook wit
     _For each interaction:_
     • create an Interactor and all the supporting code
 
+
+
+**CSC207 Project Deliverable 1 Tasks**
+Main goal: to implement the team user story:
+- “As a college student, I want to know what good dishes to cook with my ingredients”
+
+Steps/Tasks:
+1. Setting up the API handler interface
+2. Creating the API class
+3. Updating RecipeBank entity to fetch the recipes
+4. Creating an interface in the getExistingIngredientRecipe use case
+5. Creating a class in the getExistingIngredientRecipe use case to implement the interface. This class should interact with RecipeBank to retrieve recommended recipes
+6. Creating a controller to bridge the UI and the recommended recipe classes/interface
+7. Set up the view layer to display the recommended recipes
+8. Creating a test to test the use case
+
+
