@@ -21,6 +21,6 @@ public interface recipeFinderInterface {
      * @param ignorePantry whether to ignore typical pantry items, such as water, salt, flour, etc.
      * @return the list of recipes that can be made with given ingredients
      */
-    List<Recipe> getRecipeByIngredient(List<Ingredient> ingredients, int number, int ranking, boolean ignorePantry) throws IOException;
+    List<Recipe> getRecipe(List<Ingredient> ingredients, int number, int ranking, boolean ignorePantry) throws IOException;
 
 }

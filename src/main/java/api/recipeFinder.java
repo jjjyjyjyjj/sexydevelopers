@@ -22,7 +22,7 @@ public class recipeFinder implements recipeFinderInterface {
     }
 
     @Override
-    public List<Recipe> getRecipeByIngredient(List<Ingredient> ingredients, int number, int ranking, boolean ignorePantry) throws IOException {
+    public List<Recipe> getRecipe(List<Ingredient> ingredients, int number, int ranking, boolean ignorePantry) throws IOException {
         // Extract the ingredient names from the Ingredient objects
         List<String> ingredientNames = new ArrayList<>();
         for (Ingredient ingredient : ingredients) {
