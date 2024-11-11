@@ -40,4 +40,7 @@ public class Ingredient {
         return quantity;
     }
 
+    public void setQuantity(double quantity) {
+        this.quantity = quantity;
+    }
 }

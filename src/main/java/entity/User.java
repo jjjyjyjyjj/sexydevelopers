@@ -11,15 +11,15 @@ public class User {
     private Map<String, Boolean> dietaryPreferences;
     private Fridge fridge;
     private int prepTime;
-    private List<RecipeBank> favoriteRecipes;
+    private List<Recipe> favouriteRecipes;
 
-    public User(String username, String password, Map<String, Boolean> dietaryPreferences) {
+    public User(String username, String password, Map<String, Boolean> dietaryPreferences, Fridge fridge, int prepTime, List<Recipe> favoriteRecipes) {
         this.username = username;
         this.password = password;
         this.dietaryPreferences = dietaryPreferences;
-        this.prepTime = prepTime;
-        this.fridge = fridge;
-        this.favoriteRecipes = new ArrayList<>();
+        this.prepTime = this.prepTime;
+        this.fridge = this.fridge;
+        this.favouriteRecipes = new ArrayList<>();
     }
 
     public String getUsername() {
@@ -30,4 +30,7 @@ public class User {
         return password;
     }
 
+    public ArrayList getFavouriteRecipes() {
+        return (ArrayList) this.favouriteRecipes;
+    }
 }
