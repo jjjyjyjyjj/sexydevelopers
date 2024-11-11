@@ -1,5 +1,7 @@
 package entity;
 
+import java.util.List;
+
 /**
  * Factory for creating recipes.
  */
@@ -13,7 +15,7 @@ public class RecipeFactory {
      * @param image the image of the new recipe
      * @return the new recipe
      */
-    public Recipe create(String name, String id, Ingredient[] ingredients, String image) {
+    public Recipe create(String name, String id, List<Ingredient> ingredients, String image) {
         return new Recipe(name, id, ingredients, image);
     }
 }

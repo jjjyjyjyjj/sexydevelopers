@@ -1,5 +1,7 @@
 package entity;
 
+import java.util.List;
+
 /**
  * A recipe
  */
@@ -7,10 +9,10 @@ package entity;
 public class Recipe {
     private String name;
     private String id;
-    private Ingredient[] ingredients;
+    private List<Ingredient> ingredients;
     private String image;
 
-    public Recipe(String name, String id, Ingredient[] ingredients, String image) {
+    public Recipe(String name, String id, List<Ingredient> ingredients, String image) {
         this.name = name;
         this.id = id;
         this.ingredients = ingredients;
@@ -25,7 +27,7 @@ public class Recipe {
         return id;
     }
 
-    public Ingredient[] getIngredients() {
+    public List<Ingredient> getIngredients() {
         return ingredients;
     }
 
