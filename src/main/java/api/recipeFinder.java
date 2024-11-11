@@ -26,12 +26,5 @@ public class recipeFinder implements recipeFinderInterface {
                 .addHeader(APP_KEY, getAPIKey())
                 .addHeader(CONTENT_TYPE, APPLICATION_JSON)
                 .build();
-    return null;};
-
-    @Override
-    public List<Map<String, Object>> getRecipeByIngredient(List<String> ingredients) {
-        return List.of();
-    }
-
-
+    return null;}
 }
