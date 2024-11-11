@@ -6,7 +6,7 @@ import java.util.Map;
 public class Fridge {
     private Map<String, Integer> ingredients = new HashMap<>();
 
-    public Map<String, Integer> getIngredients() {
+    public static Map<String, Integer> getIngredients() {
         return ingredients;
     }
 
