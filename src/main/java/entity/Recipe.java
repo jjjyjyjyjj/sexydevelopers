@@ -1,14 +1,36 @@
 package entity;
 
-import java.util.Map;
+/**
+ * A recipe
+ */
 
 public class Recipe {
     private String name;
-    private Map<String, Integer> ingredients;
-    private String instructions;
-    private String cuisineType;
-    private int prepTime;
-    private Map<String, Boolean> dietaryInfo;
+    private String id;
+    private Ingredient[] ingredients;
+    private String image;
+
+    public Recipe(String name, String id, Ingredient[] ingredients, String image) {
+        this.name = name;
+        this.id = id;
+        this.ingredients = ingredients;
+        this.image = image;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getID() {
+        return id;
+    }
+
+    public Ingredient[] getIngredients() {
+        return ingredients;
+    }
+
+    public String image() {
+        return image;
+    }
+
 }
-
-
