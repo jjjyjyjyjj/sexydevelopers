@@ -3,6 +3,7 @@ package use_case;
 import api.recipeFinderInterface;
 import entity.Fridge;
 import entity.Ingredient;
+import entity.Recipe;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -14,7 +15,7 @@ import java.util.Map;
  */
 public final class RecipeRecommenderUseCase {
     private final recipeFinderInterface recipeFinder;
-    private List<Map<String, Object>> recommendedRecipes;
+    private List<Recipe> recommendedRecipes;
     private final ArrayList<Ingredient> ingredients;
 
     public RecipeRecommenderUseCase(recipeFinderInterface recipeFinder, Fridge fridge) {
@@ -23,7 +24,7 @@ public final class RecipeRecommenderUseCase {
         this.ingredients = fridge.getIngredients();
     }
 
-    public List<Map<String, Object>> getRecommendedRecipes() throws IOException {
+    public List<Recipe> getRecommendedRecipes() throws IOException {
         this.recommendedRecipes = recipeFinder.getRecipeByIngredient(
                 ingredients, 5,2, true);
         return recommendedRecipes;
