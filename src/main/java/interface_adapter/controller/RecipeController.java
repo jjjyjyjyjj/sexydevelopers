@@ -12,8 +12,8 @@ public class RecipeController {
 
     // Add recipe to favourites
     public void addRecipeToFavourites(Recipe recipe) {
-        if (!user.getFavouriteRecipes().contains(recipe)) {
-            user.getFavouriteRecipes().add(recipe);
+        if (!user.getFavourited().getFavouritedRecipes().contains(recipe)) {
+            user.getFavourited().getFavouritedRecipes().add(recipe);
             System.out.println("Recipe added to favourites: " + recipe.getName());
         } else {
             System.out.println("Recipe already in favourites.");
@@ -22,8 +22,8 @@ public class RecipeController {
 
     // Remove recipe from favourites
     public void removeRecipeFromFavourites(Recipe recipe) {
-        if (user.getFavouriteRecipes().contains(recipe)) {
-            user.getFavouriteRecipes().remove(recipe);
+        if (user.getFavourited().getFavouritedRecipes().contains(recipe)) {
+            user.getFavourited().getFavouritedRecipes().remove(recipe);
             System.out.println("Recipe removed from favourites: " + recipe.getName());
         } else {
             System.out.println("Recipe not in favourites.");
