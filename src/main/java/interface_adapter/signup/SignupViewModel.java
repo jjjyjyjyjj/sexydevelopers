@@ -1,6 +1,6 @@
-package interface_adapter.viewModel;
+package interface_adapter.signup;
 
-import interface_adapter.state.SignupState;
+import interface_adapter.viewModel.ViewModel;
 
 /**
  * The ViewModel for the Signup View.
