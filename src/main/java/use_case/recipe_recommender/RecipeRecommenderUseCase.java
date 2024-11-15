@@ -1,4 +1,4 @@
-package use_case.reciperecommender;
+package use_case.recipe_recommender;
 
 import api.recipeFinderInterface;
 import entity.Fridge;
