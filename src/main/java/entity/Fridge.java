@@ -2,8 +2,16 @@ package entity;
 
 import java.util.ArrayList;
 
+/**
+ * A fridge
+ */
+
 public class Fridge {
     private ArrayList<Ingredient> ingredients;
+
+    public Fridge() {
+        this.ingredients = new ArrayList<Ingredient>();
+    }
 
     public ArrayList<Ingredient> getIngredients() {
         return ingredients;
