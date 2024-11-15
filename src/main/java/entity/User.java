@@ -16,7 +16,7 @@ public class User {
         this.password = password;
 
         this.fridge = new Fridge();
-        this.dietaryPreferences = new DietaryPreferences();
+        this.dietaryPreferences = new DietaryPreferences(0, 0);
         this.favourited = new Favourited();
         this.savedForLater = new SavedForLater();
         this.recipeHistory = new RecipeBrowsedHistory();
