@@ -1,4 +1,4 @@
-package use_case;
+package use_case.reciperecommender;
 
 import api.recipeFinderInterface;
 import entity.Fridge;
@@ -8,7 +8,6 @@ import entity.Recipe;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 /**
  * RecipeRecommenderUseCase class.
