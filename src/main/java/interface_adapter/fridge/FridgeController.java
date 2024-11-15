@@ -1,4 +1,4 @@
-package interface_adapter.controller;
+package interface_adapter.fridge;
 
 import entity.Fridge;
 import entity.Ingredient;
