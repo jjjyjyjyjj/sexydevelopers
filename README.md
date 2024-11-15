@@ -4,7 +4,7 @@ Group Project for CSC207
 **User Stories:**
 Carolina -- I stumble across a recommended recipe that I am not in the mood for at the moment, but may want to cook later. 
 
-Rosie -- As a cook, I would want to know what ingredients I have left in my inventory and what I should buy. 
+Rosie -- As a cook, I would want to know what ingredients I have left in my inventory.
 
 Ciel -- As a user, I want to find recipes that fit my dietary restrictions. 
 
