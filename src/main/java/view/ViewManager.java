@@ -6,8 +6,6 @@ import java.beans.PropertyChangeListener;
 
 import javax.swing.JPanel;
 
-import interface_adapter.ViewManagerModel;
-
 /**
  * The View Manager for the program. It listens for property change events
  * in the ViewManagerModel and updates which View should be visible.

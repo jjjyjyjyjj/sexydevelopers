@@ -2,13 +2,9 @@ package app;
 
 import entity.CommonUserFactory;
 import entity.UserFactory;
-import interface_adapter.viewModel.SignupViewModel;
+import interface_adapter.signup.SignupViewModel;
 import interface_adapter.viewModel.ViewManagerModel;
-import use_case.signup.SignupInputBoundary;
-import use_case.signup.SignupInteractor;
-import use_case.signup.SignupOutputBoundary;
 import view.SignupView;
-import entity.UserFactory;
 
 import javax.swing.*;
 import java.awt.*;
