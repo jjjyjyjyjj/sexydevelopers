@@ -1,4 +1,4 @@
-package use_case.favourite_recipe;
+package use_case.favourite_recipes;
 
 /**
  * The Favourite Recipe Use Case.
@@ -6,7 +6,7 @@ package use_case.favourite_recipe;
 public interface FavouriteRecipesInputBoundary {
 
     /**
-     * Execute the Change Password Use Case.
+     * Execute the Favourite Recipe Use Case.
      * @param favouriteRecipesInputData the input data for this use case
      */
     void execute(FavouriteRecipesInputData favouriteRecipesInputData);

@@ -6,8 +6,8 @@ package entity;
 
 public class Ingredient {
 
-    private String name;
-    private String id;
+    private final String name;
+    private final String id;
     private String unit;
     private String aisle;
     private double quantity;
@@ -32,15 +32,23 @@ public class Ingredient {
         return unit;
     }
 
+    public void setUnit(String unit) {
+        this.unit = unit;
+    }
+
     public String getAisle() {
         return aisle;
+    }
+
+    public void setAisle(String aisle) {
+        this.aisle = aisle;
     }
 
     public double getQuantity() {
         return quantity;
     }
 
-    public void setQuantity(double quantity) {
-        this.quantity = quantity;
+    public void addQuantity(double quantity) {
+        this.quantity += quantity;
     }
 }
