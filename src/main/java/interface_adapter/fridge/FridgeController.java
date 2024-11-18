@@ -31,7 +31,7 @@ public class FridgeController {
         }
 
         if (ingredientToRemove != null) {
-            ingredientToRemove.setQuantity(ingredientToRemove.getQuantity() - quantity);
+            ingredientToRemove.addQuantity(ingredientToRemove.getQuantity() - quantity);
             System.out.println("Removed " + quantity + " of " + ingredientToRemove.getName() + " from the fridge.");
         } else {
             System.out.println("Ingredient not found or insufficient quantity.");
