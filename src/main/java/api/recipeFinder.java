@@ -138,6 +138,11 @@ public class recipeFinder implements recipeFinderInterface {
         }
         return text.substring(startIndex, endIndex);
     }
+
+    @Override
+    public List<Recipe> getRecipe(List<Ingredient> ingredients, int number, int ranking, boolean ignorePantry) throws IOException {
+        return List.of();
+    }
 }
 
 

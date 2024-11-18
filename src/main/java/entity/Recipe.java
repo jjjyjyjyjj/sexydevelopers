@@ -13,6 +13,7 @@ public class Recipe {
     private String image;
 //    private ArrayList<Integer> nutrients;
 
+
     public Recipe(String name, String id, List<Ingredient> ingredients, String image) {
         this.name = name;
         this.id = id;
