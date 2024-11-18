@@ -2,9 +2,11 @@ package data_access;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.type.CollectionType;
+import entity.Recipe;
 import entity.User;
 import entity.UserFactory;
 import use_case.change_password.ChangePasswordUserDataAccessInterface;
+import use_case.favourite_recipes.FavouriteRecipesDataAccessInterface;
 import use_case.login.LoginUserDataAccessInterface;
 import use_case.logout.LogoutUserDataAccessInterface;
 import use_case.signup.SignupUserDataAccessInterface;
@@ -22,7 +24,8 @@ import java.util.Map;
 public class FileUserDataAccessObject implements SignupUserDataAccessInterface,
         LoginUserDataAccessInterface,
         ChangePasswordUserDataAccessInterface,
-        LogoutUserDataAccessInterface {
+        LogoutUserDataAccessInterface,
+        FavouriteRecipesDataAccessInterface {
 
     private final File jsonFile;
     private final Map<String, User> accounts = new HashMap<>();
@@ -96,5 +99,29 @@ public class FileUserDataAccessObject implements SignupUserDataAccessInterface,
     public void changePassword(User user) {
         accounts.put(user.getUsername(), user);
         save();
+    }
+
+    /**
+     * Updates the system to update this user's favourite recipes.
+     *
+     * @param user the user whose favourite recipes list is to be updated
+     * @param recipe the recipe that is to be added to favourite recipes
+     */
+    @Override
+    public void FavouriteRecipes(User user, Recipe recipe) {
+        user.getFavourited().addFavouritedRecipes(recipe);
+        save();
+    }
+
+    /**
+     * Checks if given recipe is in user's favpurited recipe list.
+     *
+     * @param recipe the recipe to look for
+     * @param user   the user whose list we're searching through
+     * @return true if recipe is in user's list; false otherwise
+     */
+    @Override
+    public boolean existsByRecipe(Recipe recipe, User user) {
+        return false;
     }
 }

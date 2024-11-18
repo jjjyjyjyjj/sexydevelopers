@@ -3,8 +3,9 @@ package data_access;
 import entity.Recipe;
 import entity.User;
 import use_case.favourite_recipes.FavouriteRecipesDataAccessInterface;
+import use_case.signup.SignupUserDataAccessInterface;
 
-public class DBRecipeDataAccessObject implements FavouriteRecipesDataAccessInterface {
+public class DBRecipeDataAccessObject implements FavouriteRecipesDataAccessInterface, SignupUserDataAccessInterface {
     /**
      * Updates the system to update this user's favourite recipes.
      *
@@ -25,5 +26,26 @@ public class DBRecipeDataAccessObject implements FavouriteRecipesDataAccessInter
     @Override
     public boolean existsByRecipe(Recipe recipe, User user) {
         return false;
+    }
+
+    /**
+     * Checks if the given username exists.
+     *
+     * @param username the username to look for
+     * @return true if a user with the given username exists; false otherwise
+     */
+    @Override
+    public boolean existsByName(String username) {
+        return false;
+    }
+
+    /**
+     * Saves the user.
+     *
+     * @param user the user to save
+     */
+    @Override
+    public void save(User user) {
+
     }
 }
