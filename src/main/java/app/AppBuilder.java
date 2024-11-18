@@ -57,8 +57,9 @@ public class AppBuilder {
         cardPanel.setLayout(cardLayout);
 
         try {
-            userDataAccessObject = new FileUserDataAccessObject("users.json", userFactory);
+            userDataAccessObject = new FileUserDataAccessObject("/absolute/path/to/users.json", userFactory);
         } catch (IOException e) {
+            e.printStackTrace();
             throw new RuntimeException("Failed to initialize FileUserDataAccessObject");
         }
     }
