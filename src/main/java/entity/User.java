@@ -55,6 +55,10 @@ public class User {
         return prepTime;
     }
 
+    public String getName() {
+        return this.username;
+    }
+
 //    private Map<String, Boolean> dietaryPreferences;
 //    private Fridge fridge;
 //    private int prepTime;
