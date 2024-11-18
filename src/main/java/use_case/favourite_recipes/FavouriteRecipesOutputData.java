@@ -1,7 +1,9 @@
-package use_case.favourite_recipe;
+package use_case.favourite_recipes;
 
 import entity.Favourited;
-
+/**
+ * Output Data for the Favourite Recipes Use Case.
+ */
 public class FavouriteRecipesOutputData {
 
     private final Favourited favourited;
@@ -12,8 +14,9 @@ public class FavouriteRecipesOutputData {
         this.useCaseFailed = useCaseFailed;
     }
 
-    public Favourited getFavouriteRecipes() {return favourited; }
-
+    public String getfavRecipes() {
+        return favourited;
+    }
     public boolean isUseCaseFailed() {
         return useCaseFailed;
     }
