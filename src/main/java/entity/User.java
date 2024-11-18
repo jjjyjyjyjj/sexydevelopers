@@ -9,21 +9,28 @@ public class User {
     @JsonProperty ("password")
     private String password;
 
-    public User() {}
-
+    @JsonProperty ("fridge")
     private Fridge fridge;
-    private DietaryPreferences dietaryPreferences;
+
+    @JsonProperty ("favourited")
     private Favourited favourited;
+
+    @JsonProperty ("savedForLater")
     private SavedForLater savedForLater;
+
+    @JsonProperty ("recipeHistory")
     private RecipeBrowsedHistory recipeHistory;
+
+    @JsonProperty ("prepTime")
     private PrepTime prepTime;
+
+    public User() {}
 
     public User(String username, String password) {
         this.username = username;
         this.password = password;
 
         this.fridge = new Fridge();
-        this.dietaryPreferences = new DietaryPreferences(0, 0);
         this.favourited = new Favourited();
         this.savedForLater = new SavedForLater();
         this.recipeHistory = new RecipeBrowsedHistory();
@@ -42,10 +49,6 @@ public class User {
         return fridge;
     }
 
-    public DietaryPreferences getDietaryPreferences() {
-        return dietaryPreferences;
-    }
-
     public Favourited getFavourited() {
         return favourited;
     }
@@ -62,21 +65,4 @@ public class User {
         return prepTime;
     }
 
-//    private Map<String, Boolean> dietaryPreferences;
-//    private Fridge fridge;
-//    private int prepTime;
-//    private List<Recipe> favouriteRecipes;
-//
-//    public User(String username, String password, Map<String, Boolean> dietaryPreferences, Fridge fridge, int prepTime, List<Recipe> favoriteRecipes) {
-//        this.username = username;
-//        this.password = password;
-//        this.dietaryPreferences = dietaryPreferences;
-//        this.prepTime = this.prepTime;
-//        this.fridge = this.fridge;
-//        this.favouriteRecipes = new ArrayList<>();
-//    }
-//
-//    public ArrayList getFavouriteRecipes() {
-//        return (ArrayList) this.favouriteRecipes;
-//    }
 }

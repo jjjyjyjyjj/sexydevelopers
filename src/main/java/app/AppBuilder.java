@@ -34,6 +34,7 @@ import view.SignupView;
 
 import javax.swing.*;
 import java.awt.*;
+import java.io.File;
 import java.io.IOException;
 
 public class AppBuilder {
@@ -57,7 +58,8 @@ public class AppBuilder {
         cardPanel.setLayout(cardLayout);
 
         try {
-            userDataAccessObject = new FileUserDataAccessObject("/absolute/path/to/users.json", userFactory);
+            String jsonPath = new File("users.json").getAbsolutePath();
+            userDataAccessObject = new FileUserDataAccessObject(jsonPath, userFactory);
         } catch (IOException e) {
             e.printStackTrace();
             throw new RuntimeException("Failed to initialize FileUserDataAccessObject");
