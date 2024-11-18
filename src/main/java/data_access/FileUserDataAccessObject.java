@@ -1,82 +1,75 @@
 package data_access;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.type.CollectionType;
 import entity.User;
 import entity.UserFactory;
+import use_case.change_password.ChangePasswordUserDataAccessInterface;
 import use_case.login.LoginUserDataAccessInterface;
+import use_case.logout.LogoutUserDataAccessInterface;
 import use_case.signup.SignupUserDataAccessInterface;
 
-import java.io.*;
+import java.io.FileWriter;
+import java.io.File;
+import java.io.IOException;
 import java.util.HashMap;
-import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
- * DAO for user data implemented using a File to persist the data.
+ * DAO for user data implemented using a JSON file to persist the data.
  */
 public class FileUserDataAccessObject implements SignupUserDataAccessInterface,
-                                                 LoginUserDataAccessInterface {
+        LoginUserDataAccessInterface,
+        ChangePasswordUserDataAccessInterface,
+        LogoutUserDataAccessInterface {
 
-    private static final String HEADER = "username,password";
-
-    private final File csvFile;
-    private final Map<String, Integer> headers = new LinkedHashMap<>();
+    private final File jsonFile;
     private final Map<String, User> accounts = new HashMap<>();
+    private final ObjectMapper objectMapper = new ObjectMapper();
     private String currentUsername;
 
-    public FileUserDataAccessObject(String csvPath, UserFactory userFactory) throws IOException {
+    public FileUserDataAccessObject(String jsonPath, UserFactory userFactory) throws IOException {
+        this.jsonFile = new File(jsonPath);
 
-        csvFile = new File(csvPath);
-        headers.put("username", 0);
-        headers.put("password", 1);
-
-        if (csvFile.length() == 0) {
-            save();
+        if (jsonFile.exists() && jsonFile.length() > 0) {
+            // Load existing users
+            List<User> users = loadUsers();
+            for (User user : users) {
+                accounts.put(user.getUsername(), user);
+            }
         } else {
-
-            try (BufferedReader reader = new BufferedReader(new FileReader(csvFile))) {
-                final String header = reader.readLine();
-
-                if (!header.equals(HEADER)) {
-                    throw new RuntimeException(String.format("header should be%n: %s%but was:%n%s", HEADER, header));
+            // Create the file if it doesn't exist
+            if (jsonFile.createNewFile()) {
+                try (FileWriter writer = new FileWriter(jsonFile)) {
+                    writer.write("[]"); // Write an empty JSON array
                 }
-
-                String row;
-                while ((row = reader.readLine()) != null) {
-                    final String[] col = row.split(",");
-                    final String username = String.valueOf(col[headers.get("username")]);
-                    final String password = String.valueOf(col[headers.get("password")]);
-                    final User user = userFactory.create(username, password);
-                    accounts.put(username, user);
-                }
+                System.out.println("users.json created successfully.");
+            } else {
+                throw new IOException("Failed to create users.json.");
             }
         }
     }
 
+
+    private List<User> loadUsers() throws IOException {
+        CollectionType listType = objectMapper.getTypeFactory()
+                .constructCollectionType(List.class, User.class);
+        return objectMapper.readValue(jsonFile, listType);
+    }
+
     private void save() {
-        final BufferedWriter writer;
         try {
-            writer = new BufferedWriter(new FileWriter(csvFile));
-            writer.write(String.join(",", headers.keySet()));
-            writer.newLine();
-
-            for (User user : accounts.values()) {
-                final String line = String.format("%s,%s",
-                        user.getName(), user.getPassword());
-                writer.write(line);
-                writer.newLine();
-            }
-
-            writer.close();
-
-        } catch (IOException ex) {
-            throw new RuntimeException(ex);
+            objectMapper.writeValue(jsonFile, accounts.values());
+        } catch (IOException e) {
+            throw new RuntimeException("Failed to save user data", e);
         }
     }
 
     @Override
     public void save(User user) {
-        accounts.put(user.getName(), user);
-        this.save();
+        accounts.put(user.getUsername(), user);
+        save();
     }
 
     @Override
@@ -97,5 +90,11 @@ public class FileUserDataAccessObject implements SignupUserDataAccessInterface,
     @Override
     public boolean existsByName(String identifier) {
         return accounts.containsKey(identifier);
+    }
+
+    @Override
+    public void changePassword(User user) {
+        accounts.put(user.getUsername(), user);
+        save();
     }
 }
