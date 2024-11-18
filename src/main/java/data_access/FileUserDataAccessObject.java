@@ -31,7 +31,7 @@ public class FileUserDataAccessObject implements SignupUserDataAccessInterface,
     private final ObjectMapper objectMapper = new ObjectMapper();
     private String currentUsername;
 
-    public FileUserDataAccessObject(String jsonPath, UserFactory userFactory) throws IOException {
+    public FileUserDataAccessObject(String jsonPath) throws IOException {
         this.jsonFile = new File(jsonPath);
 
         if (jsonFile.exists() && jsonFile.length() > 0) {
