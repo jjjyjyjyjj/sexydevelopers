@@ -1,21 +1,21 @@
 package use_case.favourite_recipes;
 
-import entity.Favourited;
-import entity.Recipe;
-import entity.User;
+import entity.CommonRecipe;
+import entity.FavouritedRecipes;
+import entity.PantryPalUser;
 
 /**
  * The Favourite Recipes Interactor.
  */
 public class FavouriteRecipesInteractor implements FavouriteRecipesInputBoundary {
-    private final User user;
+    private final PantryPalUser user;
     private final FavouriteRecipesDataAccessInterface userDataAccessObject;
     private final FavouriteRecipesOutputBoundary userPresenter;
-    private final Recipe newfavRecipe;
+    private final CommonRecipe newfavRecipe;
 
     public FavouriteRecipesInteractor(FavouriteRecipesDataAccessInterface favouriteRecipesDataAccessInterface,
                                       FavouriteRecipesOutputBoundary favouriteRecipesOutputBoundary,
-                                      Recipe newfavRecipe, User user) {
+                                      CommonRecipe newfavRecipe, PantryPalUser user) {
         this.userDataAccessObject = favouriteRecipesDataAccessInterface;
         this.userPresenter = favouriteRecipesOutputBoundary;
         this.newfavRecipe = newfavRecipe;
@@ -24,7 +24,7 @@ public class FavouriteRecipesInteractor implements FavouriteRecipesInputBoundary
 
     @Override
     public void execute(FavouriteRecipesInputData favouriteRecipesInputData) {
-        final Favourited favRecipes = favouriteRecipesInputData.getFavouriteRecipes();
+        final FavouritedRecipes favRecipes = favouriteRecipesInputData.getFavouriteRecipes();
         userDataAccessObject.FavouriteRecipes(user, newfavRecipe);
 
         final FavouriteRecipesOutputData favouriteRecipesOutputData = new FavouriteRecipesOutputData(

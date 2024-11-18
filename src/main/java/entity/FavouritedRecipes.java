@@ -3,24 +3,27 @@ package entity;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Favourited {
-    private List<Recipe> favouritedRecipes;
+public class FavouritedRecipes implements SavedRecipes {
+    private List<CommonRecipe> favouritedRecipes;
 
-    public Favourited() {
+    public FavouritedRecipes() {
         this.favouritedRecipes = new ArrayList<>();
     }
 
-    public List<Recipe> getFavouritedRecipes() {
+    @Override
+    public List<CommonRecipe> getRecipes() {
         return favouritedRecipes;
     }
 
-    public void addFavouritedRecipes(Recipe recipe) {
+    @Override
+    public void addRecipe(CommonRecipe recipe) {
         if (!favouritedRecipes.contains(recipe)) {
             favouritedRecipes.add(recipe);
         }
     }
 
-    public void removeFavouritedRecipes(Recipe recipe) {
+    @Override
+    public void removeRecipe(CommonRecipe recipe) {
         favouritedRecipes.remove(recipe);
     }
 }

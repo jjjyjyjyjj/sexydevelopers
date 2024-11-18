@@ -1,29 +1,29 @@
 package interface_adapter.fridge;
 
-import entity.Fridge;
-import entity.Ingredient;
+import entity.CommonFridge;
+import entity.CommonIngredient;
 
 public class FridgeController {
-    private Fridge fridge;
+    private CommonFridge fridge;
 
-    public FridgeController(Fridge fridge) {
+    public FridgeController(CommonFridge fridge) {
         this.fridge = fridge;
     }
 
     // Add ingredient to the fridge
-    public void addIngredient(Ingredient ingredient) {
+    public void addIngredient(CommonIngredient ingredient) {
         if (!fridge.hasIngredient(ingredient)) {
             fridge.getIngredients().add(ingredient);
-            System.out.println("Ingredient added to fridge: " + ingredient.getName());
+            System.out.println("CommonIngredient added to fridge: " + ingredient.getName());
         } else {
-            System.out.println("Ingredient already exists in fridge.");
+            System.out.println("CommonIngredient already exists in fridge.");
         }
     }
 
     // Remove ingredient from the fridge
     public void removeIngredient(String ingredientId, int quantity) {
-        Ingredient ingredientToRemove = null;
-        for (Ingredient ingredient : fridge.getIngredients()) {
+        CommonIngredient ingredientToRemove = null;
+        for (CommonIngredient ingredient : fridge.getIngredients()) {
             if (ingredient.getId().equals(ingredientId) && ingredient.getQuantity() >= quantity) {
                 ingredientToRemove = ingredient;
                 break;
@@ -34,7 +34,7 @@ public class FridgeController {
             ingredientToRemove.addQuantity(ingredientToRemove.getQuantity() - quantity);
             System.out.println("Removed " + quantity + " of " + ingredientToRemove.getName() + " from the fridge.");
         } else {
-            System.out.println("Ingredient not found or insufficient quantity.");
+            System.out.println("CommonIngredient not found or insufficient quantity.");
         }
     }
 }

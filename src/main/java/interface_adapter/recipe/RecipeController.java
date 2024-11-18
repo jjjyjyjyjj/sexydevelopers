@@ -1,32 +1,32 @@
 package interface_adapter.recipe;
 
-import entity.Recipe;
-import entity.User;
+import entity.CommonRecipe;
+import entity.PantryPalUser;
 
 public class RecipeController {
-    private User user;
+    private PantryPalUser user;
 
-    public RecipeController(User user) {
+    public RecipeController(PantryPalUser user) {
         this.user = user;
     }
 
     // Add recipe to favourites
-    public void addRecipeToFavourites(Recipe recipe) {
+    public void addRecipeToFavourites(CommonRecipe recipe) {
         if (!user.getFavourited().getFavouritedRecipes().contains(recipe)) {
             user.getFavourited().getFavouritedRecipes().add(recipe);
-            System.out.println("Recipe added to favourites: " + recipe.getName());
+            System.out.println("CommonRecipe added to favourites: " + recipe.getName());
         } else {
-            System.out.println("Recipe already in favourites.");
+            System.out.println("CommonRecipe already in favourites.");
         }
     }
 
     // Remove recipe from favourites
-    public void removeRecipeFromFavourites(Recipe recipe) {
+    public void removeRecipeFromFavourites(CommonRecipe recipe) {
         if (user.getFavourited().getFavouritedRecipes().contains(recipe)) {
             user.getFavourited().getFavouritedRecipes().remove(recipe);
-            System.out.println("Recipe removed from favourites: " + recipe.getName());
+            System.out.println("CommonRecipe removed from favourites: " + recipe.getName());
         } else {
-            System.out.println("Recipe not in favourites.");
+            System.out.println("CommonRecipe not in favourites.");
         }
     }
 }

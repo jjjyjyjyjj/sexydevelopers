@@ -1,7 +1,7 @@
 package app;
 
 import data_access.FileUserDataAccessObject;
-import entity.CommonUserFactory;
+import entity.PantryPalUserFactory;
 import entity.UserFactory;
 import interface_adapter.change_password.ChangePasswordController;
 import interface_adapter.change_password.ChangePasswordPresenter;
@@ -41,7 +41,7 @@ public class AppBuilder {
 
     private final JPanel cardPanel = new JPanel();
     private final CardLayout cardLayout = new CardLayout();
-    private final UserFactory userFactory = new CommonUserFactory();
+    private final UserFactory userFactory = new PantryPalUserFactory();
     private final ViewManagerModel viewManagerModel = new ViewManagerModel();
 
     private final FileUserDataAccessObject userDataAccessObject;
@@ -59,7 +59,7 @@ public class AppBuilder {
 
         try {
             String jsonPath = new File("users.json").getAbsolutePath();
-            userDataAccessObject = new FileUserDataAccessObject(jsonPath, userFactory);
+            userDataAccessObject = new FileUserDataAccessObject(jsonPath);
         } catch (IOException e) {
             e.printStackTrace();
             throw new RuntimeException("Failed to initialize FileUserDataAccessObject");
