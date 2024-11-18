@@ -1,0 +1,92 @@
+package data_access;
+
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.type.CollectionType;
+import entity.User;
+import entity.UserFactory;
+import use_case.change_password.ChangePasswordUserDataAccessInterface;
+import use_case.login.LoginUserDataAccessInterface;
+import use_case.logout.LogoutUserDataAccessInterface;
+import use_case.signup.SignupUserDataAccessInterface;
+
+import java.io.File;
+import java.io.IOException;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+/**
+ * DAO for user data implemented using a JSON file to persist the data.
+ */
+public class FileUserDataAccessObject implements SignupUserDataAccessInterface,
+        LoginUserDataAccessInterface,
+        ChangePasswordUserDataAccessInterface,
+        LogoutUserDataAccessInterface {
+
+    private final File jsonFile;
+    private final Map<String, User> accounts = new HashMap<>();
+    private final ObjectMapper objectMapper = new ObjectMapper();
+    private String currentUsername;
+
+    public FileUserDataAccessObject(String jsonPath, UserFactory userFactory) throws IOException {
+        this.jsonFile = new File(jsonPath);
+
+        if (jsonFile.exists() && jsonFile.length() > 0) {
+            // Load users from the JSON file
+            List<User> users = loadUsers();
+            for (User user : users) {
+                accounts.put(user.getUsername(), user);
+            }
+        } else {
+            // Create an empty file if it doesn't exist
+            jsonFile.createNewFile();
+            save(); // Save an empty list to initialize the file
+        }
+    }
+
+    private List<User> loadUsers() throws IOException {
+        CollectionType listType = objectMapper.getTypeFactory()
+                .constructCollectionType(List.class, User.class);
+        return objectMapper.readValue(jsonFile, listType);
+    }
+
+    private void save() {
+        try {
+            objectMapper.writeValue(jsonFile, accounts.values());
+        } catch (IOException e) {
+            throw new RuntimeException("Failed to save user data", e);
+        }
+    }
+
+    @Override
+    public void save(User user) {
+        accounts.put(user.getUsername(), user);
+        save();
+    }
+
+    @Override
+    public User get(String username) {
+        return accounts.get(username);
+    }
+
+    @Override
+    public void setCurrentUsername(String name) {
+        this.currentUsername = name;
+    }
+
+    @Override
+    public String getCurrentUsername() {
+        return this.currentUsername;
+    }
+
+    @Override
+    public boolean existsByName(String identifier) {
+        return accounts.containsKey(identifier);
+    }
+
+    @Override
+    public void changePassword(User user) {
+        accounts.put(user.getUsername(), user);
+        save();
+    }
+}
