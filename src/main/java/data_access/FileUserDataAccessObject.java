@@ -9,6 +9,7 @@ import use_case.login.LoginUserDataAccessInterface;
 import use_case.logout.LogoutUserDataAccessInterface;
 import use_case.signup.SignupUserDataAccessInterface;
 
+import java.io.FileWriter;
 import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
@@ -32,17 +33,24 @@ public class FileUserDataAccessObject implements SignupUserDataAccessInterface,
         this.jsonFile = new File(jsonPath);
 
         if (jsonFile.exists() && jsonFile.length() > 0) {
-            // Load users from the JSON file
+            // Load existing users
             List<User> users = loadUsers();
             for (User user : users) {
                 accounts.put(user.getUsername(), user);
             }
         } else {
-            // Create an empty file if it doesn't exist
-            jsonFile.createNewFile();
-            save(); // Save an empty list to initialize the file
+            // Create the file if it doesn't exist
+            if (jsonFile.createNewFile()) {
+                try (FileWriter writer = new FileWriter(jsonFile)) {
+                    writer.write("[]"); // Write an empty JSON array
+                }
+                System.out.println("users.json created successfully.");
+            } else {
+                throw new IOException("Failed to create users.json.");
+            }
         }
     }
+
 
     private List<User> loadUsers() throws IOException {
         CollectionType listType = objectMapper.getTypeFactory()

@@ -1,8 +1,15 @@
 package entity;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 public class User {
+    @JsonProperty ("username")
     private String username;
+
+    @JsonProperty ("password")
     private String password;
+
+    public User() {}
 
     private Fridge fridge;
     private DietaryPreferences dietaryPreferences;
