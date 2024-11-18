@@ -2,9 +2,8 @@ package data_access;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.type.CollectionType;
-import entity.Recipe;
-import entity.User;
-import entity.UserFactory;
+import entity.CommonRecipe;
+import entity.PantryPalUser;
 import use_case.change_password.ChangePasswordUserDataAccessInterface;
 import use_case.favourite_recipes.FavouriteRecipesDataAccessInterface;
 import use_case.login.LoginUserDataAccessInterface;
@@ -28,7 +27,7 @@ public class FileUserDataAccessObject implements SignupUserDataAccessInterface,
         FavouriteRecipesDataAccessInterface {
 
     private final File jsonFile;
-    private final Map<String, User> accounts = new HashMap<>();
+    private final Map<String, PantryPalUser> accounts = new HashMap<>();
     private final ObjectMapper objectMapper = new ObjectMapper();
     private String currentUsername;
 
@@ -37,8 +36,8 @@ public class FileUserDataAccessObject implements SignupUserDataAccessInterface,
 
         if (jsonFile.exists() && jsonFile.length() > 0) {
             // Load existing users
-            List<User> users = loadUsers();
-            for (User user : users) {
+            List<PantryPalUser> users = loadUsers();
+            for (PantryPalUser user : users) {
                 accounts.put(user.getUsername(), user);
             }
         } else {
@@ -55,9 +54,9 @@ public class FileUserDataAccessObject implements SignupUserDataAccessInterface,
     }
 
 
-    private List<User> loadUsers() throws IOException {
+    private List<PantryPalUser> loadUsers() throws IOException {
         CollectionType listType = objectMapper.getTypeFactory()
-                .constructCollectionType(List.class, User.class);
+                .constructCollectionType(List.class, PantryPalUser.class);
         return objectMapper.readValue(jsonFile, listType);
     }
 
@@ -70,13 +69,13 @@ public class FileUserDataAccessObject implements SignupUserDataAccessInterface,
     }
 
     @Override
-    public void save(User user) {
+    public void save(PantryPalUser user) {
         accounts.put(user.getUsername(), user);
         save();
     }
 
     @Override
-    public User get(String username) {
+    public PantryPalUser get(String username) {
         return accounts.get(username);
     }
 
@@ -96,7 +95,7 @@ public class FileUserDataAccessObject implements SignupUserDataAccessInterface,
     }
 
     @Override
-    public void changePassword(User user) {
+    public void changePassword(PantryPalUser user) {
         accounts.put(user.getUsername(), user);
         save();
     }
@@ -108,8 +107,8 @@ public class FileUserDataAccessObject implements SignupUserDataAccessInterface,
      * @param recipe the recipe that is to be added to favourite recipes
      */
     @Override
-    public void FavouriteRecipes(User user, Recipe recipe) {
-        user.getFavourited().addFavouritedRecipes(recipe);
+    public void FavouriteRecipes(PantryPalUser user, CommonRecipe recipe) {
+        user.getFavourited().addRecipe(recipe);
         save();
     }
 
@@ -121,7 +120,7 @@ public class FileUserDataAccessObject implements SignupUserDataAccessInterface,
      * @return true if recipe is in user's list; false otherwise
      */
     @Override
-    public boolean existsByRecipe(Recipe recipe, User user) {
+    public boolean existsByRecipe(CommonRecipe recipe, PantryPalUser user) {
         return false;
     }
 }

@@ -1,5 +1,6 @@
 package data_access;
 
+import entity.PantryPalUser;
 import entity.User;
 import use_case.login.LoginUserDataAccessInterface;
 import use_case.logout.LogoutUserDataAccessInterface;
@@ -27,7 +28,7 @@ public class InMemoryUserDataAccessObject implements SignupUserDataAccessInterfa
 
     @Override
     public void save(User user) {
-        users.put(user.getName(), user);
+        users.put(user.getUsername(), user);
     }
 
     @Override
