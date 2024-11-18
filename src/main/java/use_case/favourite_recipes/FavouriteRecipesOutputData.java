@@ -15,7 +15,7 @@ public class FavouriteRecipesOutputData {
     }
 
     public String getfavRecipes() {
-        return favourited;
+        return favourited.toString();
     }
     public boolean isUseCaseFailed() {
         return useCaseFailed;
