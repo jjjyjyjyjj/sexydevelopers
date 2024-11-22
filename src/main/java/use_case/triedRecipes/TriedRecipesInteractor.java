@@ -3,6 +3,8 @@ package use_case.triedRecipes;
 import data_access.FileUserDataAccessObject;
 import entity.CommonRecipe;
 import entity.PantryPalUser;
+import interface_adapter.triedRecipes.TriedRecipesState;
+import interface_adapter.viewModel.ViewModel;
 
 import java.util.List;
 
@@ -28,6 +30,10 @@ public class TriedRecipesInteractor implements TriedRecipesInputBoundary {
         if (user != null) {
             List<CommonRecipe> triedRecipes = user.getTriedRecipes().getRecipes();
             presenter.presentTriedRecipes(triedRecipes);
+        } else {
+            TriedRecipesState state = presenter.getViewModel().getState();
+            state.setErrorMessage("User not found: " + username);
+            presenter.firePropertyChanged();
         }
     }
 }

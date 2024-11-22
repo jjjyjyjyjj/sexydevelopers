@@ -15,6 +15,7 @@ import interface_adapter.signup.SignupController;
 import interface_adapter.signup.SignupPresenter;
 import interface_adapter.signup.SignupViewModel;
 import interface_adapter.triedRecipes.TriedRecipesController;
+import interface_adapter.triedRecipes.TriedRecipesViewModel;
 import interface_adapter.viewModel.ViewManagerModel;
 import use_case.change_password.ChangePasswordInputBoundary;
 import use_case.change_password.ChangePasswordInteractor;
@@ -92,7 +93,10 @@ public class AppBuilder {
     }
 
     public AppBuilder addTriedRecipeView() {
-        return new TriedRecipesView(triedRecipesController);
+        TriedRecipesViewModel triedRecipesViewModel = new TriedRecipesViewModel();
+        TriedRecipesView triedRecipesView = new TriedRecipesView(triedRecipesViewModel);
+        cardPanel.add(triedRecipesView, triedRecipesViewModel.getViewName());
+        return this;
     }
 
     public AppBuilder addSignupUseCase() {
@@ -145,6 +149,9 @@ public class AppBuilder {
     public AppBuilder addTriedRecipesUseCase() {
         TriedRecipesInteractor interactor = new TriedRecipesInteractor(userDataAccessObject);
         this.triedRecipesController = new TriedRecipesController(interactor);
+
+        TriedRecipesViewModel triedRecipesViewModel = new TriedRecipesViewModel();
+        triedRecipesController.setViewModel(triedRecipesViewModel);
         return this;
     }
 
