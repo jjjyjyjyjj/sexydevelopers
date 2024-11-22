@@ -59,7 +59,7 @@ public class PantryPalUser implements User {
         return savedForLater;
     }
 
-    public TriedRecipes getRecipeHistory() {
+    public TriedRecipes getTriedRecipes() {
         return recipeHistory;
     }
 

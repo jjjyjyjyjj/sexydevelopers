@@ -14,6 +14,7 @@ import interface_adapter.logout.LogoutPresenter;
 import interface_adapter.signup.SignupController;
 import interface_adapter.signup.SignupPresenter;
 import interface_adapter.signup.SignupViewModel;
+import interface_adapter.triedRecipes.TriedRecipesController;
 import interface_adapter.viewModel.ViewManagerModel;
 import use_case.change_password.ChangePasswordInputBoundary;
 import use_case.change_password.ChangePasswordInteractor;
@@ -28,9 +29,11 @@ import use_case.logout.LogoutUserDataAccessInterface;
 import use_case.signup.SignupInputBoundary;
 import use_case.signup.SignupInteractor;
 import use_case.signup.SignupOutputBoundary;
+import use_case.triedRecipes.TriedRecipesInteractor;
 import view.LoggedInView;
 import view.LoginView;
 import view.SignupView;
+import view.TriedRecipesView;
 
 import javax.swing.*;
 import java.awt.*;
@@ -45,6 +48,7 @@ public class AppBuilder {
     private final ViewManagerModel viewManagerModel = new ViewManagerModel();
 
     private final FileUserDataAccessObject userDataAccessObject;
+    private TriedRecipesController triedRecipesController;
 
     private SignupViewModel signupViewModel;
     private SignupView signupView;
@@ -85,6 +89,10 @@ public class AppBuilder {
         loggedInView = new LoggedInView(loggedInViewModel);
         cardPanel.add(loggedInView, loggedInView.getViewName());
         return this;
+    }
+
+    public AppBuilder addTriedRecipeView() {
+        return new TriedRecipesView(triedRecipesController);
     }
 
     public AppBuilder addSignupUseCase() {
@@ -131,6 +139,12 @@ public class AppBuilder {
 
         final LogoutController logoutController = new LogoutController(logoutInteractor);
         loggedInView.setLogoutController(logoutController);
+        return this;
+    }
+
+    public AppBuilder addTriedRecipesUseCase() {
+        TriedRecipesInteractor interactor = new TriedRecipesInteractor(userDataAccessObject);
+        this.triedRecipesController = new TriedRecipesController(interactor);
         return this;
     }
 
