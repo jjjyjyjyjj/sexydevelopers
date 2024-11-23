@@ -4,6 +4,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.type.CollectionType;
 import entity.CommonRecipe;
 import entity.PantryPalUser;
+import entity.User;
 import use_case.change_password.ChangePasswordUserDataAccessInterface;
 import use_case.favourite_recipes.FavouriteRecipesDataAccessInterface;
 import use_case.login.LoginUserDataAccessInterface;
@@ -90,14 +91,30 @@ public class FileUserDataAccessObject implements SignupUserDataAccessInterface,
     }
 
     @Override
-    public boolean existsByName(String identifier) {
-        return accounts.containsKey(identifier);
+    public boolean existsByName(String username) {
+        return accounts.containsKey(username);
     }
 
     @Override
-    public void changePassword(PantryPalUser user) {
-        accounts.put(user.getUsername(), user);
-        save();
+    public void save(User user) {
+        if (user instanceof PantryPalUser) {
+            PantryPalUser pantryUser = (PantryPalUser) user; // Cast User to PantryPalUser
+            accounts.put(pantryUser.getUsername(), pantryUser);
+            save(); // Save the updated accounts to the JSON file
+        } else {
+            throw new IllegalArgumentException("Unsupported user type.");
+        }
+    }
+
+    @Override
+    public void changePassword(User user) {
+        if (user instanceof PantryPalUser) {
+            PantryPalUser pantryUser = (PantryPalUser) user;
+            accounts.put(pantryUser.getUsername(), pantryUser);
+            save();
+        } else {
+            throw new IllegalArgumentException("Unsupported user type.");
+        }
     }
 
     /**
