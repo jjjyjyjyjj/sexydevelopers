@@ -19,7 +19,7 @@ public class FavouriteRecipesOutputData {
     }
 
     public List<CommonRecipe> getfavRecipes() {
-        return favourited.getFavouritedRecipes();
+        return favourited.getRecipes();
     }
     public boolean isUseCaseFailed() {
         return useCaseFailed;
