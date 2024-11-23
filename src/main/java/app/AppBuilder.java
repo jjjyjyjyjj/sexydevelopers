@@ -35,7 +35,6 @@ import view.LoggedInView;
 import view.LoginView;
 import view.SignupView;
 import view.TriedRecipesView;
-
 import javax.swing.*;
 import java.awt.*;
 import java.io.File;
@@ -147,10 +146,10 @@ public class AppBuilder {
     }
 
     public AppBuilder addTriedRecipesUseCase() {
-        TriedRecipesInteractor interactor = new TriedRecipesInteractor(userDataAccessObject);
+        TriedRecipesViewModel triedRecipesViewModel = new TriedRecipesViewModel();
+        TriedRecipesInteractor interactor = new TriedRecipesInteractor(userDataAccessObject, triedRecipesViewModel);
         this.triedRecipesController = new TriedRecipesController(interactor);
 
-        TriedRecipesViewModel triedRecipesViewModel = new TriedRecipesViewModel();
         triedRecipesController.setViewModel(triedRecipesViewModel);
         return this;
     }

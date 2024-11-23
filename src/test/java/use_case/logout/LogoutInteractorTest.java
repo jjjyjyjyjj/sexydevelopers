@@ -1,32 +1,44 @@
 package use_case.logout;
 
-import data_access.InMemoryUserDataAccessObject;
+import data_access.FileUserDataAccessObject;
 import entity.PantryPalUserFactory;
-import entity.PantryPalUser;
-import entity.User;
-import entity.UserFactory;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
+import java.io.File;
+import java.io.IOException;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 class LogoutInteractorTest {
 
+    private File testFile;
+    private FileUserDataAccessObject userRepository;
+
+    @BeforeEach
+    void setUp() throws IOException {
+        testFile = new File("test_logout_users.json");
+        userRepository = new FileUserDataAccessObject(testFile.getPath());
+
+        userRepository.save(new PantryPalUserFactory().create("Paul", "password"));
+        userRepository.setCurrentUsername("Paul");
+    }
+
+    @AfterEach
+    void tearDown() {
+        if (testFile.exists()) {
+            testFile.delete();
+        }
+    }
+
     @Test
     void successTest() {
         LogoutInputData inputData = new LogoutInputData("Paul");
-        InMemoryUserDataAccessObject userRepository = new InMemoryUserDataAccessObject();
 
-        // For the success test, we need to add Paul to the data access repository before we log in.
-        UserFactory factory = new PantryPalUserFactory();
-        User user = factory.create("Paul", "password");
-        userRepository.save(user);
-        userRepository.setCurrentUsername("Paul");
-
-        // This creates a successPresenter that tests whether the test case is as we expect.
         LogoutOutputBoundary successPresenter = new LogoutOutputBoundary() {
             @Override
             public void prepareSuccessView(LogoutOutputData user) {
-                // check that the output data contains the username of who logged out
                 assertEquals("Paul", user.getUsername());
             }
 
@@ -38,8 +50,7 @@ class LogoutInteractorTest {
 
         LogoutInputBoundary interactor = new LogoutInteractor(userRepository, successPresenter);
         interactor.execute(inputData);
-        // check that the user was logged out
+
         assertNull(userRepository.getCurrentUsername());
     }
-
 }
