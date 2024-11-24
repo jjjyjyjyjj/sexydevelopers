@@ -4,8 +4,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import entity.Ingredient;
-import entity.Recipe;
+import entity.CommonIngredient;
+import entity.CommonRecipe;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
@@ -22,10 +22,10 @@ public class recipeFinder implements recipeFinderInterface {
     }
 
     @Override
-    public List<Recipe> getRecipe(List<Ingredient> ingredients, int number, int ranking, boolean ignorePantry) throws IOException {
-        // Extract the ingredient names from the Ingredient objects
+    public List<CommonRecipe> getRecipeByIngredient(List<CommonIngredient> ingredients, int number, int ranking, boolean ignorePantry) throws IOException {
+        // Extract the ingredient names from the CommonIngredient objects
         List<String> ingredientNames = new ArrayList<>();
-        for (Ingredient ingredient : ingredients) {
+        for (CommonIngredient ingredient : ingredients) {
             ingredientNames.add(ingredient.getName());
         }
 
@@ -50,7 +50,7 @@ public class recipeFinder implements recipeFinderInterface {
         }
     }
 
-    public List<Recipe> getRecipeByNutrition(int calories, int protein, int carbs, boolean maxCalories, boolean maxProtein, boolean maxCarbs) throws IOException {
+    public List<CommonRecipe> getRecipeByNutrition(int calories, int protein, int carbs, boolean maxCalories, boolean maxProtein, boolean maxCarbs) throws IOException {
         // Build query parameters based on the provided nutritional limits
         StringBuilder urlBuilder = new StringBuilder(API_URL).append("/findByNutrients?");
 
@@ -94,8 +94,8 @@ public class recipeFinder implements recipeFinderInterface {
         }
     }
 
-    private List<Recipe> parseRecipes(String responseBody) {
-        List<Recipe> recipesList = new ArrayList<>();
+    private List<CommonRecipe> parseRecipes(String responseBody) {
+        List<CommonRecipe> recipesList = new ArrayList<>();
         responseBody = responseBody.substring(1, responseBody.length() - 1);
         String[] recipeStrings = responseBody.split("},\\{");
 
@@ -107,8 +107,8 @@ public class recipeFinder implements recipeFinderInterface {
             String title = extractValue(recipeString, "\"title\":\"", "\",");
             String image = extractValue(recipeString, "\"image\":\"", "\",");
 
-            // Extract and create Ingredient objects from `usedIngredients`
-            List<Ingredient> ingredientsList = new ArrayList<>();
+            // Extract and create CommonIngredient objects from `usedIngredients`
+            List<CommonIngredient> ingredientsList = new ArrayList<>();
             String usedIngredientsString = extractValue(recipeString, "\"usedIngredients\":[", "]");
 
             if (!usedIngredientsString.isEmpty()) {
@@ -118,12 +118,12 @@ public class recipeFinder implements recipeFinderInterface {
                     String ingredientId = extractValue(ingredientString, "\"id\":", ",").trim();
                     String unit = extractValue(ingredientString, "\"unit\":\"", "\",");
                     String aisle = extractValue(ingredientString, "\"aisle\":\"", "\",");
-                    ingredientsList.add(new Ingredient(ingredientName, ingredientId, unit, aisle));
+                    ingredientsList.add(new CommonIngredient(ingredientName, ingredientId, unit, aisle));
                 }
             }
 
-            // Create Recipe object and add it to the list
-            Recipe recipe = new Recipe(title, id, ingredientsList, image);
+            // Create CommonRecipe object and add it to the list
+            CommonRecipe recipe = new CommonRecipe(title, id, ingredientsList, image, link);
             recipesList.add(recipe);
         }
 
@@ -140,7 +140,7 @@ public class recipeFinder implements recipeFinderInterface {
     }
 
     @Override
-    public List<Recipe> getRecipe(List<Ingredient> ingredients, int number, int ranking, boolean ignorePantry) throws IOException {
+    public List<CommonRecipe> getRecipe(List<CommonIngredient> ingredients, int number, int ranking, boolean ignorePantry) throws IOException {
         return List.of();
     }
 }
