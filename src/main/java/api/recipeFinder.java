@@ -6,6 +6,7 @@ import java.util.List;
 
 import entity.CommonIngredient;
 import entity.CommonRecipe;
+import entity.Ingredient;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
@@ -108,7 +109,7 @@ public class recipeFinder implements recipeFinderInterface {
             String image = extractValue(recipeString, "\"image\":\"", "\",");
 
             // Extract and create CommonIngredient objects from `usedIngredients`
-            List<CommonIngredient> ingredientsList = new ArrayList<>();
+            List<Ingredient> ingredientsList = new ArrayList<>();
             String usedIngredientsString = extractValue(recipeString, "\"usedIngredients\":[", "]");
 
             if (!usedIngredientsString.isEmpty()) {

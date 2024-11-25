@@ -17,7 +17,7 @@ public interface Recipe {
      * Returns the id of the recipe.
      * @return the id of the recipe.
      */
-    String getID();
+    int getID();
 
     /**
      * Returns a list of the ingredients in the recipe.
