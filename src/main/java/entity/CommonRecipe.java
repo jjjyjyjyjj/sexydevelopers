@@ -14,7 +14,7 @@ public final class CommonRecipe implements Recipe{
 //    private ArrayList<Integer> nutrients;
 
 
-    public CommonRecipe(String name, int id, List<CommonIngredient> ingredients, String image, String link) {
+    public CommonRecipe(String name, String id, List<CommonIngredient> ingredients, String image, String link) {
         this.name = name;
         this.id = id;
         this.ingredients = ingredients;
