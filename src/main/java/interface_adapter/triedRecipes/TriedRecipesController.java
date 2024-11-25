@@ -3,6 +3,7 @@ package interface_adapter.triedRecipes;
 import entity.CommonRecipe;
 import use_case.triedRecipes.TriedRecipesInputBoundary;
 import use_case.triedRecipes.TriedRecipesOutputBoundary;
+import entity.Recipe;
 
 public class TriedRecipesController {
     private final TriedRecipesInputBoundary triedRecipesInput;
@@ -25,7 +26,7 @@ public class TriedRecipesController {
             TriedRecipesState state = viewModel.getState();
             state.setUsername(username);
             state.setTriedRecipes(triedRecipes.stream()
-                    .map(CommonRecipe::getName)
+                    .map(Recipe::getName)
                     .toList());
             viewModel.firePropertyChanged();
         });
