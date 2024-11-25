@@ -4,24 +4,24 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class SavedForLaterRecipes implements SavedRecipes {
-    private List<CommonRecipe> savedRecipes;
+    private List<Recipe> savedRecipes;
 
     public SavedForLaterRecipes() {
         this.savedRecipes = new ArrayList<>();
     }
 
     @Override
-    public List<CommonRecipe> getRecipes() {
+    public List<Recipe> getRecipes() {
         return savedRecipes;
     }
 
     @Override
-    public void addRecipe(CommonRecipe recipe) {
+    public void addRecipe(Recipe recipe) {
         savedRecipes.add(recipe);
     }
 
     @Override
-    public void removeRecipe(CommonRecipe recipe) {
+    public void removeRecipe(Recipe recipe) {
         savedRecipes.remove(recipe);
     }
 }
