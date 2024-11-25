@@ -4,26 +4,26 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class FavouritedRecipes implements SavedRecipes {
-    private List<CommonRecipe> favouritedRecipes;
+    private List<Recipe> favouritedRecipes;
 
     public FavouritedRecipes() {
         this.favouritedRecipes = new ArrayList<>();
     }
 
     @Override
-    public List<CommonRecipe> getRecipes() {
+    public List<Recipe> getRecipes() {
         return favouritedRecipes;
     }
 
     @Override
-    public void addRecipe(CommonRecipe recipe) {
+    public void addRecipe(Recipe recipe) {
         if (!favouritedRecipes.contains(recipe)) {
             favouritedRecipes.add(recipe);
         }
     }
 
     @Override
-    public void removeRecipe(CommonRecipe recipe) {
+    public void removeRecipe(Recipe recipe) {
         favouritedRecipes.remove(recipe);
     }
 }

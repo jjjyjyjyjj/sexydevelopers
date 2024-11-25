@@ -1,6 +1,10 @@
 package use_case.saveforlater;
 
-import entity.*;
+
+import entity.Recipe;
+import entity.SavedForLaterRecipes;
+import entity.User;
+import entity.SavedForLater;
 
 /**
  * The Save For Later Interactor.

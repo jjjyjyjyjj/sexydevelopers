@@ -7,7 +7,7 @@ import entity.SavedForLaterRecipes;
  * Output data for the Save For Later use case.
  */
 public class SaveForLaterOutputData {
-    private final SavedForLater savedForLater;
+    private final SavedForLaterRecipes savedForLater;
     private final boolean success;
     private final String message;
 
@@ -17,7 +17,7 @@ public class SaveForLaterOutputData {
         this.message = message;
     }
 
-    public SavedForLater getSavedForLater() {
+    public SavedForLaterRecipes getSavedForLater() {
         return savedForLater;
     }
 
