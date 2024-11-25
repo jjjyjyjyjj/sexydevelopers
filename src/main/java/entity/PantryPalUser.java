@@ -24,8 +24,6 @@ public class PantryPalUser implements User {
     @JsonProperty ("prepTime")
     private PrepTime prepTime;
 
-    public PantryPalUser() {}
-
     public PantryPalUser(String username, String password) {
         this.username = username;
         this.password = password;

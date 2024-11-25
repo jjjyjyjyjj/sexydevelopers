@@ -27,7 +27,7 @@ public class CommonFridge implements Fridge {
         ingredients.add(ingredient);
     }
 
-    public void removeIngredient(CommonIngredient ingredient){
+    public void removeIngredient(CommonIngredient ingredient) {
         try {
             checkFridge(ingredient);
         } catch (IngredientNotFoundException e) {
@@ -38,7 +38,7 @@ public class CommonFridge implements Fridge {
     }
 
     public void checkFridge(CommonIngredient ingredient) throws IngredientNotFoundException {
-        if (!ingredients.contains(ingredient)) {
+        if (!hasIngredient(ingredient)) {
             throw new IngredientNotFoundException("This ingredient is not in your fridge!");
         }
     }

@@ -16,7 +16,7 @@ public class CommonRecipeFactory implements RecipeFactory {
      * @param link the link to the recipe
      * @return the new recipe
      */
-    public CommonRecipe create(String name, String id, List<CommonIngredient> ingredients, String image, String link) {
+    public CommonRecipe create(String name, String id, List<Ingredient> ingredients, String image, String link) {
         return new CommonRecipe(name, id, ingredients, image, link);
     }
 }
