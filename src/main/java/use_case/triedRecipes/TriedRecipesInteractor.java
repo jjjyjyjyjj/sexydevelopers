@@ -3,6 +3,7 @@ package use_case.triedRecipes;
 import data_access.FileUserDataAccessObject;
 import entity.CommonRecipe;
 import entity.PantryPalUser;
+import entity.Recipe;
 import interface_adapter.triedRecipes.TriedRecipesViewModel;
 
 import java.util.List;
@@ -57,7 +58,7 @@ public class TriedRecipesInteractor implements TriedRecipesInputBoundary {
             return;
         }
 
-        List<CommonRecipe> triedRecipes = user.getTriedRecipes().getRecipes();
+        List<Recipe> triedRecipes = user.getTriedRecipes().getRecipes();
         viewModel.getState().setErrorMessage(null);
         presenter.presentTriedRecipes(triedRecipes);
     }

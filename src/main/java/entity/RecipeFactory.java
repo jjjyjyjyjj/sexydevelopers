@@ -14,5 +14,5 @@ public interface RecipeFactory {
      * @param link the link to the recipe.
      * @return the new ingredient.
      */
-    Recipe create(String name, String id, List<Ingredient> ingredients, String image, String link);
+    Recipe create(String name, int id, List<Ingredient> ingredients, String image, String link);
 }

@@ -14,13 +14,13 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.fail;
 
 public class FavouriteRecipesInteractorTest {
-    UserFactory userfactory = new CommonUserFactory();
-    RecipeFactory recipefactory = new RecipeFactory();
-    IngredientFactory ingredientFactory = new IngredientFactory();
+    UserFactory userfactory = new PantryPalUserFactory();
+    RecipeFactory recipefactory = new CommonRecipeFactory();
+    IngredientFactory ingredientFactory = new CommonIngredientFactory();
 
     @Test
     void successTest() throws IOException {
-        User user = userfactory.create();
+        User user = userfactory.create("username", "password");
         List<Ingredient> omlette = new ArrayList<>();
         Ingredient bread = ingredientFactory.create("bread crumbs", "18879","", "Pasta and Rice");
         Ingredient milk = ingredientFactory.create("milk", "1077","", "Milk, Eggs, Other Dairy");
