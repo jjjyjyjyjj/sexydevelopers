@@ -94,7 +94,7 @@ public class recipeFinder implements recipeFinderInterface {
         }
     }
 
-    private List<CommonRecipe> parseRecipes(String responseBody) {
+    private List<CommonRecipe> parseRecipes(String responseBody) throws IOException {
         List<CommonRecipe> recipesList = new ArrayList<>();
         responseBody = responseBody.substring(1, responseBody.length() - 1);
         String[] recipeStrings = responseBody.split("},\\{");
@@ -103,7 +103,7 @@ public class recipeFinder implements recipeFinderInterface {
             if (!recipeString.startsWith("{")) recipeString = "{" + recipeString;
             if (!recipeString.endsWith("}")) recipeString += "}";
 
-            String id = extractValue(recipeString, "\"id\":", ",").trim();
+            int id = Integer.parseInt(extractValue(recipeString, "\"id\":", ",").trim());
             String title = extractValue(recipeString, "\"title\":\"", "\",");
             String image = extractValue(recipeString, "\"image\":\"", "\",");
 
@@ -123,6 +123,7 @@ public class recipeFinder implements recipeFinderInterface {
             }
 
             // Create CommonRecipe object and add it to the list
+            String link = new getRecipeInformation().getRecipeURL(id, false, false, false);
             CommonRecipe recipe = new CommonRecipe(title, id, ingredientsList, image, link);
             recipesList.add(recipe);
         }

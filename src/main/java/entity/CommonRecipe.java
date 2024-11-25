@@ -8,13 +8,13 @@ import java.util.List;
 public final class CommonRecipe implements Recipe{
     private String name;
     private String id;
-    private List<Ingredient> ingredients;
+    private List<CommonIngredient> ingredients;
     private String image;
     private String link;
 //    private ArrayList<Integer> nutrients;
 
 
-    public CommonRecipe(String name, String id, List<Ingredient> ingredients, String image, String link) {
+    public CommonRecipe(String name, int id, List<CommonIngredient> ingredients, String image, String link) {
         this.name = name;
         this.id = id;
         this.ingredients = ingredients;
