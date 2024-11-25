@@ -11,5 +11,5 @@ public interface SaveForLaterUserDataAccessInterface {
 
     PantryPalUser getUserById(String userId);
 
-    void updateUserSavedRecipes(PantryPalUser user);
+    void updateUserSavedRecipes(User user);
 }
