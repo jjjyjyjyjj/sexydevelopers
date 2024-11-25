@@ -11,17 +11,17 @@ public class TriedRecipes implements SavedRecipes {
     }
 
     @Override
-    public List<CommonRecipe> getRecipes() {
+    public List<Recipe> getRecipes() {
         return triedRecipes;
     }
 
     @Override
-    public void addRecipe(CommonRecipe recipe) {
+    public void addRecipe(Recipe recipe) {
         this.triedRecipes.add(recipe);
     }
 
     @Override
-    public void removeRecipe(CommonRecipe recipe) {
+    public void removeRecipe(Recipe recipe) {
         this.triedRecipes.remove(recipe);
     }
 }
