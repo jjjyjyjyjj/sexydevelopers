@@ -5,41 +5,40 @@ import entity.exceptions.IngredientNotFoundException;
 import java.util.ArrayList;
 
 /**
- * A fridge
+ * The representation of a fridge in our program.
  */
 
-public class Fridge {
-    private ArrayList<Ingredient> ingredients;
+public interface Fridge {
 
-    public Fridge() {
-        this.ingredients = new ArrayList<Ingredient>();
-    }
+    /**
+     * Returns a list of the ingredients in the fridge.
+     * @return a list of the ingredients in the fridge.
+     */
+    ArrayList<CommonIngredient> getIngredients();
 
-    public ArrayList<Ingredient> getIngredients() {
-        return ingredients;
-    }
+    /**
+     * Returns True if this ingredient is in the fridge, False otherwise.
+     * @param ingredient the ingredient being checked for.
+     * @return True if this ingredient is in the fridge, False otherwise.
+     */
+    Boolean hasIngredient(CommonIngredient ingredient);
 
-    public Boolean hasIngredient(Ingredient ingredient) {
-        return ingredients.contains(ingredient);
-    }
+    /**
+     * Adds this ingredient to the fridge.
+     * @param ingredient the ingredient being added.
+     */
+    void addIngredient(CommonIngredient ingredient);
 
-    public void addIngredient(Ingredient ingredient) {
-        ingredients.add(ingredient);
-    }
+    /**
+     * Removes this ingredient from the fridge.
+     * @param ingredient the ingredient being removed.
+     */
+    void removeIngredient(CommonIngredient ingredient);
 
-    public void removeIngredient(Ingredient ingredient){
-        try {
-            checkFridge(ingredient);
-        } catch (IngredientNotFoundException e) {
-            System.out.println(e.getMessage());
-        } finally {
-            ingredients.remove(ingredient);
-        }
-    }
-
-    public void checkFridge(Ingredient ingredient) throws IngredientNotFoundException {
-        if (!ingredients.contains(ingredient)) {
-            throw new IngredientNotFoundException("This ingredient is not in your fridge!");
-        }
-    }
+    /**
+     * Checks if this ingredient is in the fridge.
+     * @param ingredient the ingredient being checked for.
+     * @throws IngredientNotFoundException If the fridge does not contain this ingredient.
+     */
+    void checkFridge(CommonIngredient ingredient) throws IngredientNotFoundException;
 }

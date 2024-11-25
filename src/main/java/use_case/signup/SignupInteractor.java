@@ -1,5 +1,6 @@
 package use_case.signup;
 
+import entity.PantryPalUser;
 import entity.User;
 import entity.UserFactory;
 
@@ -22,7 +23,7 @@ public class SignupInteractor implements SignupInputBoundary {
     @Override
     public void execute(SignupInputData signupInputData) {
         if (userDataAccessObject.existsByName(signupInputData.getUsername())) {
-            userPresenter.prepareFailView("User already exists.");
+            userPresenter.prepareFailView("PantryPalUser already exists.");
         }
         else if (!signupInputData.getPassword().equals(signupInputData.getRepeatPassword())) {
             userPresenter.prepareFailView("Passwords don't match.");

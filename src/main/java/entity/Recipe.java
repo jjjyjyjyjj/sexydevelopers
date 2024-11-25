@@ -3,36 +3,37 @@ package entity;
 import java.util.List;
 
 /**
- * A recipe
+ * The representation of a recipe in our program.
  */
+public interface Recipe {
 
-public class Recipe {
-    private String name;
-    private String id;
-    private List<Ingredient> ingredients;
-    private String image;
+    /**
+     * Returns the name of the recipe.
+     * @return the name of the recipe.
+     */
+    String getName();
 
-    public Recipe(String name, String id, List<Ingredient> ingredients, String image) {
-        this.name = name;
-        this.id = id;
-        this.ingredients = ingredients;
-        this.image = image;
-    }
+    /**
+     * Returns the id of the recipe.
+     * @return the id of the recipe.
+     */
+    String getID();
 
-    public String getName() {
-        return name;
-    }
+    /**
+     * Returns a list of the ingredients in the recipe.
+     * @return a list of the ingredients in the recipe.
+     */
+    List<Ingredient> getIngredients();
 
-    public String getID() {
-        return id;
-    }
+    /**
+     * Returns a link to an image of the recipe.
+     * @return a link to an image of the recipe.
+     */
+    String getImage();
 
-    public List<Ingredient> getIngredients() {
-        return ingredients;
-    }
-
-    public String image() {
-        return image;
-    }
-
+    /**
+     * Returns a link to the recipe.
+     * @return a link to the recipe.
+     */
+    String getLink();
 }

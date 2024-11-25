@@ -1,11 +1,13 @@
 package entity;
 
-public class FridgeFactory {
+/**
+ * Factory for creating fridges.
+ */
+public interface FridgeFactory {
+
     /**
      * Creates a new Fridge.
-     * @return the new fridge
+     * @return the new fridge.
      */
-    public Fridge create() {
-        return new Fridge();
-    }
+    Fridge create();
 }

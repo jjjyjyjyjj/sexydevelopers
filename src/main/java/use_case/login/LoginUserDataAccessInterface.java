@@ -1,5 +1,6 @@
 package use_case.login;
 
+import entity.PantryPalUser;
 import entity.User;
 
 /**
@@ -18,7 +19,7 @@ public interface LoginUserDataAccessInterface {
      * Saves the user.
      * @param user the user to save
      */
-    void save(User user);
+    void save(PantryPalUser user);
 
     /**
      * Returns the user with the given username.

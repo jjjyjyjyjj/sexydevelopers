@@ -1,7 +1,7 @@
 package api;
 
-import entity.Ingredient;
-import entity.Recipe;
+import entity.CommonIngredient;
+import entity.CommonRecipe;
 
 import java.io.IOException;
 import java.util.List;
@@ -10,6 +10,8 @@ import java.util.List;
  * recipeFinderInterface is an interface that defines the methods that the recipeFiner class must implement.
  */
 public interface recipeFinderInterface {
+    List<CommonRecipe> getRecipeByIngredient(List<CommonIngredient> ingredients, int number, int ranking, boolean ignorePantry) throws IOException;
+
     /**
      * A method that returns a list of recipes that can be made using ingredients in our "fridge"
      * Note: Recipes contain no MORE ingredients than what we have, can be LESS
@@ -21,6 +23,6 @@ public interface recipeFinderInterface {
      * @param ignorePantry whether to ignore typical pantry items, such as water, salt, flour, etc.
      * @return the list of recipes that can be made with given ingredients
      */
-    List<Recipe> getRecipeByIngredient(List<Ingredient> ingredients, int number, int ranking, boolean ignorePantry) throws IOException;
+    List<CommonRecipe> getRecipe(List<CommonIngredient> ingredients, int number, int ranking, boolean ignorePantry) throws IOException;
 
 }

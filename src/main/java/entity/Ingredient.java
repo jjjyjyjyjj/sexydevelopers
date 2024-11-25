@@ -1,54 +1,55 @@
 package entity;
-
 /**
- * An ingredient
+ * The representation of an ingredient in our program.
  */
 
-public class Ingredient {
+public interface Ingredient {
 
-    private final String name;
-    private final String id;
-    private String unit;
-    private String aisle;
-    private double quantity;
+    /**
+     * Returns the name of the ingredient.
+     * @return the name of the ingredient.
+     */
+    String getName();
 
-    public Ingredient(String name, String id, String unit, String aisle) {
-        this.name = name;
-        this.id = id;
-        this.unit = unit;
-        this.aisle = aisle;
-        this.quantity = 0;
-    }
+    /**
+     * Returns the id of the ingredient.
+     * @return the id of the ingredient.
+     */
+    String getId();
 
-    public String getName() {
-        return name;
-    }
+    /**
+     * Returns the unit of the ingredient.
+     * @return the unit of the ingredient.
+     */
+    String getUnit();
 
-    public String getId() {
-        return id;
-    }
+    /**
+     * Sets the id of the ingredient.
+     * @param unit the unit of the ingredient.
+     */
+    void setUnit(String unit);
 
-    public String getUnit() {
-        return unit;
-    }
+    /**
+     * Returns the aisle the ingredient might appear in in a grocery store.
+     * @return the aisle of the ingredient.
+     */
+    String getAisle();
 
-    public void setUnit(String unit) {
-        this.unit = unit;
-    }
+    /**
+     * Sets the aisle the ingredient might appear in in a grocery store.
+     * @param aisle the aisle of the ingredient.
+     */
+    void setAisle(String aisle);
 
-    public String getAisle() {
-        return aisle;
-    }
+    /**
+     * Returns the quantity of the ingredient.
+     * @return the quantity of the ingredient.
+     */
+    double getQuantity();
 
-    public void setAisle(String aisle) {
-        this.aisle = aisle;
-    }
-
-    public double getQuantity() {
-        return quantity;
-    }
-
-    public void addQuantity(double quantity) {
-        this.quantity += quantity;
-    }
+    /**
+     * Sets the quantity of the ingredient.
+     * @param quantity the quantity of the ingredient.
+     */
+    void setQuantity(double quantity);
 }

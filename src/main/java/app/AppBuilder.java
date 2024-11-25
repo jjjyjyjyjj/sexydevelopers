@@ -1,7 +1,7 @@
 package app;
 
 import data_access.FileUserDataAccessObject;
-import entity.CommonUserFactory;
+import entity.PantryPalUserFactory;
 import entity.UserFactory;
 import interface_adapter.change_password.ChangePasswordController;
 import interface_adapter.change_password.ChangePasswordPresenter;
@@ -14,6 +14,8 @@ import interface_adapter.logout.LogoutPresenter;
 import interface_adapter.signup.SignupController;
 import interface_adapter.signup.SignupPresenter;
 import interface_adapter.signup.SignupViewModel;
+import interface_adapter.triedRecipes.TriedRecipesController;
+import interface_adapter.triedRecipes.TriedRecipesViewModel;
 import interface_adapter.viewModel.ViewManagerModel;
 import use_case.change_password.ChangePasswordInputBoundary;
 import use_case.change_password.ChangePasswordInteractor;
@@ -28,22 +30,25 @@ import use_case.logout.LogoutUserDataAccessInterface;
 import use_case.signup.SignupInputBoundary;
 import use_case.signup.SignupInteractor;
 import use_case.signup.SignupOutputBoundary;
+import use_case.triedRecipes.TriedRecipesInteractor;
 import view.LoggedInView;
 import view.LoginView;
 import view.SignupView;
-
+import view.TriedRecipesView;
 import javax.swing.*;
 import java.awt.*;
+import java.io.File;
 import java.io.IOException;
 
 public class AppBuilder {
 
     private final JPanel cardPanel = new JPanel();
     private final CardLayout cardLayout = new CardLayout();
-    private final UserFactory userFactory = new CommonUserFactory();
+    private final UserFactory userFactory = new PantryPalUserFactory();
     private final ViewManagerModel viewManagerModel = new ViewManagerModel();
 
     private final FileUserDataAccessObject userDataAccessObject;
+    private TriedRecipesController triedRecipesController;
 
     private SignupViewModel signupViewModel;
     private SignupView signupView;
@@ -57,8 +62,10 @@ public class AppBuilder {
         cardPanel.setLayout(cardLayout);
 
         try {
-            userDataAccessObject = new FileUserDataAccessObject("users.json", userFactory);
+            String jsonPath = new File("users.json").getAbsolutePath();
+            userDataAccessObject = new FileUserDataAccessObject(jsonPath);
         } catch (IOException e) {
+            e.printStackTrace();
             throw new RuntimeException("Failed to initialize FileUserDataAccessObject");
         }
     }
@@ -81,6 +88,13 @@ public class AppBuilder {
         loggedInViewModel = new LoggedInViewModel();
         loggedInView = new LoggedInView(loggedInViewModel);
         cardPanel.add(loggedInView, loggedInView.getViewName());
+        return this;
+    }
+
+    public AppBuilder addTriedRecipeView() {
+        TriedRecipesViewModel triedRecipesViewModel = new TriedRecipesViewModel();
+        TriedRecipesView triedRecipesView = new TriedRecipesView(triedRecipesViewModel);
+        cardPanel.add(triedRecipesView, triedRecipesViewModel.getViewName());
         return this;
     }
 
@@ -128,6 +142,15 @@ public class AppBuilder {
 
         final LogoutController logoutController = new LogoutController(logoutInteractor);
         loggedInView.setLogoutController(logoutController);
+        return this;
+    }
+
+    public AppBuilder addTriedRecipesUseCase() {
+        TriedRecipesViewModel triedRecipesViewModel = new TriedRecipesViewModel();
+        TriedRecipesInteractor interactor = new TriedRecipesInteractor(userDataAccessObject, triedRecipesViewModel);
+        this.triedRecipesController = new TriedRecipesController(interactor);
+
+        triedRecipesController.setViewModel(triedRecipesViewModel);
         return this;
     }
 
