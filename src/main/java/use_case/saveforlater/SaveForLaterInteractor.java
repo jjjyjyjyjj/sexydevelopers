@@ -1,5 +1,6 @@
 package use_case.saveforlater;
 
+
 import entity.Recipe;
 import entity.SavedForLaterRecipes;
 import entity.User;
@@ -11,11 +12,11 @@ import entity.SavedForLater;
 public class SaveForLaterInteractor implements SaveForLaterInputBoundary {
     private final SaveForLaterUserDataAccessInterface userDataAccessObject;
     private final SaveForLaterOutputBoundary userPresenter;
-    private final Recipe newSavedRecipe;
+    private final CommonRecipe newSavedRecipe;
 
     public SaveForLaterInteractor(SaveForLaterUserDataAccessInterface saveForLaterDataAccessInterface,
                                   SaveForLaterOutputBoundary saveForLaterOutputBoundary,
-                                  Recipe newSavedRecipe) {
+                                  CommonRecipe newSavedRecipe) {
         this.userDataAccessObject = saveForLaterDataAccessInterface;
         this.userPresenter = saveForLaterOutputBoundary;
         this.newSavedRecipe = newSavedRecipe;
@@ -23,7 +24,7 @@ public class SaveForLaterInteractor implements SaveForLaterInputBoundary {
 
     @Override
     public void execute(SaveForLaterInputData saveForLaterInputData) {
-        final User user = userDataAccessObject.getUserById(saveForLaterInputData.getUserId());
+        final PantryPalUser user = userDataAccessObject.getUserById(saveForLaterInputData.getUserId());
 
         final SavedForLaterRecipes savedForLater = user.getSavedForLater();
         savedForLater.addRecipe(newSavedRecipe);
