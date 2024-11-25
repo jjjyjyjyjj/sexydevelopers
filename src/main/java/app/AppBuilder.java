@@ -124,7 +124,7 @@ public class AppBuilder {
                 loggedInViewModel, loginViewModel);
 
         final LogoutInputBoundary logoutInteractor =
-                new LogoutInteractor((LogoutUserDataAccessInterface) userDataAccessObject, logoutOutputBoundary);
+                new LogoutInteractor((LogoutUserDataAccessInterface) this.userDataAccessObject, logoutOutputBoundary);
 
         final LogoutController logoutController = new LogoutController(logoutInteractor);
         loggedInView.setLogoutController(logoutController);
