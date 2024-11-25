@@ -20,35 +20,43 @@ public class CommonIngredient implements Ingredient{
         this.quantity = 0;
     }
 
+    @Override
     public String getName() {
         return name;
     }
 
+    @Override
     public String getId() {
         return id;
     }
 
+    @Override
     public String getUnit() {
         return unit;
     }
 
+    @Override
     public void setUnit(String unit) {
         this.unit = unit;
     }
 
+    @Override
     public String getAisle() {
         return aisle;
     }
 
+    @Override
     public void setAisle(String aisle) {
         this.aisle = aisle;
     }
 
+    @Override
     public double getQuantity() {
         return quantity;
     }
 
-    public void addQuantity(double quantity) {
-        this.quantity += quantity;
+    @Override
+    public void setQuantity(double quantity) {
+        this.quantity = quantity;
     }
 }

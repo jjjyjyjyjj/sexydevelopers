@@ -5,16 +5,16 @@ import java.util.List;
 /**
  * A recipe
  */
-public class CommonRecipe implements Recipe{
+public final class CommonRecipe implements Recipe{
     private String name;
     private String id;
-    private List<CommonIngredient> ingredients;
+    private List<Ingredient> ingredients;
     private String image;
     private String link;
 //    private ArrayList<Integer> nutrients;
 
 
-    public CommonRecipe(String name, String id, List<CommonIngredient> ingredients, String image, String link) {
+    public CommonRecipe(String name, String id, List<Ingredient> ingredients, String image, String link) {
         this.name = name;
         this.id = id;
         this.ingredients = ingredients;
@@ -26,22 +26,27 @@ public class CommonRecipe implements Recipe{
 //        }
     }
 
+    @Override
     public String getName() {
         return name;
     }
 
+    @Override
     public String getID() {
         return id;
     }
 
-    public List<CommonIngredient> getIngredients() {
+    @Override
+    public List<Ingredient> getIngredients() {
         return ingredients;
     }
 
+    @Override
     public String getImage() {
         return image;
     }
 
+    @Override
     public String getLink() {
         return link;
     }
