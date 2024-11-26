@@ -2,9 +2,11 @@ package use_case.favouriterecipes;
 
 import data_access.FileUserDataAccessObject;
 import entity.*;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import use_case.favourite_recipes.*;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -14,13 +16,22 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.fail;
 
 public class FavouriteRecipesInteractorTest {
-    UserFactory userfactory = new PantryPalUserFactory();
-    RecipeFactory recipefactory = new CommonRecipeFactory();
-    IngredientFactory ingredientFactory = new CommonIngredientFactory();
+    private File testFile;
+    private FileUserDataAccessObject userRepository;
+    PantryPalUserFactory userFactory = new PantryPalUserFactory();
+    CommonRecipeFactory recipeFactory = new CommonRecipeFactory();
+    CommonIngredientFactory ingredientFactory = new CommonIngredientFactory();
+
+    @BeforeEach
+    void setUp() throws IOException {
+        // Set up a test JSON file for the FileUserDataAccessObject
+        testFile = new File("test_users.json");
+        userRepository = new FileUserDataAccessObject(testFile.getPath());
+    }
 
     @Test
     void successTest() throws IOException {
-        User user = userfactory.create("username", "password");
+        // Creates a new recipe to add to the favourite recipe list
         List<Ingredient> omlette = new ArrayList<>();
         Ingredient bread = ingredientFactory.create("bread crumbs", "18879","", "Pasta and Rice");
         Ingredient milk = ingredientFactory.create("milk", "1077","", "Milk, Eggs, Other Dairy");
@@ -29,8 +40,14 @@ public class FavouriteRecipesInteractorTest {
         omlette.add(milk);
         omlette.add(bread);
 
-        Recipe toFavRecipe = recipefactory.create("Bread Omlette","635964", omlette,
-                "https://img.spoonacular.com/recipes/635964-312x231.jpg" );
+        CommonRecipe toFavRecipe = (CommonRecipe) recipeFactory.create("Bread Omlette",635964, omlette,
+                "https://img.spoonacular.com/recipes/635964-312x231.jpg",
+                "https://www.foodista.com/recipe/2M6MVKZT/bread-omlette");
+
+        // Creates a new user
+        PantryPalUser user = userFactory.create("lala", "password");
+        userRepository.save(user);
+
         FavouriteRecipesInputData inputData = new FavouriteRecipesInputData(toFavRecipe, user);
         FavouriteRecipesDataAccessInterface userRepository = new FileUserDataAccessObject("users.json");
 
@@ -39,8 +56,11 @@ public class FavouriteRecipesInteractorTest {
             @Override
             public void prepareSuccessView(FavouriteRecipesOutputData favrecipes) {
                 // 2 things to check: the output data is correct, and the user has been created in the DAO.
-                assertEquals("", favrecipes.getfavRecipes());
-                assertTrue(userRepository.existsByRecipe(toFavRecipe));
+                List<Recipe> favouriteRecipe = new ArrayList<>();
+                favouriteRecipe.add(toFavRecipe);
+
+                assertEquals(favouriteRecipe, favrecipes.getfavRecipes());
+                assertTrue(userRepository.existsByRecipe(toFavRecipe, user));
             }
 
             @Override
