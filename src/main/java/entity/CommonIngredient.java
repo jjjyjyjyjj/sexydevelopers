@@ -7,12 +7,12 @@ package entity;
 public class CommonIngredient implements Ingredient{
 
     private final String name;
-    private final String id;
+    private final int id;
     private String unit;
     private String aisle;
     private double quantity;
 
-    public CommonIngredient(String name, String id, String unit, String aisle) {
+    public CommonIngredient(String name, int id, String unit, String aisle) {
         this.name = name;
         this.id = id;
         this.unit = unit;
@@ -26,7 +26,7 @@ public class CommonIngredient implements Ingredient{
     }
 
     @Override
-    public String getId() {
+    public int getId() {
         return id;
     }
 

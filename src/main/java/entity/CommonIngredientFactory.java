@@ -11,7 +11,7 @@ public class CommonIngredientFactory implements IngredientFactory {
      */
 
     @Override
-    public Ingredient create(String name, String id, String unit, String aisle) {
+    public Ingredient create(String name, int id, String unit, String aisle) {
         return new CommonIngredient(name, id, unit, aisle);
     }
 }

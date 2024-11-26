@@ -22,10 +22,10 @@ public class FridgeController {
     }
 
     // Remove ingredient from the fridge
-    public void removeIngredient(String ingredientId, int quantity) {
+    public void removeIngredient(int ingredientId, int quantity) {
         Ingredient ingredientToRemove = null;
         for (Ingredient ingredient : fridge.getIngredients()) {
-            if (ingredient.getId().equals(ingredientId) && ingredient.getQuantity() >= quantity) {
+            if (ingredient.getId() == (ingredientId) && ingredient.getQuantity() >= quantity) {
                 ingredientToRemove = ingredient;
                 break;
             }

@@ -114,7 +114,7 @@ public class recipeFinder implements recipeFinderInterface {
                 String[] usedIngredients = usedIngredientsString.split("},\\{");
                 for (String ingredientString : usedIngredients) {
                     String ingredientName = extractValue(ingredientString, "\"name\":\"", "\",");
-                    String ingredientId = extractValue(ingredientString, "\"id\":", ",").trim();
+                    int ingredientId = Integer.parseInt(extractValue(ingredientString, "\"id\":", ",").trim());
                     String unit = extractValue(ingredientString, "\"unit\":\"", "\",");
                     String aisle = extractValue(ingredientString, "\"aisle\":\"", "\",");
                     IngredientFactory ingredientFactory = new CommonIngredientFactory();

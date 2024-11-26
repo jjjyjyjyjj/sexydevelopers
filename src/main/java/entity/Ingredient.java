@@ -15,7 +15,7 @@ public interface Ingredient {
      * Returns the id of the ingredient.
      * @return the id of the ingredient.
      */
-    String getId();
+    int getId();
 
     /**
      * Returns the unit of the ingredient.
