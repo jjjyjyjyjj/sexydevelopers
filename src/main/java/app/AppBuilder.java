@@ -31,7 +31,7 @@ import use_case.signup.SignupInputBoundary;
 import use_case.signup.SignupInteractor;
 import use_case.signup.SignupOutputBoundary;
 import use_case.triedRecipes.TriedRecipesInteractor;
-import view.LoggedInView;
+import view.HomeView;
 import view.LoginView;
 import view.SignupView;
 import view.TriedRecipesView;
@@ -55,7 +55,7 @@ public class AppBuilder {
     private LoginViewModel loginViewModel;
     private LoginView loginView;
     private LoggedInViewModel loggedInViewModel;
-    private LoggedInView loggedInView;
+    private HomeView loggedInView;
 
 
     public AppBuilder() {
@@ -86,7 +86,7 @@ public class AppBuilder {
 
     public AppBuilder addLoggedInView() {
         loggedInViewModel = new LoggedInViewModel();
-        loggedInView = new LoggedInView(loggedInViewModel);
+        loggedInView = new HomeView(loggedInViewModel);
         cardPanel.add(loggedInView, loggedInView.getViewName());
         return this;
     }
