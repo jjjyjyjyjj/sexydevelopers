@@ -12,7 +12,7 @@ public class LoggedInState {
     private Fridge fridge;
     private SavedRecipes favRecipes;
     private TriedRecipes triedRecipes;
-    private SavedForLaterRecipes savedforlaterRecipes;
+    private SavedRecipes savedforlaterRecipes;
 
     public LoggedInState(LoggedInState copy) {
         username = copy.username;
@@ -63,11 +63,11 @@ public class LoggedInState {
         this.triedRecipes = triedRecipes;
     }
 
-    public SavedForLaterRecipes getSavedforlaterRecipes() {
+    public SavedRecipes getSavedforlaterRecipes() {
         return savedforlaterRecipes;
     }
 
-    public void setSavedforlaterRecipes(SavedForLaterRecipes savedforlaterRecipes) {
+    public void setSavedforlaterRecipes(SavedRecipes savedforlaterRecipes) {
         this.savedforlaterRecipes = savedforlaterRecipes;
     }
 }
