@@ -109,6 +109,7 @@ public class HomeView extends JPanel {
                 }
             }
         });
+
     }
 
     public void setLogoutController(LogoutController logoutController) {
