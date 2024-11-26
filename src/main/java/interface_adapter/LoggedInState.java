@@ -11,7 +11,7 @@ public class LoggedInState {
     private String passwordError;
     private Fridge fridge;
     private SavedRecipes favRecipes;
-    private TriedRecipes triedRecipes;
+    private SavedRecipes triedRecipes;
     private SavedRecipes savedforlaterRecipes;
 
     public LoggedInState(LoggedInState copy) {
@@ -57,9 +57,9 @@ public class LoggedInState {
 
     public void setFavRecipes(SavedRecipes favRecipes) {this.favRecipes = favRecipes;}
 
-    public TriedRecipes getTriedRecipes() { return triedRecipes;}
+    public SavedRecipes getTriedRecipes() { return triedRecipes;}
 
-    public void setTriedRecipes(TriedRecipes triedRecipes) {
+    public void setTriedRecipes(SavedRecipes triedRecipes) {
         this.triedRecipes = triedRecipes;
     }
 
