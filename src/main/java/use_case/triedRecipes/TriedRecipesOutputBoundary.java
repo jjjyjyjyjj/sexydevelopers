@@ -1,9 +1,9 @@
 package use_case.triedRecipes;
 
-import entity.CommonRecipe;
+import entity.Recipe;
 
 import java.util.List;
 
 public interface TriedRecipesOutputBoundary {
-    void presentTriedRecipes(List<CommonRecipe> triedRecipes);
+    void presentTriedRecipes(List<Recipe> triedRecipes);
 }

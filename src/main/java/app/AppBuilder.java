@@ -5,12 +5,14 @@ import entity.PantryPalUserFactory;
 import entity.UserFactory;
 import interface_adapter.change_password.ChangePasswordController;
 import interface_adapter.change_password.ChangePasswordPresenter;
+import interface_adapter.change_password.LoggedInState;
 import interface_adapter.change_password.LoggedInViewModel;
 import interface_adapter.login.LoginController;
 import interface_adapter.login.LoginPresenter;
 import interface_adapter.login.LoginViewModel;
 import interface_adapter.logout.LogoutController;
 import interface_adapter.logout.LogoutPresenter;
+import interface_adapter.recipeRecommendation.RecipeRecViewModel;
 import interface_adapter.signup.SignupController;
 import interface_adapter.signup.SignupPresenter;
 import interface_adapter.signup.SignupViewModel;
@@ -31,7 +33,7 @@ import use_case.signup.SignupInputBoundary;
 import use_case.signup.SignupInteractor;
 import use_case.signup.SignupOutputBoundary;
 import use_case.triedRecipes.TriedRecipesInteractor;
-import view.LoggedInView;
+import view.HomeView;
 import view.LoginView;
 import view.SignupView;
 import view.TriedRecipesView;
@@ -55,7 +57,7 @@ public class AppBuilder {
     private LoginViewModel loginViewModel;
     private LoginView loginView;
     private LoggedInViewModel loggedInViewModel;
-    private LoggedInView loggedInView;
+    private HomeView loggedInView;
 
 
     public AppBuilder() {
@@ -84,12 +86,18 @@ public class AppBuilder {
         return this;
     }
 
-    public AppBuilder addLoggedInView() {
-        loggedInViewModel = new LoggedInViewModel();
-        loggedInView = new LoggedInView(loggedInViewModel);
+    public AppBuilder addHomeView() {
+        LoggedInState loggedInState = new LoggedInState();
+        RecipeRecViewModel recipeRecViewModel = new RecipeRecViewModel();
+        loggedInView = new HomeView(recipeRecViewModel, loggedInState);
         cardPanel.add(loggedInView, loggedInView.getViewName());
         return this;
     }
+
+    public AppBuilder addLoggedInView() {
+        return addHomeView();
+    }
+
 
     public AppBuilder addTriedRecipeView() {
         TriedRecipesViewModel triedRecipesViewModel = new TriedRecipesViewModel();

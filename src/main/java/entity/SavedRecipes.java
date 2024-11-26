@@ -10,9 +10,9 @@ public interface SavedRecipes {
     * Returns the list of saved recipes.
     * @return the list of saved recipes.
     */
-    List<CommonRecipe> getRecipes();
+    List<Recipe> getRecipes();
 
-    void addRecipe(CommonRecipe recipe);
+    void addRecipe(Recipe recipe);
 
-    void removeRecipe(CommonRecipe recipe);
+    void removeRecipe(Recipe recipe);
 }
