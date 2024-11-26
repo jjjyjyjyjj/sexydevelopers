@@ -4,10 +4,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import entity.CommonIngredient;
-import entity.CommonRecipe;
-import entity.Ingredient;
-import entity.Recipe;
+import entity.*;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
@@ -120,13 +117,15 @@ public class recipeFinder implements recipeFinderInterface {
                     String ingredientId = extractValue(ingredientString, "\"id\":", ",").trim();
                     String unit = extractValue(ingredientString, "\"unit\":\"", "\",");
                     String aisle = extractValue(ingredientString, "\"aisle\":\"", "\",");
-                    ingredientsList.add(new CommonIngredient(ingredientName, ingredientId, unit, aisle));
+                    IngredientFactory ingredientFactory = new CommonIngredientFactory();
+                    ingredientsList.add(ingredientFactory.create(ingredientName, ingredientId, unit, aisle));
                 }
             }
 
             // Create CommonRecipe object and add it to the list
             String link = new getRecipeInformation().getRecipeURL(id, false, false, false);
-            Recipe recipe = new CommonRecipe(title, id, ingredientsList, image, link);
+            RecipeFactory recipeFactory = new CommonRecipeFactory();
+            Recipe recipe = recipeFactory.create(title, id, ingredientsList, image, link);
             recipesList.add(recipe);
         }
 

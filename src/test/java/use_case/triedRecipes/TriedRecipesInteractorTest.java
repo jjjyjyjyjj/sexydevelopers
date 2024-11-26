@@ -49,7 +49,8 @@ class TriedRecipesInteractorTest {
     @Test
     void addRecipeToTriedRecipesSuccessTest() {
         // Arrange
-        Recipe recipe = new CommonRecipe("Pasta", 1, List.of(), "image.png", "recipe_link");
+        RecipeFactory recipeFactory = new CommonRecipeFactory();
+        Recipe recipe = recipeFactory.create("Pasta", 1, List.of(), "image.png", "recipe_link");
 
         // Act
         interactor.addRecipeToTriedRecipes("testUser", recipe);
@@ -64,7 +65,8 @@ class TriedRecipesInteractorTest {
     @Test
     void addRecipeToTriedRecipesUserNotFoundTest() {
         // Arrange
-        Recipe recipe = new CommonRecipe("Pasta", 1, List.of(), "image.png", "recipe_link");
+        RecipeFactory recipeFactory = new CommonRecipeFactory();
+        Recipe recipe = recipeFactory.create("Pasta", 1, List.of(), "image.png", "recipe_link");
 
         // Act
         interactor.addRecipeToTriedRecipes("nonExistentUser", recipe);
@@ -77,8 +79,9 @@ class TriedRecipesInteractorTest {
     @Test
     void getTriedRecipesSuccessTest() {
         // Arrange
-        Recipe recipe1 = new CommonRecipe("Pasta", 1, List.of(), "image1.png", "recipe_link1");
-        Recipe recipe2 = new CommonRecipe("Pizza", 2, List.of(), "image2.png", "recipe_link2");
+        RecipeFactory recipeFactory = new CommonRecipeFactory();
+        Recipe recipe1 = recipeFactory.create("Pasta", 1, List.of(), "image1.png", "recipe_link1");
+        Recipe recipe2 = recipeFactory.create("Pizza", 2, List.of(), "image2.png", "recipe_link2");
         interactor.addRecipeToTriedRecipes("testUser", recipe1);
         interactor.addRecipeToTriedRecipes("testUser", recipe2);
 

@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class TriedRecipes implements SavedRecipes {
-    private List<Recipe> triedRecipes;
+    private final List<Recipe> triedRecipes;
 
     public TriedRecipes() {
         this.triedRecipes = new ArrayList<>();
