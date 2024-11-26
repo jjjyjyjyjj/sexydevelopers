@@ -15,7 +15,7 @@ public class FavouriteRecipesPresenter implements FavouriteRecipesOutputBoundary
 
     @Override
     public void prepareSuccessView(FavouriteRecipesOutputData outputData) {
-        loggedinViewModel.firePropertyChanged("favourite recipes");
+        favouriteRecipesViewModel.firePropertyChanged("favourite recipes");
 
     }
 

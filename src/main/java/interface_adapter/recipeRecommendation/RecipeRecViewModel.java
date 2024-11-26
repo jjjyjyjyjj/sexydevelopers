@@ -1,7 +1,6 @@
 package interface_adapter.recipeRecommendation;
 
-import interface_adapter.login.LoginState;
-import interface_adapter.viewModel.ViewModel;
+import interface_adapter.ViewModel;
 
 public class RecipeRecViewModel extends ViewModel<RecipeRecState> {
     public RecipeRecViewModel() {

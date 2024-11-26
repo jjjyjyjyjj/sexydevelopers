@@ -1,6 +1,15 @@
 package interface_adapter.favourite_recipes;
 
-public class FavouriteRecipesViewModel {
+import interface_adapter.ViewModel;
+
+public class FavouriteRecipesViewModel extends ViewModel<FavouriteRecipesState> {
+    public static final String TITLE_LABEL = "Favourite View";
+    public static final String FAVOURITE_BUTTON_LABEL = "Favourite";
+
+    public FavouriteRecipesViewModel() {
+        super("favourite");
+        setState(new FavouriteRecipesState());
+    }
 }
 
 // Responsibility: take the Input Data and execute

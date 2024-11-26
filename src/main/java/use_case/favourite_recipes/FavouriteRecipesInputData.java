@@ -9,22 +9,26 @@ import entity.PantryPalUser;
  */
 
 public class FavouriteRecipesInputData {
-    private final CommonRecipe tofavrecipe;
+    private final CommonRecipe targetRecipe;
     private final FavouritedRecipes favourited;
-    private final String username;
+    private final PantryPalUser user;
 
-    public FavouriteRecipesInputData(CommonRecipe recipe, PantryPalUser user) {
-        this.tofavrecipe = recipe;
+    public FavouriteRecipesInputData(CommonRecipe targetRecipe, PantryPalUser user) {
+        this.targetRecipe = targetRecipe;
         this.favourited = user.getFavourited();
-        this.username = user.getUsername();
+        this.user = user;
     }
 
     FavouritedRecipes getFavouriteRecipes() {
         return favourited;
     }
 
-    String getUsername() {
-        return username;
+    PantryPalUser getUser() {
+        return user;
+    }
+
+    CommonRecipe getTargetRecipe() {
+        return targetRecipe;
     }
 
 }

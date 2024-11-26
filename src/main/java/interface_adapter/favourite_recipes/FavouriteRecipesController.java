@@ -21,13 +21,10 @@ public class FavouriteRecipesController {
            final FavouriteRecipesInputData favouriteRecipesInputData = new FavouriteRecipesInputData(recipe, username);
 
            favRecipesUseCaseInteractor.execute(favouriteRecipesInputData);
-
         }
-
-
 }
-// Responsibility: take the Input Data and execute
-//the use case, looking up information in the Data
+
+// Responsibility: take the Input Data and execute the use case, looking up information in the Data
 //Access object when necessary and manipulating
 //Entities. This might create new data that needs
 //to be saved in the Data Access layer.

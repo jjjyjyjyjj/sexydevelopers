@@ -2,9 +2,7 @@ package data_access;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.type.CollectionType;
-import entity.CommonRecipe;
-import entity.PantryPalUser;
-import entity.User;
+import entity.*;
 import use_case.change_password.ChangePasswordUserDataAccessInterface;
 import use_case.favourite_recipes.FavouriteRecipesDataAccessInterface;
 import use_case.login.LoginUserDataAccessInterface;
@@ -124,20 +122,20 @@ public class FileUserDataAccessObject implements SignupUserDataAccessInterface,
      * @param recipe the recipe that is to be added to favourite recipes
      */
     @Override
-    public void FavouriteRecipes(PantryPalUser user, CommonRecipe recipe) {
+    public void saveFavouriteRecipes(PantryPalUser user, CommonRecipe recipe) {
         user.getFavourited().addRecipe(recipe);
         save();
     }
 
     /**
-     * Checks if given recipe is in user's favpurited recipe list.
+     * Updates the system to update this user's favourite recipes.
      *
-     * @param recipe the recipe to look for
-     * @param user   the user whose list we're searching through
-     * @return true if recipe is in user's list; false otherwise
+     * @param user the user whose favourite recipes list is to be updated
+     * @param recipe the recipe that is to be removed from favourite recipes
      */
     @Override
-    public boolean existsByRecipe(CommonRecipe recipe, PantryPalUser user) {
-        return false;
+    public void updateFavouriteRecipes(PantryPalUser user, CommonRecipe recipe) {
+        user.getFavourited().removeRecipe(recipe);
+        save();
     }
 }

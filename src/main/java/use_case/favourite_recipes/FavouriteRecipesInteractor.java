@@ -8,28 +8,43 @@ import entity.PantryPalUser;
  * The Favourite Recipes Interactor.
  */
 public class FavouriteRecipesInteractor implements FavouriteRecipesInputBoundary {
-    private final PantryPalUser user;
     private final FavouriteRecipesDataAccessInterface userDataAccessObject;
     private final FavouriteRecipesOutputBoundary userPresenter;
-    private final CommonRecipe newfavRecipe;
 
     public FavouriteRecipesInteractor(FavouriteRecipesDataAccessInterface favouriteRecipesDataAccessInterface,
-                                      FavouriteRecipesOutputBoundary favouriteRecipesOutputBoundary,
-                                      CommonRecipe newfavRecipe, PantryPalUser user) {
+                                      FavouriteRecipesOutputBoundary favouriteRecipesOutputBoundary) {
         this.userDataAccessObject = favouriteRecipesDataAccessInterface;
         this.userPresenter = favouriteRecipesOutputBoundary;
-        this.newfavRecipe = newfavRecipe;
-        this.user = user;
     }
 
-    @Override
+    // Adding the new recipe to favourite recipes list
     public void execute(FavouriteRecipesInputData favouriteRecipesInputData) {
-        final FavouritedRecipes favRecipes = favouriteRecipesInputData.getFavouriteRecipes();
-        userDataAccessObject.FavouriteRecipes(user, newfavRecipe);
+        PantryPalUser user = favouriteRecipesInputData.getUser();
+        FavouritedRecipes favRecipes = favouriteRecipesInputData.getFavouriteRecipes();
+        CommonRecipe toAddRecipe = favouriteRecipesInputData.getTargetRecipe();
+
+        favRecipes.addRecipe(toAddRecipe);
+        userDataAccessObject.saveFavouriteRecipes(user, toAddRecipe);
 
         final FavouriteRecipesOutputData favouriteRecipesOutputData = new FavouriteRecipesOutputData(
-                favRecipes,
-                false);
+                user, false);
+        userPresenter.prepareSuccessView(favouriteRecipesOutputData);
+    }
+
+    // Removing a recipe from the favourite recipes list
+    public void remove(FavouriteRecipesInputData favouriteRecipesInputData, CommonRecipe recipetoremove) {
+        PantryPalUser user = favouriteRecipesInputData.getUser();
+        FavouritedRecipes favRecipes = favouriteRecipesInputData.getFavouriteRecipes();
+        CommonRecipe toRemoveRecipe = favouriteRecipesInputData.getTargetRecipe();
+
+        if (favRecipes.getRecipes().contains(recipetoremove)) {
+            favRecipes.removeRecipe(recipetoremove);
+        }
+
+        userDataAccessObject.updateFavouriteRecipes(user,toRemoveRecipe);
+
+        final FavouriteRecipesOutputData favouriteRecipesOutputData = new FavouriteRecipesOutputData(
+                user, false);
         userPresenter.prepareSuccessView(favouriteRecipesOutputData);
     }
 }
