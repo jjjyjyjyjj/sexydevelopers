@@ -1,14 +1,13 @@
 package view;
 
 import interface_adapter.change_password.ChangePasswordController;
-import interface_adapter.change_password.LoggedInState;
+import interface_adapter.LoggedInState;
 import interface_adapter.logout.LogoutController;
 import interface_adapter.recipeRecommendation.RecipeRecViewModel;
 import entity.CommonRecipe;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
 
 /**
  * The Home View displaying a single recommended recipe and additional user actions.

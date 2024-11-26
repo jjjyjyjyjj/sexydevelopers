@@ -1,6 +1,4 @@
-package interface_adapter.change_password;
-
-import interface_adapter.viewModel.ViewModel;
+package interface_adapter;
 
 /**
  * The View Model for the Logged In View.
