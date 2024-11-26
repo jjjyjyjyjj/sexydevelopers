@@ -21,8 +21,6 @@ public class PantryPalUser implements User {
     @JsonProperty ("recipeHistory")
     private SavedRecipes recipeHistory;
 
-    @JsonProperty ("prepTime")
-    private PrepTime prepTime;
 
     public PantryPalUser(String username, String password) {
         this.username = username;
@@ -32,7 +30,6 @@ public class PantryPalUser implements User {
         this.favourited = new FavouritedRecipes();
         this.savedForLater = new SavedForLaterRecipes();
         this.recipeHistory = new TriedRecipes();
-        this.prepTime = new PrepTime(30);
     }
 
     @Override
@@ -59,10 +56,6 @@ public class PantryPalUser implements User {
 
     public SavedRecipes getTriedRecipes() {
         return recipeHistory;
-    }
-
-    public PrepTime getPrepTime() {
-        return prepTime;
     }
 
 }
