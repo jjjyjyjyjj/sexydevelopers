@@ -26,7 +26,7 @@ public class FileUserDataAccessObject implements SignupUserDataAccessInterface,
         FavouriteRecipesDataAccessInterface {
 
     private final File jsonFile;
-    private final Map<String, PantryPalUser> accounts = new HashMap<>();
+    private final Map<String, User> accounts = new HashMap<>();
     private final ObjectMapper objectMapper = new ObjectMapper();
     private String currentUsername;
 
@@ -35,8 +35,8 @@ public class FileUserDataAccessObject implements SignupUserDataAccessInterface,
 
         if (jsonFile.exists() && jsonFile.length() > 0) {
             // Load existing users
-            List<PantryPalUser> users = loadUsers();
-            for (PantryPalUser user : users) {
+            List<User> users = loadUsers();
+            for (User user : users) {
                 accounts.put(user.getUsername(), user);
             }
         } else {
@@ -53,9 +53,9 @@ public class FileUserDataAccessObject implements SignupUserDataAccessInterface,
     }
 
 
-    private List<PantryPalUser> loadUsers() throws IOException {
+    private List<User> loadUsers() throws IOException {
         CollectionType listType = objectMapper.getTypeFactory()
-                .constructCollectionType(List.class, PantryPalUser.class);
+                .constructCollectionType(List.class, User.class);
         return objectMapper.readValue(jsonFile, listType);
     }
 
@@ -68,13 +68,13 @@ public class FileUserDataAccessObject implements SignupUserDataAccessInterface,
     }
 
     @Override
-    public void save(PantryPalUser user) {
+    public void save(User user) {
         accounts.put(user.getUsername(), user);
         save();
     }
 
     @Override
-    public PantryPalUser get(String username) {
+    public User get(String username) {
         return accounts.get(username);
     }
 
@@ -95,8 +95,8 @@ public class FileUserDataAccessObject implements SignupUserDataAccessInterface,
 
     @Override
     public void save(User user) {
-        if (user instanceof PantryPalUser) {
-            PantryPalUser pantryUser = (PantryPalUser) user; // Cast User to PantryPalUser
+        if (user instanceof User) {
+            User pantryUser = user;
             accounts.put(pantryUser.getUsername(), pantryUser);
             save(); // Save the updated accounts to the JSON file
         } else {
@@ -106,8 +106,8 @@ public class FileUserDataAccessObject implements SignupUserDataAccessInterface,
 
     @Override
     public void changePassword(User user) {
-        if (user instanceof PantryPalUser) {
-            PantryPalUser pantryUser = (PantryPalUser) user;
+        if (user instanceof User) {
+            User pantryUser = user;
             accounts.put(pantryUser.getUsername(), pantryUser);
             save();
         } else {
@@ -122,7 +122,7 @@ public class FileUserDataAccessObject implements SignupUserDataAccessInterface,
      * @param recipe the recipe that is to be added to favourite recipes
      */
     @Override
-    public void saveFavouriteRecipes(PantryPalUser user, CommonRecipe recipe) {
+    public void saveFavouriteRecipes(User user, Recipe recipe) {
         user.getFavourited().addRecipe(recipe);
         save();
     }
@@ -134,7 +134,7 @@ public class FileUserDataAccessObject implements SignupUserDataAccessInterface,
      * @param recipe the recipe that is to be removed from favourite recipes
      */
     @Override
-    public void updateFavouriteRecipes(PantryPalUser user, CommonRecipe recipe) {
+    public void updateFavouriteRecipes(User user, Recipe recipe) {
         user.getFavourited().removeRecipe(recipe);
         save();
     }

@@ -1,9 +1,7 @@
 package use_case.triedRecipes;
 
 import data_access.FileUserDataAccessObject;
-import entity.CommonRecipe;
-import entity.PantryPalUserFactory;
-import entity.PantryPalUser;
+import entity.*;
 import interface_adapter.triedRecipes.TriedRecipesViewModel;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -29,10 +27,10 @@ class TriedRecipesInteractorTest {
         // Set up a test JSON file for the FileUserDataAccessObject
         testFile = new File("test_users.json");
         userRepository = new FileUserDataAccessObject(testFile.getPath());
-        PantryPalUserFactory userFactory = new PantryPalUserFactory();
+        UserFactory userFactory = new PantryPalUserFactory();
 
         // Add a user to the repository
-        PantryPalUser user = userFactory.create("testUser", "password");
+        User user = userFactory.create("testUser", "password");
         userRepository.save(user);
 
         // Initialize the interactor
@@ -51,13 +49,13 @@ class TriedRecipesInteractorTest {
     @Test
     void addRecipeToTriedRecipesSuccessTest() {
         // Arrange
-        CommonRecipe recipe = new CommonRecipe("Pasta", 1, List.of(), "image.png", "recipe_link");
+        Recipe recipe = new CommonRecipe("Pasta", 1, List.of(), "image.png", "recipe_link");
 
         // Act
         interactor.addRecipeToTriedRecipes("testUser", recipe);
 
         // Assert
-        PantryPalUser user = userRepository.get("testUser");
+        User user = userRepository.get("testUser");
         assertNotNull(user);
         assertEquals(1, user.getTriedRecipes().getRecipes().size());
         assertEquals("Pasta", user.getTriedRecipes().getRecipes().get(0).getName());
@@ -66,21 +64,21 @@ class TriedRecipesInteractorTest {
     @Test
     void addRecipeToTriedRecipesUserNotFoundTest() {
         // Arrange
-        CommonRecipe recipe = new CommonRecipe("Pasta", 1, List.of(), "image.png", "recipe_link");
+        Recipe recipe = new CommonRecipe("Pasta", 1, List.of(), "image.png", "recipe_link");
 
         // Act
         interactor.addRecipeToTriedRecipes("nonExistentUser", recipe);
 
         // Assert
-        PantryPalUser user = userRepository.get("nonExistentUser");
+        User user = userRepository.get("nonExistentUser");
         assertNull(user);
     }
 
     @Test
     void getTriedRecipesSuccessTest() {
         // Arrange
-        CommonRecipe recipe1 = new CommonRecipe("Pasta", 1, List.of(), "image1.png", "recipe_link1");
-        CommonRecipe recipe2 = new CommonRecipe("Pizza", 2, List.of(), "image2.png", "recipe_link2");
+        Recipe recipe1 = new CommonRecipe("Pasta", 1, List.of(), "image1.png", "recipe_link1");
+        Recipe recipe2 = new CommonRecipe("Pizza", 2, List.of(), "image2.png", "recipe_link2");
         interactor.addRecipeToTriedRecipes("testUser", recipe1);
         interactor.addRecipeToTriedRecipes("testUser", recipe2);
 

@@ -1,17 +1,18 @@
 package interface_adapter.fridge;
 
-import entity.CommonFridge;
 import entity.CommonIngredient;
+import entity.Fridge;
+import entity.Ingredient;
 
 public class FridgeController {
-    private CommonFridge fridge;
+    private Fridge fridge;
 
-    public FridgeController(CommonFridge fridge) {
+    public FridgeController(Fridge fridge) {
         this.fridge = fridge;
     }
 
     // Add ingredient to the fridge
-    public void addIngredient(CommonIngredient ingredient) {
+    public void addIngredient(Ingredient ingredient) {
         if (!fridge.hasIngredient(ingredient)) {
             fridge.getIngredients().add(ingredient);
             System.out.println("CommonIngredient added to fridge: " + ingredient.getName());
@@ -22,8 +23,8 @@ public class FridgeController {
 
     // Remove ingredient from the fridge
     public void removeIngredient(String ingredientId, int quantity) {
-        CommonIngredient ingredientToRemove = null;
-        for (CommonIngredient ingredient : fridge.getIngredients()) {
+        Ingredient ingredientToRemove = null;
+        for (Ingredient ingredient : fridge.getIngredients()) {
             if (ingredient.getId().equals(ingredientId) && ingredient.getQuantity() >= quantity) {
                 ingredientToRemove = ingredient;
                 break;

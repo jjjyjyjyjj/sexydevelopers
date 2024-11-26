@@ -1,6 +1,8 @@
 package interface_adapter.recipeRecommendation;
 
 import entity.CommonRecipe;
+import entity.Recipe;
+
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -10,7 +12,7 @@ import java.util.Set;
  * State for managing recipe recommendations.
  */
 public class RecipeRecState {
-    private CommonRecipe currentRecipe;
+    private Recipe currentRecipe;
     private Set<Integer> skippedRecipeIds = new HashSet<>();
     private String errorMessage;
 
@@ -18,11 +20,11 @@ public class RecipeRecState {
         // Default constructor
     }
 
-    public CommonRecipe getCurrentRecipe() {
+    public Recipe getCurrentRecipe() {
         return currentRecipe;
     }
 
-    public void setCurrentRecipe(CommonRecipe currentRecipe) {
+    public void setCurrentRecipe(Recipe currentRecipe) {
         this.currentRecipe = currentRecipe;
     }
 

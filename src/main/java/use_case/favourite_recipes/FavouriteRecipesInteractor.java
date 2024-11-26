@@ -1,8 +1,6 @@
 package use_case.favourite_recipes;
 
-import entity.CommonRecipe;
-import entity.FavouritedRecipes;
-import entity.PantryPalUser;
+import entity.*;
 
 /**
  * The Favourite Recipes Interactor.
@@ -19,9 +17,9 @@ public class FavouriteRecipesInteractor implements FavouriteRecipesInputBoundary
 
     // Adding the new recipe to favourite recipes list
     public void execute(FavouriteRecipesInputData favouriteRecipesInputData) {
-        PantryPalUser user = favouriteRecipesInputData.getUser();
-        FavouritedRecipes favRecipes = favouriteRecipesInputData.getFavouriteRecipes();
-        CommonRecipe toAddRecipe = favouriteRecipesInputData.getTargetRecipe();
+        User user = favouriteRecipesInputData.getUser();
+        SavedRecipes favRecipes = favouriteRecipesInputData.getFavouriteRecipes();
+        Recipe toAddRecipe = favouriteRecipesInputData.getTargetRecipe();
 
         favRecipes.addRecipe(toAddRecipe);
         userDataAccessObject.saveFavouriteRecipes(user, toAddRecipe);
@@ -32,10 +30,10 @@ public class FavouriteRecipesInteractor implements FavouriteRecipesInputBoundary
     }
 
     // Removing a recipe from the favourite recipes list
-    public void remove(FavouriteRecipesInputData favouriteRecipesInputData, CommonRecipe recipetoremove) {
-        PantryPalUser user = favouriteRecipesInputData.getUser();
-        FavouritedRecipes favRecipes = favouriteRecipesInputData.getFavouriteRecipes();
-        CommonRecipe toRemoveRecipe = favouriteRecipesInputData.getTargetRecipe();
+    public void remove(FavouriteRecipesInputData favouriteRecipesInputData, Recipe recipetoremove) {
+        User user = favouriteRecipesInputData.getUser();
+        SavedRecipes favRecipes = favouriteRecipesInputData.getFavouriteRecipes();
+        Recipe toRemoveRecipe = favouriteRecipesInputData.getTargetRecipe();
 
         if (favRecipes.getRecipes().contains(recipetoremove)) {
             favRecipes.removeRecipe(recipetoremove);

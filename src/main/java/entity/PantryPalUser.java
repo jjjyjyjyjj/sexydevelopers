@@ -10,16 +10,16 @@ public class PantryPalUser implements User {
     private String password;
 
     @JsonProperty ("fridge")
-    private CommonFridge fridge;
+    private Fridge fridge;
 
     @JsonProperty ("favourited")
-    private FavouritedRecipes favourited;
+    private SavedRecipes favourited;
 
     @JsonProperty ("savedForLater")
-    private SavedForLaterRecipes savedForLater;
+    private SavedRecipes savedForLater;
 
     @JsonProperty ("recipeHistory")
-    private TriedRecipes recipeHistory;
+    private SavedRecipes recipeHistory;
 
     @JsonProperty ("prepTime")
     private PrepTime prepTime;
@@ -45,19 +45,19 @@ public class PantryPalUser implements User {
         return password;
     }
 
-    public CommonFridge getFridge() {
+    public Fridge getFridge() {
         return fridge;
     }
 
-    public FavouritedRecipes getFavourited() {
+    public SavedRecipes getFavourited() {
         return favourited;
     }
 
-    public SavedForLaterRecipes getSavedForLater() {
+    public SavedRecipes getSavedForLater() {
         return savedForLater;
     }
 
-    public TriedRecipes getTriedRecipes() {
+    public SavedRecipes getTriedRecipes() {
         return recipeHistory;
     }
 

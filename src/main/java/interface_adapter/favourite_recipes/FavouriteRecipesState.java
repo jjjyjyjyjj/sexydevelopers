@@ -2,15 +2,16 @@ package interface_adapter.favourite_recipes;
 
 import entity.PantryPalUser;
 import entity.Recipe;
+import entity.User;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class FavouriteRecipesState {
-    private PantryPalUser user;
+    private User user;
     private List<Recipe> favRecipes = new ArrayList<>();
 
-    public PantryPalUser getUser() {
+    public User getUser() {
             return user;
     }
 

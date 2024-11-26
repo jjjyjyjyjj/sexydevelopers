@@ -7,6 +7,7 @@ import java.util.List;
 import entity.CommonIngredient;
 import entity.CommonRecipe;
 import entity.Ingredient;
+import entity.Recipe;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
@@ -23,10 +24,10 @@ public class recipeFinder implements recipeFinderInterface {
     }
 
     @Override
-    public List<CommonRecipe> getRecipeByIngredient(List<CommonIngredient> ingredients, int number, int ranking, boolean ignorePantry) throws IOException {
+    public List<Recipe> getRecipeByIngredient(ArrayList<Ingredient> ingredients, int number, int ranking, boolean ignorePantry) throws IOException {
         // Extract the ingredient names from the CommonIngredient objects
         List<String> ingredientNames = new ArrayList<>();
-        for (CommonIngredient ingredient : ingredients) {
+        for (Ingredient ingredient : ingredients) {
             ingredientNames.add(ingredient.getName());
         }
 
@@ -51,7 +52,7 @@ public class recipeFinder implements recipeFinderInterface {
         }
     }
 
-    public List<CommonRecipe> getRecipeByNutrition(int calories, int protein, int carbs, boolean maxCalories, boolean maxProtein, boolean maxCarbs) throws IOException {
+    public List<Recipe> getRecipeByNutrition(int calories, int protein, int carbs, boolean maxCalories, boolean maxProtein, boolean maxCarbs) throws IOException {
         // Build query parameters based on the provided nutritional limits
         StringBuilder urlBuilder = new StringBuilder(API_URL).append("/findByNutrients?");
 
@@ -95,8 +96,8 @@ public class recipeFinder implements recipeFinderInterface {
         }
     }
 
-    private List<CommonRecipe> parseRecipes(String responseBody) throws IOException {
-        List<CommonRecipe> recipesList = new ArrayList<>();
+    private List<Recipe> parseRecipes(String responseBody) throws IOException {
+        List<Recipe> recipesList = new ArrayList<>();
         responseBody = responseBody.substring(1, responseBody.length() - 1);
         String[] recipeStrings = responseBody.split("},\\{");
 
@@ -125,7 +126,7 @@ public class recipeFinder implements recipeFinderInterface {
 
             // Create CommonRecipe object and add it to the list
             String link = new getRecipeInformation().getRecipeURL(id, false, false, false);
-            CommonRecipe recipe = new CommonRecipe(title, id, ingredientsList, image, link);
+            Recipe recipe = new CommonRecipe(title, id, ingredientsList, image, link);
             recipesList.add(recipe);
         }
 

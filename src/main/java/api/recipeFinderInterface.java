@@ -1,9 +1,11 @@
 package api;
 
-import entity.CommonIngredient;
 import entity.CommonRecipe;
+import entity.Ingredient;
+import entity.Recipe;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -22,6 +24,6 @@ public interface recipeFinderInterface {
      * @param ignorePantry whether to ignore typical pantry items, such as water, salt, flour, etc.
      * @return the list of recipes that can be made with given ingredients
      */
-    List<CommonRecipe> getRecipeByIngredient(List<CommonIngredient> ingredients, int number, int ranking, boolean ignorePantry) throws IOException;
+    List<Recipe> getRecipeByIngredient(ArrayList<Ingredient> ingredients, int number, int ranking, boolean ignorePantry) throws IOException;
 
 }

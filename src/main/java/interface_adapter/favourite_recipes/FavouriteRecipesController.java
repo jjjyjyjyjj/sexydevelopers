@@ -2,6 +2,8 @@ package interface_adapter.favourite_recipes;
 
 import entity.CommonRecipe;
 import entity.PantryPalUser;
+import entity.Recipe;
+import entity.User;
 import use_case.favourite_recipes.FavouriteRecipesInputData;
 import use_case.favourite_recipes.FavouriteRecipesInputBoundary;
 
@@ -17,7 +19,7 @@ public class FavouriteRecipesController {
      * @param recipe the new recipe that is favourited
      * @param username the username whose favourite recipes list is being changed
      */
-        public void execute(CommonRecipe recipe, PantryPalUser username) {
+        public void execute(Recipe recipe, User username) {
            final FavouriteRecipesInputData favouriteRecipesInputData = new FavouriteRecipesInputData(recipe, username);
 
            favRecipesUseCaseInteractor.execute(favouriteRecipesInputData);

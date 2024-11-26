@@ -1,6 +1,7 @@
 package use_case.favourite_recipes;
 
 import entity.CommonRecipe;
+import entity.Recipe;
 
 /**
  * The Favourite CommonRecipe Use Case.
@@ -19,6 +20,6 @@ public interface FavouriteRecipesInputBoundary {
      * @param favouriteRecipesInputData the input data containing the Favourite Recipe List for this use case
      * @param recipeToRemove the recipe intended to be removed from the list
      */
-    void remove(FavouriteRecipesInputData favouriteRecipesInputData, CommonRecipe recipeToRemove);
+    void remove(FavouriteRecipesInputData favouriteRecipesInputData, Recipe recipeToRemove);
 }
 
