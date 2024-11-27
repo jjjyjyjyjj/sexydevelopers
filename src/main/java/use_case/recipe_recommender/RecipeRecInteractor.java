@@ -6,7 +6,6 @@ import entity.CommonRecipe;
 import entity.Ingredient;
 import entity.Recipe;
 import interface_adapter.recipeRecommendation.RecipeRecState;
-import use_case.login.RecipeOutputBoundary;
 
 import java.util.ArrayList;
 import java.util.List;
