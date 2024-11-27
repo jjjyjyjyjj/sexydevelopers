@@ -1,6 +1,5 @@
-package interface_adapter.favourite_recipes;
+package interface_adapter.favourite_recipe;
 
-import entity.PantryPalUser;
 import entity.Recipe;
 import entity.User;
 

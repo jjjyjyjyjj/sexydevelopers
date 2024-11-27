@@ -50,7 +50,7 @@ public class RemoveFavRecipeInteractorTest {
         userRepository.save(user1);
         user1.getFavourited().addRecipe(toRemoveRecipe);
 
-        //For a success test, we need to add the recipe to the favourite recipe list.
+        //For a success test, we need to remove the target recipe from the list.
         RemoveFavRecipeInputData inputData = new RemoveFavRecipeInputData(toRemoveRecipe, user1);
         user1.getFavourited().removeRecipe(toRemoveRecipe);
         userRepository.updateFavouriteRecipes(user1, toRemoveRecipe);
@@ -72,6 +72,38 @@ public class RemoveFavRecipeInteractorTest {
         };
 
         RemoveFavRecipeInputBoundary interactor = new RemoveFavRecipeInteractor(userRepository, successPresenter);
-        interactor.execute(inputData, toRemoveRecipe);
+        interactor.execute(inputData);
+    }
+
+    @Test
+    void failureRecipeDoesNotExistTest() throws IOException {
+        RemoveFavRecipeDataAccessInterface userRepository = new FileUserDataAccessObject(testFile.getPath());
+        Recipe toRemoveRecipe = testRecipe;
+
+        // Creates a new user
+        User user2 = userFactory.create("lala", "pa55word");
+        userRepository.save(user2);
+
+        //For a success test, we need to add the recipe to the favourite recipe list.
+        RemoveFavRecipeInputData inputData = new RemoveFavRecipeInputData(toRemoveRecipe, user2);
+
+        // This creates a successPresenter that tests whether the test case is as we expect.
+        RemoveFavRecipeOutputBoundary successPresenter = new RemoveFavRecipeOutputBoundary() {
+            @Override
+            public void prepareSuccessView(RemoveFavRecipeOutputData favrecipes) {
+                // 2 things to check: the output data is correct, and the user has been created in the DAO.
+                List<Recipe> favouriteRecipe = new ArrayList<>();
+
+                assertEquals(favouriteRecipe, favrecipes.getfavRecipes());
+            }
+
+            @Override
+            public void prepareFailView(String error) {
+                fail("Use case failure is unexpected.");
+            }
+        };
+
+        RemoveFavRecipeInputBoundary interactor = new RemoveFavRecipeInteractor(userRepository, successPresenter);
+        interactor.execute(inputData);
     }
 }

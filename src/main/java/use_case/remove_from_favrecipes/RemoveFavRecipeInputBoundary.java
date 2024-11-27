@@ -12,7 +12,6 @@ public interface RemoveFavRecipeInputBoundary {
     /**
      * Execute Use Case of Removing a Recipe from the Favourite Recipes List.
      * @param removeFavRecipeInputData the input data containing the Favourite Recipe List for this use case
-     * @param recipeToRemove the recipe intended to be removed from the list
      */
-    void execute(RemoveFavRecipeInputData removeFavRecipeInputData, Recipe recipeToRemove);
+    void execute(RemoveFavRecipeInputData removeFavRecipeInputData);
 }
