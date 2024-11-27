@@ -9,7 +9,7 @@ import entity.User;
 public interface SaveForLaterUserDataAccessInterface {
     boolean saveRecipeForUser(String userId, String recipeId);
 
-    PantryPalUser getUserById(String userId);
+    User getUserById(String userId);
 
     void updateUserSavedRecipes(User user);
 }

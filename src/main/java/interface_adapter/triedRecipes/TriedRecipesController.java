@@ -17,7 +17,7 @@ public class TriedRecipesController {
         this.viewModel = viewModel;
     }
 
-    public void addRecipe(String username, CommonRecipe recipe) {
+    public void addRecipe(String username, Recipe recipe) {
         triedRecipesInput.addRecipeToTriedRecipes(username, recipe);
     }
 

@@ -1,33 +1,31 @@
 package use_case.favourite_recipes;
 
-import entity.CommonRecipe;
-import entity.FavouritedRecipes;
-import entity.PantryPalUser;
+import entity.*;
 
 /**
  * The input data for the Favourite Recipes Use Case.
  */
 
 public class FavouriteRecipesInputData {
-    private final CommonRecipe targetRecipe;
-    private final FavouritedRecipes favourited;
-    private final PantryPalUser user;
+    private final Recipe targetRecipe;
+    private final SavedRecipes favourited;
+    private final User user;
 
-    public FavouriteRecipesInputData(CommonRecipe targetRecipe, PantryPalUser user) {
+    public FavouriteRecipesInputData(Recipe targetRecipe, User user) {
         this.targetRecipe = targetRecipe;
         this.favourited = user.getFavourited();
         this.user = user;
     }
 
-    FavouritedRecipes getFavouriteRecipes() {
+    SavedRecipes getFavouriteRecipes() {
         return favourited;
     }
 
-    PantryPalUser getUser() {
+    User getUser() {
         return user;
     }
 
-    CommonRecipe getTargetRecipe() {
+    Recipe getTargetRecipe() {
         return targetRecipe;
     }
 

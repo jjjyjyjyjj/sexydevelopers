@@ -10,29 +10,33 @@ public class PantryPalUser implements User {
     private String password;
 
     @JsonProperty ("fridge")
-    private CommonFridge fridge;
+    private Fridge fridge;
 
     @JsonProperty ("favourited")
-    private FavouritedRecipes favourited;
+    private SavedRecipes favourited;
 
     @JsonProperty ("savedForLater")
-    private SavedForLaterRecipes savedForLater;
+    private SavedRecipes savedForLater;
 
     @JsonProperty ("recipeHistory")
-    private TriedRecipes recipeHistory;
+    private SavedRecipes recipeHistory;
 
-    @JsonProperty ("prepTime")
-    private PrepTime prepTime;
+    @JsonProperty ("fridgeFactory")
+    private FridgeFactory fridgeFactory;
+
+    @JsonProperty ("savedRecipeFactory")
+    private SavedRecipeFactory savedRecipeFactory;
+
 
     public PantryPalUser(String username, String password) {
         this.username = username;
         this.password = password;
 
-        this.fridge = new CommonFridge();
+        this.fridgeFactory = new CommonFridgeFactory();
+        this.fridge = fridgeFactory.create();
         this.favourited = new FavouritedRecipes();
         this.savedForLater = new SavedForLaterRecipes();
         this.recipeHistory = new TriedRecipes();
-        this.prepTime = new PrepTime(30);
     }
 
     @Override
@@ -45,24 +49,20 @@ public class PantryPalUser implements User {
         return password;
     }
 
-    public CommonFridge getFridge() {
+    public Fridge getFridge() {
         return fridge;
     }
 
-    public FavouritedRecipes getFavourited() {
+    public SavedRecipes getFavourited() {
         return favourited;
     }
 
-    public SavedForLaterRecipes getSavedForLater() {
+    public SavedRecipes getSavedForLater() {
         return savedForLater;
     }
 
-    public TriedRecipes getTriedRecipes() {
+    public SavedRecipes getTriedRecipes() {
         return recipeHistory;
-    }
-
-    public PrepTime getPrepTime() {
-        return prepTime;
     }
 
 }

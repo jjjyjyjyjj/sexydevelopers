@@ -6,12 +6,11 @@ import java.util.List;
  * A recipe
  */
 public final class CommonRecipe implements Recipe{
-    private String name;
-    private int id;
-    private List<Ingredient> ingredients;
-    private String image;
-    private String link;
-//    private ArrayList<Integer> nutrients;
+    private final String name;
+    private final int id;
+    private final List<Ingredient> ingredients;
+    private final String image;
+    private final String link;
 
 
     public CommonRecipe(String name, int id, List<Ingredient> ingredients, String image, String link) {
@@ -20,10 +19,6 @@ public final class CommonRecipe implements Recipe{
         this.ingredients = ingredients;
         this.image = image;
         this.link = link;
-//        this.nutrients = new ArrayList<>(3);
-//        for (int i = 0; i < 3; i++) {
-////            nutrients.add(0);
-//        }
     }
 
     @Override
@@ -51,31 +46,4 @@ public final class CommonRecipe implements Recipe{
         return link;
     }
 
-//    public ArrayList<Integer> getNutrients() {
-//        return nutrients;
-//    }
-//
-//    public int getCalories() {
-//        return nutrients.get(0);
-//    }
-//
-//    public void setCalories(int calories) {
-//        nutrients.set(0, calories);
-//    }
-//
-//    public int getProtein() {
-//        return nutrients.get(1);
-//    }
-//
-//    public void setProtein(int protein) {
-//        nutrients.set(1, protein);
-//    }
-//
-//    public int getCarbs() {
-//        return nutrients.get(2);
-//    }
-//
-//    public void setCarbs(int carbs) {
-//        nutrients.set(2, carbs);
-//    }
 }

@@ -1,5 +1,6 @@
 package view;
 
+import entity.Recipe;
 import interface_adapter.change_password.ChangePasswordController;
 import interface_adapter.LoggedInState;
 import interface_adapter.logout.LogoutController;
@@ -123,7 +124,7 @@ public class HomeView extends JPanel {
         return viewName;
     }
 
-    public void updateRecipeDisplay(CommonRecipe recipe) {
+    public void updateRecipeDisplay(Recipe recipe) {
         recipeNameLabel.setText(recipe.getName());
         // Load image from recipe.getImage()
         ImageIcon recipeImage = new ImageIcon(recipe.getImage());

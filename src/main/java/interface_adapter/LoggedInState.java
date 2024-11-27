@@ -9,10 +9,10 @@ public class LoggedInState {
     private String username = "";
     private String password = "";
     private String passwordError;
-    private CommonFridge fridge;
-    private FavouritedRecipes favRecipes;
-    private TriedRecipes triedRecipes;
-    private SavedForLaterRecipes savedforlaterRecipes;
+    private Fridge fridge;
+    private SavedRecipes favRecipes;
+    private SavedRecipes triedRecipes;
+    private SavedRecipes savedforlaterRecipes;
 
     public LoggedInState(LoggedInState copy) {
         username = copy.username;
@@ -49,25 +49,25 @@ public class LoggedInState {
         return password;
     }
 
-    public CommonFridge getFridge() { return fridge;}
+    public Fridge getFridge() { return fridge;}
 
-    public void setFridge(CommonFridge fridge) { this.fridge = fridge;}
+    public void setFridge(Fridge fridge) { this.fridge = fridge;}
 
-    public FavouritedRecipes getFavRecipes() { return favRecipes;}
+    public SavedRecipes getFavRecipes() { return favRecipes;}
 
-    public void setFavRecipes(FavouritedRecipes favRecipes) {this.favRecipes = favRecipes;}
+    public void setFavRecipes(SavedRecipes favRecipes) {this.favRecipes = favRecipes;}
 
-    public TriedRecipes getTriedRecipes() { return triedRecipes;}
+    public SavedRecipes getTriedRecipes() { return triedRecipes;}
 
-    public void setTriedRecipes(TriedRecipes triedRecipes) {
+    public void setTriedRecipes(SavedRecipes triedRecipes) {
         this.triedRecipes = triedRecipes;
     }
 
-    public SavedForLaterRecipes getSavedforlaterRecipes() {
+    public SavedRecipes getSavedforlaterRecipes() {
         return savedforlaterRecipes;
     }
 
-    public void setSavedforlaterRecipes(SavedForLaterRecipes savedforlaterRecipes) {
+    public void setSavedforlaterRecipes(SavedRecipes savedforlaterRecipes) {
         this.savedforlaterRecipes = savedforlaterRecipes;
     }
 }

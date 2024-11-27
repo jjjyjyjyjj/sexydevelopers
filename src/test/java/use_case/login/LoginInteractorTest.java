@@ -3,6 +3,7 @@ package use_case.login;
 import data_access.FileUserDataAccessObject;
 import entity.PantryPalUserFactory;
 import entity.PantryPalUser;
+import entity.User;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -32,7 +33,7 @@ class LoginInteractorTest {
 
     @Test
     void successTest() {
-        PantryPalUser user = new PantryPalUserFactory().create("Paul", "password");
+        User user = new PantryPalUserFactory().create("Paul", "password");
         userRepository.save(user);
 
         LoginInputData inputData = new LoginInputData("Paul", "password");

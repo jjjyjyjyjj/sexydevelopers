@@ -1,9 +1,7 @@
 package use_case.recipe_recommender;
 
 import api.recipeFinderInterface;
-import entity.CommonFridge;
-import entity.CommonIngredient;
-import entity.CommonRecipe;
+import entity.*;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -14,16 +12,16 @@ import java.util.List;
  */
 public final class RecipeRecommenderUseCase {
     private final recipeFinderInterface recipeFinder;
-    private List<CommonRecipe> recommendedRecipes;
-    private final ArrayList<CommonIngredient> ingredients;
+    private List<Recipe> recommendedRecipes;
+    private final ArrayList<Ingredient> ingredients;
 
-    public RecipeRecommenderUseCase(recipeFinderInterface recipeFinder, CommonFridge fridge) {
+    public RecipeRecommenderUseCase(recipeFinderInterface recipeFinder, Fridge fridge) {
         this.recipeFinder = recipeFinder;
         this.recommendedRecipes = new ArrayList<>();
         this.ingredients = fridge.getIngredients();
     }
 
-    public List<CommonRecipe> getRecommendedRecipes() throws IOException {
+    public List<Recipe> getRecommendedRecipes() throws IOException {
         this.recommendedRecipes = recipeFinder.getRecipeByIngredient(
                 ingredients, 5,2, true);
         return recommendedRecipes;

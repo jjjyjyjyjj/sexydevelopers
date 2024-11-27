@@ -15,10 +15,10 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class FavouriteRecipesInteractorTest {
     private File testFile;
-    private CommonRecipe testRecipe;
-    PantryPalUserFactory userFactory = new PantryPalUserFactory();
-    CommonRecipeFactory recipeFactory = new CommonRecipeFactory();
-    CommonIngredientFactory ingredientFactory = new CommonIngredientFactory();
+    private Recipe testRecipe;
+    UserFactory userFactory = new PantryPalUserFactory();
+    RecipeFactory recipeFactory = new CommonRecipeFactory();
+    IngredientFactory ingredientFactory = new CommonIngredientFactory();
 
 
     @BeforeEach
@@ -28,14 +28,14 @@ public class FavouriteRecipesInteractorTest {
 
         // Creates a new recipe
         List<Ingredient> omlette = new ArrayList<>();
-        Ingredient bread = ingredientFactory.create("bread crumbs", "18879", "", "Pasta and Rice");
-        Ingredient milk = ingredientFactory.create("milk", "1077", "", "Milk, Eggs, Other Dairy");
-        Ingredient egg = ingredientFactory.create("Eggs", "1123", "", "Milk, Eggs, Other Dairy");
+        Ingredient bread = ingredientFactory.create("bread crumbs", 18879, "", "Pasta and Rice");
+        Ingredient milk = ingredientFactory.create("milk", 1077, "", "Milk, Eggs, Other Dairy");
+        Ingredient egg = ingredientFactory.create("Eggs", 1123, "", "Milk, Eggs, Other Dairy");
         omlette.add(egg);
         omlette.add(milk);
         omlette.add(bread);
 
-        testRecipe = (CommonRecipe) recipeFactory.create("Bread Omlette", 635964, omlette,
+        testRecipe = (Recipe) recipeFactory.create("Bread Omlette", 635964, omlette,
                 "https://img.spoonacular.com/recipes/635964-312x231.jpg",
                 "https://www.foodista.com/recipe/2M6MVKZT/bread-omlette");
     }
@@ -43,10 +43,10 @@ public class FavouriteRecipesInteractorTest {
     @Test
     void successAddRecipeTest() throws IOException {
         FavouriteRecipesDataAccessInterface userRepository = new FileUserDataAccessObject(testFile.getPath());
-        CommonRecipe toFavRecipe = testRecipe;
+        Recipe toFavRecipe = testRecipe;
 
         // Creates a new user
-        PantryPalUser user = userFactory.create("lala", "password");
+        User user = userFactory.create("lala", "password");
         userRepository.save(user);
 
         //For a success test, we need to add the recipe to the favourite recipe list.
@@ -77,10 +77,10 @@ public class FavouriteRecipesInteractorTest {
 
     void successRemoveRecipeTest() throws IOException {
         FavouriteRecipesDataAccessInterface userRepository = new FileUserDataAccessObject(testFile.getPath());
-        CommonRecipe toRemoveRecipe = testRecipe;
+        Recipe toRemoveRecipe = testRecipe;
 
         // Creates a new user
-        PantryPalUser user1 = userFactory.create("rara", "passworD");
+        User user1 = userFactory.create("rara", "passworD");
         userRepository.save(user1);
         user1.getFavourited().addRecipe(toRemoveRecipe);
 
