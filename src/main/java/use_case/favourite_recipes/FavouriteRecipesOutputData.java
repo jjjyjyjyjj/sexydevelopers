@@ -1,7 +1,6 @@
 package use_case.favourite_recipes;
 
-import entity.CommonRecipe;
-import entity.FavouritedRecipes;
+import entity.*;
 
 import java.util.List;
 
@@ -10,17 +9,18 @@ import java.util.List;
  */
 public class FavouriteRecipesOutputData {
 
-    private final FavouritedRecipes favourited;
+    private final SavedRecipes favourited;
     private final boolean useCaseFailed;
 
-    public FavouriteRecipesOutputData(FavouritedRecipes favourited, boolean useCaseFailed) {
-        this.favourited = favourited;
+    public FavouriteRecipesOutputData(User user, boolean useCaseFailed) {
+        this.favourited = user.getFavourited();
         this.useCaseFailed = useCaseFailed;
     }
 
-    public List<CommonRecipe> getfavRecipes() {
+    public List<Recipe> getfavRecipes() {
         return favourited.getRecipes();
     }
+
     public boolean isUseCaseFailed() {
         return useCaseFailed;
     }

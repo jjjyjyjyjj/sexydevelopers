@@ -14,5 +14,5 @@ public interface IngredientFactory {
      * @param aisle the aisle of the ingredient.
      * @return the new ingredient.
      */
-    Ingredient create(String name, String id, String unit, String aisle);
+    Ingredient create(String name, int id, String unit, String aisle);
 }

@@ -6,7 +6,7 @@ public class CommonFridgeFactory implements FridgeFactory {
      * @return the new fridge
      */
     @Override
-    public CommonFridge create() {
+    public Fridge create() {
         return new CommonFridge();
     }
 }

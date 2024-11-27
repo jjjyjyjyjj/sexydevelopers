@@ -45,7 +45,6 @@ public class getRecipeInformation implements getRecipeInformationInterface {
             JsonNode rootNode = objectMapper.readTree(jsonResponse);
 
             // Extract the "sourceUrl" field
-            int recipeId = rootNode.get("id").asInt();
             String sourceUrl = rootNode.get("sourceUrl").asText();
 
             // Return the sourceUrl
@@ -53,7 +52,3 @@ public class getRecipeInformation implements getRecipeInformationInterface {
         }
     }
 }
-
-
-
-

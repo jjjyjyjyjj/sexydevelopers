@@ -24,7 +24,7 @@ public class SaveForLaterInputData {
         return recipe;
     }
 
-    public String getRecipeId() {
+    public int getRecipeId() {
         return recipe.getID();
     }
 }

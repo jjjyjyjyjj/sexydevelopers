@@ -9,29 +9,29 @@ import java.util.ArrayList;
  */
 
 public class CommonFridge implements Fridge {
-    private ArrayList<CommonIngredient> ingredients;
+    private ArrayList<Ingredient> ingredients;
 
     public CommonFridge() {
-        this.ingredients = new ArrayList<CommonIngredient>();
+        this.ingredients = new ArrayList<Ingredient>();
     }
 
     @Override
-    public ArrayList<CommonIngredient> getIngredients() {
+    public ArrayList<Ingredient> getIngredients() {
         return ingredients;
     }
 
     @Override
-    public Boolean hasIngredient(CommonIngredient ingredient) {
+    public Boolean hasIngredient(Ingredient ingredient) {
         return ingredients.contains(ingredient);
     }
 
     @Override
-    public void addIngredient(CommonIngredient ingredient) {
+    public void addIngredient(Ingredient ingredient) {
         ingredients.add(ingredient);
     }
 
     @Override
-    public void removeIngredient(CommonIngredient ingredient) {
+    public void removeIngredient(Ingredient ingredient) {
         try {
             checkFridge(ingredient);
         } catch (IngredientNotFoundException e) {
@@ -42,7 +42,7 @@ public class CommonFridge implements Fridge {
     }
 
     @Override
-    public void checkFridge(CommonIngredient ingredient) throws IngredientNotFoundException {
+    public void checkFridge(Ingredient ingredient) throws IngredientNotFoundException {
         if (!hasIngredient(ingredient)) {
             throw new IngredientNotFoundException("This ingredient is not in your fridge!");
         }

@@ -3,6 +3,8 @@ package use_case.triedRecipes;
 import data_access.FileUserDataAccessObject;
 import entity.CommonRecipe;
 import entity.PantryPalUser;
+import entity.Recipe;
+import entity.User;
 import interface_adapter.triedRecipes.TriedRecipesViewModel;
 
 import java.util.List;
@@ -21,14 +23,14 @@ public class TriedRecipesInteractor implements TriedRecipesInputBoundary {
     }
 
     @Override
-    public void addRecipeToTriedRecipes(String username, CommonRecipe recipe) {
+    public void addRecipeToTriedRecipes(String username, Recipe recipe) {
         if (username == null || username.isEmpty()) {
             viewModel.getState().setErrorMessage("Username cannot be empty.");
             viewModel.firePropertyChanged();
             return;
         }
 
-        PantryPalUser user = userDataAccess.get(username);
+        User user = userDataAccess.get(username);
         if (user == null) {
             viewModel.getState().setErrorMessage("User not found: " + username);
             viewModel.firePropertyChanged();
@@ -50,14 +52,14 @@ public class TriedRecipesInteractor implements TriedRecipesInputBoundary {
             return;
         }
 
-        PantryPalUser user = userDataAccess.get(username);
+        User user = userDataAccess.get(username);
         if (user == null) {
             viewModel.getState().setErrorMessage("User not found: " + username);
             viewModel.firePropertyChanged();
             return;
         }
 
-        List<CommonRecipe> triedRecipes = user.getTriedRecipes().getRecipes();
+        List<Recipe> triedRecipes = user.getTriedRecipes().getRecipes();
         viewModel.getState().setErrorMessage(null);
         presenter.presentTriedRecipes(triedRecipes);
     }

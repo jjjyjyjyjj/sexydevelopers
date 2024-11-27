@@ -1,6 +1,6 @@
 package interface_adapter.triedRecipes;
 
-import interface_adapter.viewModel.ViewModel;
+import interface_adapter.ViewModel;
 
 public class TriedRecipesViewModel extends ViewModel<TriedRecipesState> {
 

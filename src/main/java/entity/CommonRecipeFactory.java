@@ -18,7 +18,7 @@ public class CommonRecipeFactory implements RecipeFactory {
      */
 
     @Override
-    public Recipe create(String name, String id, List<Ingredient> ingredients, String image, String link) {
+    public Recipe create(String name, int id, List<Ingredient> ingredients, String image, String link) {
         return new CommonRecipe(name, id, ingredients, image, link);
     }
 }
