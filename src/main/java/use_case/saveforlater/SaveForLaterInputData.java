@@ -22,8 +22,4 @@ public class SaveForLaterInputData {
     public Recipe getRecipe() {
         return recipe;
     }
-
-    public int getRecipeId() {
-        return recipe.getID();
-    }
 }

@@ -143,4 +143,9 @@ public class FileUserDataAccessObject implements SignupUserDataAccessInterface,
     public void updateUserSavedRecipes(User user) {
 
     }
+
+    @Override
+    public boolean existsByRecipe(Recipe toSavedRecipe, User user) {
+        return false;
+    }
 }
