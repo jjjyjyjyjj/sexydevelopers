@@ -20,13 +20,13 @@ public class RemoveFavRecipeInteractor implements RemoveFavRecipeInputBoundary {
         }
 
         // Removing a recipe from the favourite recipes list
-        public void execute(RemoveFavRecipeInputData removeFavRecipeInputData, Recipe recipetoremove) {
+        public void execute(RemoveFavRecipeInputData removeFavRecipeInputData) {
             User user = removeFavRecipeInputData.getUser();
             SavedRecipes favRecipes = removeFavRecipeInputData.getFavouriteRecipes();
             Recipe toRemoveRecipe = removeFavRecipeInputData.getTargetRecipe();
 
-            if (favRecipes.getRecipes().contains(recipetoremove)) {
-                favRecipes.removeRecipe(recipetoremove);
+            if (favRecipes.getRecipes().contains(toRemoveRecipe)) {
+                favRecipes.removeRecipe(toRemoveRecipe);
             }
 
             userDataAccessObject.updateFavouriteRecipes(user,toRemoveRecipe);
