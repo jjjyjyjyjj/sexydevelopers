@@ -1,11 +1,11 @@
-package use_case.favourite_recipes;
+package use_case.add_to_favrecipes;
 
 import entity.*;
 
 import java.util.List;
 
 /**
- * Output Data for the Favourite Recipes Use Case.
+ * Output Data for the Add to Favourite Recipes Use Case.
  */
 public class FavouriteRecipesOutputData {
 
