@@ -1,9 +1,9 @@
-package use_case.favourite_recipes;
+package use_case.add_to_favrecipes;
 
 import entity.*;
 
 /**
- * The input data for the Favourite Recipes Use Case.
+ * The input data for the Add a Recipe to Favourite Recipes Use Case.
  */
 
 public class FavouriteRecipesInputData {
