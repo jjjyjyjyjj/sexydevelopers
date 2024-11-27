@@ -8,6 +8,7 @@ import use_case.add_to_favrecipes.FavouriteRecipesDataAccessInterface;
 import use_case.login.LoginUserDataAccessInterface;
 import use_case.logout.LogoutUserDataAccessInterface;
 import use_case.remove_from_favrecipes.RemoveFavRecipeDataAccessInterface;
+import use_case.saveforlater.SaveForLaterUserDataAccessInterface;
 import use_case.signup.SignupUserDataAccessInterface;
 
 import java.io.FileWriter;
@@ -24,7 +25,7 @@ public class FileUserDataAccessObject implements SignupUserDataAccessInterface,
         LoginUserDataAccessInterface,
         ChangePasswordUserDataAccessInterface,
         LogoutUserDataAccessInterface,
-        FavouriteRecipesDataAccessInterface, RemoveFavRecipeDataAccessInterface {
+        FavouriteRecipesDataAccessInterface, RemoveFavRecipeDataAccessInterface, SaveForLaterUserDataAccessInterface {
 
     private final File jsonFile;
     private final Map<String, User> accounts = new HashMap<>();
@@ -126,5 +127,20 @@ public class FileUserDataAccessObject implements SignupUserDataAccessInterface,
     public void updateFavouriteRecipes(User user, Recipe recipe) {
         user.getFavourited().removeRecipe(recipe);
         save();
+    }
+
+    @Override
+    public boolean saveRecipeForUser(String userId, String recipeId) {
+        return false;
+    }
+
+    @Override
+    public User getUserById(String userId) {
+        return null;
+    }
+
+    @Override
+    public void updateUserSavedRecipes(User user) {
+
     }
 }
