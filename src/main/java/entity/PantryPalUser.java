@@ -21,9 +21,6 @@ public class PantryPalUser implements User {
     @JsonProperty ("recipeHistory")
     private SavedRecipes recipeHistory;
 
-    @JsonProperty ("fridgeFactory")
-    private FridgeFactory fridgeFactory;
-
     @JsonProperty ("savedRecipeFactory")
     private SavedRecipeFactory savedRecipeFactory;
 
@@ -32,8 +29,7 @@ public class PantryPalUser implements User {
         this.username = username;
         this.password = password;
 
-        this.fridgeFactory = new CommonFridgeFactory();
-        this.fridge = fridgeFactory.create();
+        this.fridge = new CommonFridgeFactory().create();
         this.favourited = new FavouritedRecipes();
         this.savedForLater = new SavedForLaterRecipes();
         this.recipeHistory = new TriedRecipes();
