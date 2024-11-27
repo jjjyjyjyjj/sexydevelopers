@@ -16,7 +16,7 @@ public class PantryPalUser implements User {
     private FavouritedRecipes favourited;
 
     @JsonProperty ("savedForLater")
-    private SavedForLaterRecipes savedForLater;
+    private SavedForLater savedForLater;
 
     @JsonProperty ("recipeHistory")
     private TriedRecipes recipeHistory;
@@ -30,7 +30,7 @@ public class PantryPalUser implements User {
 
         this.fridge = new CommonFridge();
         this.favourited = new FavouritedRecipes();
-        this.savedForLater = new SavedForLaterRecipes();
+        this.savedForLater = new SavedForLater();
         this.recipeHistory = new TriedRecipes();
         this.prepTime = new PrepTime(30);
     }
@@ -53,7 +53,7 @@ public class PantryPalUser implements User {
         return favourited;
     }
 
-    public SavedForLaterRecipes getSavedForLater() {
+    public SavedForLater getSavedForLater() {
         return savedForLater;
     }
 

@@ -14,7 +14,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.fail;
 
 public class FavouriteRecipesInteractorTest {
-    UserFactory userfactory = new CommonUserFactory();
+    UserFactory userfactory = new UserFactory();
     RecipeFactory recipefactory = new RecipeFactory();
     IngredientFactory ingredientFactory = new IngredientFactory();
 

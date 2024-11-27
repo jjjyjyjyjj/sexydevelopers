@@ -17,5 +17,5 @@ public interface User {
      */
     String getPassword();
 
-    SavedForLaterRecipes getSavedForLater();
+    SavedForLater getSavedForLater();
 }

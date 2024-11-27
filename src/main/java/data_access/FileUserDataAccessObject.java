@@ -9,6 +9,7 @@ import use_case.change_password.ChangePasswordUserDataAccessInterface;
 import use_case.favourite_recipes.FavouriteRecipesDataAccessInterface;
 import use_case.login.LoginUserDataAccessInterface;
 import use_case.logout.LogoutUserDataAccessInterface;
+import use_case.saveforlater.SaveForLaterUserDataAccessInterface;
 import use_case.signup.SignupUserDataAccessInterface;
 
 import java.io.FileWriter;
@@ -25,7 +26,8 @@ public class FileUserDataAccessObject implements SignupUserDataAccessInterface,
         LoginUserDataAccessInterface,
         ChangePasswordUserDataAccessInterface,
         LogoutUserDataAccessInterface,
-        FavouriteRecipesDataAccessInterface {
+        FavouriteRecipesDataAccessInterface,
+        SaveForLaterUserDataAccessInterface {
 
     private final File jsonFile;
     private final Map<String, PantryPalUser> accounts = new HashMap<>();
@@ -129,6 +131,12 @@ public class FileUserDataAccessObject implements SignupUserDataAccessInterface,
         save();
     }
 
+    @Override
+    public void SavedRecipes(PantryPalUser user, CommonRecipe recipe) {
+        user.getSavedForLater().addRecipe(recipe);
+        save();
+    }
+
     /**
      * Checks if given recipe is in user's favpurited recipe list.
      *
@@ -138,6 +146,11 @@ public class FileUserDataAccessObject implements SignupUserDataAccessInterface,
      */
     @Override
     public boolean existsByRecipe(CommonRecipe recipe, PantryPalUser user) {
+        return false;
+    }
+
+    @Override
+    public boolean triedRecipe(CommonRecipe recipe, PantryPalUser user) {
         return false;
     }
 }
