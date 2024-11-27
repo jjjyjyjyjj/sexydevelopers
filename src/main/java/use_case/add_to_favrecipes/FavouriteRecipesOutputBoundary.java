@@ -1,7 +1,7 @@
-package use_case.favourite_recipes;
+package use_case.add_to_favrecipes;
 
 /**
- * The output boundary for the Favourite Recipes Use Case.
+ * The output boundary for the Adding A Recipe to Favourite Recipes List Use Case.
  */
 public interface FavouriteRecipesOutputBoundary {
     /**

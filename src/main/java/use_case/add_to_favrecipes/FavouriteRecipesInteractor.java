@@ -1,9 +1,9 @@
-package use_case.favourite_recipes;
+package use_case.add_to_favrecipes;
 
 import entity.*;
 
 /**
- * The Favourite Recipes Interactor.
+ * The Add a Recipe to Favourite Recipes List Interactor.
  */
 public class FavouriteRecipesInteractor implements FavouriteRecipesInputBoundary {
     private final FavouriteRecipesDataAccessInterface userDataAccessObject;

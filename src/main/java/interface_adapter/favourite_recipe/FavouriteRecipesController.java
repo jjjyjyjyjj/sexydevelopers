@@ -1,11 +1,9 @@
-package interface_adapter.favourite_recipes;
+package interface_adapter.favourite_recipe;
 
-import entity.CommonRecipe;
-import entity.PantryPalUser;
 import entity.Recipe;
 import entity.User;
-import use_case.favourite_recipes.FavouriteRecipesInputData;
-import use_case.favourite_recipes.FavouriteRecipesInputBoundary;
+import use_case.add_to_favrecipes.FavouriteRecipesInputData;
+import use_case.add_to_favrecipes.FavouriteRecipesInputBoundary;
 
 public class FavouriteRecipesController {
         private final FavouriteRecipesInputBoundary favRecipesUseCaseInteractor;

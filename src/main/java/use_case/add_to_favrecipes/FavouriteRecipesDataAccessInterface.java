@@ -1,12 +1,10 @@
-package use_case.favourite_recipes;
+package use_case.add_to_favrecipes;
 
-import entity.CommonRecipe;
-import entity.PantryPalUser;
 import entity.Recipe;
 import entity.User;
 
 /**
- * The interface of the DAO for the Favourite CommonRecipe Use Case.
+ * The interface of the DAO for the Add a Recipe to Favourite Recipes List Use Case.
  */
 public interface FavouriteRecipesDataAccessInterface {
     /**

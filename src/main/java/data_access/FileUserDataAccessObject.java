@@ -4,9 +4,10 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.type.CollectionType;
 import entity.*;
 import use_case.change_password.ChangePasswordUserDataAccessInterface;
-import use_case.favourite_recipes.FavouriteRecipesDataAccessInterface;
+import use_case.add_to_favrecipes.FavouriteRecipesDataAccessInterface;
 import use_case.login.LoginUserDataAccessInterface;
 import use_case.logout.LogoutUserDataAccessInterface;
+import use_case.remove_from_favrecipes.RemoveFavRecipeDataAccessInterface;
 import use_case.signup.SignupUserDataAccessInterface;
 
 import java.io.FileWriter;
@@ -23,7 +24,7 @@ public class FileUserDataAccessObject implements SignupUserDataAccessInterface,
         LoginUserDataAccessInterface,
         ChangePasswordUserDataAccessInterface,
         LogoutUserDataAccessInterface,
-        FavouriteRecipesDataAccessInterface {
+        FavouriteRecipesDataAccessInterface, RemoveFavRecipeDataAccessInterface {
 
     private final File jsonFile;
     private final Map<String, User> accounts = new HashMap<>();
@@ -51,7 +52,6 @@ public class FileUserDataAccessObject implements SignupUserDataAccessInterface,
             }
         }
     }
-
 
     private List<User> loadUsers() throws IOException {
         CollectionType listType = objectMapper.getTypeFactory()
@@ -89,13 +89,8 @@ public class FileUserDataAccessObject implements SignupUserDataAccessInterface,
 
     @Override
     public void save(User user) {
-        if (user instanceof User) {
-            User pantryUser = user;
-            accounts.put(pantryUser.getUsername(), pantryUser);
-            save(); // Save the updated accounts to the JSON file
-        } else {
-            throw new IllegalArgumentException("Unsupported user type.");
-        }
+        accounts.put(user.getUsername(), user);
+        save(); // Save the updated accounts to the JSON file
     }
 
     @Override
