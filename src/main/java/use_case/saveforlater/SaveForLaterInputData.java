@@ -1,23 +1,22 @@
 package use_case.saveforlater;
 
 
-import entity.Recipe;
-import entity.User;
+import entity.*;
 
 /**
  * The Input Data for the SaveForLater Use Case.
  */
 public class SaveForLaterInputData {
-    private final String userId;
     private final Recipe recipe;
+    private final User user;
 
-    public SaveForLaterInputData(String userId, Recipe recipe) {
-        this.userId = userId;
+    public SaveForLaterInputData(User user, Recipe recipe) {
+        this.user = user;
         this.recipe = recipe;
     }
 
-    public String getUserId() {
-        return userId;
+    public String getUsername() {
+        return this.user.getUsername();
     }
 
     public Recipe getRecipe() {
