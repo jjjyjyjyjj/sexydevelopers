@@ -1,6 +1,7 @@
 package use_case.saveforlater;
 
 import entity.PantryPalUser;
+import entity.Recipe;
 import entity.User;
 
 /**
@@ -12,4 +13,6 @@ public interface SaveForLaterUserDataAccessInterface {
     User getUserById(String userId);
 
     void updateUserSavedRecipes(User user);
+
+    boolean existsByRecipe(Recipe toSavedRecipe, User user);
 }
