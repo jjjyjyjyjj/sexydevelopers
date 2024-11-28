@@ -3,7 +3,6 @@ package use_case.remove_from_favrecipes;
 import entity.Recipe;
 import entity.SavedRecipes;
 import entity.User;
-import use_case.remove_from_favrecipes.*;
 
 /**
  * The Remove a Recipe from Favourite Recipes List Interactor.

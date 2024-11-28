@@ -1,6 +1,5 @@
 package api;
 
-import entity.CommonRecipe;
 import entity.Ingredient;
 import entity.Recipe;
 

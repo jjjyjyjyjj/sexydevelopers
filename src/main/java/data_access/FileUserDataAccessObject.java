@@ -8,7 +8,7 @@ import use_case.add_to_favrecipes.FavouriteRecipesDataAccessInterface;
 import use_case.login.LoginUserDataAccessInterface;
 import use_case.logout.LogoutUserDataAccessInterface;
 import use_case.remove_from_favrecipes.RemoveFavRecipeDataAccessInterface;
-import use_case.saveforlater.SaveForLaterUserDataAccessInterface;
+import use_case.save_for_later.SaveForLaterUserDataAccessInterface;
 import use_case.signup.SignupUserDataAccessInterface;
 
 import java.io.FileWriter;
