@@ -10,6 +10,7 @@ public class LoggedInState {
     private String password = "";
     private String passwordError;
     private Fridge fridge;
+    private Recipe currentRecipe;
     private SavedRecipes favRecipes;
     private SavedRecipes triedRecipes;
     private SavedRecipes savedforlaterRecipes;
@@ -52,6 +53,10 @@ public class LoggedInState {
     public Fridge getFridge() { return fridge;}
 
     public void setFridge(Fridge fridge) { this.fridge = fridge;}
+
+    public Recipe getCurrentRecipe() {
+        return currentRecipe;
+    }
 
     public SavedRecipes getFavRecipes() { return favRecipes;}
 
