@@ -1,5 +1,6 @@
 package use_case.remove_ingredient;
 
+import entity.Fridge;
 import entity.Ingredient;
 import entity.User;
 
