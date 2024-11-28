@@ -8,5 +8,5 @@ public class SkipRecipeUserDataAccessInterface {
     /**
      * Updates the system to recommend the next recipe.
      */
-    void skipRecipe(){};
+    public void skipRecipe(){};
 }
