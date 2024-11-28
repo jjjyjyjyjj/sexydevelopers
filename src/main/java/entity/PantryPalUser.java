@@ -18,7 +18,8 @@ public class PantryPalUser implements User {
     @JsonProperty ("savedForLater")
     private SavedForLater savedForLater;
 
-    @JsonProperty ("recipeHistory")
+    @JsonProperty ("savedRecipeFactory")
+    private SavedRecipeFactory savedRecipeFactory;
     private TriedRecipes recipeHistory;
 
     @JsonProperty ("prepTime")
@@ -27,7 +28,7 @@ public class PantryPalUser implements User {
     public PantryPalUser(String username, String password) {
         this.username = username;
         this.password = password;
-
+   
         this.fridge = new CommonFridge();
         this.favourited = new FavouritedRecipes();
         this.savedForLater = new SavedForLater();
