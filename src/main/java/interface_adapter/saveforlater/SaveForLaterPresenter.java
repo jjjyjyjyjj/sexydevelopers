@@ -1,10 +1,7 @@
 package interface_adapter.saveforlater;
 
-import interface_adapter.favourite_recipe.FavouriteRecipesViewModel;
-import use_case.remove_from_favrecipes.RemoveFavRecipeOutputData;
-import use_case.saveforlater.SaveForLaterInputData;
-import use_case.saveforlater.SaveForLaterOutputBoundary;
-import use_case.saveforlater.SaveForLaterOutputData;
+import use_case.save_for_later.SaveForLaterOutputBoundary;
+import use_case.save_for_later.SaveForLaterOutputData;
 
 public class SaveForLaterPresenter implements SaveForLaterOutputBoundary {
     private final SaveForLaterViewModel saveForLaterViewModel;

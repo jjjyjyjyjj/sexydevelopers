@@ -1,6 +1,5 @@
-package use_case.saveforlater;
+package use_case.save_for_later;
 
-import entity.PantryPalUser;
 import entity.Recipe;
 import entity.User;
 

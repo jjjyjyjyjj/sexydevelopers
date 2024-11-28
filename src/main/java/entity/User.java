@@ -18,4 +18,6 @@ public interface User {
     String getPassword();
 
     SavedForLater getSavedForLater();
+
+    SavedRecipes getFavourited();
 }

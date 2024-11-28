@@ -1,4 +1,4 @@
-package use_case.saveforlater;
+package use_case.save_for_later;
 
 
 import entity.*;
@@ -23,7 +23,7 @@ public class SaveForLaterInteractor implements SaveForLaterInputBoundary {
     public void execute(SaveForLaterInputData saveForLaterInputData) {
         final User user = userDataAccessObject.getUserById(saveForLaterInputData.getUsername());
 
-        final SavedRecipes savedForLater = user.getSavedForLater();
+        final SavedForLater savedForLater = user.getSavedForLater();
         savedForLater.addRecipe(newSavedRecipe);
 
         userDataAccessObject.updateUserSavedRecipes(user);
