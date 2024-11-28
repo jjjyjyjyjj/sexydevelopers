@@ -9,6 +9,7 @@ import java.util.List;
 public class FavouriteRecipesState {
     private User user;
     private List<Recipe> favRecipes = new ArrayList<>();
+    private String removeRecipeError;
 
     public User getUser() {
             return user;
@@ -18,8 +19,10 @@ public class FavouriteRecipesState {
         return favRecipes;
         }
 
-    public void setFavRecipes(Recipe favRecipe) {
+    public void setaddRecipe(Recipe favRecipe) {
             this.favRecipes.add(favRecipe);
         }
-    }
+
+    public void setremoveRecipeError(String removeRecipeerror) { this.removeRecipeError = removeRecipeerror; }
+}
 

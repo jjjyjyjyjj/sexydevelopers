@@ -1,5 +1,6 @@
 package interface_adapter.favourite_recipe;
 
+import interface_adapter.signup.SignupState;
 import use_case.add_to_favrecipes.FavouriteRecipesOutputBoundary;
 import use_case.add_to_favrecipes.FavouriteRecipesOutputData;
 import use_case.remove_from_favrecipes.RemoveFavRecipeOutputBoundary;
@@ -15,6 +16,11 @@ public class FavouriteRecipesPresenter implements FavouriteRecipesOutputBoundary
         this.favouriteRecipesViewModel = favouriteRecipesViewModel;
     }
 
+    /**
+     * Prepares the success view for Favourite Recipes Use Cases.
+     *
+     * @param outputData the output data
+     */
     @Override
     public void prepareSuccessView(FavouriteRecipesOutputData outputData) {
         favouriteRecipesViewModel.firePropertyChanged("favourite recipes");
@@ -33,5 +39,8 @@ public class FavouriteRecipesPresenter implements FavouriteRecipesOutputBoundary
 
     @Override
     public void prepareFailView(String error) {
+        final FavouriteRecipesState favouriteRecipesState = favouriteRecipesViewModel.getState();
+        favouriteRecipesState.setremoveRecipeError(error);
+        favouriteRecipesViewModel.firePropertyChanged();
     }
 }
