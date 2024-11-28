@@ -21,6 +21,11 @@ public class SaveForLaterPresenter implements SaveForLaterOutputBoundary {
     }
 
     @Override
+    public void prepareFailView(String errorMessage) {
+
+    }
+
+    @Override
     public void prepareFailureView(String errorMessage) {
     }
 }
