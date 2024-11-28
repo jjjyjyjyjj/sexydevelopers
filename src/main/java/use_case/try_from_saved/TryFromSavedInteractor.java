@@ -2,6 +2,8 @@ package use_case.try_from_saved;
 
 import entity.Recipe;
 import use_case.skip_recipe.SkipRecipeInputBoundary;
+import use_case.skip_recipe.SkipRecipeInputData;
+import use_case.skip_recipe.SkipRecipeUserDataAccessInterface;
 
 public class TryFromSavedInteractor implements SkipRecipeInputBoundary {
     private final SkipRecipeUserDataAccessInterface userDataAccessObject;
@@ -23,4 +25,8 @@ public class TryFromSavedInteractor implements SkipRecipeInputBoundary {
         userPresenter.prepareSuccessView(skipRecipeOutputData);
     }
 
+    @Override
+    public void execute(SkipRecipeInputData skipRecipeInputData) {
+
+    }
 }
