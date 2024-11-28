@@ -1,4 +1,4 @@
-package use_case.saveforlater;
+package use_case.save_for_later;
 
 import entity.SavedForLaterRecipes;
 import entity.SavedRecipes;
