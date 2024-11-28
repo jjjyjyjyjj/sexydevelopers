@@ -57,6 +57,7 @@ public class AppBuilder {
     private SignupViewModel signupViewModel;
     private SignupView signupView;
     private LoginViewModel loginViewModel;
+    private RecipeRecViewModel recipeRecViewModel;
     private LoginView loginView;
     private LoggedInViewModel loggedInViewModel;
     private HomeView loggedInView;
@@ -121,7 +122,7 @@ public class AppBuilder {
 
     public AppBuilder addLoginUseCase() {
         final LoginOutputBoundary loginOutputBoundary = new LoginPresenter(viewManagerModel,
-                loggedInViewModel, loginViewModel);
+                recipeRecViewModel, loginViewModel);
         final LoginInputBoundary loginInteractor = new LoginInteractor(
                 userDataAccessObject, loginOutputBoundary);
 
