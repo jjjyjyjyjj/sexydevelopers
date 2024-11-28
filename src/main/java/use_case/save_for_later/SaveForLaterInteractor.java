@@ -23,7 +23,7 @@ public class SaveForLaterInteractor implements SaveForLaterInputBoundary {
     public void execute(SaveForLaterInputData saveForLaterInputData) {
         final User user = userDataAccessObject.getUserById(saveForLaterInputData.getUsername());
 
-        final SavedRecipes savedForLater = user.getSavedForLater();
+        final SavedForLater savedForLater = user.getSavedForLater();
         savedForLater.addRecipe(newSavedRecipe);
 
         userDataAccessObject.updateUserSavedRecipes(user);
