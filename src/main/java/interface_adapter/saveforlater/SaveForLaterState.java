@@ -1,21 +1,19 @@
 package interface_adapter.saveforlater;
 
-import entity.Recipe;
+import entity.SavedForLater;
 import entity.User;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class SaveForLaterState {
-    private User user;
-    private List<Recipe> savedForLaterRecipes = new ArrayList<>();
+    private List<SavedForLater> savedForLaterRecipes = new ArrayList<>();
+    private String savedRecipesError;
 
-    public User getUser() {
-        return user;
+    public void  setSavedRecipes(SavedForLater savedRecipe) {
+        savedForLaterRecipes.add(savedRecipe);
     }
-
-    public List<Recipe> getSavedRecipes() {
-        return savedForLaterRecipes;
+    public void setSavedRecipesError(String savedRecipesError) {
+        this.savedRecipesError = savedRecipesError;
     }
-
 }

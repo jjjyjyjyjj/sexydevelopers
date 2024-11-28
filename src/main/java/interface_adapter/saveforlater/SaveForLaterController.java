@@ -18,7 +18,7 @@ public class SaveForLaterController {
      * @param username the username whose favourite recipes list is being changed
      */
     public void execute(Recipe recipe, User username) {
-        final SaveForLaterInputData saveForLaterInputData = new SaveForLaterInputData(username.getUsername(), recipe);
+        final SaveForLaterInputData saveForLaterInputData = new SaveForLaterInputData(username, recipe);
 
         saveForLaterUseCaseInteractor.execute(saveForLaterInputData);
     }
