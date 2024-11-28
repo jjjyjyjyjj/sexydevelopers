@@ -18,21 +18,18 @@ public class PantryPalUser implements User {
     @JsonProperty ("savedForLater")
     private SavedForLater savedForLater;
 
-    @JsonProperty ("recipeHistory")
+    @JsonProperty ("savedRecipeFactory")
+    private SavedRecipeFactory savedRecipeFactory;
     private TriedRecipes recipeHistory;
-
-    @JsonProperty ("prepTime")
-    private PrepTime prepTime;
 
     public PantryPalUser(String username, String password) {
         this.username = username;
         this.password = password;
-
+   
         this.fridge = new CommonFridge();
         this.favourited = new FavouritedRecipes();
         this.savedForLater = new SavedForLater();
         this.recipeHistory = new TriedRecipes();
-        this.prepTime = new PrepTime(30);
     }
 
     @Override
@@ -59,10 +56,6 @@ public class PantryPalUser implements User {
 
     public TriedRecipes getTriedRecipes() {
         return recipeHistory;
-    }
-
-    public PrepTime getPrepTime() {
-        return prepTime;
     }
 
 }

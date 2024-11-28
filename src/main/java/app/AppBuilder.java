@@ -37,6 +37,7 @@ import view.HomeView;
 import view.LoginView;
 import view.SignupView;
 import view.TriedRecipesView;
+import view.ViewManager;
 import javax.swing.*;
 import java.awt.*;
 import java.io.File;
@@ -48,6 +49,7 @@ public class AppBuilder {
     private final CardLayout cardLayout = new CardLayout();
     private final UserFactory userFactory = new PantryPalUserFactory();
     private final ViewManagerModel viewManagerModel = new ViewManagerModel();
+    private final ViewManager viewManager = new ViewManager(cardPanel, cardLayout, viewManagerModel);
 
     private final FileUserDataAccessObject userDataAccessObject;
     private TriedRecipesController triedRecipesController;
