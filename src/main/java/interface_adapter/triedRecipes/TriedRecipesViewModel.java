@@ -7,7 +7,7 @@ public class TriedRecipesViewModel extends ViewModel<TriedRecipesState> {
     public static final String TITLE_LABEL = "Tried Recipes";
 
     public TriedRecipesViewModel() {
-        super("tried recipes");
+        super("triedRecipes");
         setState(new TriedRecipesState());
     }
 }
