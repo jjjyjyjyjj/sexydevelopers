@@ -41,13 +41,12 @@ public class HomeView extends JPanel {
     private void setupUI() {
         this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 
-        NavBarPanel navBar = new NavBarPanel(
-                e -> loggedInState.setViewName("home"),
-                e -> loggedInState.setViewName("fridge"),
-                e -> loggedInState.setViewName("savedForLater"),
-                e -> loggedInState.setViewName("triedRecipes")
+        NavBarPanel navBarPanel = new NavBarPanel(
+                e -> viewManagerModel.setState("home"),
+                e -> viewManagerModel.setState("fridge"),
+                e -> viewManagerModel.setState("savedForLater"),
+                e -> viewManagerModel.setState("triedRecipes")
         );
-
 
         // Recipe Information
         recipeNameLabel = new JLabel("PantryPal Home");
