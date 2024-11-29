@@ -1,6 +1,7 @@
 package view;
 
 import entity.Recipe;
+import interface_adapter.ViewManagerModel;
 import interface_adapter.change_password.ChangePasswordController;
 import interface_adapter.LoggedInState;
 import interface_adapter.logout.LogoutController;
@@ -20,6 +21,7 @@ public class HomeView extends JPanel {
     private LogoutController logoutController;
     private ChangePasswordController changePasswordController;
     private final LoggedInState loggedInState;
+    private ViewManagerModel viewManagerModel;
 
     private JLabel recipeNameLabel;
     private JLabel recipeImageLabel;
@@ -39,8 +41,16 @@ public class HomeView extends JPanel {
     private void setupUI() {
         this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 
+        NavBarPanel navBar = new NavBarPanel(
+                e -> loggedInState.setViewName("home"),
+                e -> loggedInState.setViewName("fridge"),
+                e -> loggedInState.setViewName("savedForLater"),
+                e -> loggedInState.setViewName("triedRecipes")
+        );
+
+
         // Recipe Information
-        recipeNameLabel = new JLabel("Recipe Name");
+        recipeNameLabel = new JLabel("PantryPal Home");
         recipeNameLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
 
         recipeImageLabel = new JLabel(); // Placeholder for recipe image
@@ -68,6 +78,7 @@ public class HomeView extends JPanel {
         this.add(recipeImageLabel);
         this.add(recipeButtonPanel);
         this.add(userButtonPanel);
+        this.add(navBarPanel);
     }
 
     private void setupListeners() {
@@ -113,6 +124,7 @@ public class HomeView extends JPanel {
     }
 
     public void setLogoutController(LogoutController logoutController) {
+
         this.logoutController = logoutController;
     }
 

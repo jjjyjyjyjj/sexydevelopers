@@ -9,12 +9,13 @@ import javax.swing.plaf.nimbus.State;
  * The View Model for the Save for Later View.
  */
 
-public class SaveForLaterViewModel extends ViewModel<SaveForLaterState> {
+public class SaveForLaterViewModel extends ViewModel<LoggedInState> {
     public SaveForLaterViewModel() {
-        super("save for later");
-        setState(new SaveForLaterState());
+        super("savedForLater");
+        setState(new LoggedInState());
     }
 
     public void firePropertyChanged(String saveForLater) {
+
     }
 }

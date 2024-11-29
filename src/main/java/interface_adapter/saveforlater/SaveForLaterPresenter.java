@@ -1,5 +1,6 @@
 package interface_adapter.saveforlater;
 
+import interface_adapter.LoggedInState;
 import interface_adapter.login.LoginState;
 import use_case.save_for_later.SaveForLaterOutputBoundary;
 import use_case.save_for_later.SaveForLaterOutputData;
@@ -18,8 +19,8 @@ public class SaveForLaterPresenter implements SaveForLaterOutputBoundary {
      */
     @Override
     public void prepareSuccessView(SaveForLaterOutputData outputData) {
-        final SaveForLaterState saveForLaterState = saveForLaterViewModel.getState();
-        saveForLaterState.setSavedRecipes(outputData.getSavedForLater());
+        final LoggedInState loggedInState = saveForLaterViewModel.getState();
+        loggedInState.setSavedRecipes(outputData.getSavedForLater());
         saveForLaterViewModel.firePropertyChanged("save for later");
     }
 
@@ -30,8 +31,8 @@ public class SaveForLaterPresenter implements SaveForLaterOutputBoundary {
      */
     @Override
     public void prepareFailView(String errorMessage) {
-        final SaveForLaterState saveForLaterState = saveForLaterViewModel.getState();
-        saveForLaterState.setSavedRecipesError(errorMessage);
+        final LoggedInState loggedInState = saveForLaterViewModel.getState();
+        loggedInState.setSavedRecipesError(errorMessage);
     }
 
 }
