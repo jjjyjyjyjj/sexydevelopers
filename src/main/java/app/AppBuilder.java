@@ -98,12 +98,25 @@ public class AppBuilder {
     }
 
     public AppBuilder addSavedForLaterView() {
-        LoggedInState loggedInState = new LoggedInState();
-        SaveForLaterViewModel saveForLaterViewModel = new SaveForLaterViewModel();
         loggedInViewSavedForLaters = new SavedForLaterView(saveForLaterViewModel, loggedInState);
-        cardPanel.add(loggedInViewSavedForLaters, loggedInViewSavedForLaters.getViewName());
+        cardPanel.add(loggedInViewSavedForLaters, "savedForLater");
         return this;
     }
+
+    public AppBuilder addLoggedInStateListener() {
+        loggedInState.addPropertyChangeListener(evt -> {
+            if ("viewName".equals(evt.getPropertyName())) {
+                String viewName = (String) evt.getNewValue();
+                cardLayout.show(cardPanel, viewName); // Switch views
+            }
+        });
+        return this;
+    }
+
+    public LoggedInState loggedInState() {
+        return loggedInState;
+    }
+
 
 
 //    public AppBuilder addFridgeView() {
@@ -179,6 +192,7 @@ public class AppBuilder {
     public JFrame build() {
         final JFrame application = new JFrame("PantryPal");
         application.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        application.setLocationRelativeTo(null);
 
         application.add(cardPanel);
 

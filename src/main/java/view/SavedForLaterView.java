@@ -31,10 +31,10 @@ public class SavedForLaterView extends JPanel {
         this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 
         NavBarPanel navBar = new NavBarPanel(
-                e -> viewManagerModel.setState("home"),
-                e -> viewManagerModel.setState("fridge"),
-                e -> viewManagerModel.setState("savedForLater"),
-                e -> viewManagerModel.setState("triedRecipes")
+                e -> loggedInState.setViewName("home"),
+                e -> loggedInState.setViewName("fridge"),
+                e -> loggedInState.setViewName("savedForLater"),
+                e -> loggedInState.setViewName("triedRecipes")
         );
         savedRecipesLabel = new JLabel("Your Saved Recipes:");
         savedRecipesLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
