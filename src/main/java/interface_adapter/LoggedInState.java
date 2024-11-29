@@ -2,6 +2,10 @@ package interface_adapter;
 
 import entity.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
+
 /**
  * The State information representing the logged-in user.
  */
@@ -14,6 +18,8 @@ public class LoggedInState {
     private SavedRecipes favRecipes;
     private SavedRecipes triedRecipes;
     private SavedRecipes savedforlaterRecipes;
+    private List<SavedForLater> savedForLaterRecipes = new ArrayList<>();
+    private String savedRecipesError;
 
     public LoggedInState(LoggedInState copy) {
         username = copy.username;
@@ -56,6 +62,14 @@ public class LoggedInState {
 
     public Recipe getCurrentRecipe() {
         return currentRecipe;
+    }
+
+    public void  setSavedRecipes(SavedForLater savedRecipe) {
+        savedForLaterRecipes.add(savedRecipe);
+    }
+
+    public void setSavedRecipesError(String savedRecipesError) {
+        this.savedRecipesError = savedRecipesError;
     }
 
     public SavedRecipes getFavRecipes() { return favRecipes;}
