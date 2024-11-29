@@ -11,14 +11,14 @@ public class RecipeRecOutputData {
     //private final ArrayList<Recipe> recRecipes;
     private final boolean useCaseFailed;
 
-    public void RecipeRecOutputData(User user, boolean useCaseFailed) {
+    public RecipeRecOutputData(User user, boolean useCaseFailed) {
         //this.recRecipes = user.getFavourited();
         this.useCaseFailed = useCaseFailed;
     }
 
     //public ArrayList<Recipe> getrecRecipes() {
        // return recRecipes;
-    }
+
 
     public boolean isUseCaseFailed() {
         return useCaseFailed;
