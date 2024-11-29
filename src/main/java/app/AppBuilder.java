@@ -3,41 +3,29 @@ package app;
 import data_access.FileUserDataAccessObject;
 import entity.PantryPalUserFactory;
 import entity.UserFactory;
-import interface_adapter.change_password.ChangePasswordController;
-import interface_adapter.change_password.ChangePasswordPresenter;
 import interface_adapter.LoggedInState;
 import interface_adapter.LoggedInViewModel;
 import interface_adapter.login.LoginController;
 import interface_adapter.login.LoginPresenter;
 import interface_adapter.login.LoginViewModel;
-import interface_adapter.logout.LogoutController;
-import interface_adapter.logout.LogoutPresenter;
 import interface_adapter.recipeRecommendation.RecipeRecViewModel;
 import interface_adapter.signup.SignupController;
 import interface_adapter.signup.SignupPresenter;
 import interface_adapter.signup.SignupViewModel;
 import interface_adapter.triedRecipes.TriedRecipesController;
 import interface_adapter.triedRecipes.TriedRecipesViewModel;
+import interface_adapter.saveforlater.SaveForLaterController;
+import interface_adapter.saveforlater.SaveForLaterViewModel;
 import interface_adapter.ViewManagerModel;
-import use_case.change_password.ChangePasswordInputBoundary;
-import use_case.change_password.ChangePasswordInteractor;
-import use_case.change_password.ChangePasswordOutputBoundary;
 import use_case.login.LoginInputBoundary;
 import use_case.login.LoginInteractor;
 import use_case.login.LoginOutputBoundary;
-import use_case.logout.LogoutInputBoundary;
-import use_case.logout.LogoutInteractor;
-import use_case.logout.LogoutOutputBoundary;
-import use_case.logout.LogoutUserDataAccessInterface;
 import use_case.signup.SignupInputBoundary;
 import use_case.signup.SignupInteractor;
 import use_case.signup.SignupOutputBoundary;
 import use_case.triedRecipes.TriedRecipesInteractor;
-import view.HomeView;
-import view.LoginView;
-import view.SignupView;
-import view.TriedRecipesView;
-import view.ViewManager;
+import view.*;
+
 import javax.swing.*;
 import java.awt.*;
 import java.io.File;
@@ -57,9 +45,14 @@ public class AppBuilder {
     private SignupViewModel signupViewModel;
     private SignupView signupView;
     private LoginViewModel loginViewModel;
+    private final RecipeRecViewModel recipeRecViewModel = new RecipeRecViewModel();
+    private final SaveForLaterViewModel saveForLaterViewModel = new SaveForLaterViewModel();
+    private final LoggedInState loggedInState = new LoggedInState();
     private LoginView loginView;
-    private LoggedInViewModel loggedInViewModel;
-    private HomeView loggedInView;
+    private HomeView loggedInViewHome;
+    private TriedRecipesView loggedInViewTriedRecipes;
+    private SavedForLaterView loggedInViewSavedForLaters;
+    private FridgeView loggedInViewFridge;
 
 
     public AppBuilder() {
@@ -91,22 +84,40 @@ public class AppBuilder {
     public AppBuilder addHomeView() {
         LoggedInState loggedInState = new LoggedInState();
         RecipeRecViewModel recipeRecViewModel = new RecipeRecViewModel();
-        loggedInView = new HomeView(recipeRecViewModel, loggedInState);
-        cardPanel.add(loggedInView, loggedInView.getViewName());
+        loggedInViewHome = new HomeView(recipeRecViewModel, loggedInState);
+        cardPanel.add(loggedInViewHome, loggedInViewHome.getViewName());
         return this;
     }
-
-    public AppBuilder addLoggedInView() {
-        return addHomeView();
-    }
-
 
     public AppBuilder addTriedRecipeView() {
+        LoggedInState loggedInState = new LoggedInState();
         TriedRecipesViewModel triedRecipesViewModel = new TriedRecipesViewModel();
-        TriedRecipesView triedRecipesView = new TriedRecipesView(triedRecipesViewModel);
-        cardPanel.add(triedRecipesView, triedRecipesViewModel.getViewName());
+        loggedInViewTriedRecipes = new TriedRecipesView(loggedInState, viewManagerModel);
+        cardPanel.add(loggedInViewTriedRecipes, loggedInViewTriedRecipes.getViewName());
         return this;
     }
+
+    public AppBuilder addSavedForLaterView() {
+        LoggedInState loggedInState = new LoggedInState();
+        SaveForLaterViewModel saveForLaterViewModel = new SaveForLaterViewModel();
+        loggedInViewSavedForLaters = new SavedForLaterView(saveForLaterViewModel, loggedInState);
+        cardPanel.add(loggedInViewSavedForLaters, loggedInViewSavedForLaters.getViewName());
+        return this;
+    }
+
+
+//    public AppBuilder addFridgeView() {
+//        LoggedInState loggedInState = new LoggedInState();
+//        FridgeViewModel fridgeViewModel = new FridgeViewModel();
+//        loggedInViewFridge = new FridgeView(loggedInState, viewManagerModel);
+//        cardPanel.add(loggedInViewFridge, loggedInViewFridge.getViewName());
+//        return this;
+//    }
+
+    public AppBuilder addLoggedInView() {
+        return addHomeView().addTriedRecipeView().addSavedForLaterView();
+    }
+
 
     public AppBuilder addSignupUseCase() {
         final SignupOutputBoundary signupOutputBoundary = new SignupPresenter(viewManagerModel,
@@ -121,7 +132,8 @@ public class AppBuilder {
 
     public AppBuilder addLoginUseCase() {
         final LoginOutputBoundary loginOutputBoundary = new LoginPresenter(viewManagerModel,
-                loggedInViewModel, loginViewModel);
+                recipeRecViewModel, loginViewModel);
+
         final LoginInputBoundary loginInteractor = new LoginInteractor(
                 userDataAccessObject, loginOutputBoundary);
 
@@ -130,30 +142,30 @@ public class AppBuilder {
         return this;
     }
 
-    public AppBuilder addChangePasswordUseCase() {
-        final ChangePasswordOutputBoundary changePasswordOutputBoundary =
-                new ChangePasswordPresenter(loggedInViewModel);
-
-        final ChangePasswordInputBoundary changePasswordInteractor =
-                new ChangePasswordInteractor(userDataAccessObject, changePasswordOutputBoundary, userFactory);
-
-        final ChangePasswordController changePasswordController =
-                new ChangePasswordController(changePasswordInteractor);
-        loggedInView.setChangePasswordController(changePasswordController);
-        return this;
-    }
-
-    public AppBuilder addLogoutUseCase() {
-        final LogoutOutputBoundary logoutOutputBoundary = new LogoutPresenter(viewManagerModel,
-                loggedInViewModel, loginViewModel);
-
-        final LogoutInputBoundary logoutInteractor =
-                new LogoutInteractor((LogoutUserDataAccessInterface) this.userDataAccessObject, logoutOutputBoundary);
-
-        final LogoutController logoutController = new LogoutController(logoutInteractor);
-        loggedInView.setLogoutController(logoutController);
-        return this;
-    }
+//    public AppBuilder addChangePasswordUseCase() {
+//        final ChangePasswordOutputBoundary changePasswordOutputBoundary =
+//                new ChangePasswordPresenter(loggedInViewModel);
+//
+//        final ChangePasswordInputBoundary changePasswordInteractor =
+//                new ChangePasswordInteractor(userDataAccessObject, changePasswordOutputBoundary, userFactory);
+//
+//        final ChangePasswordController changePasswordController =
+//                new ChangePasswordController(changePasswordInteractor);
+//        loggedInViewHome.setChangePasswordController(changePasswordController);
+//        return this;
+//    }
+//
+//    public AppBuilder addLogoutUseCase() {
+//        final LogoutOutputBoundary logoutOutputBoundary = new LogoutPresenter(viewManagerModel,
+//                loggedInViewModel, loginViewModel);
+//
+//        final LogoutInputBoundary logoutInteractor =
+//                new LogoutInteractor((LogoutUserDataAccessInterface) this.userDataAccessObject, logoutOutputBoundary);
+//
+//        final LogoutController logoutController = new LogoutController(logoutInteractor);
+//        loggedInViewHome.setLogoutController(logoutController);
+//        return this;
+//    }
 
     public AppBuilder addTriedRecipesUseCase() {
         TriedRecipesViewModel triedRecipesViewModel = new TriedRecipesViewModel();
