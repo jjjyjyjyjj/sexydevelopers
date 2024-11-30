@@ -5,7 +5,6 @@ package use_case.skip_recipe;
  */
 
 public class SkipRecipeOutputData {
-    // insert new recipe?
     private final boolean useCaseFailed;
 
     public SkipRecipeOutputData(boolean useCaseFailed) {

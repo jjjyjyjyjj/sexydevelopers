@@ -1,6 +1,7 @@
 package interface_adapter.skip_recipe;
 
 import interface_adapter.LoggedInViewModel;
+import use_case.skip_recipe.SkipRecipeInputBoundary;
 import use_case.skip_recipe.SkipRecipeOutputBoundary;
 import use_case.skip_recipe.SkipRecipeOutputData;
 
@@ -16,7 +17,7 @@ public class SkipRecipePresenter implements SkipRecipeOutputBoundary {
         // currently there isn't anything to change based on the output data,
         // since the output data only contains the username, which remains the same.
         // We still fire the property changed event, but just to let the view know that
-        // it can alert the user that their password was changed successfully..
+        // the user chose to skip this recipe.
         loggedInViewModel.firePropertyChanged("skip recipe");
 
     }

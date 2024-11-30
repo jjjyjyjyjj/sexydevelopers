@@ -130,6 +130,12 @@ public class FileUserDataAccessObject implements SignupUserDataAccessInterface,
     }
 
     @Override
+    public void updateSavedRecipes(User user, Recipe recipe) {
+        user.getSavedForLater().removeRecipe(recipe);
+        save();
+    }
+
+    @Override
     public boolean saveRecipeForUser(String userId, String recipeId) {
         return false;
     }

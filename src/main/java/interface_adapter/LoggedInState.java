@@ -12,6 +12,7 @@ import java.util.List;
  * The State information representing the logged-in user.
  */
 public class LoggedInState {
+    private User user;
     private String username = "";
     private String password = "";
     private String passwordError;
@@ -28,6 +29,7 @@ public class LoggedInState {
     private final PropertyChangeSupport support = new PropertyChangeSupport(this);
 
     public LoggedInState(LoggedInState copy) {
+        user = copy.user;
         username = copy.username;
         password = copy.password;
         passwordError = copy.passwordError;
@@ -113,5 +115,9 @@ public class LoggedInState {
 
     public void removePropertyChangeListener(PropertyChangeListener listener) {
         support.removePropertyChangeListener(listener);
+    }
+
+    public User getUser() {
+        return user;
     }
 }

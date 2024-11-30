@@ -22,4 +22,6 @@ public interface User {
     SavedRecipes getFavourited();
 
     SavedRecipes getTriedRecipes();
+
+    Fridge getFridge();
 }
