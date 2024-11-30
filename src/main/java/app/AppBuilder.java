@@ -194,6 +194,10 @@ public class AppBuilder {
         application.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         application.setLocationRelativeTo(null);
 
+        application.setMinimumSize(new Dimension(800, 600));
+
+        application.setLocationRelativeTo(null);
+
         application.add(cardPanel);
 
         viewManagerModel.setState(signupView.getViewName());
