@@ -7,6 +7,7 @@ import use_case.change_password.ChangePasswordUserDataAccessInterface;
 import use_case.add_to_favrecipes.FavouriteRecipesDataAccessInterface;
 import use_case.login.LoginUserDataAccessInterface;
 import use_case.logout.LogoutUserDataAccessInterface;
+import use_case.recipe_recommender.RecipeRecUserDataAccessInterface;
 import use_case.remove_from_favrecipes.RemoveFavRecipeDataAccessInterface;
 import use_case.save_for_later.SaveForLaterUserDataAccessInterface;
 import use_case.signup.SignupUserDataAccessInterface;
@@ -14,6 +15,7 @@ import use_case.signup.SignupUserDataAccessInterface;
 import java.io.FileWriter;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -25,7 +27,10 @@ public class FileUserDataAccessObject implements SignupUserDataAccessInterface,
         LoginUserDataAccessInterface,
         ChangePasswordUserDataAccessInterface,
         LogoutUserDataAccessInterface,
-        FavouriteRecipesDataAccessInterface, RemoveFavRecipeDataAccessInterface, SaveForLaterUserDataAccessInterface {
+        FavouriteRecipesDataAccessInterface,
+        RemoveFavRecipeDataAccessInterface,
+        SaveForLaterUserDataAccessInterface,
+        RecipeRecUserDataAccessInterface {
 
     private final File jsonFile;
     private final Map<String, User> accounts = new HashMap<>();
@@ -153,5 +158,16 @@ public class FileUserDataAccessObject implements SignupUserDataAccessInterface,
     @Override
     public boolean existsByRecipe(Recipe toSavedRecipe, User user) {
         return false;
+    }
+
+    /**
+     * Gets the Ingredients in the User's fridge
+     *
+     * @param user Current user
+     * @return List of Ingredient user has
+     */
+    @Override
+    public ArrayList<Ingredient> getFridgeIngredients(User user) {
+        return user.getFridge().getIngredients();
     }
 }
