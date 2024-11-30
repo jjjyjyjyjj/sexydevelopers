@@ -10,17 +10,21 @@ import entity.User;
 public class RemoveFavRecipeInputData {
     private final Recipe targetRecipe;
     private final SavedRecipes favourited;
+    private final SavedRecipes savedforlater;
     private final User user;
 
     public RemoveFavRecipeInputData(Recipe targetRecipe, User user) {
         this.targetRecipe = targetRecipe;
         this.favourited = user.getFavourited();
+        this.savedforlater = user.getSavedForLater();
         this.user = user;
     }
 
     SavedRecipes getFavouriteRecipes() {
         return favourited;
     }
+
+    SavedRecipes getSavedForLater() { return savedforlater; }
 
     User getUser() {
         return user;
