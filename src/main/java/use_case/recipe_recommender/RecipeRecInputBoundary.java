@@ -8,10 +8,5 @@ public interface RecipeRecInputBoundary {
     /**
      * Fetch the next recommended recipe based on the user's fridge contents.
      */
-    void fetchNextRecipe();
-
-    /**
-     * Skip the currently recommended recipe.
-     */
-    void skipCurrentRecipe();
+    void fetchNextRecipe(RecipeRecInputData inputData);
 }

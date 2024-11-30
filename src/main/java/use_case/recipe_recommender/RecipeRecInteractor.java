@@ -1,10 +1,7 @@
 package use_case.recipe_recommender;
 
 import api.recipeFinderInterface;
-import entity.CommonIngredient;
-import entity.CommonRecipe;
-import entity.Ingredient;
-import entity.Recipe;
+import entity.*;
 import interface_adapter.recipeRecommendation.RecipeRecState;
 
 import java.util.ArrayList;
@@ -27,10 +24,11 @@ public class RecipeRecInteractor implements RecipeRecInputBoundary {
     }
 
     @Override
-    public void fetchNextRecipe() {
+    public void fetchNextRecipe(RecipeRecInputData inputData) {
         try {
+            User user = inputData.getCurrentUser();
             // Fetch ingredients from user's fridge
-            ArrayList<Ingredient> ingredients = userDataAccess.getFridgeIngredients();
+            ArrayList<Ingredient> ingredients = inputData.getIngredients();
 
             // Fetch recommended recipes using the recipe API
             List<Recipe> recipes = recipeFinder.getRecipeByIngredient((ingredients),
@@ -60,9 +58,4 @@ public class RecipeRecInteractor implements RecipeRecInputBoundary {
             outputBoundary.presentError(state.getErrorMessage());
         }
     }
-
-    @Override
-    public void skipCurrentRecipe() {
-    }
-
 }
