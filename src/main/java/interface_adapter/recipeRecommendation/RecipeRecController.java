@@ -18,13 +18,12 @@ public class RecipeRecController {
      * @throws IOException If there is an issue with API communication.
      */
     public List<Recipe> getRecipes(User user) throws IOException {
-        CommonFridge fridge = new CommonFridge();
-        fridge = (CommonFridge) user.getFridge();
 
+        CommonFridge fridge = (CommonFridge) user.getFridge();
         ArrayList<Ingredient> ingredients = fridge.getIngredients();
 
         recipeFinder finder = new recipeFinder();
-        return recipeFinder.getRecipeByIngredient(ingredients, 10, 2, true);
-    }
 
+        return finder.getRecipeByIngredient(ingredients, 10, 2, true);
+    }
 }
