@@ -2,14 +2,21 @@ package view;
 
 import entity.Recipe;
 import interface_adapter.ViewManagerModel;
+import interface_adapter.ViewModel;
 import interface_adapter.change_password.ChangePasswordController;
 import interface_adapter.LoggedInState;
 import interface_adapter.logout.LogoutController;
 import interface_adapter.recipeRecommendation.RecipeRecViewModel;
 import entity.CommonRecipe;
+import interface_adapter.saveforlater.SaveForLaterController;
+import interface_adapter.saveforlater.SaveForLaterState;
+import interface_adapter.saveforlater.SaveForLaterViewModel;
+import use_case.add_to_favrecipes.FavouriteRecipesInputBoundary;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 /**
  * The Home View displaying a single recommended recipe and additional user actions.
@@ -18,10 +25,13 @@ public class HomeView extends JPanel {
 
     private final String viewName = "home";
     private final RecipeRecViewModel viewModel;
+
     private LogoutController logoutController;
     private ChangePasswordController changePasswordController;
+    private SaveForLaterController saveForLaterController;
     private final LoggedInState loggedInState;
     private ViewManagerModel viewManagerModel;
+    private SaveForLaterViewModel saveForLaterViewModel;
 
     private JLabel homeScreenTitleLabel;
     private JLabel recipeNameLabel;
@@ -103,15 +113,24 @@ public class HomeView extends JPanel {
             }
         });
 
-        // Save Recipe
-        saveRecipeButton.addActionListener(evt -> {
-            // TODO: Implement save recipe functionality
+        saveRecipeButton.addActionListener(
+             new ActionListener() {
+        public void actionPerformed(ActionEvent evt) {
+           if (evt.getSource().equals(saveRecipeButton)) {
+               final LoggedInState currentState = saveForLaterViewModel.getState();
+
+             saveForLaterController.execute(
+                    viewModel.getState().getCurrentRecipe(),
+                    currentState.getUser());
+          }
+         }
         });
 
         // Skip Recipe
-        skipRecipeButton.addActionListener(evt -> {
-            // TODO: Implement skip recipe functionality
-        });
+        //skipRecipeButton.addActionListener(evt -> {
+        // TODO: Implement skip recipe functionality
+        //});
+
 
         // Logout
         logoutButton.addActionListener(evt -> {

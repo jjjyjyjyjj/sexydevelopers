@@ -6,7 +6,7 @@ package entity;
 public class PantryPalUserFactory implements UserFactory {
 
     @Override
-    public PantryPalUser create(String name, String password) {
+    public User create(String name, String password) {
         return new PantryPalUser(name, password);
     }
 }

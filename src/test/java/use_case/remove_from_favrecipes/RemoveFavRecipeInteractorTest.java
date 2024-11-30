@@ -84,26 +84,22 @@ public class RemoveFavRecipeInteractorTest {
         User user2 = userFactory.create("lala", "pa55word");
         userRepository.save(user2);
 
-        //For a success test, we need to add the recipe to the favourite recipe list.
         RemoveFavRecipeInputData inputData = new RemoveFavRecipeInputData(toRemoveRecipe, user2);
 
         // This creates a successPresenter that tests whether the test case is as we expect.
-        RemoveFavRecipeOutputBoundary successPresenter = new RemoveFavRecipeOutputBoundary() {
+        RemoveFavRecipeOutputBoundary failurePresenter = new RemoveFavRecipeOutputBoundary() {
             @Override
             public void prepareSuccessView(RemoveFavRecipeOutputData favrecipes) {
-                // 2 things to check: the output data is correct, and the user has been created in the DAO.
-                List<Recipe> favouriteRecipe = new ArrayList<>();
-
-                assertEquals(favouriteRecipe, favrecipes.getfavRecipes());
+                fail("Use case success is unexpected.");
             }
 
             @Override
             public void prepareFailView(String error) {
-                fail("Use case failure is unexpected.");
+                assertEquals("Recipe does not exist.", error);
             }
         };
 
-        RemoveFavRecipeInputBoundary interactor = new RemoveFavRecipeInteractor(userRepository, successPresenter);
+        RemoveFavRecipeInputBoundary interactor = new RemoveFavRecipeInteractor(userRepository, failurePresenter);
         interactor.execute(inputData);
     }
 }

@@ -63,7 +63,6 @@ public class RecipeRecInteractor implements RecipeRecInputBoundary {
 
     @Override
     public void skipCurrentRecipe() {
-
     }
 
 }
