@@ -49,50 +49,6 @@ public class recipeFinder implements recipeFinderInterface {
         }
     }
 
-    public List<Recipe> getRecipeByNutrition(int calories, int protein, int carbs, boolean maxCalories, boolean maxProtein, boolean maxCarbs) throws IOException {
-        // Build query parameters based on the provided nutritional limits
-        StringBuilder urlBuilder = new StringBuilder(API_URL).append("/findByNutrients?");
-
-        if (maxCalories) {
-            urlBuilder.append("maxCalories=").append(calories).append("&");
-        } else {
-            urlBuilder.append("minCalories=").append(calories).append("&");
-        }
-
-        if (maxProtein) {
-            urlBuilder.append("maxProtein=").append(protein).append("&");
-        } else {
-            urlBuilder.append("minProtein=").append(protein).append("&");
-        }
-
-        if (maxCarbs) {
-            urlBuilder.append("maxCarbs=").append(carbs).append("&");
-        } else {
-            urlBuilder.append("minCarbs=").append(carbs).append("&");
-        }
-
-        // Append API key
-        urlBuilder.append("apiKey=").append(getAPIKey());
-
-        String url = urlBuilder.toString();
-
-        // Create and execute the HTTP request
-        OkHttpClient client = new OkHttpClient();
-        Request request = new Request.Builder()
-                .url(url)
-                .addHeader(CONTENT_TYPE, APPLICATION_JSON)
-                .build();
-
-        try (Response response = client.newCall(request).execute()) {
-            if (response.code() != SUCCESS_CODE) {
-                throw new RuntimeException("Failed to fetch recipes: " + response.message());
-            }
-
-            String responseBody = response.body().string();
-            return parseRecipes(responseBody);
-        }
-    }
-
     private List<Recipe> parseRecipes(String responseBody) throws IOException {
         List<Recipe> recipesList = new ArrayList<>();
         responseBody = responseBody.substring(1, responseBody.length() - 1);
