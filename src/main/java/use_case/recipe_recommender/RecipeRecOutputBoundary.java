@@ -4,6 +4,10 @@ import entity.CommonRecipe;
 import entity.Recipe;
 
 public interface RecipeRecOutputBoundary {
+    void prepareSuccessView(RecipeRecOutputData outputData);
+
+    void prepareFailView(String errorMessage);
+
     void presentNextRecipe(Recipe recipe);
 
     void presentError(String errorMessage);
