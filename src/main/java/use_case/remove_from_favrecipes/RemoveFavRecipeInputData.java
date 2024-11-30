@@ -1,5 +1,6 @@
 package use_case.remove_from_favrecipes;
 
+import entity.FavouritedRecipes;
 import entity.Recipe;
 import entity.SavedRecipes;
 import entity.User;
@@ -9,7 +10,7 @@ import entity.User;
 
 public class RemoveFavRecipeInputData {
     private final Recipe targetRecipe;
-    private final SavedRecipes favourited;
+    private final FavouritedRecipes favourited;
     private final SavedRecipes savedforlater;
     private final User user;
 
