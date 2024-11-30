@@ -120,4 +120,19 @@ public class LoggedInState {
     public User getUser() {
         return user;
     }
+
+    public void setRecommendedRecipes(List<Recipe> recommendedRecipes) {
+    }
+
+    public void setRecipeRecommendationError(String errorMessage) {
+    }
+
+    public void setCurrentRecipe(Recipe recipe) {
+        this.currentRecipe = recipe;
+    }
+
+    public void setErrorMessage(String errorMessage) {
+        this.savedRecipesError = errorMessage;
+    }
+
 }

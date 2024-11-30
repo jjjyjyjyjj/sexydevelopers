@@ -2,7 +2,6 @@ package use_case.recipe_recommender;
 
 import entity.Fridge;
 import entity.Ingredient;
-import entity.Recipe;
 import entity.User;
 
 import java.util.ArrayList;
@@ -12,10 +11,10 @@ public class RecipeRecInputData {
     private ArrayList<Ingredient> listIngredients;
     private Fridge userFridge;
 
-    public void RecipeRecInputData(User user){
+    public RecipeRecInputData(User user){
         this.currentUser = user;
         this.userFridge = user.getFridge();
-        listIngredients = userFridge.getIngredients();
+        this.listIngredients = userFridge.getIngredients();
     }
 
     public User getCurrentUser(){
@@ -26,8 +25,7 @@ public class RecipeRecInputData {
         return userFridge;
     }
 
-    public ArrayList Ingredients(){
+    public ArrayList<Ingredient> getIngredients(){
         return listIngredients;
     }
-
 }

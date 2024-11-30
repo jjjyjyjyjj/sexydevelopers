@@ -192,6 +192,7 @@ public class AppBuilder {
     public JFrame build() {
         final JFrame application = new JFrame("PantryPal");
         application.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        application.setLocationRelativeTo(null);
 
         application.setMinimumSize(new Dimension(800, 600));
 
