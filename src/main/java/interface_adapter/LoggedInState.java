@@ -2,6 +2,8 @@ package interface_adapter;
 
 import entity.*;
 
+import java.beans.PropertyChangeListener;
+import java.beans.PropertyChangeSupport;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,6 +23,10 @@ public class LoggedInState {
     private List<SavedForLater> savedForLaterRecipes = new ArrayList<>();
     private String savedRecipesError;
 
+    private String viewName = "home";
+
+    private final PropertyChangeSupport support = new PropertyChangeSupport(this);
+
     public LoggedInState(LoggedInState copy) {
         username = copy.username;
         password = copy.password;
@@ -29,6 +35,7 @@ public class LoggedInState {
         favRecipes = copy.favRecipes;
         triedRecipes = copy.triedRecipes;
         savedforlaterRecipes = copy.savedforlaterRecipes;
+        viewName = copy.viewName;
     }
 
     // Because of the previous copy constructor, the default constructor must be explicit.
@@ -88,5 +95,23 @@ public class LoggedInState {
 
     public void setSavedforlaterRecipes(SavedRecipes savedforlaterRecipes) {
         this.savedforlaterRecipes = savedforlaterRecipes;
+    }
+
+    public String getViewName() {
+        return viewName;
+    }
+
+    public void setViewName(String viewName) {
+        String oldViewName = this.viewName;
+        this.viewName = viewName;
+        support.firePropertyChange("viewName", oldViewName, viewName);
+    }
+
+    public void addPropertyChangeListener(PropertyChangeListener listener) {
+        support.addPropertyChangeListener(listener);
+    }
+
+    public void removePropertyChangeListener(PropertyChangeListener listener) {
+        support.removePropertyChangeListener(listener);
     }
 }

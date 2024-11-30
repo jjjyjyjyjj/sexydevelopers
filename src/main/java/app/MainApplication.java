@@ -12,6 +12,7 @@ public class MainApplication {
                 .addLoginView()
                 .addHomeView()
                 .addSavedForLaterView()
+                .addLoggedInStateListener()
                 .addSignupUseCase()
                 .addLoginUseCase()
                 .build();

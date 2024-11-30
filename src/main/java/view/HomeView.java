@@ -23,6 +23,7 @@ public class HomeView extends JPanel {
     private final LoggedInState loggedInState;
     private ViewManagerModel viewManagerModel;
 
+    private JLabel homeScreenTitleLabel;
     private JLabel recipeNameLabel;
     private JLabel recipeImageLabel;
     private JButton viewRecipeButton;
@@ -40,16 +41,21 @@ public class HomeView extends JPanel {
 
     private void setupUI() {
         this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+        this.setBackground(Color.ORANGE);
 
         NavBarPanel navBarPanel = new NavBarPanel(
-                e -> viewManagerModel.setState("home"),
-                e -> viewManagerModel.setState("fridge"),
-                e -> viewManagerModel.setState("savedForLater"),
-                e -> viewManagerModel.setState("triedRecipes")
+                e -> loggedInState.setViewName("home"),
+                e -> loggedInState.setViewName("fridge"),
+                e -> loggedInState.setViewName("savedForLater"),
+                e -> loggedInState.setViewName("triedRecipes")
         );
 
+        homeScreenTitleLabel = new JLabel("PantryPal Home Screen");
+        homeScreenTitleLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
+        homeScreenTitleLabel.setFont(new Font("Arial", Font.BOLD, 24));
+
         // Recipe Information
-        recipeNameLabel = new JLabel("PantryPal Home");
+        recipeNameLabel = new JLabel("Recipe Name");
         recipeNameLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
 
         recipeImageLabel = new JLabel(); // Placeholder for recipe image
@@ -61,6 +67,7 @@ public class HomeView extends JPanel {
         skipRecipeButton = new JButton("Skip");
 
         JPanel recipeButtonPanel = new JPanel();
+        recipeButtonPanel.setBackground(Color.ORANGE);
         recipeButtonPanel.add(viewRecipeButton);
         recipeButtonPanel.add(saveRecipeButton);
         recipeButtonPanel.add(skipRecipeButton);
@@ -70,9 +77,11 @@ public class HomeView extends JPanel {
         changePasswordButton = new JButton("Change Password");
 
         JPanel userButtonPanel = new JPanel();
+        userButtonPanel.setBackground(Color.ORANGE);
         userButtonPanel.add(changePasswordButton);
         userButtonPanel.add(logoutButton);
 
+        this.add(homeScreenTitleLabel);
         this.add(recipeNameLabel);
         this.add(recipeImageLabel);
         this.add(recipeButtonPanel);
