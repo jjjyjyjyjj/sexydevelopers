@@ -19,7 +19,11 @@ public interface User {
 
     SavedForLater getSavedForLater();
 
-    SavedRecipes getFavourited();
+    FavouritedRecipes getFavourited();
 
-    SavedRecipes getTriedRecipes();
+    TriedRecipes getTriedRecipes();
+
+    Fridge getFridge();
+
+    Fridge getFridge();
 }

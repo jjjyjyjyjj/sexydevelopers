@@ -1,8 +1,6 @@
-package use_case.triedRecipes;
+package use_case.try_recipe;
 
 import data_access.FileUserDataAccessObject;
-import entity.CommonRecipe;
-import entity.PantryPalUser;
 import entity.Recipe;
 import entity.User;
 import interface_adapter.triedRecipes.TriedRecipesViewModel;

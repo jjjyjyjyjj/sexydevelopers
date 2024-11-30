@@ -8,10 +8,10 @@ import java.io.IOException;
 
 public class summarizeRecipe implements summarizeRecipeInterface {
 
-    private static final String API_URL = "https://api.spoonacular.com/recipes";
+    private static final String API_URL = "https://api.spoonacular.com/recipes/{id}/summary";
     private static final String CONTENT_TYPE = "Content-Type";
     private static final String APPLICATION_JSON = "application/json";
-    private static final String APP_KEY = "your_app_key"; // Replace with your actual key
+    private static final String APP_KEY = "00ab640014494f1ab81008310af8ec28"; // Replace with your actual key
     private static final int SUCCESS_CODE = 200;
 
     public static String getAPIKey() {
