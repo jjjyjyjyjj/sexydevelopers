@@ -20,4 +20,6 @@ public interface RemoveFavRecipeDataAccessInterface {
      * @param recipe the recipe that is to be removed from favourite recipes
      */
     void updateFavouriteRecipes(User user, Recipe recipe);
+
+    void updateSavedRecipes(User user, Recipe recipe);
 }
