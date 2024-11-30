@@ -1,34 +1,32 @@
 package view;
 
-import interface_adapter.signup.SignupViewModel;
-import interface_adapter.triedRecipes.TriedRecipesController;
-import interface_adapter.triedRecipes.TriedRecipesPresenter;
-import interface_adapter.triedRecipes.TriedRecipesState;
-import interface_adapter.triedRecipes.TriedRecipesViewModel;
+import interface_adapter.LoggedInState;
+import interface_adapter.ViewManagerModel;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 public class TriedRecipesView extends JPanel {
+    public TriedRecipesView(LoggedInState loggedInState, ViewManagerModel viewManagerModel) {
+        this.setLayout(new BorderLayout());
 
-    private final TriedRecipesViewModel viewModel;
+        // Create navigation bar with actions
+        NavBarPanel navBar = new NavBarPanel(
+                e -> viewManagerModel.setState("home"),
+                e -> viewManagerModel.setState("fridge"),
+                e -> viewManagerModel.setState("savedForLater"),
+                e -> viewManagerModel.setState("triedRecipes")
+        );
 
-    public TriedRecipesView(TriedRecipesViewModel viewModel) {
-        this.viewModel = viewModel;
-        setLayout(new BorderLayout());
+        // Add nav bar at the top
+        this.add(navBar, BorderLayout.NORTH);
 
-        final JLabel title = new JLabel(TriedRecipesViewModel.TITLE_LABEL);
-        title.setAlignmentX(CENTER_ALIGNMENT);
+        // Add placeholder for tried recipes
+        JLabel triedRecipesLabel = new JLabel("Your Tried Recipes:", JLabel.CENTER);
+        this.add(triedRecipesLabel, BorderLayout.CENTER);
+    }
 
-        JTextArea recipesArea = new JTextArea();
-        recipesArea.setEditable(false);
-        add(new JScrollPane(recipesArea), BorderLayout.CENTER);
-
-        viewModel.addPropertyChangeListener(evt -> {
-            TriedRecipesState state = viewModel.getState();
-            recipesArea.setText(String.join("\n", state.getTriedRecipes()));
-        });
+    public String getViewName() {
+        return "triedRecipes";
     }
 }
