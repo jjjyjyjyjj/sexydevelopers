@@ -9,8 +9,10 @@ import java.awt.event.MouseEvent;
 public class NavBarPanel extends JPanel {
     public NavBarPanel(ActionListener goToHome, ActionListener goToFridge,
                        ActionListener goToSavedForLater, ActionListener goToTriedRecipes) {
-        this.setLayout(new FlowLayout(FlowLayout.CENTER, 15, 10));
+        this.setLayout(new BoxLayout(this, BoxLayout.X_AXIS));
         this.setBackground(Color.GRAY);
+        this.setPreferredSize(new Dimension(1000, 20));
+
 
         JButton homeButton = createStyledButton("Home");
         JButton fridgeButton = createStyledButton("Fridge");
@@ -22,10 +24,16 @@ public class NavBarPanel extends JPanel {
         savedForLaterButton.addActionListener(goToSavedForLater);
         triedRecipesButton.addActionListener(goToTriedRecipes);
 
+        // Add buttons to the horizontal button panel
+        this.add(Box.createHorizontalGlue());
         this.add(homeButton);
+        this.add(Box.createHorizontalStrut(20)); // Add spacing between buttons
         this.add(fridgeButton);
+        this.add(Box.createHorizontalStrut(20));
         this.add(savedForLaterButton);
+        this.add(Box.createHorizontalStrut(20));
         this.add(triedRecipesButton);
+        this.add(Box.createHorizontalGlue());
     }
 
     private JButton createStyledButton(String text) {

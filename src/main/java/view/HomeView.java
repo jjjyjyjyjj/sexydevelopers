@@ -53,6 +53,7 @@ public class HomeView extends JPanel {
         homeScreenTitleLabel = new JLabel("PantryPal Home Screen");
         homeScreenTitleLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
         homeScreenTitleLabel.setFont(new Font("Arial", Font.BOLD, 24));
+        homeScreenTitleLabel.setBorder(BorderFactory.createEmptyBorder(30, 0, 50, 0));
 
         // Recipe Information
         recipeNameLabel = new JLabel("Recipe Name");
