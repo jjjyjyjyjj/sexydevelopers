@@ -5,6 +5,8 @@ import interface_adapter.LoggedInState;
 import interface_adapter.saveforlater.SaveForLaterViewModel;
 import view.SavedForLaterView;
 
+import java.awt.*;
+
 public class SavedForLaterViewTest {
 
     public static void main(String[] args) {
@@ -18,7 +20,7 @@ public class SavedForLaterViewTest {
         // Set up JFrame to display the view
         JFrame frame = new JFrame("Saved For Later Test");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(600, 400);
+        frame.setMinimumSize(new Dimension(800, 600));
         frame.add(savedForLaterView);
         frame.setVisible(true);
     }
