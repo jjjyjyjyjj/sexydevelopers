@@ -37,7 +37,7 @@ public class SavedForLaterView extends JPanel {
                 e -> loggedInState.setViewName("savedForLater"),
                 e -> loggedInState.setViewName("triedRecipes")
         );
-        savedRecipesLabel = new JLabel("Your Saved Recipes:");
+        savedRecipesLabel = new JLabel("Your Saved Recipes");
         savedRecipesLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
         savedRecipesLabel.setFont(new Font("Arial", Font.BOLD, 24));
         savedRecipesLabel.setBorder(BorderFactory.createEmptyBorder(30, 0, 50, 0));

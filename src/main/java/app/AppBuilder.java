@@ -23,7 +23,7 @@ import use_case.login.LoginOutputBoundary;
 import use_case.signup.SignupInputBoundary;
 import use_case.signup.SignupInteractor;
 import use_case.signup.SignupOutputBoundary;
-import use_case.triedRecipes.TriedRecipesInteractor;
+import use_case.tried_recipes.TriedRecipesInteractor;
 import view.*;
 
 import javax.swing.*;
