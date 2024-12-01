@@ -4,7 +4,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.type.CollectionType;
 import entity.*;
 import use_case.change_password.ChangePasswordUserDataAccessInterface;
-import use_case.add_to_favrecipes.FavouriteRecipesDataAccessInterface;
 import use_case.login.LoginUserDataAccessInterface;
 import use_case.logout.LogoutUserDataAccessInterface;
 import use_case.recipe_recommender.RecipeRecUserDataAccessInterface;
@@ -158,7 +157,6 @@ public class FileUserDataAccessObject implements SignupUserDataAccessInterface,
     public boolean existsByRecipe(Recipe toSavedRecipe, User user) {
         return false;
     }
-
 
     /**
      * Gets the Ingredients in the User's fridge

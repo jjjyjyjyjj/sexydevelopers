@@ -1,8 +1,11 @@
 package entity;
 
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+
 import java.util.ArrayList;
 import java.util.List;
 
+@JsonDeserialize(as = FavouritedRecipes.class)
 public class FavouritedRecipes implements SavedRecipes {
     private List<Recipe> favouritedRecipes;
 

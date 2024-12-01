@@ -8,7 +8,4 @@ public interface RecipeRecOutputBoundary {
 
     void prepareFailView(String errorMessage);
 
-    void presentNextRecipe(Recipe recipe);
-
-    void presentError(String errorMessage);
 }

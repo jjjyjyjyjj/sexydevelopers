@@ -1,8 +1,12 @@
 package entity;
 
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+
 /**
  * The representation of a user in our program.
  */
+
+@JsonDeserialize(using = UserDeserializer.class)
 public interface User {
 
     /**
