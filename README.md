@@ -55,4 +55,4 @@ Please leave any ideas you have in the [discussion board](https://github.com/jjj
 Our team will look into it and contact you for further details.
 
 ### License
-Here are the terms of our [license](sexydevelopers/LICENSE)
+Here are the terms of our [license](LICENSE)
