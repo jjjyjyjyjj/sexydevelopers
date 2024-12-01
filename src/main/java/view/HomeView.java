@@ -1,5 +1,6 @@
 package view;
 
+import entity.Ingredient;
 import entity.Recipe;
 import interface_adapter.ViewManagerModel;
 import interface_adapter.ViewModel;
@@ -13,6 +14,7 @@ import interface_adapter.saveforlater.SaveForLaterState;
 import interface_adapter.saveforlater.SaveForLaterViewModel;
 import use_case.add_to_favrecipes.FavouriteRecipesInputBoundary;
 
+import java.util.List;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -166,9 +168,19 @@ public class HomeView extends JPanel {
     }
 
     public void updateRecipeDisplay(Recipe recipe) {
-        recipeNameLabel.setText(recipe.getName());
-        // Load image from recipe.getImage()
-        ImageIcon recipeImage = new ImageIcon(recipe.getImage());
-        recipeImageLabel.setIcon(recipeImage);
+//        recipeNameLabel.setText(recipe.getName());
+//        // Load image from recipe.getImage()
+//        ImageIcon recipeImage = new ImageIcon(recipe.getImage());
+//        recipeImageLabel.setIcon(recipeImage);
+//        List<Ingredient> fridgeContents = loggedInState.getFridge(); // Get the fridge contents
+//        List<Recipe> recipes = recipeRecViewModel.fetchRecipesByIngredients(fridgeContents);
+//        if (!recipes.isEmpty()) {
+//            Recipe currentRecipe = recipes.get(0);  // Assuming first recipe for simplicity
+//            recipeNameLabel.setText(currentRecipe.getName());
+//            ImageIcon recipeImage = new ImageIcon(currentRecipe.getImage());
+//            recipeImageLabel.setIcon(recipeImage);
+//        } else {
+//            recipeNameLabel.setText("No Recipe Found");
+//            recipeImageLabel.setIcon(null);
     }
 }
