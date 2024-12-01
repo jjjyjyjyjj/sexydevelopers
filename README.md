@@ -1,16 +1,16 @@
-# ** PantryPal** 
+# PantryPal
 
-Sexy Developers Group Project for CSC207 Fall '24
+Sexy Developers Group Project for CSC207 Fall '24<br/>
 Group members: Ryan Hu, Carolina Jaimie, Rosie Topp, Jiayun Lee
 
 ## Table of Contents:
-[Overview](#an-overview-of-the-software)
-[Features of the Software](#features-of-the-software)
-[Installation Instructions -- How to Run](#installation-instructions-how-to-run)
-[Usage Guide](#usage-guide)
-[Feedback](#let-us-know-your-feedback)
-[Contributions](#want-to-contribute)
-[License](#license)
+[Overview](#an-overview-of-the-software)<br/>
+[Features of the Software](#features-of-the-software)<br/>
+[Installation Instructions -- How to Run](#installation-instructions-how-to-run)<br/>
+[Usage Guide](#usage-guide)<br/>
+[Feedback](#let-us-know-your-feedback)<br/>
+[Contributions](#want-to-contribute)<br/>
+[License](#license)<br/>
 
 ### An Overview of the Software
 #### _**Have ingredients in your fridge that you're not quite sure how to use? PantryPal is here to solve that issue for you!**_
@@ -37,8 +37,9 @@ skip said recipe and the software will recommend a new recipe.
     access it later on.
 
 ### Installation Instructions: How to Run 
-This program was constructed using SDK Corretto-17 or Amazon Corretto version 17.0.12. 
-Ensure to mark the 'java' file in src as 'sources root' and 'java' file in test as 'test sources root' before running. 
+This program was constructed using SDK Corretto-17 or Amazon Corretto version 17.0.12. <br/>
+Ensure to mark the 'java' file in src as 'sources root' and 'java' file in test as 'test sources root' before running.
+
 After downloading the files of this repository, navigate to src/main/java/app/MainApplication.java. 
 Run this file to run the program.
 
@@ -54,4 +55,4 @@ Please leave any ideas you have in the [discussion board](https://github.com/jjj
 Our team will look into it and contact you for further details.
 
 ### License
-Linked here is the terms of our [license](sexydevelopers/LICENSE)
+Here are the terms of our [license](sexydevelopers/LICENSE)
