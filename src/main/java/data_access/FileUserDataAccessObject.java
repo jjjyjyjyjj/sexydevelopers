@@ -159,14 +159,19 @@ public class FileUserDataAccessObject implements SignupUserDataAccessInterface,
         return false;
     }
 
+    @Override
+    public void getFridgeIngredients(User user) {
+
+    }
+
     /**
      * Gets the Ingredients in the User's fridge
      *
      * @param user Current user
      * @return List of Ingredient user has
      */
-    @Override
-    public ArrayList<Ingredient> getFridgeIngredients(User user) {
-        return user.getFridge().getIngredients();
-    }
+//    @Override
+//    public ArrayList<Ingredient> getFridgeIngredients(User user) {
+//        return user.getFridge().getIngredients();
+//    }
 }

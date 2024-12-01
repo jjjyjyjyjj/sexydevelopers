@@ -1,3 +1,4 @@
+
 package use_case.reciperecommender;
 
 import api.recipeFinder;
@@ -47,7 +48,6 @@ public class RecipeRecommenderTest {
         // Initialise the state of the software
         state = new RecipeRecState();
     }
-
 //    @Test
 //    void successRecRecipeTest() throws IOException {
 //        // Create a new user repository to store a new user
@@ -77,4 +77,6 @@ public class RecipeRecommenderTest {
 //                state);
 //        interactor.fetchNextRecipe(inputData);
 //    }
+
 }
+

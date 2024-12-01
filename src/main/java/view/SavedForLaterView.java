@@ -29,6 +29,7 @@ public class SavedForLaterView extends JPanel {
 
     private void setupUI() {
         this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+        this.setBackground(Color.ORANGE);
 
         NavBarPanel navBar = new NavBarPanel(
                 e -> loggedInState.setViewName("home"),
@@ -36,8 +37,10 @@ public class SavedForLaterView extends JPanel {
                 e -> loggedInState.setViewName("savedForLater"),
                 e -> loggedInState.setViewName("triedRecipes")
         );
-        savedRecipesLabel = new JLabel("Your Saved Recipes:");
+        savedRecipesLabel = new JLabel("Your Saved Recipes");
         savedRecipesLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
+        savedRecipesLabel.setFont(new Font("Arial", Font.BOLD, 24));
+        savedRecipesLabel.setBorder(BorderFactory.createEmptyBorder(30, 0, 50, 0));
 
         // Recipe buttons
         viewRecipeButton = new JButton("View Recipe");
@@ -46,6 +49,7 @@ public class SavedForLaterView extends JPanel {
         JPanel recipeButtonPanel = new JPanel();
         recipeButtonPanel.add(viewRecipeButton);
         recipeButtonPanel.add(removeRecipeButton);
+        recipeButtonPanel.setBackground(Color.ORANGE);
 
         // Adding components
         this.add(savedRecipesLabel);
