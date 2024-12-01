@@ -5,6 +5,7 @@ import entity.PantryPalUserFactory;
 import entity.UserFactory;
 import interface_adapter.LoggedInState;
 import interface_adapter.LoggedInViewModel;
+import interface_adapter.favourite_recipe.FavouriteRecipesViewModel;
 import interface_adapter.login.LoginController;
 import interface_adapter.login.LoginPresenter;
 import interface_adapter.login.LoginViewModel;
@@ -52,6 +53,8 @@ public class AppBuilder {
     private HomeView loggedInViewHome;
     private TriedRecipesView loggedInViewTriedRecipes;
     private SavedForLaterView loggedInViewSavedForLaters;
+    private FavouriteRecipesView loggedInViewFavRecipes;
+
     private FridgeView loggedInViewFridge;
 
 
@@ -105,6 +108,14 @@ public class AppBuilder {
         return this;
     }
 
+    public AppBuilder addFavRecipeView() {
+        LoggedInState loggedInState = new LoggedInState();
+        FavouriteRecipesViewModel favRecipesViewModel = new FavouriteRecipesViewModel();
+        loggedInViewFavRecipes = new FavouriteRecipesView(favRecipesViewModel, loggedInState);
+        cardPanel.add(loggedInViewFavRecipes, loggedInViewFavRecipes.getViewName());
+        return this;
+    }
+
     public AppBuilder addLoggedInStateListener() {
         loggedInState.addPropertyChangeListener(evt -> {
             if ("viewName".equals(evt.getPropertyName())) {
@@ -153,7 +164,7 @@ public class AppBuilder {
 //    }
 
     public AppBuilder addLoggedInView() {
-        return addHomeView().addTriedRecipeView().addSavedForLaterView();
+        return addHomeView().addTriedRecipeView().addSavedForLaterView().addFavRecipeView();
     }
 
 
