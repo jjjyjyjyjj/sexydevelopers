@@ -92,7 +92,7 @@ public class AppBuilder {
     public AppBuilder addTriedRecipeView() {
         LoggedInState loggedInState = new LoggedInState();
         TriedRecipesViewModel triedRecipesViewModel = new TriedRecipesViewModel();
-        loggedInViewTriedRecipes = new TriedRecipesView(loggedInState, viewManagerModel);
+        loggedInViewTriedRecipes = new TriedRecipesView(triedRecipesViewModel, loggedInState);
         cardPanel.add(loggedInViewTriedRecipes, loggedInViewTriedRecipes.getViewName());
         return this;
     }
