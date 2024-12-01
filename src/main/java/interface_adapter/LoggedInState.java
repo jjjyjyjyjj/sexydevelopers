@@ -150,4 +150,7 @@ public class LoggedInState {
         this.savedRecipesError = errorMessage;
     }
 
+    public void setRecommendedRecipe(Recipe recommendedRecipe) {
+        this.currentRecipe = recommendedRecipe;
+    }
 }
