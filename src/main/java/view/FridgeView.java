@@ -33,19 +33,20 @@ public class FridgeView extends JPanel {
         fridgeTitleLabel.setBorder(BorderFactory.createEmptyBorder(30, 0, 50, 0));
 
         // Create navigation bar with actions
-        NavBarPanel navBar = new NavBarPanel(
+        NavBarPanel navBar = new NavBarPanel(loggedInState,
                 e -> loggedInState.setViewName("home"),
                 e -> loggedInState.setViewName("fridge"),
                 e -> loggedInState.setViewName("savedForLater"),
-                e -> loggedInState.setViewName("triedRecipes")
+                e -> loggedInState.setViewName("triedRecipes"),
+                e -> loggedInState.setViewName("favouriteRecipes")
         );
 
         // Add placeholder for fridge contents
         JLabel fridgeContentLabel = new JLabel("Your Fridge Contents:");
         fridgeContentLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
 
-        addIngredientButton = new JButton("Add Ingrident");
-        removeIngredientButton = new JButton("Remove Ingrident");
+        addIngredientButton = new JButton("Add Ingredient");
+        removeIngredientButton = new JButton("Remove Ingredient");
 
         JPanel fridgeButtonPanel = new JPanel();
         fridgeButtonPanel.add(addIngredientButton);

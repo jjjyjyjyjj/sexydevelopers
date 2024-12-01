@@ -158,8 +158,6 @@ public class FileUserDataAccessObject implements SignupUserDataAccessInterface,
         return false;
     }
 
-
-
     /**
      * Gets the Ingredients in the User's fridge
      *
