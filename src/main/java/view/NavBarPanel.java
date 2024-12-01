@@ -1,5 +1,7 @@
 package view;
 
+import interface_adapter.LoggedInState;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
@@ -7,8 +9,14 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 public class NavBarPanel extends JPanel {
-    public NavBarPanel(ActionListener goToHome, ActionListener goToFridge,
+
+    private final LoggedInState loggedInState;
+
+    public NavBarPanel(LoggedInState loggedInState,ActionListener goToHome, ActionListener goToFridge,
                        ActionListener goToSavedForLater, ActionListener goToTriedRecipes) {
+        this.loggedInState = loggedInState;
+        System.out.println("NavBarPanel initialized with LoggedInState: " + (this.loggedInState != null));
+
         this.setLayout(new BoxLayout(this, BoxLayout.X_AXIS));
         this.setBackground(Color.GRAY);
         this.setPreferredSize(new Dimension(800, 120));
@@ -22,7 +30,11 @@ public class NavBarPanel extends JPanel {
 
         homeButton.addActionListener(goToHome);
         fridgeButton.addActionListener(goToFridge);
-        savedForLaterButton.addActionListener(goToSavedForLater);
+        savedForLaterButton.addActionListener(e -> {
+            System.out.println("NavBarPanel: Saved For Later button clicked.");
+            loggedInState.setViewName("savedForLater");
+        });
+
         triedRecipesButton.addActionListener(goToTriedRecipes);
 
         // Add buttons to the horizontal button panel
