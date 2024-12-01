@@ -1,3 +1,4 @@
+/*
 package api;
 
 import entity.CommonIngredient;
@@ -11,10 +12,10 @@ import okhttp3.Request;
 import okhttp3.Response;
 
 public class searchIngredients implements  searchIngredientsInterface {
-    private static final String API_URL = "https://api.spoonacular.com/recipes";
+    private static final String API_URL = "https://api.spoonacular.com/food/ingredients/search";
     private static final String CONTENT_TYPE = "Content-Type";
     private static final String APPLICATION_JSON = "application/json";
-    private static final String APP_KEY = "your_app_key"; // Replace with your actual key
+    private static final String APP_KEY = "00ab640014494f1ab81008310af8ec28"; // Replace with your actual key
     private static final int SUCCESS_CODE = 200;
 
     public static String getAPIKey() {
@@ -95,14 +96,11 @@ public class searchIngredients implements  searchIngredientsInterface {
                 if (!ingredientString.endsWith("}")) ingredientString += "}";
 
                 // Extract fields from each ingredient object
-                int id = Integer.parseInt(extractValue(ingredientString, "\"id\":", ",").trim());
                 String name = extractValue(ingredientString, "\"name\":\"", "\",");
-                String image = extractValue(ingredientString, "\"image\":\"", "\"");
                 String unit = extractValue(ingredientString, "\"unit\":\"", "\"");
-                String aisle = extractValue(ingredientString, "\"aisle\":\"", "\"");
 
                 // Create and add the Ingredient object
-                CommonIngredient ingredient = new CommonIngredient(name, id, unit, aisle);
+                CommonIngredient ingredient = new CommonIngredient(name, unit, 0);
                 ingredientList.add(ingredient);
             }
         }
@@ -119,3 +117,4 @@ public class searchIngredients implements  searchIngredientsInterface {
         return text.substring(startIndex, endIndex);
     }
 }
+*/

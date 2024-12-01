@@ -27,7 +27,6 @@ public class FileUserDataAccessObject implements SignupUserDataAccessInterface,
         LoginUserDataAccessInterface,
         ChangePasswordUserDataAccessInterface,
         LogoutUserDataAccessInterface,
-        FavouriteRecipesDataAccessInterface,
         RemoveFavRecipeDataAccessInterface,
         SaveForLaterUserDataAccessInterface,
         RecipeRecUserDataAccessInterface {
@@ -116,7 +115,7 @@ public class FileUserDataAccessObject implements SignupUserDataAccessInterface,
      * @param user the user whose favourite recipes list is to be updated
      * @param recipe the recipe that is to be added to favourite recipes
      */
-    @Override
+
     public void saveFavouriteRecipes(User user, Recipe recipe) {
         user.getFavourited().addRecipe(recipe);
         save();
@@ -160,14 +159,19 @@ public class FileUserDataAccessObject implements SignupUserDataAccessInterface,
         return false;
     }
 
+    @Override
+    public void getFridgeIngredients(User user) {
+
+    }
+
     /**
      * Gets the Ingredients in the User's fridge
      *
      * @param user Current user
      * @return List of Ingredient user has
      */
-    @Override
-    public ArrayList<Ingredient> getFridgeIngredients(User user) {
-        return user.getFridge().getIngredients();
-    }
+//    @Override
+//    public ArrayList<Ingredient> getFridgeIngredients(User user) {
+//        return user.getFridge().getIngredients();
+//    }
 }

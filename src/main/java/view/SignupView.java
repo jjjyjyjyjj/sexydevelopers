@@ -7,6 +7,7 @@ import interface_adapter.signup.SignupViewModel;
 import javax.swing.*;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.beans.PropertyChangeEvent;
@@ -28,21 +29,51 @@ public class SignupView extends JPanel implements ActionListener, PropertyChange
         this.signupViewModel = signupviewModel;
         signupviewModel.addPropertyChangeListener(this);
 
+
         final JLabel title = new JLabel(SignupViewModel.TITLE_LABEL);
         title.setAlignmentX(CENTER_ALIGNMENT);
+        title.setFont(new Font("Arial", Font.BOLD, 24));
+        title.setBorder(BorderFactory.createEmptyBorder(30, 0, 100, 0));
 
+        final JPanel inputs = new JPanel();
+        inputs.setLayout(new BoxLayout(inputs, BoxLayout.Y_AXIS));
+
+final JLabel signupLabel = new JLabel(SignupViewModel.SIGNUP_LABEL);
+signupLabel.setAlignmentX(CENTER_ALIGNMENT);
+signupLabel.setForeground(Color.BLACK);
+signupLabel.setFont(new Font("Arial", Font.BOLD, 16));
+signupLabel.setBorder(BorderFactory.createEmptyBorder(0, 0, 10, 0));
+inputs.add(signupLabel);
         final LabelTextPanel usernameInfo = new LabelTextPanel(
                 new JLabel(SignupViewModel.USERNAME_LABEL), usernameInputField);
+        usernameInfo.setAlignmentX(Component.CENTER_ALIGNMENT);
+        usernameInfo.setBackground(Color.ORANGE);
+        inputs.add(usernameInfo);
         final LabelTextPanel passwordInfo = new LabelTextPanel(
                 new JLabel(SignupViewModel.PASSWORD_LABEL), passwordInputField);
+        passwordInfo.setAlignmentX(Component.CENTER_ALIGNMENT);
+        passwordInfo.setBackground(Color.ORANGE);
+        inputs.add(passwordInfo);
         final LabelTextPanel confirmPasswordInfo = new LabelTextPanel(
                 new JLabel(SignupViewModel.CONFIRM_PASSWORD_LABEL), confirmPasswordInputField);
+        confirmPasswordInfo.setAlignmentX(Component.CENTER_ALIGNMENT);
+        confirmPasswordInfo.setBackground(Color.ORANGE);
+        inputs.add(confirmPasswordInfo);
 
-        final JPanel buttons = new JPanel();
+        inputs.setAlignmentX(CENTER_ALIGNMENT);
+        inputs.setBorder(BorderFactory.createEmptyBorder(0, 0, 100, 0));
+        inputs.setBackground(Color.ORANGE);
+
         signUp = new JButton(signupviewModel.SIGNUP_BUTTON_LABEL);
-        buttons.add(signUp);
+        signUp.setAlignmentX(CENTER_ALIGNMENT);
+        signUp.setPreferredSize(new Dimension(40,40));
+
+        final JPanel goToLogin = new JPanel();
+        final JLabel toLogin = new JLabel("Already have an account?");
+        goToLogin.add(toLogin);
         login = new JButton(signupviewModel.LOGIN_BUTTON_LABEL);
-        buttons.add(login);
+        goToLogin.add(login);
+        goToLogin.setBackground(Color.ORANGE);
 
         signUp.addActionListener(
                 // This creates an anonymous subclass of ActionListener and instantiates it.
@@ -76,10 +107,11 @@ public class SignupView extends JPanel implements ActionListener, PropertyChange
         this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 
         this.add(title);
-        this.add(usernameInfo);
-        this.add(passwordInfo);
-        this.add(confirmPasswordInfo);
-        this.add(buttons);
+        this.add(inputs);
+        this.add(signUp);
+        this.add(goToLogin);
+
+        this.setBackground(Color.ORANGE);
     }
 
     private void addUsernameListener() {

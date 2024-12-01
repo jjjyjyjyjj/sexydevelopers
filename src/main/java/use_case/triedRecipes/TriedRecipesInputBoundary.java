@@ -1,6 +1,5 @@
 package use_case.triedRecipes;
 
-import entity.CommonRecipe;
 import entity.Recipe;
 
 public interface TriedRecipesInputBoundary {

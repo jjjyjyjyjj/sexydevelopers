@@ -1,8 +1,8 @@
 package interface_adapter.triedRecipes;
 
-import entity.CommonRecipe;
-import use_case.triedRecipes.TriedRecipesInputBoundary;
-import use_case.triedRecipes.TriedRecipesOutputBoundary;
+
+import use_case.tried_recipes.TriedRecipesInputBoundary;
+import use_case.tried_recipes.TriedRecipesOutputBoundary;
 import entity.Recipe;
 
 public class TriedRecipesController {

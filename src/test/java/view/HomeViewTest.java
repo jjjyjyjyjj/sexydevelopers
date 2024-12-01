@@ -6,6 +6,8 @@ import interface_adapter.recipeRecommendation.RecipeRecViewModel;
 import interface_adapter.saveforlater.SaveForLaterViewModel;
 import view.HomeView;
 
+import java.awt.*;
+
 public class HomeViewTest {
 
     public static void main(String[] args) {
@@ -20,7 +22,7 @@ public class HomeViewTest {
         JFrame frame = new JFrame("Home View Test");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.add(homeView);
-        frame.pack();
+        frame.setMinimumSize(new Dimension(800, 600));
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
     }

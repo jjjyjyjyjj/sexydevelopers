@@ -10,10 +10,10 @@ import okhttp3.Request;
 import okhttp3.Response;
 
 public class recipeFinder implements recipeFinderInterface {
-    private static final String API_URL = "https://api.spoonacular.com/recipes";
+    private static final String API_URL = "https://api.spoonacular.com/recipes/findByIngredients";
     private static final String CONTENT_TYPE = "Content-Type";
     private static final String APPLICATION_JSON = "application/json";
-    private static final String APP_KEY = "your_app_key"; // Replace with your actual key
+    private static final String APP_KEY = "00ab640014494f1ab81008310af8ec28";
     private static final int SUCCESS_CODE = 200;
 
     public static String getAPIKey() {
@@ -74,7 +74,7 @@ public class recipeFinder implements recipeFinderInterface {
                     String unit = extractValue(ingredientString, "\"unit\":\"", "\",");
                     String aisle = extractValue(ingredientString, "\"aisle\":\"", "\",");
                     IngredientFactory ingredientFactory = new CommonIngredientFactory();
-                    ingredientsList.add(ingredientFactory.create(ingredientName, ingredientId, unit, aisle));
+                    ingredientsList.add(ingredientFactory.create(ingredientName, unit, 0));
                 }
             }
 

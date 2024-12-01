@@ -1,23 +1,19 @@
 package view;
 
-import java.awt.Component;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 
-import javax.swing.BoxLayout;
-import javax.swing.JButton;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JPasswordField;
-import javax.swing.JTextField;
+import javax.swing.*;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 
 import interface_adapter.login.LoginController;
 import interface_adapter.login.LoginState;
 import interface_adapter.login.LoginViewModel;
+import interface_adapter.signup.SignupViewModel;
 
 /**
  * The View for when the user is logging into the program.
@@ -41,22 +37,52 @@ public class LoginView extends JPanel implements ActionListener, PropertyChangeL
 
         this.loginViewModel = loginViewModel;
         this.loginViewModel.addPropertyChangeListener(this);
+        this.setBackground(Color.orange);
+        usernameErrorField.setAlignmentX(Component.CENTER_ALIGNMENT);
+        passwordErrorField.setAlignmentX(Component.CENTER_ALIGNMENT);
 
         final JLabel title = new JLabel("Login to PantryPal");
         title.setAlignmentX(Component.CENTER_ALIGNMENT);
+        title.setFont(new Font("Arial", Font.BOLD, 24));
+        title.setBorder(BorderFactory.createEmptyBorder(30, 0, 100, 0));
 
+        final JPanel inputs = new JPanel();
+        inputs.setLayout(new BoxLayout(inputs, BoxLayout.Y_AXIS));
+
+        final JLabel loginLabel = new JLabel("Welcome Back!");
+        loginLabel.setAlignmentX(CENTER_ALIGNMENT);
+        loginLabel.setForeground(Color.BLACK);
+        loginLabel.setFont(new Font("Arial", Font.BOLD, 16));
+        loginLabel.setBorder(BorderFactory.createEmptyBorder(0, 0, 10, 0));
+        inputs.add(loginLabel);
         final LabelTextPanel usernameInfo = new LabelTextPanel(
-                new JLabel("Username"), usernameInputField);
+                new JLabel("Username:"), usernameInputField);
+        usernameInfo.setAlignmentX(Component.CENTER_ALIGNMENT);
+        usernameInfo.setBackground(Color.orange);
+        inputs.add(usernameInfo);
         final LabelTextPanel passwordInfo = new LabelTextPanel(
-                new JLabel("Password"), passwordInputField);
+                new JLabel("Password:"), passwordInputField);
+        passwordInfo.setBackground(Color.orange);
+        passwordInfo.setAlignmentX(Component.CENTER_ALIGNMENT);
+        inputs.add(passwordInfo);
 
-        final JPanel buttons = new JPanel();
-        logIn = new JButton("log in");
-        buttons.add(logIn);
+        inputs.add(usernameErrorField);
+        inputs.add(passwordErrorField);
+
+        inputs.setAlignmentX(CENTER_ALIGNMENT);
+        inputs.setBorder(BorderFactory.createEmptyBorder(0, 0, 165, 0));
+        inputs.setBackground(Color.ORANGE);
+
+        logIn = new JButton("Log In");
+        logIn.setAlignmentX(CENTER_ALIGNMENT);
+        logIn.setPreferredSize(new Dimension(40,40));
+
+        final JPanel toSignup = new JPanel();
         final JLabel backToSignup = new JLabel("Don't have an account yet?");
-        buttons.add(backToSignup);
+        toSignup.add(backToSignup);
         signUp = new JButton("Sign Up");
-        buttons.add(signUp);
+        toSignup.add(signUp);
+        toSignup.setBackground(Color.orange);
 
         logIn.addActionListener(
                 new ActionListener() {
@@ -76,7 +102,9 @@ public class LoginView extends JPanel implements ActionListener, PropertyChangeL
         signUp.addActionListener(
                 new ActionListener() {
                     public void actionPerformed(ActionEvent evt) {
-
+                        if (loginController != null) {
+                            loginController.switchToSignupView();
+                        }
                     }
                 }
         );
@@ -132,10 +160,9 @@ public class LoginView extends JPanel implements ActionListener, PropertyChangeL
         });
 
         this.add(title);
-        this.add(usernameInfo);
-        this.add(usernameErrorField);
-        this.add(passwordInfo);
-        this.add(buttons);
+        this.add(inputs);
+        this.add(logIn);
+        this.add(toSignup);
     }
 
     /**

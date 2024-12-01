@@ -1,5 +1,6 @@
 package use_case.remove_from_favrecipes;
 
+import entity.FavouritedRecipes;
 import entity.Recipe;
 import entity.SavedRecipes;
 import entity.User;
@@ -15,7 +16,8 @@ public class RemoveFavRecipeInputData {
 
     public RemoveFavRecipeInputData(Recipe targetRecipe, User user) {
         this.targetRecipe = targetRecipe;
-        this.favourited = user.getFavourited();
+//        this.favourited = user.getFavourited();
+        this.favourited = new FavouritedRecipes();
         this.savedforlater = user.getSavedForLater();
         this.user = user;
     }

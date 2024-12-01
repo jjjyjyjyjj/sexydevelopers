@@ -17,10 +17,14 @@ public class RecipeRecOutputData {
     }
 
     //public ArrayList<Recipe> getrecRecipes() {
-       // return recRecipes;
+    // return recRecipes;
 
 
     public boolean isUseCaseFailed() {
         return useCaseFailed;
+    }
+
+    public List<Recipe> getRecommendedRecipes() {
+        return List.of();
     }
 }

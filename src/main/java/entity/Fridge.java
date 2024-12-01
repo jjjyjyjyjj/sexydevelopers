@@ -31,14 +31,8 @@ public interface Fridge {
 
     /**
      * Removes this ingredient from the fridge.
-     * @param ingredient the ingredient being removed.
+     * @param name the name of the ingredient being removed.
      */
-    void removeIngredient(Ingredient ingredient);
+    void removeIngredient(String name);
 
-    /**
-     * Checks if this ingredient is in the fridge.
-     * @param ingredient the ingredient being checked for.
-     * @throws IngredientNotFoundException If the fridge does not contain this ingredient.
-     */
-    void checkFridge(Ingredient ingredient) throws IngredientNotFoundException;
 }
