@@ -9,6 +9,7 @@ import use_case.login.LoginUserDataAccessInterface;
 import use_case.logout.LogoutUserDataAccessInterface;
 import use_case.recipe_recommender.RecipeRecUserDataAccessInterface;
 import use_case.remove_from_favrecipes.RemoveFavRecipeDataAccessInterface;
+import use_case.remove_ingredient.RemoveIngredientDataAccessInterface;
 import use_case.save_for_later.SaveForLaterUserDataAccessInterface;
 import use_case.signup.SignupUserDataAccessInterface;
 
@@ -30,8 +31,9 @@ public class FileUserDataAccessObject implements SignupUserDataAccessInterface,
         RemoveFavRecipeDataAccessInterface,
         SaveForLaterUserDataAccessInterface,
         RecipeRecUserDataAccessInterface,
-        FavouriteRecipesDataAccessInterface {
-
+        FavouriteRecipesDataAccessInterface,
+        AddIngredientDataAccessInterface,
+        RemoveIngredientDataAccessInterface{
     private final File jsonFile;
     private final Map<String, User> accounts = new HashMap<>();
     private final ObjectMapper objectMapper = new ObjectMapper();
@@ -169,5 +171,15 @@ public class FileUserDataAccessObject implements SignupUserDataAccessInterface,
     @Override
     public ArrayList<Ingredient> getFridgeIngredients(User user) {
         return user.getFridge().getIngredients();
+    }
+
+    @Override
+    public void addIngredient(Fridge fridge, Ingredient ingredient) {
+        fridge.addIngredient(ingredient);
+    }
+
+    @Override
+    public void removeIngredient(Fridge fridge, String name) {
+        fridge.removeIngredient(name);
     }
 }
