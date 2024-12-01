@@ -53,7 +53,7 @@ public class HomeView extends JPanel {
         this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
         this.setBackground(Color.ORANGE);
 
-        NavBarPanel navBarPanel = new NavBarPanel(
+        NavBarPanel navBarPanel = new NavBarPanel(loggedInState,
                 e -> loggedInState.setViewName("home"),
                 e -> loggedInState.setViewName("fridge"),
                 e -> loggedInState.setViewName("savedForLater"),
