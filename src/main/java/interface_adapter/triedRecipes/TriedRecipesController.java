@@ -1,5 +1,6 @@
 package interface_adapter.triedRecipes;
 
+
 import use_case.tried_recipes.TriedRecipesInputBoundary;
 import use_case.tried_recipes.TriedRecipesOutputBoundary;
 import entity.Recipe;
