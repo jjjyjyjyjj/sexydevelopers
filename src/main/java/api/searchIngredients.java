@@ -1,3 +1,4 @@
+/*
 package api;
 
 import entity.CommonIngredient;
@@ -95,14 +96,11 @@ public class searchIngredients implements  searchIngredientsInterface {
                 if (!ingredientString.endsWith("}")) ingredientString += "}";
 
                 // Extract fields from each ingredient object
-                int id = Integer.parseInt(extractValue(ingredientString, "\"id\":", ",").trim());
                 String name = extractValue(ingredientString, "\"name\":\"", "\",");
-                String image = extractValue(ingredientString, "\"image\":\"", "\"");
                 String unit = extractValue(ingredientString, "\"unit\":\"", "\"");
-                String aisle = extractValue(ingredientString, "\"aisle\":\"", "\"");
 
                 // Create and add the Ingredient object
-                CommonIngredient ingredient = new CommonIngredient(name, id, unit, aisle);
+                CommonIngredient ingredient = new CommonIngredient(name, unit, 0);
                 ingredientList.add(ingredient);
             }
         }
@@ -119,3 +117,4 @@ public class searchIngredients implements  searchIngredientsInterface {
         return text.substring(startIndex, endIndex);
     }
 }
+*/

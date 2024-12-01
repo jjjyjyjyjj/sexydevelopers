@@ -1,22 +1,23 @@
 package use_case.save_for_later;
 
 import entity.SavedForLater;
+import entity.SavedRecipes;
 
 /**
  * Output data for the Save For Later use case.
  */
 public class SaveForLaterOutputData {
-    private final SavedForLater savedForLater;
+    private final SavedRecipes savedForLater;
     private final boolean success;
     private final String message;
 
-    public SaveForLaterOutputData(SavedForLater savedForLater, boolean success, String message) {
+    public SaveForLaterOutputData(SavedRecipes savedForLater, boolean success, String message) {
         this.savedForLater = savedForLater;
         this.success = success;
         this.message = message;
     }
 
-    public SavedForLater getSavedForLater() {
+    public SavedRecipes getSavedForLater() {
         return savedForLater;
     }
 

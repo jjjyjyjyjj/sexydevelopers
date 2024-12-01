@@ -21,8 +21,9 @@ public class LoggedInState {
     private SavedRecipes favRecipes;
     private SavedRecipes triedRecipes;
     private SavedRecipes savedforlaterRecipes;
-    private List<SavedForLater> savedForLaterRecipes = new ArrayList<>();
+    private List<SavedRecipes> savedForLaterRecipes = new ArrayList<>();
     private String savedRecipesError;
+    private ViewManagerModel viewManagerModel;
 
     private String viewName = "home";
 
@@ -73,7 +74,7 @@ public class LoggedInState {
         return currentRecipe;
     }
 
-    public void  setSavedRecipes(SavedForLater savedRecipe) {
+    public void  setSavedRecipes(SavedRecipes savedRecipe) {
         savedForLaterRecipes.add(savedRecipe);
     }
 
@@ -103,11 +104,25 @@ public class LoggedInState {
         return viewName;
     }
 
+    public void setViewManagerModel(ViewManagerModel viewManagerModel) {
+        this.viewManagerModel = viewManagerModel;
+    }
+
     public void setViewName(String viewName) {
         String oldViewName = this.viewName;
         this.viewName = viewName;
+
+        System.out.println("LoggedInState: ViewName changing from " + oldViewName + " to " + viewName);
+
         support.firePropertyChange("viewName", oldViewName, viewName);
+
+        if (viewManagerModel != null) {
+            viewManagerModel.setState(viewName);
+            viewManagerModel.firePropertyChanged();
+        }
     }
+
+
 
     public void addPropertyChangeListener(PropertyChangeListener listener) {
         support.addPropertyChangeListener(listener);

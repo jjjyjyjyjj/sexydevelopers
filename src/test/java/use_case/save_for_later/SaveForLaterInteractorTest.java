@@ -21,9 +21,9 @@ public class SaveForLaterInteractorTest {
 
         // Creating ingredients list
         List<Ingredient> bananaChocPudding = new ArrayList<>();
-        Ingredient avocado = ingredientFactory.create("avocado", 9037, "", "Produce");
-        Ingredient peanutButter = ingredientFactory.create("peanut butter", 16098, "", "Nut butters, Jams, and Honey");
-        Ingredient banana = ingredientFactory.create("bananas", 9040, "", "Produce");
+        Ingredient avocado = ingredientFactory.create("avocado", "", 1);
+        Ingredient peanutButter = ingredientFactory.create("peanut butter",  "", 1);
+        Ingredient banana = ingredientFactory.create("bananas",  "", 1);
         bananaChocPudding.add(avocado);
         bananaChocPudding.add(peanutButter);
         bananaChocPudding.add(banana);

@@ -7,10 +7,11 @@ import interface_adapter.ViewModel;
  */
 public class SignupViewModel extends ViewModel<SignupState> {
 
-    public static final String TITLE_LABEL = "Create Your Account!";
-    public static final String USERNAME_LABEL = "Username";
-    public static final String PASSWORD_LABEL = "Password";
-    public static final String CONFIRM_PASSWORD_LABEL = "Confirm Password";
+    public static final String TITLE_LABEL = "Welcome to PantryPal!";
+    public static final String SIGNUP_LABEL = "Create Your Account:";
+    public static final String USERNAME_LABEL = "Username:";
+    public static final String PASSWORD_LABEL = "Password:";
+    public static final String CONFIRM_PASSWORD_LABEL = "Confirm Password:";
 
     public static final String SIGNUP_BUTTON_LABEL = "Sign up";
 

@@ -13,5 +13,5 @@ public interface RecipeRecUserDataAccessInterface {
      * @param user Current user
      * @return List of Ingredient user has
      */
-    void getFridgeIngredients(User user);
+    ArrayList<Ingredient> getFridgeIngredients(User user);
 }

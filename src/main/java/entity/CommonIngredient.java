@@ -4,30 +4,21 @@ package entity;
  * An ingredient
  */
 
-public class CommonIngredient implements Ingredient{
+public class CommonIngredient implements Ingredient, Comparable<Ingredient> {
 
     private final String name;
-    private final int id;
     private String unit;
-    private String aisle;
     private double quantity;
 
-    public CommonIngredient(String name, int id, String unit, String aisle) {
+    public CommonIngredient(String name, String unit, double quantity) {
         this.name = name;
-        this.id = id;
         this.unit = unit;
-        this.aisle = aisle;
-        this.quantity = 0;
+        this.quantity = quantity;
     }
 
     @Override
     public String getName() {
         return name;
-    }
-
-    @Override
-    public int getId() {
-        return id;
     }
 
     @Override
@@ -41,16 +32,6 @@ public class CommonIngredient implements Ingredient{
     }
 
     @Override
-    public String getAisle() {
-        return aisle;
-    }
-
-    @Override
-    public void setAisle(String aisle) {
-        this.aisle = aisle;
-    }
-
-    @Override
     public double getQuantity() {
         return quantity;
     }
@@ -58,5 +39,10 @@ public class CommonIngredient implements Ingredient{
     @Override
     public void setQuantity(double quantity) {
         this.quantity = quantity;
+    }
+
+    @Override
+    public int compareTo(Ingredient o) {
+        return this.getName().compareTo(o.getName());
     }
 }

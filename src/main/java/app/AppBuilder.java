@@ -23,7 +23,7 @@ import use_case.login.LoginOutputBoundary;
 import use_case.signup.SignupInputBoundary;
 import use_case.signup.SignupInteractor;
 import use_case.signup.SignupOutputBoundary;
-import use_case.triedRecipes.TriedRecipesInteractor;
+import use_case.tried_recipes.TriedRecipesInteractor;
 import view.*;
 
 import javax.swing.*;
@@ -86,13 +86,14 @@ public class AppBuilder {
         RecipeRecViewModel recipeRecViewModel = new RecipeRecViewModel();
         loggedInViewHome = new HomeView(recipeRecViewModel, loggedInState);
         cardPanel.add(loggedInViewHome, loggedInViewHome.getViewName());
+        System.out.println("AppBuilder: Registered 'home' view in CardLayout.");
         return this;
     }
 
     public AppBuilder addTriedRecipeView() {
         LoggedInState loggedInState = new LoggedInState();
         TriedRecipesViewModel triedRecipesViewModel = new TriedRecipesViewModel();
-        loggedInViewTriedRecipes = new TriedRecipesView(loggedInState, viewManagerModel);
+        loggedInViewTriedRecipes = new TriedRecipesView(triedRecipesViewModel, loggedInState);
         cardPanel.add(loggedInViewTriedRecipes, loggedInViewTriedRecipes.getViewName());
         return this;
     }
@@ -100,6 +101,7 @@ public class AppBuilder {
     public AppBuilder addSavedForLaterView() {
         loggedInViewSavedForLaters = new SavedForLaterView(saveForLaterViewModel, loggedInState);
         cardPanel.add(loggedInViewSavedForLaters, "savedForLater");
+        System.out.println("AppBuilder: Registered 'savedForLater' view in CardLayout.");
         return this;
     }
 
@@ -107,16 +109,39 @@ public class AppBuilder {
         loggedInState.addPropertyChangeListener(evt -> {
             if ("viewName".equals(evt.getPropertyName())) {
                 String viewName = (String) evt.getNewValue();
-                cardLayout.show(cardPanel, viewName); // Switch views
+                System.out.println("AppBuilder: Switching to view " + viewName);
+
+                cardLayout.show(cardPanel, viewName); // Attempt to switch views
+                cardPanel.revalidate();
+                cardPanel.repaint();
+
+                // Debug: Check visibility of all components in cardPanel
+                for (Component component : cardPanel.getComponents()) {
+                    System.out.println("Component: " + component.getClass().getName() +
+                            ", Name: " + ((component instanceof SavedForLaterView) ? "savedForLater" : "unknown") +
+                            ", Visible: " + component.isVisible());
+                }
             }
         });
+
+
+        // Link the ViewManagerModel to the LoggedInState
+        loggedInState.setViewManagerModel(viewManagerModel);
+
         return this;
     }
+
 
     public LoggedInState loggedInState() {
         return loggedInState;
     }
 
+    public AppBuilder addViews() {
+        cardPanel.add(loggedInViewHome, "home");
+        cardPanel.add(loggedInViewSavedForLaters, "savedForLater");
+        System.out.println("AppBuilder: Registered view 'savedForLater' with CardLayout.");
+        return this;
+    }
 
 
 //    public AppBuilder addFridgeView() {
@@ -198,7 +223,7 @@ public class AppBuilder {
 
         application.setLocationRelativeTo(null);
 
-        application.add(cardPanel);
+        application.add(cardPanel, BorderLayout.CENTER);
 
         viewManagerModel.setState(signupView.getViewName());
         viewManagerModel.firePropertyChanged();
