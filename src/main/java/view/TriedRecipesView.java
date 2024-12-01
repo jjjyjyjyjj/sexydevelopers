@@ -10,12 +10,12 @@ import java.awt.*;
 
 public class TriedRecipesView extends JPanel {
 
-    private final String viewName = "SavedForLater";
+    private final String viewName = "triedRecipes";
     private final TriedRecipesViewModel viewModel;
     private final LoggedInState loggedInState;
     private ViewManagerModel viewManagerModel;
 
-    private JLabel savedRecipesLabel;
+    private JLabel triedRecipesLabel;
     private JButton viewRecipeButton;
     private JButton addToFavoriteButton;
 
@@ -34,16 +34,17 @@ public class TriedRecipesView extends JPanel {
                 e -> loggedInState.setViewName("home"),
                 e -> loggedInState.setViewName("fridge"),
                 e -> loggedInState.setViewName("savedForLater"),
-                e -> loggedInState.setViewName("triedRecipes")
+                e -> loggedInState.setViewName("triedRecipes"),
+                e -> loggedInState.setViewName("favouriteRecipes")
         );
-        savedRecipesLabel = new JLabel("Your Tried Recipes");
-        savedRecipesLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
-        savedRecipesLabel.setFont(new Font("Arial", Font.BOLD, 24));
-        savedRecipesLabel.setBorder(BorderFactory.createEmptyBorder(30, 0, 50, 0));
+        triedRecipesLabel = new JLabel("Your Tried Recipes");
+        triedRecipesLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
+        triedRecipesLabel.setFont(new Font("Arial", Font.BOLD, 24));
+        triedRecipesLabel.setBorder(BorderFactory.createEmptyBorder(30, 0, 50, 0));
 
         // Recipe buttons
         viewRecipeButton = new JButton("View Recipe");
-        addToFavoriteButton = new JButton("Add to Favorite");
+        addToFavoriteButton = new JButton("Add to Favourite");
 
         JPanel recipeButtonPanel = new JPanel();
         recipeButtonPanel.add(viewRecipeButton);
@@ -51,7 +52,7 @@ public class TriedRecipesView extends JPanel {
         recipeButtonPanel.setBackground(Color.ORANGE);
 
         // Adding components
-        this.add(savedRecipesLabel);
+        this.add(triedRecipesLabel);
         this.add(recipeButtonPanel);
         this.add(navBar);
     }
@@ -61,12 +62,12 @@ public class TriedRecipesView extends JPanel {
         viewRecipeButton.addActionListener(evt -> {
         });
 
-        // Remove Recipe Button
+        // add to Favourite Recipes Button
         addToFavoriteButton.addActionListener(evt -> {
         });
     }
 
     public String getViewName() {
-        return "savedForLater";
+        return viewName;
     }
 }

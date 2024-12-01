@@ -13,7 +13,7 @@ public class NavBarPanel extends JPanel {
     private final LoggedInState loggedInState;
 
     public NavBarPanel(LoggedInState loggedInState,ActionListener goToHome, ActionListener goToFridge,
-                       ActionListener goToSavedForLater, ActionListener goToTriedRecipes) {
+                       ActionListener goToSavedForLater, ActionListener goToTriedRecipes, ActionListener goToFavRecipes) {
         this.loggedInState = loggedInState;
         System.out.println("NavBarPanel initialized with LoggedInState: " + (this.loggedInState != null));
 
@@ -27,6 +27,7 @@ public class NavBarPanel extends JPanel {
         JButton fridgeButton = createStyledButton("Fridge");
         JButton savedForLaterButton = createStyledButton("Saved For Later");
         JButton triedRecipesButton = createStyledButton("Tried Recipes");
+        JButton favRecipesButton = createStyledButton("Favourite Recipes");
 
         homeButton.addActionListener(goToHome);
         fridgeButton.addActionListener(goToFridge);
@@ -36,6 +37,7 @@ public class NavBarPanel extends JPanel {
         });
 
         triedRecipesButton.addActionListener(goToTriedRecipes);
+        favRecipesButton.addActionListener(goToFavRecipes);
 
         // Add buttons to the horizontal button panel
         this.add(Box.createHorizontalGlue());
@@ -46,6 +48,8 @@ public class NavBarPanel extends JPanel {
         this.add(savedForLaterButton);
         this.add(Box.createHorizontalStrut(20));
         this.add(triedRecipesButton);
+        this.add(Box.createHorizontalStrut(20));
+        this.add(favRecipesButton);
         this.add(Box.createHorizontalGlue());
     }
 

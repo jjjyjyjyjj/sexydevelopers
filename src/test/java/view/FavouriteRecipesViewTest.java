@@ -1,27 +1,25 @@
 package view;
-
 import javax.swing.*;
 import interface_adapter.LoggedInState;
-import interface_adapter.triedRecipes.TriedRecipesViewModel;
-import view.TriedRecipesView;
+import interface_adapter.favourite_recipe.FavouriteRecipesViewModel;
 
 import java.awt.*;
 
-public class TriedRecipeViewTest {
+public class FavouriteRecipesViewTest {
 
     public static void main(String[] args) {
         // Create dummy instances for required dependencies
         LoggedInState loggedInState = new LoggedInState();
-        TriedRecipesViewModel viewModel = new TriedRecipesViewModel();
+        FavouriteRecipesViewModel viewModel = new FavouriteRecipesViewModel();
 
-        // Initialize the TriedRecipesView
-        TriedRecipesView triedRecipesView = new TriedRecipesView(viewModel, loggedInState);
+        // Initialize the FavouriteRecipesView
+        FavouriteRecipesView favouriteRecipesView = new FavouriteRecipesView(viewModel, loggedInState);
 
         // Set up JFrame to display the view
-        JFrame frame = new JFrame("Tried Recipe View Test");
+        JFrame frame = new JFrame("Favourite Recipes View Test");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setMinimumSize(new Dimension(800, 600));
-        frame.add(triedRecipesView);
+        frame.add(favouriteRecipesView);
         frame.setVisible(true);
     }
 }
