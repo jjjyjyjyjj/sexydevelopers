@@ -1,5 +1,6 @@
 package entity;
 
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import entity.exceptions.IngredientNotFoundException;
 
 import java.util.ArrayList;
@@ -8,6 +9,7 @@ import java.util.ArrayList;
  * The representation of a fridge in our program.
  */
 
+@JsonDeserialize(using = FridgeDeserializer.class)
 public interface Fridge {
 
     /**

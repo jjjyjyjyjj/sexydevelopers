@@ -1,5 +1,6 @@
 package entity;
 
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import entity.exceptions.IngredientNotFoundException;
 
 import java.util.ArrayList;
@@ -8,6 +9,7 @@ import java.util.ArrayList;
  * A fridge
  */
 
+@JsonDeserialize(as = CommonFridge.class)
 public class CommonFridge implements Fridge {
     private ArrayList<Ingredient> ingredients;
 
