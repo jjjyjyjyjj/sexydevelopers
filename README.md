@@ -9,7 +9,8 @@ Group members: Ryan Hu, Carolina Jaimie, Rosie Topp, Jiayun Lee
 [Installation Instructions -- How to Run](#installation-instructions-how-to-run)
 [Usage Guide](#usage-guide)
 [Feedback](#let-us-know-your-feedback)
-[Contributions](#want-to-contribute) 
+[Contributions](#want-to-contribute)
+[License](#license)
 
 ### An Overview of the Software
 #### _**Have ingredients in your fridge that you're not quite sure how to use? PantryPal is here to solve that issue for you!**_
@@ -44,9 +45,6 @@ Run this file to run the program.
 ### Usage Guide
 Here's a video run-through of how the program works!
 
-### License
-Linked here is the terms of our [license](sexydevelopers/LICENSE)
-
 ### Let us know Your Feedback!
 We've opened a [discussion board](https://github.com/jjjyjyjyjj/sexydevelopers/discussions/85) for this project where
 you, the user/ programmer, can leave any comments about our project!
@@ -54,3 +52,6 @@ you, the user/ programmer, can leave any comments about our project!
 ### Want to Contribute?
 Please leave any ideas you have in the [discussion board](https://github.com/jjjyjyjyjj/sexydevelopers/discussions/85).
 Our team will look into it and contact you for further details.
+
+### License
+Linked here is the terms of our [license](sexydevelopers/LICENSE)
