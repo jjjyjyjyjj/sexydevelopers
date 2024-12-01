@@ -1,5 +1,6 @@
 package entity;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 
 import java.util.List;
@@ -9,11 +10,17 @@ import java.util.List;
  */
 @JsonDeserialize(as = CommonRecipe.class)
 public final class CommonRecipe implements Recipe{
-    private final String name;
-    private final int id;
-    private final List<Ingredient> ingredients;
-    private final String image;
-    private final String link;
+
+    @JsonProperty("name")
+    private String name;
+    @JsonProperty("id")
+    private int id;
+    @JsonProperty("ingredients")
+    private List<Ingredient> ingredients;
+    @JsonProperty("image")
+    private String image;
+    @JsonProperty("link")
+    private String link;
 
 
     public CommonRecipe(String name, int id, List<Ingredient> ingredients, String image, String link) {
@@ -23,6 +30,8 @@ public final class CommonRecipe implements Recipe{
         this.image = image;
         this.link = link;
     }
+
+    public CommonRecipe() {}
 
     @Override
     public String getName() {
