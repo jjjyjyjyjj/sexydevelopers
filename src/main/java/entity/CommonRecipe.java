@@ -1,10 +1,13 @@
 package entity;
 
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+
 import java.util.List;
 
 /**
  * A recipe
  */
+@JsonDeserialize(as = CommonRecipe.class)
 public final class CommonRecipe implements Recipe{
     private final String name;
     private final int id;
