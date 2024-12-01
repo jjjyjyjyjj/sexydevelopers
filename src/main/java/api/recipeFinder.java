@@ -74,7 +74,7 @@ public class recipeFinder implements recipeFinderInterface {
                     String unit = extractValue(ingredientString, "\"unit\":\"", "\",");
                     String aisle = extractValue(ingredientString, "\"aisle\":\"", "\",");
                     IngredientFactory ingredientFactory = new CommonIngredientFactory();
-                    ingredientsList.add(ingredientFactory.create(ingredientName, ingredientId, unit, aisle));
+                    ingredientsList.add(ingredientFactory.create(ingredientName, unit, 0));
                 }
             }
 

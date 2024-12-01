@@ -5,16 +5,16 @@ import entity.Ingredient;
 import entity.User;
 
 public class RemoveIngredientInputData {
-    private final Ingredient ingredient;
+    private final String name;
     private final Fridge fridge;
 
-    public RemoveIngredientInputData(Ingredient ingredient, Fridge fridge) {
-        this.ingredient = ingredient;
+    public RemoveIngredientInputData(String name, Fridge fridge) {
+        this.name = name;
         this.fridge = fridge;
     }
 
-    public Ingredient getIngredient() {
-        return ingredient;
+    public String getName() {
+        return name;
     }
 
     public Fridge getFridge() {

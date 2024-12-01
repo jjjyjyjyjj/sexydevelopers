@@ -17,11 +17,13 @@ public interface User {
      */
     String getPassword();
 
-    SavedForLater getSavedForLater();
+    SavedRecipes getSavedForLater();
 
     SavedRecipes getFavourited();
 
     SavedRecipes getTriedRecipes();
 
     Fridge getFridge();
+
+    void setFridge(Fridge fridge);
 }

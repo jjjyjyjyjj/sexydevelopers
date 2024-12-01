@@ -6,16 +6,28 @@ import entity.User;
 
 public class AddIngredientInputData {
 
-    private final Ingredient ingredient;
+    private final String name;
+    private final String unit;
+    private final double quantity;
     private final Fridge fridge;
 
-    public AddIngredientInputData(Ingredient ingredient, Fridge fridge) {
-        this.ingredient = ingredient;
+    public AddIngredientInputData(String name, String unit, double quantity, Fridge fridge) {
+        this.name = name;
+        this.unit = unit;
+        this.quantity = quantity;
         this.fridge = fridge;
     }
 
-    public Ingredient getIngredient() {
-        return ingredient;
+    public String getName() {
+        return name;
+    }
+
+    public String getUnit() {
+        return unit;
+    }
+
+    public double getQuantity() {
+        return quantity;
     }
 
     public Fridge getFridge() {
