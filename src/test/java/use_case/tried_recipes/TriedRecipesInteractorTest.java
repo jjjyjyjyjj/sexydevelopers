@@ -1,4 +1,4 @@
-package use_case.try_recipe;
+package use_case.tried_recipes;
 
 import data_access.FileUserDataAccessObject;
 import entity.*;
