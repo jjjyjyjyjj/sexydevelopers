@@ -20,7 +20,7 @@ public class AddIngredientInteractor implements AddIngredientInputBoundary{
     @Override
     public void execute(AddIngredientInputData addIngredientInputData){
         Fridge fridge = addIngredientInputData.getFridge();
-        Ingredient toAddIngredient = ingredientFactory.create(addIngredientInputData.getName(),
+        Ingredient toAddIngredient = IngredientFactory.create(addIngredientInputData.getName(),
                 addIngredientInputData.getUnit(), addIngredientInputData.getQuantity());
 
         if (!fridge.hasIngredient(toAddIngredient)){

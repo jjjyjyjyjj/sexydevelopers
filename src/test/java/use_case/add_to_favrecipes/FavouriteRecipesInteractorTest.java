@@ -27,9 +27,9 @@ public class FavouriteRecipesInteractorTest {
 
         // Creates a new recipe
         List<Ingredient> omlette = new ArrayList<>();
-        Ingredient bread = ingredientFactory.create("bread crumbs", "", 1);
-        Ingredient milk = ingredientFactory.create("milk", "", 1);
-        Ingredient egg = ingredientFactory.create("Eggs",  "", 1);
+        Ingredient bread = IngredientFactory.create("bread crumbs", "", 1);
+        Ingredient milk = IngredientFactory.create("milk", "", 1);
+        Ingredient egg = IngredientFactory.create("Eggs",  "", 1);
         omlette.add(egg);
         omlette.add(milk);
         omlette.add(bread);
@@ -38,8 +38,8 @@ public class FavouriteRecipesInteractorTest {
                 "https://img.spoonacular.com/recipes/635964-312x231.jpg",
                 "https://www.foodista.com/recipe/2M6MVKZT/bread-omlette");
     }
-
-    @Test
+  
+   @Test
     void successAddRecipeTest() throws IOException {
         FavouriteRecipesDataAccessInterface userRepository = new FileUserDataAccessObject(testFile.getPath());
         Recipe toFavRecipe = testRecipe;
