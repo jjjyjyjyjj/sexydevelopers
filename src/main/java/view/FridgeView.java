@@ -33,7 +33,7 @@ public class FridgeView extends JPanel {
         fridgeTitleLabel.setBorder(BorderFactory.createEmptyBorder(30, 0, 50, 0));
 
         // Create navigation bar with actions
-        NavBarPanel navBar = new NavBarPanel(
+        NavBarPanel navBar = new NavBarPanel(loggedInState,
                 e -> loggedInState.setViewName("home"),
                 e -> loggedInState.setViewName("fridge"),
                 e -> loggedInState.setViewName("savedForLater"),

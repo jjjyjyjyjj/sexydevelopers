@@ -10,13 +10,12 @@ public class MainApplication {
         final JFrame application = appBuilder
                 .addSignupView()
                 .addLoginView()
-                .addHomeView()
-                .addSavedForLaterView()
+                .addLoggedInView()
                 .addLoggedInStateListener()
                 .addSignupUseCase()
                 .addLoginUseCase()
+                .addViews()
                 .build();
-        application.pack();
         application.setVisible(true);
     }
 }

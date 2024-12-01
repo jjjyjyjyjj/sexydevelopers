@@ -30,7 +30,7 @@ public class TriedRecipesView extends JPanel {
         this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
         this.setBackground(Color.ORANGE);
 
-        NavBarPanel navBar = new NavBarPanel(
+        NavBarPanel navBar = new NavBarPanel(loggedInState,
                 e -> loggedInState.setViewName("home"),
                 e -> loggedInState.setViewName("fridge"),
                 e -> loggedInState.setViewName("savedForLater"),
