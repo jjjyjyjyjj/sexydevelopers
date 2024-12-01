@@ -1,7 +1,9 @@
 package entity;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 
+@JsonDeserialize(as = PantryPalUser.class)
 public class PantryPalUser implements User {
     @JsonProperty ("username")
     private String username;
@@ -18,8 +20,9 @@ public class PantryPalUser implements User {
     @JsonProperty ("savedForLater")
     private SavedRecipes savedForLater;
 
-    @JsonProperty ("recipeHistory")
-    private SavedRecipes recipeHistory;
+    @JsonProperty ("triedRecipes")
+    private SavedRecipes triedRecipes;
+
 
     public PantryPalUser(String username, String password) {
         this.username = username;
@@ -28,8 +31,10 @@ public class PantryPalUser implements User {
         this.fridge = new CommonFridge();
         this.favourited = new FavouritedRecipes();
         this.savedForLater = new SavedForLater();
-        this.recipeHistory = new TriedRecipes();
+        this.triedRecipes = new TriedRecipes();
     }
+
+    public PantryPalUser() {}
 
     @Override
     public String getUsername() {
@@ -54,7 +59,7 @@ public class PantryPalUser implements User {
     }
 
     public SavedRecipes getTriedRecipes() {
-        return recipeHistory;
+        return triedRecipes;
     }
 
     @Override

@@ -1,10 +1,14 @@
 package entity;
 
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+
 import java.util.List;
 
 /**
  * The representation of a recipe in our program.
  */
+
+@JsonDeserialize(using = RecipeDeserializer.class)
 public interface Recipe {
 
     /**
