@@ -22,8 +22,9 @@ public class LoggedInState {
     private SavedRecipes triedRecipes;
     private SavedRecipes savedforlaterRecipes;
     private List<SavedRecipes> savedForLaterRecipes = new ArrayList<>();
-    private String savedRecipesError;
     private ViewManagerModel viewManagerModel;
+    private String savedRecipesError;
+    private Recipe recommendedRecipe;
 
     private String viewName = "home";
 
@@ -92,11 +93,11 @@ public class LoggedInState {
         this.triedRecipes = triedRecipes;
     }
 
-    public SavedRecipes getSavedforlaterRecipes() {
+    public SavedRecipes getsavedforlaterRecipes() {
         return savedforlaterRecipes;
     }
 
-    public void setSavedforlaterRecipes(SavedRecipes savedforlaterRecipes) {
+    public void setsavedforlaterRecipes(SavedRecipes savedforlaterRecipes) {
         this.savedforlaterRecipes = savedforlaterRecipes;
     }
 
@@ -122,8 +123,6 @@ public class LoggedInState {
         }
     }
 
-
-
     public void addPropertyChangeListener(PropertyChangeListener listener) {
         support.addPropertyChangeListener(listener);
     }
@@ -136,7 +135,8 @@ public class LoggedInState {
         return user;
     }
 
-    public void setRecommendedRecipes(List<Recipe> recommendedRecipes) {
+    public void setRecommendedRecipe(Recipe recommendedRecipe) {
+        this.recommendedRecipe = recommendedRecipe;
     }
 
     public void setRecipeRecommendationError(String errorMessage) {
