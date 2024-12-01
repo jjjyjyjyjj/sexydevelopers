@@ -36,4 +36,13 @@ public class CommonFridge implements Fridge {
     public void removeIngredient(String name) {
         ingredients.removeIf(ingredient -> ingredient.getName().equals(name));
     }
+
+    @Override
+    public String parseFridge() {
+        // Directly use 'this.ingredients' to extract the names
+        return String.join(", ",
+                this.ingredients.stream()
+                        .map(Ingredient::getName)  // Extract the names
+                        .toArray(String[]::new));  // Convert to an array of Strings
+    }
 }
