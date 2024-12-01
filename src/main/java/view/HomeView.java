@@ -57,7 +57,8 @@ public class HomeView extends JPanel {
                 e -> loggedInState.setViewName("home"),
                 e -> loggedInState.setViewName("fridge"),
                 e -> loggedInState.setViewName("savedForLater"),
-                e -> loggedInState.setViewName("triedRecipes")
+                e -> loggedInState.setViewName("triedRecipes"),
+                e -> loggedInState.setViewName("favouriteRecipes")
         );
 
         homeScreenTitleLabel = new JLabel("PantryPal Home Screen");

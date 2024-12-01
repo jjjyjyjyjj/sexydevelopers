@@ -37,15 +37,16 @@ public class FridgeView extends JPanel {
                 e -> loggedInState.setViewName("home"),
                 e -> loggedInState.setViewName("fridge"),
                 e -> loggedInState.setViewName("savedForLater"),
-                e -> loggedInState.setViewName("triedRecipes")
+                e -> loggedInState.setViewName("triedRecipes"),
+                e -> loggedInState.setViewName("favouriteRecipes")
         );
 
         // Add placeholder for fridge contents
         JLabel fridgeContentLabel = new JLabel("Your Fridge Contents:");
         fridgeContentLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
 
-        addIngredientButton = new JButton("Add Ingrident");
-        removeIngredientButton = new JButton("Remove Ingrident");
+        addIngredientButton = new JButton("Add Ingredient");
+        removeIngredientButton = new JButton("Remove Ingredient");
 
         JPanel fridgeButtonPanel = new JPanel();
         fridgeButtonPanel.add(addIngredientButton);

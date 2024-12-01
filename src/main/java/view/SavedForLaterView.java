@@ -11,7 +11,7 @@ import java.awt.*;
 
 public class SavedForLaterView extends JPanel {
 
-    private final String viewName = "SavedForLater";
+    private final String viewName = "savedForLater";
     private final SaveForLaterViewModel viewModel;
     private final LoggedInState loggedInState;
     private ViewManagerModel viewManagerModel;
@@ -35,7 +35,8 @@ public class SavedForLaterView extends JPanel {
                 e -> loggedInState.setViewName("home"),
                 e -> loggedInState.setViewName("fridge"),
                 e -> loggedInState.setViewName("savedForLater"),
-                e -> loggedInState.setViewName("triedRecipes")
+                e -> loggedInState.setViewName("triedRecipes"),
+                e -> loggedInState.setViewName("favouriteRecipes")
         );
         savedRecipesLabel = new JLabel("Your Saved Recipes");
         savedRecipesLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
@@ -68,6 +69,6 @@ public class SavedForLaterView extends JPanel {
     }
 
     public String getViewName() {
-        return "savedForLater";
+        return viewName;
     }
 }
