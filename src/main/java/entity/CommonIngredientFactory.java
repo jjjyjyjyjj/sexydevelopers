@@ -8,9 +8,8 @@ public class CommonIngredientFactory implements IngredientFactory {
      * @param quantity the quantity of the ingredient
      * @return the new ingredient
      */
-
-    @Override
-    public Ingredient create(String name, String unit, double quantity) {
+    
+    public CommonIngredient create(String name, String unit, double quantity) {
         return new CommonIngredient(name, unit, quantity);
     }
 }

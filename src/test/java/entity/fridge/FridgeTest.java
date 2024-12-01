@@ -16,7 +16,7 @@ public class FridgeTest {
         FridgeFactory fridgeFactory = new CommonFridgeFactory();
         Fridge fridge = fridgeFactory.create();
         IngredientFactory ingredientFactory = new CommonIngredientFactory();
-        Ingredient ingredient = ingredientFactory.create("tomato",  "tomato", 1);
+        Ingredient ingredient = IngredientFactory.create("tomato",  "tomato", 1);
 
         // Act
         fridge.addIngredient(ingredient);
@@ -31,7 +31,7 @@ public class FridgeTest {
         FridgeFactory fridgeFactory = new CommonFridgeFactory();
         Fridge fridge = fridgeFactory.create();
         IngredientFactory ingredientFactory = new CommonIngredientFactory();
-        Ingredient ingredient = ingredientFactory.create("tomato", "tomato", 1);
+        Ingredient ingredient = IngredientFactory.create("tomato", "tomato", 1);
 
         // Act
         fridge.addIngredient(ingredient);
@@ -47,7 +47,7 @@ public class FridgeTest {
         FridgeFactory fridgeFactory = new CommonFridgeFactory();
         Fridge fridge = fridgeFactory.create();
         IngredientFactory ingredientFactory = new CommonIngredientFactory();
-        Ingredient ingredient = ingredientFactory.create("tomato", "tomato", 1);
+        Ingredient ingredient = IngredientFactory.create("tomato", "tomato", 1);
         fridge.addIngredient(ingredient);
 
         // Act
