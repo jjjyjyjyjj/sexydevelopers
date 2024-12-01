@@ -3,11 +3,13 @@ package data_access;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.type.CollectionType;
 import entity.*;
+import use_case.add_ingredient.AddIngredientDataAccessInterface;
 import use_case.change_password.ChangePasswordUserDataAccessInterface;
 import use_case.login.LoginUserDataAccessInterface;
 import use_case.logout.LogoutUserDataAccessInterface;
 import use_case.recipe_recommender.RecipeRecUserDataAccessInterface;
 import use_case.remove_from_favrecipes.RemoveFavRecipeDataAccessInterface;
+import use_case.remove_ingredient.RemoveIngredientDataAccessInterface;
 import use_case.save_for_later.SaveForLaterUserDataAccessInterface;
 import use_case.signup.SignupUserDataAccessInterface;
 
@@ -28,7 +30,9 @@ public class FileUserDataAccessObject implements SignupUserDataAccessInterface,
         LogoutUserDataAccessInterface,
         RemoveFavRecipeDataAccessInterface,
         SaveForLaterUserDataAccessInterface,
-        RecipeRecUserDataAccessInterface {
+        RecipeRecUserDataAccessInterface,
+        AddIngredientDataAccessInterface,
+        RemoveIngredientDataAccessInterface{
 
     private final File jsonFile;
     private final Map<String, User> accounts = new HashMap<>();
@@ -167,5 +171,15 @@ public class FileUserDataAccessObject implements SignupUserDataAccessInterface,
     @Override
     public ArrayList<Ingredient> getFridgeIngredients(User user) {
         return user.getFridge().getIngredients();
+    }
+
+    @Override
+    public void addIngredient(Fridge fridge, Ingredient ingredient) {
+        fridge.addIngredient(ingredient);
+    }
+
+    @Override
+    public void removeIngredient(Fridge fridge, String name) {
+        fridge.removeIngredient(name);
     }
 }
