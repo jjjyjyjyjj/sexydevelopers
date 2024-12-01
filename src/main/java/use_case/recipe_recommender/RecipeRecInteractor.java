@@ -42,10 +42,11 @@ public class RecipeRecInteractor implements RecipeRecInputBoundary {
 
             if (!recipes.isEmpty()) {
                 // Set the next recipe
-                Recipe nextRecipe = recipes.get(0);
-                state.setCurrentRecipe(nextRecipe);
+                Recipe recipe = recipes.get(0);
+                state.setCurrentRecipe(recipe);
 
                 // Pass the updated state to the presenter
+                RecipeRecOutputData nextRecipe = new RecipeRecOutputData(recipe,false);
                 outputBoundary.prepareSuccessView(nextRecipe);
             } else {
                 // Handle case where no recipes are found
