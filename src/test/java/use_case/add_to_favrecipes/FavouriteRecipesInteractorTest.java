@@ -39,9 +39,9 @@ public class FavouriteRecipesInteractorTest {
                 "https://www.foodista.com/recipe/2M6MVKZT/bread-omlette");
     }
 
-/*    @Test
+    @Test
     void successAddRecipeTest() throws IOException {
-        FileDataAccessObject userRepository = new FileUserDataAccessObject(testFile.getPath());
+        FavouriteRecipesDataAccessInterface userRepository = new FileUserDataAccessObject(testFile.getPath());
         Recipe toFavRecipe = testRecipe;
 
         // Creates a new user
@@ -72,7 +72,7 @@ public class FavouriteRecipesInteractorTest {
 
         FavouriteRecipesInputBoundary interactor = new FavouriteRecipesInteractor(userRepository, successPresenter);
         interactor.execute(inputData);
-    }*/
+    }
 
 
 }

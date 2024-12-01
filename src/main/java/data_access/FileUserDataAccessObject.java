@@ -3,6 +3,7 @@ package data_access;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.type.CollectionType;
 import entity.*;
+import use_case.add_to_favrecipes.FavouriteRecipesDataAccessInterface;
 import use_case.change_password.ChangePasswordUserDataAccessInterface;
 import use_case.login.LoginUserDataAccessInterface;
 import use_case.logout.LogoutUserDataAccessInterface;
@@ -28,7 +29,8 @@ public class FileUserDataAccessObject implements SignupUserDataAccessInterface,
         LogoutUserDataAccessInterface,
         RemoveFavRecipeDataAccessInterface,
         SaveForLaterUserDataAccessInterface,
-        RecipeRecUserDataAccessInterface {
+        RecipeRecUserDataAccessInterface,
+        FavouriteRecipesDataAccessInterface {
 
     private final File jsonFile;
     private final Map<String, User> accounts = new HashMap<>();
