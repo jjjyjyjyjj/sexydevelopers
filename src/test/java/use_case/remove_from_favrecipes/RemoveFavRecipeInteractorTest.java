@@ -28,9 +28,9 @@ public class RemoveFavRecipeInteractorTest {
 
         // Creates a new recipe
         List<Ingredient> omlette = new ArrayList<>();
-        Ingredient bread = ingredientFactory.create("bread crumbs", 18879, "", "Pasta and Rice");
-        Ingredient milk = ingredientFactory.create("milk", 1077, "", "Milk, Eggs, Other Dairy");
-        Ingredient egg = ingredientFactory.create("Eggs", 1123, "", "Milk, Eggs, Other Dairy");
+        Ingredient bread = ingredientFactory.create("bread crumbs", "", 1);
+        Ingredient milk = ingredientFactory.create("milk",  "", 1);
+        Ingredient egg = ingredientFactory.create("Eggs",  "", 1);
         omlette.add(egg);
         omlette.add(milk);
         omlette.add(bread);

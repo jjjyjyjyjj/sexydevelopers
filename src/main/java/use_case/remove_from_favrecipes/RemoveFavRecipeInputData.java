@@ -10,7 +10,7 @@ import entity.User;
 
 public class RemoveFavRecipeInputData {
     private final Recipe targetRecipe;
-    private final FavouritedRecipes favourited;
+    private final SavedRecipes favourited;
     private final SavedRecipes savedforlater;
     private final User user;
 

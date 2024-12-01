@@ -21,7 +21,7 @@ public class LoggedInState {
     private SavedRecipes favRecipes;
     private SavedRecipes triedRecipes;
     private SavedRecipes savedforlaterRecipes;
-    private List<SavedForLater> savedForLaterRecipes = new ArrayList<>();
+    private List<SavedRecipes> savedForLaterRecipes = new ArrayList<>();
     private String savedRecipesError;
 
     private String viewName = "home";
@@ -73,7 +73,7 @@ public class LoggedInState {
         return currentRecipe;
     }
 
-    public void  setSavedRecipes(SavedForLater savedRecipe) {
+    public void  setSavedRecipes(SavedRecipes savedRecipe) {
         savedForLaterRecipes.add(savedRecipe);
     }
 

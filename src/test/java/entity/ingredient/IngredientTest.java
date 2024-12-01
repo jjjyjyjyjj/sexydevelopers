@@ -15,7 +15,7 @@ public class IngredientTest {
     public void testSetUnit() {
         // Arrange
         IngredientFactory ingredientFactory = new CommonIngredientFactory();
-        Ingredient ingredient = ingredientFactory.create("tomato", 12, "tomato", "fresh");
+        Ingredient ingredient = ingredientFactory.create("tomato", "tomato", 1);
         String newUnit = "g";
 
         // Act
@@ -26,24 +26,10 @@ public class IngredientTest {
     }
 
     @Test
-    public void testSetAisle() {
-        // Arrange
-        IngredientFactory ingredientFactory = new CommonIngredientFactory();
-        Ingredient ingredient = ingredientFactory.create("tomato", 12, "tomato", "fresh");
-        String newAisle = "Beverages";
-
-        // Act
-        ingredient.setAisle(newAisle);
-
-        // Assert
-        Assertions.assertEquals(newAisle, ingredient.getAisle());
-    }
-
-    @Test
     public void testSetQuantity() {
         // Arrange
         IngredientFactory ingredientFactory = new CommonIngredientFactory();
-        Ingredient ingredient = ingredientFactory.create("tomato", 12, "tomato", "fresh");
+        Ingredient ingredient = ingredientFactory.create("tomato", "tomato", 1);
         double newQuantity = 10.0;
 
         // Act

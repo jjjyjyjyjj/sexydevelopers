@@ -31,20 +31,7 @@ public class CommonFridge implements Fridge {
     }
 
     @Override
-    public void removeIngredient(Ingredient ingredient) {
-        try {
-            checkFridge(ingredient);
-        } catch (IngredientNotFoundException e) {
-            System.out.println(e.getMessage());
-        } finally {
-            ingredients.remove(ingredient);
-        }
-    }
-
-    @Override
-    public void checkFridge(Ingredient ingredient) throws IngredientNotFoundException {
-        if (!hasIngredient(ingredient)) {
-            throw new IngredientNotFoundException("This ingredient is not in your fridge!");
-        }
+    public void removeIngredient(String name) {
+        ingredients.removeIf(ingredient -> ingredient.getName().equals(name));
     }
 }

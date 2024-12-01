@@ -17,10 +17,10 @@ public class RemoveIngredientInteractor implements RemoveIngredientInputBoundary
     @Override
     public void execute(RemoveIngredientInputData removeIngredientInputData){
         Fridge fridge = removeIngredientInputData.getFridge();
-        Ingredient toRemoveIngredient = removeIngredientInputData.getIngredient();
+        String toRemoveName = removeIngredientInputData.getName();
 
-        fridge.removeIngredient(toRemoveIngredient);
-        removeIngredientUserDataAccessInterface.removeIngredient(fridge, toRemoveIngredient);
+        fridge.removeIngredient(toRemoveName);
+        removeIngredientUserDataAccessInterface.removeIngredient(fridge, toRemoveName);
 
         final RemoveIngredientOutputData removeIngredientOutputData = new RemoveIngredientOutputData(fridge, false);
 

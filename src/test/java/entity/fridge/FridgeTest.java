@@ -16,7 +16,7 @@ public class FridgeTest {
         FridgeFactory fridgeFactory = new CommonFridgeFactory();
         Fridge fridge = fridgeFactory.create();
         IngredientFactory ingredientFactory = new CommonIngredientFactory();
-        Ingredient ingredient = ingredientFactory.create("tomato", 12, "tomato", "fresh");
+        Ingredient ingredient = ingredientFactory.create("tomato",  "tomato", 1);
 
         // Act
         fridge.addIngredient(ingredient);
@@ -31,7 +31,7 @@ public class FridgeTest {
         FridgeFactory fridgeFactory = new CommonFridgeFactory();
         Fridge fridge = fridgeFactory.create();
         IngredientFactory ingredientFactory = new CommonIngredientFactory();
-        Ingredient ingredient = ingredientFactory.create("tomato", 12, "tomato", "fresh");
+        Ingredient ingredient = ingredientFactory.create("tomato", "tomato", 1);
 
         // Act
         fridge.addIngredient(ingredient);
@@ -47,55 +47,14 @@ public class FridgeTest {
         FridgeFactory fridgeFactory = new CommonFridgeFactory();
         Fridge fridge = fridgeFactory.create();
         IngredientFactory ingredientFactory = new CommonIngredientFactory();
-        Ingredient ingredient = ingredientFactory.create("tomato", 12, "tomato", "fresh");
+        Ingredient ingredient = ingredientFactory.create("tomato", "tomato", 1);
         fridge.addIngredient(ingredient);
 
         // Act
-        fridge.removeIngredient(ingredient);
+        fridge.removeIngredient("tomato");
 
         // Assert
         Assertions.assertFalse(fridge.getIngredients().contains(ingredient));
     }
 
-    @Test
-    public void testRemoveIngredientExceptionHandling() {
-        // Arrange
-        FridgeFactory fridgeFactory = new CommonFridgeFactory();
-        Fridge fridge = fridgeFactory.create();
-        IngredientFactory ingredientFactory = new CommonIngredientFactory();
-        Ingredient ingredient = ingredientFactory.create("tomato", 12, "tomato", "fresh");
-
-        // Act & Assert
-        assertDoesNotThrow(() -> fridge.removeIngredient(ingredient));
-    }
-
-    @Test
-    public void testCheckFridgeIngredientExists() {
-        // Arrange
-        FridgeFactory fridgeFactory = new CommonFridgeFactory();
-        Fridge fridge = fridgeFactory.create();
-        IngredientFactory ingredientFactory = new CommonIngredientFactory();
-        Ingredient ingredient = ingredientFactory.create("tomato", 12, "tomato", "fresh");
-        fridge.addIngredient(ingredient);
-
-        // Act & Assert
-        assertDoesNotThrow(() -> fridge.checkFridge(ingredient));
-    }
-
-    @Test
-    public void testCheckFridgeIngredientNotExists() {
-        // Arrange
-        FridgeFactory fridgeFactory = new CommonFridgeFactory();
-        Fridge fridge = fridgeFactory.create();
-        IngredientFactory ingredientFactory = new CommonIngredientFactory();
-        Ingredient ingredient = ingredientFactory.create("tomato", 12, "tomato", "fresh");
-
-        // Act & Assert
-        Exception exception = assertThrows(IngredientNotFoundException.class, () -> {
-            fridge.checkFridge(ingredient);
-        });
-
-        // Verify the exception message
-        Assertions.assertEquals("This ingredient is not in your fridge!", exception.getMessage());
-    }
 }
