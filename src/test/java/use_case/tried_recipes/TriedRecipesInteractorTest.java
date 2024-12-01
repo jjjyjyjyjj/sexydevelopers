@@ -1,4 +1,8 @@
+<<<<<<<< HEAD:src/test/java/use_case/triedRecipes/TriedRecipesInteractorTest.java
 package use_case.triedRecipes;
+========
+package use_case.tried_recipes;
+>>>>>>>> main:src/test/java/use_case/tried_recipes/TriedRecipesInteractorTest.java
 
 import data_access.FileUserDataAccessObject;
 import entity.*;

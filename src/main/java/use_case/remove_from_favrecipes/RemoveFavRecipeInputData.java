@@ -16,7 +16,8 @@ public class RemoveFavRecipeInputData {
 
     public RemoveFavRecipeInputData(Recipe targetRecipe, User user) {
         this.targetRecipe = targetRecipe;
-        this.favourited = user.getFavourited();
+//        this.favourited = user.getFavourited();
+        this.favourited = new FavouritedRecipes();
         this.savedforlater = user.getSavedForLater();
         this.user = user;
     }

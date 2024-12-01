@@ -11,7 +11,8 @@ public class NavBarPanel extends JPanel {
                        ActionListener goToSavedForLater, ActionListener goToTriedRecipes) {
         this.setLayout(new BoxLayout(this, BoxLayout.X_AXIS));
         this.setBackground(Color.GRAY);
-        this.setPreferredSize(new Dimension(1000, 20));
+        this.setPreferredSize(new Dimension(800, 120));
+        this.setMaximumSize(new Dimension(800, 210));
 
 
         JButton homeButton = createStyledButton("Home");

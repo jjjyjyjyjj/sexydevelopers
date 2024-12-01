@@ -13,6 +13,7 @@ import javax.swing.event.DocumentListener;
 import interface_adapter.login.LoginController;
 import interface_adapter.login.LoginState;
 import interface_adapter.login.LoginViewModel;
+import interface_adapter.signup.SignupViewModel;
 
 /**
  * The View for when the user is logging into the program.
@@ -37,6 +38,8 @@ public class LoginView extends JPanel implements ActionListener, PropertyChangeL
         this.loginViewModel = loginViewModel;
         this.loginViewModel.addPropertyChangeListener(this);
         this.setBackground(Color.orange);
+        usernameErrorField.setAlignmentX(Component.CENTER_ALIGNMENT);
+        passwordErrorField.setAlignmentX(Component.CENTER_ALIGNMENT);
 
         final JLabel title = new JLabel("Login to PantryPal");
         title.setAlignmentX(Component.CENTER_ALIGNMENT);
@@ -46,15 +49,21 @@ public class LoginView extends JPanel implements ActionListener, PropertyChangeL
         final JPanel inputs = new JPanel();
         inputs.setLayout(new BoxLayout(inputs, BoxLayout.Y_AXIS));
 
+        final JLabel loginLabel = new JLabel("Welcome Back!");
+        loginLabel.setAlignmentX(CENTER_ALIGNMENT);
+        loginLabel.setForeground(Color.BLACK);
+        loginLabel.setFont(new Font("Arial", Font.BOLD, 16));
+        loginLabel.setBorder(BorderFactory.createEmptyBorder(0, 0, 10, 0));
+        inputs.add(loginLabel);
         final LabelTextPanel usernameInfo = new LabelTextPanel(
                 new JLabel("Username:"), usernameInputField);
-        usernameInfo.setAlignmentX(Component.RIGHT_ALIGNMENT);
+        usernameInfo.setAlignmentX(Component.CENTER_ALIGNMENT);
         usernameInfo.setBackground(Color.orange);
         inputs.add(usernameInfo);
         final LabelTextPanel passwordInfo = new LabelTextPanel(
                 new JLabel("Password:"), passwordInputField);
         passwordInfo.setBackground(Color.orange);
-        passwordInfo.setAlignmentX(Component.RIGHT_ALIGNMENT);
+        passwordInfo.setAlignmentX(Component.CENTER_ALIGNMENT);
         inputs.add(passwordInfo);
 
         inputs.add(usernameErrorField);
