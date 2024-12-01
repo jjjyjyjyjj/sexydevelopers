@@ -46,16 +46,16 @@ public class RecipeRecInteractor implements RecipeRecInputBoundary {
                 state.setCurrentRecipe(nextRecipe);
 
                 // Pass the updated state to the presenter
-                outputBoundary.presentNextRecipe(nextRecipe);
+                outputBoundary.prepareSuccessView(nextRecipe);
             } else {
                 // Handle case where no recipes are found
                 state.setErrorMessage("No recipes found for your ingredients.");
-                outputBoundary.presentError(state.getErrorMessage());
+                outputBoundary.prepareFailView(state.getErrorMessage());
             }
         } catch (Exception e) {
             // Handle API errors
             state.setErrorMessage("Failed to fetch recipes. Please try again later.");
-            outputBoundary.presentError(state.getErrorMessage());
+            outputBoundary.prepareFailView(state.getErrorMessage());
         }
     }
 }

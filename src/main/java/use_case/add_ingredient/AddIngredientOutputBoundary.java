@@ -1,7 +1,5 @@
 package use_case.add_ingredient;
 
-import use_case.change_password.ChangePasswordOutputData;
-
 public interface AddIngredientOutputBoundary {
     /**
      * Prepares the success view for the Add Ingredient Use Case.

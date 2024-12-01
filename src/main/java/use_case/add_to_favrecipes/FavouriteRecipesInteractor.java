@@ -46,13 +46,3 @@ public class FavouriteRecipesInteractor implements FavouriteRecipesInputBoundary
         userPresenter.prepareSuccessView(favouriteRecipesOutputData);
     }
 }
-
-// need to save the data inputted to the list
-//Responsibility: take the Input Data and execute
-//the use case, looking up information in the Data
-//Access object when necessary and manipulating
-//Entities. This might create new data that needs
-//to be saved in the Data Access layer.
-//When complete, create an Output Data object —
-//the use case result — and pass it to the
-//Presenter.
