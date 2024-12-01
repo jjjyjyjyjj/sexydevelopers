@@ -37,4 +37,9 @@ public interface Fridge {
      */
     void removeIngredient(String name);
 
+    /**
+     * Converts the Fridge into a string.
+     */
+    String parseFridge();
+
 }
