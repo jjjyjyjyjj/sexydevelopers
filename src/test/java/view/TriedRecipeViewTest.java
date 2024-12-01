@@ -14,7 +14,7 @@ public class TriedRecipeViewTest {
         LoggedInState loggedInState = new LoggedInState();
         TriedRecipesViewModel viewModel = new TriedRecipesViewModel();
 
-        // Initialize the SavedForLaterView
+        // Initialize the TriedRecipesView
         TriedRecipesView triedRecipesView = new TriedRecipesView(viewModel, loggedInState);
 
         // Set up JFrame to display the view
