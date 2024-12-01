@@ -1,11 +1,12 @@
 package entity;
 
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import org.jetbrains.annotations.NotNull;
 
 /**
  * The representation of an ingredient in our program.
  */
-
+@JsonDeserialize(using = IngredientDeserializer.class)
 public interface Ingredient extends Comparable<Ingredient> {
 
     /**

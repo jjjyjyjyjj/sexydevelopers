@@ -184,4 +184,12 @@ public class FileUserDataAccessObject implements SignupUserDataAccessInterface,
     public void removeIngredient(Fridge fridge, String name) {
         fridge.removeIngredient(name);
     }
+
+    @Override
+    public boolean existsByIngredient(Ingredient ingredient, User user) {
+        User toCheck = accounts.get(user.getUsername());
+        Fridge fridge = toCheck.getFridge();
+        return fridge.getIngredients().contains(ingredient);
+    }
+
 }
