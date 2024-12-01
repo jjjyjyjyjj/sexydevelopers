@@ -1,8 +1,4 @@
-<<<<<<<< HEAD:src/main/java/use_case/triedRecipes/TriedRecipesInteractor.java
-package use_case.triedRecipes;
-========
 package use_case.tried_recipes;
->>>>>>>> main:src/main/java/use_case/tried_recipes/TriedRecipesInteractor.java
 
 import data_access.FileUserDataAccessObject;
 import entity.Recipe;

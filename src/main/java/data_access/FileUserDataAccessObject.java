@@ -4,7 +4,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.type.CollectionType;
 import entity.*;
 import use_case.change_password.ChangePasswordUserDataAccessInterface;
-import use_case.add_to_favrecipes.FavouriteRecipesDataAccessInterface;
 import use_case.login.LoginUserDataAccessInterface;
 import use_case.logout.LogoutUserDataAccessInterface;
 import use_case.recipe_recommender.RecipeRecUserDataAccessInterface;
@@ -159,10 +158,7 @@ public class FileUserDataAccessObject implements SignupUserDataAccessInterface,
         return false;
     }
 
-    @Override
-    public void getFridgeIngredients(User user) {
 
-    }
 
     /**
      * Gets the Ingredients in the User's fridge
@@ -170,8 +166,8 @@ public class FileUserDataAccessObject implements SignupUserDataAccessInterface,
      * @param user Current user
      * @return List of Ingredient user has
      */
-//    @Override
-//    public ArrayList<Ingredient> getFridgeIngredients(User user) {
-//        return user.getFridge().getIngredients();
-//    }
+    @Override
+    public ArrayList<Ingredient> getFridgeIngredients(User user) {
+        return user.getFridge().getIngredients();
+    }
 }
