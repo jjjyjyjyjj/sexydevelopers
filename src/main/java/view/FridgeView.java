@@ -16,14 +16,14 @@ public class FridgeView extends JPanel {
     private JButton addIngredientButton;
     private JButton removeIngredientButton;
 
-    public FridgeView(FridgeViewModel fridgeViewModel, LoggedInState loggedInState) {
+    public FridgeView(FridgeViewModel fridgeViewModel, CardLayout cardLayout, JPanel cardPanel) {
         this.fridgeViewModel = fridgeViewModel;
-        this.loggedInState = loggedInState;
-        setupUI();
+        this.loggedInState = new LoggedInState();
+        setupUI(cardLayout, cardPanel);
         setupListeners();
     }
 
-    private void setupUI() {
+    private void setupUI(CardLayout cardLayout, JPanel cardPanel) {
         this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
         this.setBackground(Color.ORANGE);
 
@@ -33,13 +33,7 @@ public class FridgeView extends JPanel {
         fridgeTitleLabel.setBorder(BorderFactory.createEmptyBorder(30, 0, 50, 0));
 
         // Create navigation bar with actions
-        NavBarPanel navBar = new NavBarPanel(loggedInState,
-                e -> loggedInState.setViewName("home"),
-                e -> loggedInState.setViewName("fridge"),
-                e -> loggedInState.setViewName("savedForLater"),
-                e -> loggedInState.setViewName("triedRecipes"),
-                e -> loggedInState.setViewName("favouriteRecipes")
-        );
+        NavBarPanel navBar = new NavBarPanel(cardLayout, cardPanel);
 
         // Add placeholder for fridge contents
         JLabel fridgeContentLabel = new JLabel("Your Fridge Contents:");
