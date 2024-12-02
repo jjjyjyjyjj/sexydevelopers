@@ -1,4 +1,4 @@
-package useCase.signup;
+package usecase.signup;
 
 import data_access.FileUserDataAccessObject;
 import entity.PantryPalUserFactory;

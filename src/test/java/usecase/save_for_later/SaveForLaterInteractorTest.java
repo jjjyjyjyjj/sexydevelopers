@@ -1,4 +1,4 @@
-package useCase.save_for_later;
+package usecase.save_for_later;
 
 import api.getRecipeInformation;
 import data_access.FileUserDataAccessObject;

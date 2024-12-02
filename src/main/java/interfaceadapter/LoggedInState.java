@@ -44,7 +44,7 @@ public class LoggedInState {
 
     // Because of the previous copy constructor, the default constructor must be explicit.
     public LoggedInState() {
-        this.user = new PantryPalUser();
+        this.user = new PantryPalUser(username, password);
         this.fridge = new CommonFridge();
     }
 

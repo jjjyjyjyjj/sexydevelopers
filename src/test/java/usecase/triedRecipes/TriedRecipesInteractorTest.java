@@ -1,8 +1,8 @@
-package useCase.triedRecipes;
+package usecase.triedRecipes;
 
 import data_access.FileUserDataAccessObject;
 import entity.*;
-import interface_adapter.triedRecipes.TriedRecipesViewModel;
+import interfaceadapter.triedRecipes.TriedRecipesViewModel;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

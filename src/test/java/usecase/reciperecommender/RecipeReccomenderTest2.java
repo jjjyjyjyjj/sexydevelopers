@@ -1,4 +1,4 @@
-package useCase.reciperecommender;
+package usecase.reciperecommender;
 
 import java.io.IOException;
 

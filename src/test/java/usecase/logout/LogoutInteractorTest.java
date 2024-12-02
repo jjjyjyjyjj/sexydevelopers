@@ -1,4 +1,4 @@
-package useCase.logout;
+package usecase.logout;
 
 import data_access.FileUserDataAccessObject;
 import entity.PantryPalUserFactory;
