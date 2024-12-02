@@ -1,4 +1,4 @@
-package useCase.add_ingredient;
+package usecase.add_ingredient;
 
 import data_access.FileUserDataAccessObject;
 import entity.*;

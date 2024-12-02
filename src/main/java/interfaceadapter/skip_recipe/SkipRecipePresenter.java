@@ -4,6 +4,9 @@ import interfaceadapter.LoggedInViewModel;
 import usecase.skip_recipe.SkipRecipeOutputBoundary;
 import usecase.skip_recipe.SkipRecipeOutputData;
 
+/**
+ * Presenter for the Skip Recipe Use Case.
+ */
 public class SkipRecipePresenter implements SkipRecipeOutputBoundary {
     private final LoggedInViewModel loggedInViewModel;
 

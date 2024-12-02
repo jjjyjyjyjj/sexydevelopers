@@ -2,7 +2,7 @@ package interfaceadapter.login;
 
 import interfaceadapter.LoggedInState;
 import interfaceadapter.ViewManagerModel;
-import interfaceadapter.recipeRecommendation.RecipeRecViewModel;
+import interfaceadapter.recipe_recommendation.RecipeRecViewModel;
 import usecase.login.LoginOutputBoundary;
 import usecase.login.LoginOutputData;
 

@@ -1,9 +1,9 @@
 
-package useCase.reciperecommender;
+package usecase.reciperecommender;
 
 import api.recipeFinder;
 import entity.*;
-import interface_adapter.recipeRecommendation.RecipeRecState;
+import interfaceadapter.recipe_recommendation.RecipeRecState;
 import org.junit.jupiter.api.BeforeEach;
 
 import java.io.File;

@@ -13,10 +13,18 @@ public class ChangePasswordInputData {
         this.username = username;
     }
 
+    /**
+     * Returns the password of the current user.
+     * @return password of the current user.
+     */
     String getPassword() {
         return password;
     }
 
+    /**
+     * Returns the username of the current user.
+     * @return username of the current user.
+     */
     String getUsername() {
         return username;
     }
