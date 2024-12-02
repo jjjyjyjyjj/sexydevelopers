@@ -15,7 +15,10 @@ public class TriedRecipeViewTest {
         TriedRecipesViewModel viewModel = new TriedRecipesViewModel();
 
         // Initialize the TriedRecipesView
-        TriedRecipesView triedRecipesView = new TriedRecipesView(viewModel, loggedInState);
+        CardLayout cardLayout = new CardLayout();
+        JPanel cardPanel = new JPanel();
+
+        TriedRecipesView triedRecipesView = new TriedRecipesView(viewModel, cardLayout, cardPanel);
 
         // Set up JFrame to display the view
         JFrame frame = new JFrame("Tried Recipe View Test");

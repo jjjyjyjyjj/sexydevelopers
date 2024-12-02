@@ -15,7 +15,10 @@ public class SavedForLaterViewTest {
         SaveForLaterViewModel viewModel = new SaveForLaterViewModel();
 
         // Initialize the SavedForLaterView
-        SavedForLaterView savedForLaterView = new SavedForLaterView(viewModel, loggedInState);
+        CardLayout cardLayout = new CardLayout();
+        JPanel cardPanel = new JPanel();
+
+        SavedForLaterView savedForLaterView = new SavedForLaterView(viewModel,cardLayout, cardPanel);
 
         // Set up JFrame to display the view
         JFrame frame = new JFrame("Saved For Later View Test");
