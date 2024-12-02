@@ -24,6 +24,6 @@ public class RecipeRecController {
 
         recipeFinder finder = new recipeFinder();
 
-        return finder.getRecipeByIngredient(ingredients, 1, 1, true);
+        return finder.getRecipeByIngredient(ingredients);
     }
 }

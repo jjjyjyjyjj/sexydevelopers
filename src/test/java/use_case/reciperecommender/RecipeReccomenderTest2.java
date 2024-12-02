@@ -11,10 +11,12 @@ public class RecipeReccomenderTest2 {
     public static void main(String[] args) {
         String apiUrl = "https://api.spoonacular.com/recipes/findByIngredients";
         String ingredients = "bread crumbs,milk,eggs";
-        String apiKey = "00ab640014494f1ab81008310af8ec28";
+        String apiKey = " 5ec040755f3843c0831136f62dffb896";
 
         String url = String.format("%s?ingredients=%s&number=5&ranking=2&ignorePantry=true&apiKey=%s",
                 apiUrl, ingredients, apiKey);
+
+        System.out.println(url);
 
         OkHttpClient client = new OkHttpClient();
         Request request = new Request.Builder().url(url).build();

@@ -18,11 +18,11 @@ public interface recipeFinderInterface {
      * Note: All recipes include an id, images, imageType, likes, missedIngredientCount, missedIngredients
      *
      * @param ingredients  a comma-separated list of ingredients that the recipes should contain.
-     * @param number       the maximum number of recipes to return (between 1 and 100). Defaults to 10.
-     * @param ranking      whether to maximize used ingredients (1) or minimize missing ingredients (2) first.
-     * @param ignorePantry whether to ignore typical pantry items, such as water, salt, flour, etc.
+//     * @param number       the maximum number of recipes to return (between 1 and 100). Defaults to 10.
+//     * @param ranking      whether to maximize used ingredients (1) or minimize missing ingredients (2) first.
+//     * @param ignorePantry whether to ignore typical pantry items, such as water, salt, flour, etc.
      * @return the list of recipes that can be made with given ingredients
      */
-    List<Recipe> getRecipeByIngredient(ArrayList<Ingredient> ingredients, int number, int ranking, boolean ignorePantry) throws IOException;
+    List<Recipe> getRecipeByIngredient(ArrayList<Ingredient> ingredients) throws IOException;
 
 }

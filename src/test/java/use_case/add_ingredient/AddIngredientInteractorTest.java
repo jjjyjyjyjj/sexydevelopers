@@ -17,7 +17,7 @@ public class AddIngredientInteractorTest {
         User user = userFactory.create("rosie", "pswrd");
         Fridge fridge = user.getFridge();
         IngredientFactory ingredientFactory = new CommonIngredientFactory();
-        Ingredient ingredient = ingredientFactory.create("flour", "tbsp", 1);
+        Ingredient ingredient = IngredientFactory.create("flour", "tbsp", 1);
         AddIngredientInputData inputData = new AddIngredientInputData("flour", "tbsp", 1, fridge);
         AddIngredientDataAccessInterface userRepository = new FileUserDataAccessObject("test_add.json");
 

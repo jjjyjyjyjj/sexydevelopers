@@ -14,17 +14,25 @@ public class SavedForLaterViewTest {
         LoggedInState loggedInState = new LoggedInState();
         SaveForLaterViewModel viewModel = new SaveForLaterViewModel();
 
-        // Initialize the SavedForLaterView
+        // Create a CardLayout and a JPanel (cardPanel) for navigation
         CardLayout cardLayout = new CardLayout();
-        JPanel cardPanel = new JPanel();
+        JPanel cardPanel = new JPanel(cardLayout);
 
-        SavedForLaterView savedForLaterView = new SavedForLaterView(viewModel,cardLayout, cardPanel);
+        // Initialize the SavedForLaterView
+        SavedForLaterView savedForLaterView = new SavedForLaterView(viewModel, cardLayout, cardPanel);
 
-        // Set up JFrame to display the view
+        // Add SavedForLaterView to the cardPanel
+        cardPanel.add(savedForLaterView, "SavedForLaterView");
+
+        // Set up JFrame to display the cardPanel
         JFrame frame = new JFrame("Saved For Later View Test");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setMinimumSize(new Dimension(800, 600));
-        frame.add(savedForLaterView);
+        frame.add(cardPanel);
         frame.setVisible(true);
+
+        // Show the SavedForLaterView using CardLayout
+        cardLayout.show(cardPanel, "SavedForLaterView");
     }
 }
+
