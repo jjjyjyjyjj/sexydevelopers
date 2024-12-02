@@ -13,7 +13,9 @@ public class FavouriteRecipesViewTest {
         FavouriteRecipesViewModel viewModel = new FavouriteRecipesViewModel();
 
         // Initialize the FavouriteRecipesView
-        FavouriteRecipesView favouriteRecipesView = new FavouriteRecipesView(viewModel, loggedInState);
+        CardLayout cardLayout = new CardLayout();
+        JPanel cardPanel = new JPanel();
+        FavouriteRecipesView favouriteRecipesView = new FavouriteRecipesView(viewModel, cardLayout,cardPanel);
 
         // Set up JFrame to display the view
         JFrame frame = new JFrame("Favourite Recipes View Test");

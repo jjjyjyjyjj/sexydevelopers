@@ -14,8 +14,12 @@ public class FridgeViewTest {
         LoggedInState loggedInState = new LoggedInState();
         FridgeViewModel viewModel = new FridgeViewModel();
 
+
         // Initialize the SavedForLaterView
-        FridgeView savedForLaterView = new FridgeView(viewModel, loggedInState);
+        CardLayout cardLayout = new CardLayout();
+        JPanel cardPanel = new JPanel();
+
+        FridgeView savedForLaterView = new FridgeView(viewModel, cardLayout, cardPanel);
 
         // Set up JFrame to display the view
         JFrame frame = new JFrame("Fridge View Test");
