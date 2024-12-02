@@ -31,10 +31,10 @@ public class RecipeRecInteractor implements RecipeRecInputBoundary {
             ArrayList<Ingredient> ingredients = inputData.getIngredients();
 
             // Fetch recommended recipes using the recipe API
-            List<Recipe> recipes = recipeFinder.getRecipeByIngredient((ingredients),
-                    1, // Number of recipes to fetch
-                    1,  // Maximize used ingredients
-                    true // Ignore pantry items
+            List<Recipe> recipes = recipeFinder.getRecipeByIngredient((ingredients)
+//                    1, // Number of recipes to fetch
+//                    1,  // Maximize used ingredients
+//                    true // Ignore pantry items
             );
 
             // Filter out skipped recipes

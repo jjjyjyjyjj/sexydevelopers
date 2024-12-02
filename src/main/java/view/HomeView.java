@@ -1,5 +1,6 @@
 package view;
 
+import data_access.FileUserDataAccessObject;
 import entity.Ingredient;
 import entity.Recipe;
 import interface_adapter.ViewManagerModel;
@@ -13,11 +14,17 @@ import entity.CommonRecipe;
 import interface_adapter.saveforlater.SaveForLaterController;
 import interface_adapter.saveforlater.SaveForLaterState;
 import interface_adapter.saveforlater.SaveForLaterViewModel;
+import interface_adapter.triedRecipes.TriedRecipesController;
+import interface_adapter.triedRecipes.TriedRecipesViewModel;
 import use_case.add_to_favrecipes.FavouriteRecipesInputBoundary;
+import use_case.tried_recipes.TriedRecipesInteractor;
 
 
+import java.awt.image.BufferedImage;
 import java.io.IOException;
+import java.net.URL;
 import java.util.List;
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -41,6 +48,8 @@ public class HomeView extends JPanel {
     private JLabel homeScreenTitleLabel;
     private JLabel recipeNameLabel;
     private JLabel recipeImageLabel;
+    private JLabel recipeDescriptionLabel;
+    private JButton tryRecipeButton;
     private JButton viewRecipeButton;
     private JButton saveRecipeButton;
     private JButton skipRecipeButton;
@@ -72,14 +81,19 @@ public class HomeView extends JPanel {
         recipeImageLabel = new JLabel(); // Placeholder for recipe image
         recipeImageLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
 
+        recipeDescriptionLabel = new JLabel("Recipe Description");
+        recipeDescriptionLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
+
         // Recipe Buttons
         viewRecipeButton = new JButton("View Recipe");
+        tryRecipeButton = new JButton("Try Recipe");
         saveRecipeButton = new JButton("Save for Later");
         skipRecipeButton = new JButton("Skip");
 
         JPanel recipeButtonPanel = new JPanel();
         recipeButtonPanel.setBackground(Color.ORANGE);
         recipeButtonPanel.add(viewRecipeButton);
+        recipeButtonPanel.add(tryRecipeButton);
         recipeButtonPanel.add(saveRecipeButton);
         recipeButtonPanel.add(skipRecipeButton);
 
@@ -95,6 +109,7 @@ public class HomeView extends JPanel {
         this.add(homeScreenTitleLabel);
         this.add(recipeNameLabel);
         this.add(recipeImageLabel);
+        this.add(recipeDescriptionLabel);
         this.add(recipeButtonPanel);
         this.add(userButtonPanel);
         this.add(navBarPanel);
@@ -112,6 +127,36 @@ public class HomeView extends JPanel {
                 }
             }
         });
+
+        try {
+            // Instantiate FileUserDataAccessObject with proper exception handling
+            FileUserDataAccessObject userDao = new FileUserDataAccessObject("users.json");
+
+            // Create TriedRecipesController with the user DAO and a new TriedRecipesViewModel
+            TriedRecipesController triedRecipesController = new TriedRecipesController(
+                    new TriedRecipesInteractor(userDao, new TriedRecipesViewModel())
+            );
+
+            // Add action listener for "Try Recipe" button
+            tryRecipeButton.addActionListener(evt -> {
+                Recipe currentRecipe = viewModel.getState().getCurrentRecipe();
+                if (currentRecipe != null) {
+                    try {
+                        triedRecipesController.addRecipe(loggedInState.getUsername(), currentRecipe);
+                        JOptionPane.showMessageDialog(this, "Recipe added to Tried Recipes!");
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                        JOptionPane.showMessageDialog(this, "Failed to add recipe to Tried Recipes.");
+                    }
+                } else {
+                    JOptionPane.showMessageDialog(this, "No recipe available to try.");
+                }
+            });
+
+        } catch (IOException e) {
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(this, "Failed to initialize user data access. Please try again.");
+        }
 
         saveRecipeButton.addActionListener(
              new ActionListener() {
@@ -172,14 +217,25 @@ public class HomeView extends JPanel {
     }
 
     public void updateRecipeDisplay(Recipe recipe) {
-        if (recipe != null) {
-            recipeNameLabel.setText(recipe.getName());
-            ImageIcon recipeImage = new ImageIcon(recipe.getImage());
-            recipeImageLabel.setIcon(recipeImage);
-        } else {
-            recipeNameLabel.setText("No Recipe Found");
-            recipeImageLabel.setIcon(null);
-        }
+        SwingUtilities.invokeLater(() -> {
+            if (recipe != null) {
+                recipeNameLabel.setText(recipe.getName());
+
+                try {
+                    // Attempt to load the image from URL
+                    URL imageUrl = new URL(recipe.getImage());
+                    BufferedImage image = ImageIO.read(imageUrl);
+                    recipeImageLabel.setIcon(new ImageIcon(image));
+                } catch (Exception e) {
+                    System.out.println("Failed to load image: " + e.getMessage());
+                    // Set default placeholder if loading fails
+                    recipeImageLabel.setIcon(new ImageIcon("path/to/default_image.jpg"));
+                }
+            } else {
+                recipeNameLabel.setText("No Recipe Found");
+                recipeImageLabel.setIcon(null); // Clear icon
+            }
+        });
     }
 //    public void updateRecipeDisplay(Recipe recipe) {
 //        recipeNameLabel.setText(recipe.getName());

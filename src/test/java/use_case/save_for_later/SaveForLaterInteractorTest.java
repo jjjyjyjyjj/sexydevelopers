@@ -29,7 +29,7 @@ public class SaveForLaterInteractorTest {
         bananaChocPudding.add(banana);
 
         // Creating our input data and user repository
-        String link = new getRecipeInformation().getRecipeURL(634048, false, false, false);
+        String link = new getRecipeInformation().getRecipeURL(634048);
         Recipe toSavedRecipe = recipefactory.create("Banana Chocolate Pudding", 634048, bananaChocPudding,
                 "https://img.spoonacular.com/recipes/634048-312x231.jpg", link);
 

@@ -12,16 +12,24 @@ public class FavouriteRecipesViewTest {
         LoggedInState loggedInState = new LoggedInState();
         FavouriteRecipesViewModel viewModel = new FavouriteRecipesViewModel();
 
-        // Initialize the FavouriteRecipesView
+        // Create the CardLayout and JPanel (cardPanel)
         CardLayout cardLayout = new CardLayout();
-        JPanel cardPanel = new JPanel();
-        FavouriteRecipesView favouriteRecipesView = new FavouriteRecipesView(viewModel, cardLayout,cardPanel);
+        JPanel cardPanel = new JPanel(cardLayout);
 
-        // Set up JFrame to display the view
+        // Initialize the FavouriteRecipesView
+        FavouriteRecipesView favouriteRecipesView = new FavouriteRecipesView(viewModel, cardLayout, cardPanel);
+
+        // Add FavouriteRecipesView to the cardPanel
+        cardPanel.add(favouriteRecipesView, "FavouriteRecipesView");
+
+        // Set up JFrame to display the cardPanel
         JFrame frame = new JFrame("Favourite Recipes View Test");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setMinimumSize(new Dimension(800, 600));
-        frame.add(favouriteRecipesView);
+        frame.add(cardPanel);
         frame.setVisible(true);
+
+        // Optionally, show the FavouriteRecipesView using the CardLayout
+        cardLayout.show(cardPanel, "FavouriteRecipesView");
     }
 }
