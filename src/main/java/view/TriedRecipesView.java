@@ -19,24 +19,19 @@ public class TriedRecipesView extends JPanel {
     private JButton viewRecipeButton;
     private JButton addToFavoriteButton;
 
-    public TriedRecipesView(TriedRecipesViewModel viewModel, LoggedInState loggedInState) {
+    public TriedRecipesView(TriedRecipesViewModel viewModel, CardLayout cardLayout, JPanel cardPanel) {
         this.viewModel = viewModel;
-        this.loggedInState = loggedInState;
-        setupUI();
+        this.loggedInState = new LoggedInState();
+        setupUI(cardLayout, cardPanel);
         setupListeners();
     }
 
-    private void setupUI() {
+    private void setupUI(CardLayout cardLayout, JPanel cardPanel) {
         this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
         this.setBackground(Color.ORANGE);
 
-        NavBarPanel navBar = new NavBarPanel(loggedInState,
-                e -> loggedInState.setViewName("home"),
-                e -> loggedInState.setViewName("fridge"),
-                e -> loggedInState.setViewName("savedForLater"),
-                e -> loggedInState.setViewName("triedRecipes"),
-                e -> loggedInState.setViewName("favouriteRecipes")
-        );
+        NavBarPanel navBar = new NavBarPanel(cardLayout, cardPanel);
+
         triedRecipesLabel = new JLabel("Your Tried Recipes");
         triedRecipesLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
         triedRecipesLabel.setFont(new Font("Arial", Font.BOLD, 24));

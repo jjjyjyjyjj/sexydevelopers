@@ -1,27 +1,16 @@
 package view;
 
-import interface_adapter.LoggedInState;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 
 public class NavBarPanel extends JPanel {
 
-    private final LoggedInState loggedInState;
-
-    public NavBarPanel(LoggedInState loggedInState,ActionListener goToHome, ActionListener goToFridge,
-                       ActionListener goToSavedForLater, ActionListener goToTriedRecipes, ActionListener goToFavRecipes) {
-        this.loggedInState = loggedInState;
-        System.out.println("NavBarPanel initialized with LoggedInState: " + (this.loggedInState != null));
-
+    public NavBarPanel(CardLayout cardLayout, JPanel cardPanel) {
         this.setLayout(new BoxLayout(this, BoxLayout.X_AXIS));
         this.setBackground(Color.GRAY);
         this.setPreferredSize(new Dimension(800, 120));
         this.setMaximumSize(new Dimension(800, 210));
-
 
         JButton homeButton = createStyledButton("Home");
         JButton fridgeButton = createStyledButton("Fridge");
@@ -29,17 +18,33 @@ public class NavBarPanel extends JPanel {
         JButton triedRecipesButton = createStyledButton("Tried Recipes");
         JButton favRecipesButton = createStyledButton("Favourite Recipes");
 
-        homeButton.addActionListener(goToHome);
-        fridgeButton.addActionListener(goToFridge);
-        savedForLaterButton.addActionListener(e -> {
-            System.out.println("NavBarPanel: Saved For Later button clicked.");
-            loggedInState.setViewName("savedForLater");
+        // Add ActionListeners to directly switch views
+        homeButton.addActionListener(e -> {
+            System.out.println("NavBarPanel: Switching to Home.");
+            cardLayout.show(cardPanel, "home");
         });
 
-        triedRecipesButton.addActionListener(goToTriedRecipes);
-        favRecipesButton.addActionListener(goToFavRecipes);
+        fridgeButton.addActionListener(e -> {
+            System.out.println("NavBarPanel: Switching to Fridge.");
+            cardLayout.show(cardPanel, "fridge");
+        });
 
-        // Add buttons to the horizontal button panel
+        savedForLaterButton.addActionListener(e -> {
+            System.out.println("NavBarPanel: Switching to Saved For Later.");
+            cardLayout.show(cardPanel, "savedForLater");
+        });
+
+        triedRecipesButton.addActionListener(e -> {
+            System.out.println("NavBarPanel: Switching to Tried Recipes.");
+            cardLayout.show(cardPanel, "triedRecipes");
+        });
+
+        favRecipesButton.addActionListener(e -> {
+            System.out.println("NavBarPanel: Switching to Favourite Recipes.");
+            cardLayout.show(cardPanel, "favouriteRecipes");
+        });
+
+        // Add buttons to the navigation bar
         this.add(Box.createHorizontalGlue());
         this.add(homeButton);
         this.add(Box.createHorizontalStrut(20)); // Add spacing between buttons
@@ -63,22 +68,18 @@ public class NavBarPanel extends JPanel {
         button.setHorizontalAlignment(SwingConstants.CENTER);
         button.setCursor(new Cursor(Cursor.HAND_CURSOR));
 
-        button.addMouseListener(new MouseAdapter() {
+        button.addMouseListener(new java.awt.event.MouseAdapter() {
             @Override
-            public void mouseEntered(MouseEvent e) {
+            public void mouseEntered(java.awt.event.MouseEvent e) {
                 button.setForeground(Color.LIGHT_GRAY); // Change text color on hover
-                button.setCursor(new Cursor(Cursor.HAND_CURSOR)); // Change cursor to pointer
             }
 
             @Override
-            public void mouseExited(MouseEvent e) {
+            public void mouseExited(java.awt.event.MouseEvent e) {
                 button.setForeground(Color.WHITE); // Revert text color
-                button.setCursor(new Cursor(Cursor.DEFAULT_CURSOR)); // Revert cursor
             }
         });
-
 
         return button;
     }
 }
-
