@@ -1,7 +1,6 @@
 package entity;
 
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
-import entity.exceptions.IngredientNotFoundException;
 
 import java.util.ArrayList;
 
@@ -24,7 +23,7 @@ public class CommonFridge implements Fridge {
 
     @Override
     public Boolean hasIngredient(Ingredient ingredient) {
-        return ingredients.contains(ingredient);
+        return null;
     }
 
     @Override
