@@ -3,6 +3,7 @@ package data_access;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.type.CollectionType;
 import entity.*;
+import use_case.add_ingredient.AddIngredientDataAccessInterface;
 import use_case.add_to_favrecipes.FavouriteRecipesDataAccessInterface;
 import use_case.change_password.ChangePasswordUserDataAccessInterface;
 import use_case.login.LoginUserDataAccessInterface;
