@@ -11,7 +11,6 @@ public class MainApplication {
                 .addSignupView()
                 .addLoginView()
                 .addLoggedInView()
-                .addLoggedInStateListener()
                 .addSignupUseCase()
                 .addLoginUseCase()
                 .addViews()
