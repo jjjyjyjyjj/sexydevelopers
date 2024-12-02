@@ -1,8 +1,8 @@
 package interface_adapter.skip_recipe;
 
 import entity.Recipe;
-import usecase.skip_recipe.SkipRecipeInputBoundary;
-import usecase.skip_recipe.SkipRecipeInputData;
+import use_case.skip_recipe.SkipRecipeInputBoundary;
+import use_case.skip_recipe.SkipRecipeInputData;
 
 /**
  * Controller for the Skip Recipe Use Case.

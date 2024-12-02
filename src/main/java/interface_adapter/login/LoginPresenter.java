@@ -2,9 +2,9 @@ package interface_adapter.login;
 
 import interface_adapter.LoggedInState;
 import interface_adapter.ViewManagerModel;
-import interface_adapter.recipe_recommendation.RecipeRecViewModel;
-import usecase.login.LoginOutputBoundary;
-import usecase.login.LoginOutputData;
+import interface_adapter.recipeRecommendation.RecipeRecViewModel;
+import use_case.login.LoginOutputBoundary;
+import use_case.login.LoginOutputData;
 
 /**
  * The Presenter for the Login Use Case.
