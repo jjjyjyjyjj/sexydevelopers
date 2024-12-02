@@ -38,7 +38,7 @@ public class FavouriteRecipesInteractorTest {
                 "https://img.spoonacular.com/recipes/635964-312x231.jpg",
                 "https://www.foodista.com/recipe/2M6MVKZT/bread-omlette");
     }
-
+  
    @Test
     void successAddRecipeTest() throws IOException {
         FavouriteRecipesDataAccessInterface userRepository = new FileUserDataAccessObject(testFile.getPath());
