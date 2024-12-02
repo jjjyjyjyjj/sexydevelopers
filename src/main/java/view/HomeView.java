@@ -1,5 +1,6 @@
 package view;
 
+import entity.Ingredient;
 import entity.Recipe;
 import interface_adapter.ViewManagerModel;
 import interface_adapter.ViewModel;
@@ -13,6 +14,7 @@ import interface_adapter.saveforlater.SaveForLaterState;
 import interface_adapter.saveforlater.SaveForLaterViewModel;
 import use_case.add_to_favrecipes.FavouriteRecipesInputBoundary;
 
+import java.util.List;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -42,24 +44,18 @@ public class HomeView extends JPanel {
     private JButton logoutButton;
     private JButton changePasswordButton;
 
-    public HomeView(RecipeRecViewModel viewModel, LoggedInState loggedInState) {
+    public HomeView(RecipeRecViewModel viewModel, CardLayout cardLayout, JPanel cardPanel) {
         this.viewModel = viewModel;
-        this.loggedInState = loggedInState;
-        setupUI();
+        this.loggedInState = new LoggedInState();
+        setupUI(cardLayout, cardPanel);
         setupListeners();
     }
 
-    private void setupUI() {
+    private void setupUI(CardLayout cardLayout, JPanel cardPanel) {
         this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
         this.setBackground(Color.ORANGE);
 
-        NavBarPanel navBarPanel = new NavBarPanel(loggedInState,
-                e -> loggedInState.setViewName("home"),
-                e -> loggedInState.setViewName("fridge"),
-                e -> loggedInState.setViewName("savedForLater"),
-                e -> loggedInState.setViewName("triedRecipes"),
-                e -> loggedInState.setViewName("favouriteRecipes")
-        );
+        NavBarPanel navBarPanel = new NavBarPanel(cardLayout, cardPanel);
 
         homeScreenTitleLabel = new JLabel("PantryPal Home Screen");
         homeScreenTitleLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
@@ -166,9 +162,19 @@ public class HomeView extends JPanel {
     }
 
     public void updateRecipeDisplay(Recipe recipe) {
-        recipeNameLabel.setText(recipe.getName());
-        // Load image from recipe.getImage()
-        ImageIcon recipeImage = new ImageIcon(recipe.getImage());
-        recipeImageLabel.setIcon(recipeImage);
+//        recipeNameLabel.setText(recipe.getName());
+//        // Load image from recipe.getImage()
+//        ImageIcon recipeImage = new ImageIcon(recipe.getImage());
+//        recipeImageLabel.setIcon(recipeImage);
+//        List<Ingredient> fridgeContents = loggedInState.getFridge(); // Get the fridge contents
+//        List<Recipe> recipes = recipeRecViewModel.fetchRecipesByIngredients(fridgeContents);
+//        if (!recipes.isEmpty()) {
+//            Recipe currentRecipe = recipes.get(0);  // Assuming first recipe for simplicity
+//            recipeNameLabel.setText(currentRecipe.getName());
+//            ImageIcon recipeImage = new ImageIcon(currentRecipe.getImage());
+//            recipeImageLabel.setIcon(recipeImage);
+//        } else {
+//            recipeNameLabel.setText("No Recipe Found");
+//            recipeImageLabel.setIcon(null);
     }
 }

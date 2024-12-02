@@ -6,6 +6,7 @@ import entity.UserFactory;
 import interface_adapter.LoggedInState;
 import interface_adapter.LoggedInViewModel;
 import interface_adapter.favourite_recipe.FavouriteRecipesViewModel;
+import interface_adapter.fridge.FridgeViewModel;
 import interface_adapter.login.LoginController;
 import interface_adapter.login.LoginPresenter;
 import interface_adapter.login.LoginViewModel;
@@ -53,9 +54,8 @@ public class AppBuilder {
     private HomeView loggedInViewHome;
     private TriedRecipesView loggedInViewTriedRecipes;
     private SavedForLaterView loggedInViewSavedForLaters;
-    private FavouriteRecipesView loggedInViewFavRecipes;
-
     private FridgeView loggedInViewFridge;
+    private FavouriteRecipesView loggedInViewFavouriteRecipes;
 
 
     public AppBuilder() {
@@ -87,32 +87,39 @@ public class AppBuilder {
     public AppBuilder addHomeView() {
         LoggedInState loggedInState = new LoggedInState();
         RecipeRecViewModel recipeRecViewModel = new RecipeRecViewModel();
-        loggedInViewHome = new HomeView(recipeRecViewModel, loggedInState);
+        loggedInViewHome = new HomeView(recipeRecViewModel, cardLayout, cardPanel);
         cardPanel.add(loggedInViewHome, loggedInViewHome.getViewName());
         System.out.println("AppBuilder: Registered 'home' view in CardLayout.");
         return this;
     }
 
-    public AppBuilder addTriedRecipeView() {
+    public AppBuilder addFridgeView() {
         LoggedInState loggedInState = new LoggedInState();
+        FridgeViewModel fridgeViewModel = new FridgeViewModel();
+        loggedInViewFridge = new FridgeView(fridgeViewModel, cardLayout, cardPanel);
+        cardPanel.add(loggedInViewFridge, loggedInViewFridge.getViewName());
+        return this;
+    }
+
+    public AppBuilder addFavouritedRecipesView() {
+        FavouriteRecipesViewModel favouriteRecipesViewModel = new FavouriteRecipesViewModel();
+        loggedInViewFavouriteRecipes = new FavouriteRecipesView(favouriteRecipesViewModel, cardLayout, cardPanel);
+        cardPanel.add(loggedInViewFavouriteRecipes, loggedInViewFavouriteRecipes.getViewName());
+        return this;
+    }
+
+    public AppBuilder addTriedRecipeView() {
         TriedRecipesViewModel triedRecipesViewModel = new TriedRecipesViewModel();
-        loggedInViewTriedRecipes = new TriedRecipesView(triedRecipesViewModel, loggedInState);
+        loggedInViewTriedRecipes = new TriedRecipesView(triedRecipesViewModel, cardLayout, cardPanel);
         cardPanel.add(loggedInViewTriedRecipes, loggedInViewTriedRecipes.getViewName());
         return this;
     }
 
     public AppBuilder addSavedForLaterView() {
-        loggedInViewSavedForLaters = new SavedForLaterView(saveForLaterViewModel, loggedInState);
+        SaveForLaterViewModel saveForLaterViewModel = new SaveForLaterViewModel();
+        loggedInViewSavedForLaters = new SavedForLaterView(saveForLaterViewModel, cardLayout, cardPanel);
         cardPanel.add(loggedInViewSavedForLaters, "savedForLater");
         System.out.println("AppBuilder: Registered 'savedForLater' view in CardLayout.");
-        return this;
-    }
-
-    public AppBuilder addFavRecipeView() {
-        LoggedInState loggedInState = new LoggedInState();
-        FavouriteRecipesViewModel favRecipesViewModel = new FavouriteRecipesViewModel();
-        loggedInViewFavRecipes = new FavouriteRecipesView(favRecipesViewModel, loggedInState);
-        cardPanel.add(loggedInViewFavRecipes, loggedInViewFavRecipes.getViewName());
         return this;
     }
 
@@ -154,17 +161,8 @@ public class AppBuilder {
         return this;
     }
 
-
-//    public AppBuilder addFridgeView() {
-//        LoggedInState loggedInState = new LoggedInState();
-//        FridgeViewModel fridgeViewModel = new FridgeViewModel();
-//        loggedInViewFridge = new FridgeView(loggedInState, viewManagerModel);
-//        cardPanel.add(loggedInViewFridge, loggedInViewFridge.getViewName());
-//        return this;
-//    }
-
     public AppBuilder addLoggedInView() {
-        return addHomeView().addTriedRecipeView().addSavedForLaterView().addFavRecipeView();
+        return addHomeView().addTriedRecipeView().addSavedForLaterView().addFridgeView().addFavouritedRecipesView();
     }
 
 
