@@ -1,8 +1,8 @@
 package interface_adapter.skip_recipe;
 
 import interface_adapter.LoggedInViewModel;
-import usecase.skip_recipe.SkipRecipeOutputBoundary;
-import usecase.skip_recipe.SkipRecipeOutputData;
+import use_case.skip_recipe.SkipRecipeOutputBoundary;
+import use_case.skip_recipe.SkipRecipeOutputData;
 
 /**
  * Presenter for the Skip Recipe Use Case.

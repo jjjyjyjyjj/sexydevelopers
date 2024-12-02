@@ -1,8 +1,8 @@
 package interface_adapter.remove_ingredient;
 
 import entity.Fridge;
-import usecase.remove_ingredient.RemoveIngredientInputBoundary;
-import usecase.remove_ingredient.RemoveIngredientInputData;
+import use_case.remove_ingredient.RemoveIngredientInputBoundary;
+import use_case.remove_ingredient.RemoveIngredientInputData;
 
 /**
  * The controller for the Add Ingredient Use Case.
