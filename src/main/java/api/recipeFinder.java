@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import entity.*;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
@@ -11,15 +13,15 @@ import okhttp3.Response;
 
 public class recipeFinder implements recipeFinderInterface {
     private static final String API_URL = "https://api.spoonacular.com/recipes/findByIngredients";
-    private static final String APP_KEY = "00ab640014494f1ab81008310af8ec28";
+    private static final String APP_KEY = "5ec040755f3843c0831136f62dffb896";
     private static final int SUCCESS_CODE = 200;
 
     public static String getAPIKey() {
-        return System.getenv(APP_KEY);
+        return APP_KEY;
     }
 
     @Override
-    public List<Recipe> getRecipeByIngredient(ArrayList<Ingredient> ingredients, int number, int ranking, boolean ignorePantry) throws IOException {
+    public List<Recipe> getRecipeByIngredient(ArrayList<Ingredient> ingredients) throws IOException {
         // Extract the ingredient names from the CommonIngredient objects
         List<String> ingredientNames = new ArrayList<>();
         for (Ingredient ingredient : ingredients) {
@@ -28,9 +30,10 @@ public class recipeFinder implements recipeFinderInterface {
 
         String ingredientsParam = String.join(",", ingredientNames);
         System.out.println(ingredientsParam);
+        System.out.println(getAPIKey());
 
-        String url = String.format("%s/findByIngredients?ingredients=%s&number=%d&ranking=%d&ignorePantry=%b&apiKey=%s",
-                API_URL, ingredientsParam, number, ranking, ignorePantry, getAPIKey());
+        String url = String.format("%s?ingredients=%s&number=5&ranking=2&ignorePantry=true&apiKey=%s",
+                API_URL, ingredientsParam, getAPIKey());
 
         System.out.println("Request URL: " + url);  // Log the URL
 
@@ -42,49 +45,63 @@ public class recipeFinder implements recipeFinderInterface {
         try (Response response = client.newCall(request).execute()) {
             if (response.code() != SUCCESS_CODE) {
                 String errorBody = response.body().string();  // Log the error response
+                System.out.println("Response Code: " + response.code());
                 System.out.println("Failed to fetch recipes: " + errorBody);
                 throw new RuntimeException("Failed to fetch recipes: " + response.message());
             }
 
             String responseBody = response.body().string();
+            System.out.println("Response Body: " + parseRecipes(responseBody));
+            System.out.println(parseRecipes(responseBody).get(0).getImage());
             return parseRecipes(responseBody);
         }
     }
 
     private List<Recipe> parseRecipes(String responseBody) throws IOException {
+        // Initialize the list to hold Recipe objects
         List<Recipe> recipesList = new ArrayList<>();
-        responseBody = responseBody.substring(1, responseBody.length() - 1);
-        String[] recipeStrings = responseBody.split("},\\{");
 
-        for (String recipeString : recipeStrings) {
-            if (!recipeString.startsWith("{")) recipeString = "{" + recipeString;
-            if (!recipeString.endsWith("}")) recipeString += "}";
+        // Use ObjectMapper to parse JSON array response
+        ObjectMapper objectMapper = new ObjectMapper();
+        JsonNode rootArray = objectMapper.readTree(responseBody); // Parse response as an array
 
-            int id = Integer.parseInt(extractValue(recipeString, "\"id\":", ",").trim());
-            String title = extractValue(recipeString, "\"title\":\"", "\",");
-            String image = extractValue(recipeString, "\"image\":\"", "\",");
+        for (JsonNode recipeNode : rootArray) {
+            try {
+                // Extract fields directly from JSON
+                int id = recipeNode.get("id").asInt();  // Recipe ID
+                String title = recipeNode.get("title").asText();  // Recipe title
+                String image = recipeNode.get("image").asText();  // Recipe image link
 
-            // Extract and create CommonIngredient objects from `usedIngredients`
-            List<Ingredient> ingredientsList = new ArrayList<>();
-            String usedIngredientsString = extractValue(recipeString, "\"usedIngredients\":[", "]");
+                // Parse used ingredients
+                List<Ingredient> ingredientsList = new ArrayList<>();
+                JsonNode usedIngredientsNode = recipeNode.get("usedIngredients");
+                if (usedIngredientsNode != null && usedIngredientsNode.isArray()) {
+                    for (JsonNode ingredientNode : usedIngredientsNode) {
+                        String ingredientName = ingredientNode.get("name").asText();
+                        int ingredientId = ingredientNode.get("id").asInt();
+                        String unit = ingredientNode.get("unit").asText();
 
-            if (!usedIngredientsString.isEmpty()) {
-                String[] usedIngredients = usedIngredientsString.split("},\\{");
-                for (String ingredientString : usedIngredients) {
-                    String ingredientName = extractValue(ingredientString, "\"name\":\"", "\",");
-                    int ingredientId = Integer.parseInt(extractValue(ingredientString, "\"id\":", ",").trim());
-                    String unit = extractValue(ingredientString, "\"unit\":\"", "\",");
-                    String aisle = extractValue(ingredientString, "\"aisle\":\"", "\",");
-                    IngredientFactory ingredientFactory = new CommonIngredientFactory();
-                    ingredientsList.add(IngredientFactory.create(ingredientName, unit, 0));
+                        // Create Ingredient object
+                        IngredientFactory ingredientFactory = new CommonIngredientFactory();
+                        ingredientsList.add(IngredientFactory.create(ingredientName, unit, 0));
+                    }
                 }
-            }
 
-            // Create CommonRecipe object and add it to the list
-            String link = new getRecipeInformation().getRecipeURL(id, false, false, false);
-            RecipeFactory recipeFactory = new CommonRecipeFactory();
-            Recipe recipe = recipeFactory.create(title, id, ingredientsList, image, link);
-            recipesList.add(recipe);
+                // Fetch recipe URL using `getRecipeInformation`
+                String link = new getRecipeInformation().getRecipeURL(id);
+
+                // Create Recipe object using factory
+                RecipeFactory recipeFactory = new CommonRecipeFactory();
+                Recipe recipe = recipeFactory.create(title, id, ingredientsList, image, link);
+
+                // Add to recipes list
+                recipesList.add(recipe);
+
+            } catch (Exception e) {
+                // Log error and skip to the next recipe
+                System.out.println("Error parsing recipe: " + recipeNode);
+                e.printStackTrace();
+            }
         }
 
         return recipesList;

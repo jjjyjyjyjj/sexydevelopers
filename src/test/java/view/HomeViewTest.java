@@ -58,41 +58,49 @@ import java.io.IOException;
 
 public class HomeViewTest {
     public static void main(String[] args) {
-        // Create a dummy LoggedInState and RecipeRecViewModel
+        // Initialize dependencies
         LoggedInState loggedInState = new LoggedInState();
         RecipeRecViewModel viewModel = new RecipeRecViewModel();
 
         // Create a PantryPalUser object
-        PantryPalUser user = new PantryPalUser("testUser", "pass");
+        PantryPalUser user = new PantryPalUser("testUser", "password123");
 
-        // Add ingredients to the fridge
+        // Add ingredients to the user's fridge
         CommonFridge fridge = user.getFridge();
-        fridge.addIngredient(new CommonIngredient("milk", "", 1 ));
+        fridge.addIngredient(new CommonIngredient("milk", "", 1));
         fridge.addIngredient(new CommonIngredient("bread crumbs", "", 1));
         fridge.addIngredient(new CommonIngredient("eggs", "", 1));
 
-        // Initialize the HomeView with the dummy data
-        HomeView homeView = new HomeView(viewModel, loggedInState);
+        // Create the CardLayout and JPanel (cardPanel)
+        CardLayout cardLayout = new CardLayout();
+        JPanel cardPanel = new JPanel(cardLayout);
 
-        // Set up JFrame to display the view
+        // Initialize HomeView
+        HomeView homeView = new HomeView(viewModel, cardLayout, cardPanel);
+
+        // Add HomeView to the cardPanel
+        cardPanel.add(homeView, "HomeView");
+
+        // Set up JFrame to display the cardPanel
         JFrame frame = new JFrame("Home View Test");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.add(homeView);
+        frame.add(cardPanel);
         frame.setMinimumSize(new Dimension(800, 600));
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
 
-        // Fetch and display recipe
+        // Fetch and display recipes
         try {
             List<Recipe> recipes = RecipeRecController.getRecipes(user);
-            if (!recipes.isEmpty()) {
-                Recipe recipe = recipes.get(0);  // Get the first recipe
-                homeView.updateRecipeDisplay(recipe);  // Update the HomeView with this recipe
+            if (recipes != null && !recipes.isEmpty()) {
+                Recipe recipe = recipes.get(0); // Display the first recipe
+                homeView.updateRecipeDisplay(recipe);
             } else {
-                System.out.println("No recipe found.");
+                System.out.println("No recipes found.");
             }
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 }
+

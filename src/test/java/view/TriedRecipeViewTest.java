@@ -14,14 +14,24 @@ public class TriedRecipeViewTest {
         LoggedInState loggedInState = new LoggedInState();
         TriedRecipesViewModel viewModel = new TriedRecipesViewModel();
 
-        // Initialize the TriedRecipesView
-        TriedRecipesView triedRecipesView = new TriedRecipesView(viewModel, loggedInState);
+        // Create a CardLayout and a JPanel (cardPanel) for navigation
+        CardLayout cardLayout = new CardLayout();
+        JPanel cardPanel = new JPanel(cardLayout);
 
-        // Set up JFrame to display the view
-        JFrame frame = new JFrame("Tried Recipe View Test");
+        // Initialize the TriedRecipesView
+        TriedRecipesView triedRecipesView = new TriedRecipesView(viewModel, cardLayout, cardPanel);
+
+        // Add TriedRecipesView to the cardPanel
+        cardPanel.add(triedRecipesView, "TriedRecipesView");
+
+        // Set up JFrame to display the cardPanel
+        JFrame frame = new JFrame("Tried Recipes View Test");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setMinimumSize(new Dimension(800, 600));
-        frame.add(triedRecipesView);
+        frame.add(cardPanel);
         frame.setVisible(true);
+
+        // Show the TriedRecipesView using CardLayout
+        cardLayout.show(cardPanel, "TriedRecipesView");
     }
 }

@@ -16,8 +16,11 @@ import interface_adapter.saveforlater.SaveForLaterViewModel;
 import use_case.add_to_favrecipes.FavouriteRecipesInputBoundary;
 
 
+import java.awt.image.BufferedImage;
 import java.io.IOException;
+import java.net.URL;
 import java.util.List;
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -172,14 +175,25 @@ public class HomeView extends JPanel {
     }
 
     public void updateRecipeDisplay(Recipe recipe) {
-        if (recipe != null) {
-            recipeNameLabel.setText(recipe.getName());
-            ImageIcon recipeImage = new ImageIcon(recipe.getImage());
-            recipeImageLabel.setIcon(recipeImage);
-        } else {
-            recipeNameLabel.setText("No Recipe Found");
-            recipeImageLabel.setIcon(null);
-        }
+        SwingUtilities.invokeLater(() -> {
+            if (recipe != null) {
+                recipeNameLabel.setText(recipe.getName());
+
+                try {
+                    // Attempt to load the image from URL
+                    URL imageUrl = new URL(recipe.getImage());
+                    BufferedImage image = ImageIO.read(imageUrl);
+                    recipeImageLabel.setIcon(new ImageIcon(image));
+                } catch (Exception e) {
+                    System.out.println("Failed to load image: " + e.getMessage());
+                    // Set default placeholder if loading fails
+                    recipeImageLabel.setIcon(new ImageIcon("path/to/default_image.jpg"));
+                }
+            } else {
+                recipeNameLabel.setText("No Recipe Found");
+                recipeImageLabel.setIcon(null); // Clear icon
+            }
+        });
     }
 //    public void updateRecipeDisplay(Recipe recipe) {
 //        recipeNameLabel.setText(recipe.getName());
