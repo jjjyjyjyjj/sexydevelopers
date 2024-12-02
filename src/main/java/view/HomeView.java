@@ -8,12 +8,14 @@ import interface_adapter.change_password.ChangePasswordController;
 import interface_adapter.LoggedInState;
 import interface_adapter.logout.LogoutController;
 import interface_adapter.recipeRecommendation.RecipeRecViewModel;
+import interface_adapter.recipeRecommendation.RecipeRecController;
 import entity.CommonRecipe;
 import interface_adapter.saveforlater.SaveForLaterController;
 import interface_adapter.saveforlater.SaveForLaterState;
 import interface_adapter.saveforlater.SaveForLaterViewModel;
 import use_case.add_to_favrecipes.FavouriteRecipesInputBoundary;
 
+import java.io.IOException;
 import java.util.List;
 import javax.swing.*;
 import java.awt.*;
@@ -167,20 +169,39 @@ public class HomeView extends JPanel {
         return viewName;
     }
 
+    public void fetchAndDisplayRecipe() throws IOException {
+        // Fetch the recommended recipe based on the current fridge
+        RecipeRecController.getRecipes(loggedInState.getUser());
+        // Update the UI with the fetched recipe
+        updateRecipeDisplay(viewModel.getState().getCurrentRecipe());
+    }
+
     public void updateRecipeDisplay(Recipe recipe) {
+        if (recipe != null) {
+            recipeNameLabel.setText(recipe.getName());
+            ImageIcon recipeImage = new ImageIcon(recipe.getImage());
+            recipeImageLabel.setIcon(recipeImage);
+        } else {
+            recipeNameLabel.setText("No Recipe Found");
+            recipeImageLabel.setIcon(null);
+        }
+    }
+//    public void updateRecipeDisplay(Recipe recipe) {
 //        recipeNameLabel.setText(recipe.getName());
 //        // Load image from recipe.getImage()
 //        ImageIcon recipeImage = new ImageIcon(recipe.getImage());
 //        recipeImageLabel.setIcon(recipeImage);
-//        List<Ingredient> fridgeContents = loggedInState.getFridge(); // Get the fridge contents
-//        List<Recipe> recipes = recipeRecViewModel.fetchRecipesByIngredients(fridgeContents);
-//        if (!recipes.isEmpty()) {
-//            Recipe currentRecipe = recipes.get(0);  // Assuming first recipe for simplicity
-//            recipeNameLabel.setText(currentRecipe.getName());
-//            ImageIcon recipeImage = new ImageIcon(currentRecipe.getImage());
-//            recipeImageLabel.setIcon(recipeImage);
-//        } else {
-//            recipeNameLabel.setText("No Recipe Found");
-//            recipeImageLabel.setIcon(null);
+////        List<Ingredient> fridgeContents = loggedInState.getFridge(); // Get the fridge contents
+////        List<Recipe> recipes = recipeRecViewModel.fetchRecipesByIngredients(fridgeContents);
+////        if (!recipes.isEmpty()) {
+////            Recipe currentRecipe = recipes.get(0);  // Assuming first recipe for simplicity
+////            recipeNameLabel.setText(currentRecipe.getName());
+////            ImageIcon recipeImage = new ImageIcon(currentRecipe.getImage());
+////            recipeImageLabel.setIcon(recipeImage);
+////        } else {
+////            recipeNameLabel.setText("No Recipe Found");
+////            recipeImageLabel.setIcon(null);
     }
-}
+
+
+

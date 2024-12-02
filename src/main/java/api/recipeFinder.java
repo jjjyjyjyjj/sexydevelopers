@@ -11,8 +11,6 @@ import okhttp3.Response;
 
 public class recipeFinder implements recipeFinderInterface {
     private static final String API_URL = "https://api.spoonacular.com/recipes/findByIngredients";
-    private static final String CONTENT_TYPE = "Content-Type";
-    private static final String APPLICATION_JSON = "application/json";
     private static final String APP_KEY = "00ab640014494f1ab81008310af8ec28";
     private static final int SUCCESS_CODE = 200;
 
@@ -29,18 +27,22 @@ public class recipeFinder implements recipeFinderInterface {
         }
 
         String ingredientsParam = String.join(",", ingredientNames);
+        System.out.println(ingredientsParam);
 
         String url = String.format("%s/findByIngredients?ingredients=%s&number=%d&ranking=%d&ignorePantry=%b&apiKey=%s",
                 API_URL, ingredientsParam, number, ranking, ignorePantry, getAPIKey());
 
+        System.out.println("Request URL: " + url);  // Log the URL
+
         OkHttpClient client = new OkHttpClient();
         Request request = new Request.Builder()
                 .url(url)
-                .addHeader(CONTENT_TYPE, APPLICATION_JSON)
                 .build();
 
         try (Response response = client.newCall(request).execute()) {
             if (response.code() != SUCCESS_CODE) {
+                String errorBody = response.body().string();  // Log the error response
+                System.out.println("Failed to fetch recipes: " + errorBody);
                 throw new RuntimeException("Failed to fetch recipes: " + response.message());
             }
 

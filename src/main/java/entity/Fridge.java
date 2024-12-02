@@ -18,6 +18,7 @@ public interface Fridge {
      */
     ArrayList<Ingredient> getIngredients();
 
+
     /**
      * Returns True if this ingredient is in the fridge, False otherwise.
      * @param ingredient the ingredient being checked for.
@@ -26,6 +27,7 @@ public interface Fridge {
     Boolean hasIngredient(Ingredient ingredient);
 
     /**
+     *
      * Adds this ingredient to the fridge.
      * @param ingredient the ingredient being added.
      */

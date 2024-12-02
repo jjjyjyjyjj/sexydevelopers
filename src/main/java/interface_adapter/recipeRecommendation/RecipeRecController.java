@@ -17,13 +17,13 @@ public class RecipeRecController {
      * @return A list of recipes recommended based on the fridge's ingredients.
      * @throws IOException If there is an issue with API communication.
      */
-    public List<Recipe> getRecipes(User user) throws IOException {
+    public static List<Recipe> getRecipes(PantryPalUser user) throws IOException {
 
-        CommonFridge fridge = (CommonFridge) user.getFridge();
+        CommonFridge fridge = user.getFridge();
         ArrayList<Ingredient> ingredients = fridge.getIngredients();
 
         recipeFinder finder = new recipeFinder();
 
-        return finder.getRecipeByIngredient(ingredients, 10, 2, true);
+        return finder.getRecipeByIngredient(ingredients, 1, 1, true);
     }
 }

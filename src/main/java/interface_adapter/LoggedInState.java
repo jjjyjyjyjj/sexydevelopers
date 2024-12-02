@@ -12,7 +12,7 @@ import java.util.List;
  * The State information representing the logged-in user.
  */
 public class LoggedInState {
-    private User user;
+    private PantryPalUser user;
     private String username = "";
     private String password = "";
     private String passwordError;
@@ -44,7 +44,8 @@ public class LoggedInState {
 
     // Because of the previous copy constructor, the default constructor must be explicit.
     public LoggedInState() {
-
+        this.user = new PantryPalUser();
+        this.fridge = new CommonFridge();
     }
 
     public String getUsername() {
@@ -67,15 +68,19 @@ public class LoggedInState {
         return password;
     }
 
-    public Fridge getFridge() { return fridge;}
+    public Fridge getFridge() {
+        return fridge;
+    }
 
-    public void setFridge(Fridge fridge) { this.fridge = fridge;}
+    public void setFridge(Fridge fridge) {
+        this.fridge = fridge;
+    }
 
     public Recipe getCurrentRecipe() {
         return currentRecipe;
     }
 
-    public void  setSavedRecipes(SavedRecipes savedRecipe) {
+    public void setSavedRecipes(SavedRecipes savedRecipe) {
         savedForLaterRecipes.add(savedRecipe);
     }
 
@@ -83,11 +88,17 @@ public class LoggedInState {
         this.savedRecipesError = savedRecipesError;
     }
 
-    public SavedRecipes getFavRecipes() { return favRecipes;}
+    public SavedRecipes getFavRecipes() {
+        return favRecipes;
+    }
 
-    public void setFavRecipes(SavedRecipes favRecipes) {this.favRecipes = favRecipes;}
+    public void setFavRecipes(SavedRecipes favRecipes) {
+        this.favRecipes = favRecipes;
+    }
 
-    public SavedRecipes getTriedRecipes() { return triedRecipes;}
+    public SavedRecipes getTriedRecipes() {
+        return triedRecipes;
+    }
 
     public void setTriedRecipes(SavedRecipes triedRecipes) {
         this.triedRecipes = triedRecipes;
@@ -131,7 +142,7 @@ public class LoggedInState {
         support.removePropertyChangeListener(listener);
     }
 
-    public User getUser() {
+    public PantryPalUser getUser() {
         return user;
     }
 
@@ -150,4 +161,7 @@ public class LoggedInState {
         this.savedRecipesError = errorMessage;
     }
 
+    public List<Ingredient> getFridgeContents() {
+        return this.fridge.getIngredients();
+    }
 }
