@@ -16,7 +16,10 @@ public class HomeViewTest {
         RecipeRecViewModel viewModel = new RecipeRecViewModel();
 
         // Initialize the SavedForLaterView
-        HomeView homeView = new HomeView(viewModel, loggedInState);
+        CardLayout cardLayout = new CardLayout();
+        JPanel cardPanel = new JPanel();
+
+        HomeView homeView = new HomeView(viewModel, cardLayout, cardPanel);
 
         // Set up JFrame to display the view
         JFrame frame = new JFrame("Home View Test");
