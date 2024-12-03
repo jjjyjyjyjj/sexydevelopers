@@ -3,7 +3,6 @@ package view;
 import interfaceadapter.LoggedInState;
 import interfaceadapter.ViewManagerModel;
 import interfaceadapter.add_ingredient.AddIngredientController;
-import interfaceadapter.add_ingredient.AddIngredientState;
 import interfaceadapter.add_ingredient.AddIngredientViewModel;
 
 import javax.swing.*;
@@ -35,7 +34,7 @@ public class AddIngredientView extends JPanel implements ActionListener, Propert
         this.viewModel = viewModel;
         this.loggedInState = loggedInState;
 
-        AddIngredientState state = viewModel.getState();
+        LoggedInState state = viewModel.getState();
         viewModel.setState(state);
         this.viewModel.addPropertyChangeListener(this);
         this.setBackground(Color.orange);
@@ -83,7 +82,7 @@ public class AddIngredientView extends JPanel implements ActionListener, Propert
                 new ActionListener() {
                     public void actionPerformed(ActionEvent evt) {
                         if (evt.getSource().equals(doneButton)) {
-                            final AddIngredientState currentState = viewModel.getState();
+                            final LoggedInState currentState = viewModel.getState();
 
                             addIngredientController.execute(
                                     currentState.getName(),
@@ -108,7 +107,7 @@ public class AddIngredientView extends JPanel implements ActionListener, Propert
         nameField.getDocument().addDocumentListener(new DocumentListener() {
 
             private void documentListenerHelper() {
-                final AddIngredientState currentState = viewModel.getState();
+                final LoggedInState currentState = viewModel.getState();
                 currentState.setName(nameField.getText());
                 viewModel.setState(currentState);
             }
@@ -133,7 +132,7 @@ public class AddIngredientView extends JPanel implements ActionListener, Propert
         unitField.getDocument().addDocumentListener(new DocumentListener() {
 
             private void documentListenerHelper() {
-                final AddIngredientState currentState = viewModel.getState();
+                final LoggedInState currentState = viewModel.getState();
                 currentState.setUnit(unitField.getText());
                 viewModel.setState(currentState);
             }
@@ -157,7 +156,7 @@ public class AddIngredientView extends JPanel implements ActionListener, Propert
         quantityField.getDocument().addDocumentListener(new DocumentListener() {
 
             private void documentListenerHelper() {
-                final AddIngredientState currentState = viewModel.getState();
+                final LoggedInState currentState = viewModel.getState();
                 currentState.setQuantity(Integer.parseInt(quantityField.getText()));
                 viewModel.setState(currentState);
             }
