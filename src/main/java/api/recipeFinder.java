@@ -83,7 +83,7 @@ public class recipeFinder implements recipeFinderInterface {
 
                         // Create Ingredient object
                         IngredientFactory ingredientFactory = new CommonIngredientFactory();
-                        ingredientsList.add(IngredientFactory.create(ingredientName, unit, 0));
+                        ingredientsList.add(ingredientFactory.create(ingredientName, unit, 0));
                     }
                 }
 

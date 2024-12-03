@@ -1,17 +1,12 @@
 package use_case.recipe_recommender;
 
+import api.recipeFinderInterface;
+import entity.*;
+import interfaceadapter.recipeRecommendation.RecipeRecState;
+
 import java.util.ArrayList;
 import java.util.List;
 
-import api.recipeFinderInterface;
-import entity.Ingredient;
-import entity.Recipe;
-import entity.User;
-import interface_adapter.recipeRecommendation.RecipeRecState;
-
-/**
- * The Interactor for Recipe Recommender Interactor.
- */
 public class RecipeRecInteractor implements RecipeRecInputBoundary {
     private final RecipeRecUserDataAccessInterface userDataAccess;
     private final RecipeRecOutputBoundary outputBoundary;
@@ -36,8 +31,9 @@ public class RecipeRecInteractor implements RecipeRecInputBoundary {
             ArrayList<Ingredient> ingredients = inputData.getIngredients();
 
             // Fetch recommended recipes using the recipe API
-            List<Recipe> recipes = recipeFinder.getRecipeByIngrediente(ingredients)
-//                    1, Number of recipes to fetch
+
+            List<Recipe> recipes = recipeFinder.getRecipeByIngredient((ingredients)
+//                    1, // Number of recipes to fetch
 //                    1,  // Maximize used ingredients
 //                    true // Ignore pantry items
             );
@@ -53,8 +49,8 @@ public class RecipeRecInteractor implements RecipeRecInputBoundary {
                 // Pass the updated state to the presenter
                 RecipeRecOutputData nextRecipe = new RecipeRecOutputData(recipe,false);
                 outputBoundary.prepareSuccessView(nextRecipe);
-            }
-            else {
+
+            } else {
                 // Handle case where no recipes are found
                 state.setErrorMessage("No recipes found for your ingredients.");
                 outputBoundary.prepareFailView(state.getErrorMessage());

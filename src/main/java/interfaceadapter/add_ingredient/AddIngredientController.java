@@ -1,6 +1,6 @@
 package interfaceadapter.add_ingredient;
 
-import entity.Fridge;
+import entity.User;
 import use_case.add_ingredient.AddIngredientInputBoundary;
 import use_case.add_ingredient.AddIngredientInputData;
 
@@ -20,11 +20,11 @@ public class AddIngredientController {
      * @param name the name of the ingredient
      * @param unit the unit of the ingredient
      * @param quantity the quantity of the ingredient
-     * @param fridge being added to
+     * @param user being added to
      */
-    public void execute(String name, String unit, double quantity, Fridge fridge) {
+    public void execute(String name, String unit, double quantity, User user) {
 
-        final AddIngredientInputData addIngredientInputData = new AddIngredientInputData(name, unit, quantity, fridge);
+        final AddIngredientInputData addIngredientInputData = new AddIngredientInputData(name, unit, quantity, user);
 
         addIngredientUseCaseInteractor.execute(addIngredientInputData);
     }

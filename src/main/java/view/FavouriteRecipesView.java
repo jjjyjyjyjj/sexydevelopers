@@ -1,8 +1,8 @@
 package view;
 
-import interface_adapter.LoggedInState;
-import interface_adapter.ViewManagerModel;
-import interface_adapter.favourite_recipe.FavouriteRecipesViewModel;
+import interfaceadapter.LoggedInState;
+import interfaceadapter.ViewManagerModel;
+import interfaceadapter.favourite_recipe.FavouriteRecipesViewModel;
 
 import javax.swing.*;
 import java.awt.*;

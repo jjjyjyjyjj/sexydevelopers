@@ -31,5 +31,4 @@ public interface User {
 
     void setFridge(Fridge fridge);
 
-    void setFridge(CommonFridge fridge);
 }

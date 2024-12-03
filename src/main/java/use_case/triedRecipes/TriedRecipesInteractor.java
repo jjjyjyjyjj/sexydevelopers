@@ -3,7 +3,8 @@ package use_case.triedRecipes;
 import data_access.FileUserDataAccessObject;
 import entity.Recipe;
 import entity.User;
-import interface_adapter.triedRecipes.TriedRecipesViewModel;
+
+import interfaceadapter.triedRecipes.TriedRecipesViewModel;
 
 import java.util.List;
 

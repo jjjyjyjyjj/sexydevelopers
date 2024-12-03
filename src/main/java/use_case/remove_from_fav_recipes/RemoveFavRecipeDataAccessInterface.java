@@ -4,7 +4,7 @@ import entity.Recipe;
 import entity.User;
 
 /**
- * DAO for the Remove a Recipe from Favourite Recipes List Use Case.
+ * The interface of the DAO for the Remove a Recipe from Favourite Recipes List Use Case.
  */
 public interface RemoveFavRecipeDataAccessInterface {
     /**

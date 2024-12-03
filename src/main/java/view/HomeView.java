@@ -1,29 +1,23 @@
 package view;
 
 import data_access.FileUserDataAccessObject;
-import entity.Ingredient;
 import entity.Recipe;
-import interface_adapter.ViewManagerModel;
-import interface_adapter.ViewModel;
-import interface_adapter.change_password.ChangePasswordController;
-import interface_adapter.LoggedInState;
-import interface_adapter.logout.LogoutController;
-import interface_adapter.recipeRecommendation.RecipeRecViewModel;
-import interface_adapter.recipeRecommendation.RecipeRecController;
-import entity.CommonRecipe;
-import interface_adapter.saveforlater.SaveForLaterController;
-import interface_adapter.saveforlater.SaveForLaterState;
-import interface_adapter.saveforlater.SaveForLaterViewModel;
-import interface_adapter.triedRecipes.TriedRecipesController;
-import interface_adapter.triedRecipes.TriedRecipesViewModel;
-import use_case.add_to_favrecipes.FavouriteRecipesInputBoundary;
+import interfaceadapter.ViewManagerModel;
+import interfaceadapter.change_password.ChangePasswordController;
+import interfaceadapter.LoggedInState;
+import interfaceadapter.logout.LogoutController;
+import interfaceadapter.recipeRecommendation.RecipeRecViewModel;
+import interfaceadapter.recipeRecommendation.RecipeRecController;
+import interfaceadapter.saveforlater.SaveForLaterController;
+import interfaceadapter.saveforlater.SaveForLaterViewModel;
+import interfaceadapter.triedRecipes.TriedRecipesController;
+import interfaceadapter.triedRecipes.TriedRecipesViewModel;
 import use_case.tried_recipes.TriedRecipesInteractor;
 
 
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.net.URL;
-import java.util.List;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;

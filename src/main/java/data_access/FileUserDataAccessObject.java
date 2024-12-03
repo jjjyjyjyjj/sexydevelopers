@@ -4,12 +4,12 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.type.CollectionType;
 import entity.*;
 import use_case.add_ingredient.AddIngredientDataAccessInterface;
-import use_case.add_to_favrecipes.FavouriteRecipesDataAccessInterface;
+import use_case.add_to_fav_recipes.FavouriteRecipesDataAccessInterface;
 import use_case.change_password.ChangePasswordUserDataAccessInterface;
 import use_case.login.LoginUserDataAccessInterface;
 import use_case.logout.LogoutUserDataAccessInterface;
 import use_case.recipe_recommender.RecipeRecUserDataAccessInterface;
-import use_case.remove_from_favrecipes.RemoveFavRecipeDataAccessInterface;
+import use_case.remove_from_fav_recipes.RemoveFavRecipeDataAccessInterface;
 import use_case.remove_ingredient.RemoveIngredientDataAccessInterface;
 import use_case.save_for_later.SaveForLaterUserDataAccessInterface;
 import use_case.signup.SignupUserDataAccessInterface;
@@ -175,8 +175,10 @@ public class FileUserDataAccessObject implements SignupUserDataAccessInterface,
     }
 
     @Override
-    public void addIngredient(Fridge fridge, Ingredient ingredient) {
-        fridge.addIngredient(ingredient);
+    public void addIngredient(User user, Ingredient ingredient) {
+
+        user.getFridge().addIngredient(ingredient);
+        save();
     }
 
     @Override
@@ -188,7 +190,7 @@ public class FileUserDataAccessObject implements SignupUserDataAccessInterface,
     public boolean existsByIngredient(Ingredient ingredient, User user) {
         User toCheck = accounts.get(user.getUsername());
         Fridge fridge = toCheck.getFridge();
-        return fridge.getIngredients().contains(ingredient);
+        return fridge.hasIngredient(ingredient);
     }
 
 }
