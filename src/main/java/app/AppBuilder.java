@@ -7,9 +7,7 @@ import java.awt.Dimension;
 import java.io.File;
 import java.io.IOException;
 
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.WindowConstants;
+import javax.swing.*;
 
 import data_access.FileUserDataAccessObject;
 import entity.CommonIngredientFactory;
@@ -343,12 +341,13 @@ public class AppBuilder {
         final JFrame application = new JFrame("PantryPal");
         application.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         application.setLocationRelativeTo(null);
-
         application.setMinimumSize(new Dimension(800, 600));
 
-        application.setLocationRelativeTo(null);
+        JScrollPane scrollPane = new JScrollPane(cardPanel);
+        scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER); // Disable horizontal scrolling
+        scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED); // Enable vertical scrolling when necessary
 
-        application.add(cardPanel, BorderLayout.CENTER);
+        application.add(scrollPane, BorderLayout.CENTER);
 
         viewManagerModel.setState(signupView.getViewName());
         viewManagerModel.firePropertyChanged();
