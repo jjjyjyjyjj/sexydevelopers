@@ -3,7 +3,7 @@ package use_case.reciperecommender;
 
 import api.recipeFinder;
 import entity.*;
-import interface_adapter.recipeRecommendation.RecipeRecState;
+import interfaceadapter.recipeRecommendation.RecipeRecState;
 import org.junit.jupiter.api.BeforeEach;
 
 import java.io.File;

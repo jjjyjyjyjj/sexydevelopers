@@ -1,9 +1,9 @@
 package view;
 
 
-import interface_adapter.LoggedInState;
-import interface_adapter.fridge.FridgeViewModel;
-import interface_adapter.saveforlater.SaveForLaterViewModel;
+import interfaceadapter.LoggedInState;
+import interfaceadapter.fridge.FridgeViewModel;
+import interfaceadapter.saveforlater.SaveForLaterViewModel;
 
 import javax.swing.*;
 import java.awt.*;

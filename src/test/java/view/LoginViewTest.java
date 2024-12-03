@@ -1,9 +1,9 @@
 package view;
 
-import interface_adapter.LoggedInState;
-import interface_adapter.login.LoginState;
-import interface_adapter.login.LoginViewModel;
-import interface_adapter.recipeRecommendation.RecipeRecViewModel;
+import interfaceadapter.LoggedInState;
+import interfaceadapter.login.LoginState;
+import interfaceadapter.login.LoginViewModel;
+import interfaceadapter.recipeRecommendation.RecipeRecViewModel;
 
 import javax.swing.*;
 import java.awt.*;
