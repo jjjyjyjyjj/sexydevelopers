@@ -1,14 +1,23 @@
 package view;
 
+import java.awt.CardLayout;
+import java.awt.Color;
+import java.awt.Component;
+import java.awt.Font;
+
+import javax.swing.BorderFactory;
+import javax.swing.BoxLayout;
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+
 import interfaceadapter.LoggedInState;
 import interfaceadapter.ViewManagerModel;
-import interfaceadapter.recipeRecommendation.RecipeRecViewModel;
 import interfaceadapter.saveforlater.SaveForLaterViewModel;
 
-
-import javax.swing.*;
-import java.awt.*;
-
+/**
+ * The View for Save for Later Recipes.
+ */
 public class SavedForLaterView extends JPanel {
 
     private final String viewName = "savedForLater";
@@ -62,6 +71,10 @@ public class SavedForLaterView extends JPanel {
         });
     }
 
+    /**
+     * Returns the View name.
+     * @return View name
+     */
     public String getViewName() {
         return viewName;
     }

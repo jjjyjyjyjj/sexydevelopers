@@ -8,4 +8,6 @@ public interface AddIngredientInputBoundary {
          */
         void execute(AddIngredientInputData addIngredientInputData);
 
+        void switchToFridgeView();
+
     }

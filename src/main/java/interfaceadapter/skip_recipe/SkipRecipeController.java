@@ -5,12 +5,12 @@ import usecase.skip_recipe.SkipRecipeInputBoundary;
 import usecase.skip_recipe.SkipRecipeInputData;
 
 /**
- * Controller for the Skip Recipe Use Case.
+ * The controller for the Skip Recipe Use Case.
  */
-public class SkipReceipeController {
+public class SkipRecipeController {
     private final SkipRecipeInputBoundary skipRecipeUseCaseInteractor;
 
-    public SkipReceipeController(SkipRecipeInputBoundary skipRecipeUseCaseInteractor) {
+    public SkipRecipeController(SkipRecipeInputBoundary skipRecipeUseCaseInteractor) {
         this.skipRecipeUseCaseInteractor = skipRecipeUseCaseInteractor;
     }
 

@@ -24,6 +24,10 @@ public class LoggedInState {
     private ViewManagerModel viewManagerModel;
     private String savedRecipesError;
     private Recipe recommendedRecipe;
+    private String name = "";
+    private String unit = "";
+    private double quantity = 0;
+    private String addError;
 
     private String viewName = "home";
 
@@ -165,5 +169,37 @@ public class LoggedInState {
     public List<Ingredient> getFridgeContents() {
         System.out.println("Accessing fridge contents: " + this.fridge.getIngredients());
         return this.fridge.getIngredients();
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getUnit() {
+        return unit;
+    }
+
+    public void setUnit(String unit) {
+        this.unit = unit;
+    }
+
+    public double getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(double quantity) {
+        this.quantity = quantity;
+    }
+
+    public String getAddError() {
+        return addError;
+    }
+
+    public void setAddError(String addError) {
+        this.addError = addError;
     }
 }

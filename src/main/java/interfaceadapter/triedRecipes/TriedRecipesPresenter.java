@@ -6,7 +6,7 @@ import entity.Recipe;
 import usecase.tried_recipes.TriedRecipesOutputBoundary;
 
 /**
- * Presenter for Tried Recipes Use Case.
+ * The presenter for Tried Recipes Use Case.
  */
 public class TriedRecipesPresenter implements TriedRecipesOutputBoundary {
 

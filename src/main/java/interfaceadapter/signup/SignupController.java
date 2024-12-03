@@ -4,7 +4,7 @@ import usecase.signup.SignupInputBoundary;
 import usecase.signup.SignupInputData;
 
 /**
- * Controller for the Signup Use Case.
+ * The controller for the Signup Use Case.
  */
 public class SignupController {
 

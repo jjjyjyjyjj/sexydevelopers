@@ -5,6 +5,9 @@ import entity.User;
 import usecase.save_for_later.SaveForLaterInputBoundary;
 import usecase.save_for_later.SaveForLaterInputData;
 
+/**
+ * The controller for Save For Later Use Case.
+ */
 public class SaveForLaterController {
     private final SaveForLaterInputBoundary saveForLaterUseCaseInteractor;
 

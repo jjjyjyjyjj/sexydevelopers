@@ -1,19 +1,27 @@
 package view;
 
-import java.awt.*;
+import java.awt.Color;
+import java.awt.Component;
+import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 
-import javax.swing.*;
+import javax.swing.BorderFactory;
+import javax.swing.BoxLayout;
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JPasswordField;
+import javax.swing.JTextField;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 
 import interfaceadapter.login.LoginController;
 import interfaceadapter.login.LoginState;
 import interfaceadapter.login.LoginViewModel;
-import interfaceadapter.signup.SignupViewModel;
 
 /**
  * The View for when the user is logging into the program.
@@ -75,7 +83,7 @@ public class LoginView extends JPanel implements ActionListener, PropertyChangeL
 
         logIn = new JButton("Log In");
         logIn.setAlignmentX(CENTER_ALIGNMENT);
-        logIn.setPreferredSize(new Dimension(40,40));
+        logIn.setPreferredSize(new Dimension(40, 40));
 
         final JPanel toSignup = new JPanel();
         final JLabel backToSignup = new JLabel("Don't have an account yet?");
@@ -185,10 +193,18 @@ public class LoginView extends JPanel implements ActionListener, PropertyChangeL
         passwordInputField.setText(state.getPassword());
     }
 
+    /**
+     * Returns the View name.
+     * @return View name
+     */
     public String getViewName() {
         return viewName;
     }
 
+    /**
+     * Sets the controller for Login Use Case.
+     * @param loginController controller for login use case
+     */
     public void setLoginController(LoginController loginController) {
         this.loginController = loginController;
     }

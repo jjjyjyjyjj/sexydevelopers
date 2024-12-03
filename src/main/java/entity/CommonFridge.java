@@ -1,11 +1,11 @@
 package entity;
 
-import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
-
 import java.util.ArrayList;
 
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+
 /**
- * A fridge
+ * A fridge.
  */
 
 @JsonDeserialize(as = CommonFridge.class)
@@ -27,16 +27,17 @@ public class CommonFridge implements Fridge {
             if (i.getName().equals(ingredient.getName())) {
                 return true;
             }
-        };
+        }
         return false;
     }
+
     @Override
     public Boolean hasIngredientByName(String name) {
         for (Ingredient i : ingredients) {
             if (i.getName().equals(name)) {
                 return true;
             }
-        };
+        }
         return false;
     }
 
@@ -55,7 +56,9 @@ public class CommonFridge implements Fridge {
         // Directly use 'this.ingredients' to extract the names
         return String.join(", ",
                 this.ingredients.stream()
-                        .map(Ingredient::getName)  // Extract the names
-                        .toArray(String[]::new));  // Convert to an array of Strings
+                        // Extract the names
+                        .map(Ingredient::getName)
+                        // Convert to an array of Strings
+                        .toArray(String[]::new));
     }
 }

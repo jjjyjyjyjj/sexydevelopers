@@ -1,5 +1,8 @@
 package entity;
 
+/**
+ * Factory for creating Common Ingredient entity.
+ */
 public class CommonIngredientFactory implements IngredientFactory {
     /**
      * Creates a new CommonIngredient.

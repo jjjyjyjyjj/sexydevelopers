@@ -3,7 +3,7 @@ package entity;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 
 /**
- * An ingredient
+ * An ingredient.
  */
 
 @JsonDeserialize(as = CommonIngredient.class)
@@ -19,7 +19,9 @@ public class CommonIngredient implements Ingredient, Comparable<Ingredient> {
         this.quantity = quantity;
     }
 
-    public CommonIngredient() {}
+    public CommonIngredient() {
+
+    }
 
     @Override
     public String getName() {

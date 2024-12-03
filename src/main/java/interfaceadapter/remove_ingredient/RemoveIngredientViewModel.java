@@ -2,6 +2,9 @@ package interfaceadapter.remove_ingredient;
 
 import interfaceadapter.ViewModel;
 
+/**
+ * The View Model of Remove Ingredient Use Case.
+ */
 public class RemoveIngredientViewModel extends ViewModel<RemoveIngredientState> {
 
     public static final String TITLE_LABEL = "Remove Ingredient View";

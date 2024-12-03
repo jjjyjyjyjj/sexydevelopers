@@ -10,6 +10,7 @@ public interface RecipeFactory {
      * Creates a new Ingredient.
      * @param name the name of the recipe.
      * @param id the id of the recipe.
+     * @param ingredients list of ingredients used in the recipe.
      * @param image the link to the image of the recipe.
      * @param link the link to the recipe.
      * @return the new ingredient.

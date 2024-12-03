@@ -3,7 +3,7 @@ package interfaceadapter.favourite_recipe;
 import interfaceadapter.ViewModel;
 
 /**
- * The View Model for Favourirte Recipes.
+ * The View Model for Favourite Recipes.
  */
 public class FavouriteRecipesViewModel extends ViewModel<FavouriteRecipesState> {
     public static final String TITLE_LABEL = "Favourite View";

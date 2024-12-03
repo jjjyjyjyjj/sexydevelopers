@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * State of Tried Recipes Use Case.
+ * The state of Tried Recipes Use Case.
  */
 public class TriedRecipesState {
     private String username = "";

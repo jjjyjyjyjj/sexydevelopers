@@ -1,9 +1,8 @@
 package entity;
 
-import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
-import entity.exceptions.IngredientNotFoundException;
-
 import java.util.ArrayList;
+
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 
 /**
  * The representation of a fridge in our program.
@@ -18,17 +17,22 @@ public interface Fridge {
      */
     ArrayList<Ingredient> getIngredients();
 
-
     /**
-     * Returns True if this ingredient is in the fridge, False otherwise.
+     * Returns true if this ingredient is in the fridge, false otherwise.
      * @param ingredient the ingredient being checked for.
-     * @return True if this ingredient is in the fridge, False otherwise.
+     * @return true if this ingredient is in the fridge, false otherwise.
      */
     Boolean hasIngredient(Ingredient ingredient);
 
-    Boolean hasIngredientByName(String name);
     /**
-     *
+     * Returns true if this ingredient is in the fridge, false otherwise.
+     * This function checks by name instead of class.
+     * @param name ingredient name
+     * @return true if ingredient is present, false otherwsie.
+     */
+    Boolean hasIngredientByName(String name);
+
+    /**
      * Adds this ingredient to the fridge.
      * @param ingredient the ingredient being added.
      */
@@ -42,7 +46,7 @@ public interface Fridge {
 
     /**
      * Converts the Fridge into a string.
+     * @return Fridge as a string
      */
     String parseFridge();
-
 }

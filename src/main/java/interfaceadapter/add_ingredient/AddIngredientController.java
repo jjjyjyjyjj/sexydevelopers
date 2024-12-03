@@ -1,6 +1,5 @@
 package interfaceadapter.add_ingredient;
 
-import entity.Fridge;
 import entity.User;
 import use_case.add_ingredient.AddIngredientInputBoundary;
 import use_case.add_ingredient.AddIngredientInputData;
@@ -29,5 +28,7 @@ public class AddIngredientController {
 
         addIngredientUseCaseInteractor.execute(addIngredientInputData);
     }
+
+    public void switchToFridgeView() {addIngredientUseCaseInteractor.switchToFridgeView(); }
 
 }

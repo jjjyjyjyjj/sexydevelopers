@@ -1,9 +1,20 @@
 package view;
 
-import javax.swing.*;
-import java.awt.*;
-import java.awt.event.ActionListener;
+import java.awt.CardLayout;
+import java.awt.Color;
+import java.awt.Cursor;
+import java.awt.Dimension;
+import java.awt.Font;
 
+import javax.swing.Box;
+import javax.swing.BoxLayout;
+import javax.swing.JButton;
+import javax.swing.JPanel;
+import javax.swing.SwingConstants;
+
+/**
+ * The View for the Navigation Bar Panel.
+ */
 public class NavBarPanel extends JPanel {
 
     public NavBarPanel(CardLayout cardLayout, JPanel cardPanel) {
@@ -47,7 +58,8 @@ public class NavBarPanel extends JPanel {
         // Add buttons to the navigation bar
         this.add(Box.createHorizontalGlue());
         this.add(homeButton);
-        this.add(Box.createHorizontalStrut(20)); // Add spacing between buttons
+        // Add spacing between buttons
+        this.add(Box.createHorizontalStrut(20));
         this.add(fridgeButton);
         this.add(Box.createHorizontalStrut(20));
         this.add(savedForLaterButton);
@@ -60,23 +72,27 @@ public class NavBarPanel extends JPanel {
 
     private JButton createStyledButton(String text) {
         JButton button = new JButton(text);
-        button.setFont(new Font("Arial", Font.BOLD, 14)); // Set font style
+        // Set font style
+        button.setFont(new Font("Arial", Font.BOLD, 14));
         button.setContentAreaFilled(false);
         button.setBorderPainted(false);
         button.setFocusPainted(false);
-        button.setForeground(Color.WHITE); // Text color
+        // Text color
+        button.setForeground(Color.WHITE);
         button.setHorizontalAlignment(SwingConstants.CENTER);
         button.setCursor(new Cursor(Cursor.HAND_CURSOR));
 
         button.addMouseListener(new java.awt.event.MouseAdapter() {
             @Override
             public void mouseEntered(java.awt.event.MouseEvent e) {
-                button.setForeground(Color.LIGHT_GRAY); // Change text color on hover
+                // Change text color on hover
+                button.setForeground(Color.LIGHT_GRAY);
             }
 
             @Override
             public void mouseExited(java.awt.event.MouseEvent e) {
-                button.setForeground(Color.WHITE); // Revert text color
+                // Revert text color
+                button.setForeground(Color.WHITE);
             }
         });
 

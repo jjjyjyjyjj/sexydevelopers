@@ -1,13 +1,25 @@
 package view;
 
+import java.awt.CardLayout;
+import java.awt.Color;
+import java.awt.Component;
+import java.awt.Desktop;
+import java.awt.Font;
+
+import javax.swing.BorderFactory;
+import javax.swing.BoxLayout;
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+
 import interfaceadapter.LoggedInState;
 import interfaceadapter.ViewManagerModel;
 import interfaceadapter.triedRecipes.TriedRecipesViewModel;
 
-
-import javax.swing.*;
-import java.awt.*;
-
+/**
+ * The View for Tried Recipes.
+ */
 public class TriedRecipesView extends JPanel {
 
     private final String viewName = "triedRecipes";
@@ -43,7 +55,8 @@ public class TriedRecipesView extends JPanel {
         recipeNameLabel = new JLabel("Recipe Name");
         recipeNameLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
 
-        recipeImageLabel = new JLabel(); // Placeholder for recipe image
+        // Placeholder for recipe image
+        recipeImageLabel = new JLabel();
         recipeImageLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
 
         // Recipe buttons
@@ -70,7 +83,8 @@ public class TriedRecipesView extends JPanel {
             if (recipeLink != null && !recipeLink.isEmpty()) {
                 try {
                     Desktop.getDesktop().browse(new java.net.URI(recipeLink));
-                } catch (Exception e) {
+                }
+                catch (Exception e) {
                     JOptionPane.showMessageDialog(this, "Failed to open recipe link.");
                 }
             }
@@ -81,6 +95,10 @@ public class TriedRecipesView extends JPanel {
         });
     }
 
+    /**
+     * Returns the View name.
+     * @return View name
+     */
     public String getViewName() {
         return viewName;
     }
