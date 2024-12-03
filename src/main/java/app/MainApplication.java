@@ -1,7 +1,6 @@
 package app;
 
-import java.io.File;
-import javax.swing.*;
+import javax.swing.JFrame;
 
 /**
  * Code to run the Application.
