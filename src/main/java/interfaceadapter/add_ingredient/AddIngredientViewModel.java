@@ -2,6 +2,9 @@ package interfaceadapter.add_ingredient;
 
 import interfaceadapter.ViewModel;
 
+/**
+ * The View Model for Add Ingredient Use Case.
+ */
 public class AddIngredientViewModel extends ViewModel<AddIngredientState> {
 
     public static final String TITLE_LABEL = "Add Ingredient View";

@@ -6,8 +6,7 @@ import usecase.recipe_recommender.RecipeRecOutputBoundary;
 import usecase.recipe_recommender.RecipeRecOutputData;
 
 /**
- * RecipeRecPresenter prepares the output data from the recipe recommendation use case
- * for display in the user interface.
+ * Presenter for the recipe recommendation use case.
  */
 public class RecipeRecPresenter implements RecipeRecOutputBoundary {
     private final RecipeRecViewModel recipeRecViewModel;

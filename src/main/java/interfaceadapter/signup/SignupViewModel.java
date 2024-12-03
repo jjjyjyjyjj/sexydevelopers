@@ -3,7 +3,7 @@ package interfaceadapter.signup;
 import interfaceadapter.ViewModel;
 
 /**
- * The ViewModel for the Signup View.
+ * The View Model for the Signup View.
  */
 public class SignupViewModel extends ViewModel<SignupState> {
 
