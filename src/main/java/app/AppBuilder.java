@@ -1,22 +1,33 @@
 package app;
 
+import java.awt.BorderLayout;
+import java.awt.CardLayout;
+import java.awt.Component;
+import java.awt.Dimension;
+import java.io.File;
+import java.io.IOException;
+
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.WindowConstants;
+
 import data_access.FileUserDataAccessObject;
 import entity.PantryPalUserFactory;
 import entity.UserFactory;
 import interfaceadapter.LoggedInState;
+import interfaceadapter.ViewManagerModel;
 import interfaceadapter.favourite_recipe.FavouriteRecipesViewModel;
 import interfaceadapter.fridge.FridgeViewModel;
 import interfaceadapter.login.LoginController;
 import interfaceadapter.login.LoginPresenter;
 import interfaceadapter.login.LoginViewModel;
 import interfaceadapter.recipeRecommendation.RecipeRecViewModel;
+import interfaceadapter.saveforlater.SaveForLaterViewModel;
 import interfaceadapter.signup.SignupController;
 import interfaceadapter.signup.SignupPresenter;
 import interfaceadapter.signup.SignupViewModel;
 import interfaceadapter.triedRecipes.TriedRecipesController;
 import interfaceadapter.triedRecipes.TriedRecipesViewModel;
-import interfaceadapter.saveforlater.SaveForLaterViewModel;
-import interfaceadapter.ViewManagerModel;
 import usecase.login.LoginInputBoundary;
 import usecase.login.LoginInteractor;
 import usecase.login.LoginOutputBoundary;
@@ -24,13 +35,18 @@ import usecase.signup.SignupInputBoundary;
 import usecase.signup.SignupInteractor;
 import usecase.signup.SignupOutputBoundary;
 import usecase.tried_recipes.TriedRecipesInteractor;
-import view.*;
+import view.FavouriteRecipesView;
+import view.FridgeView;
+import view.HomeView;
+import view.LoginView;
+import view.SavedForLaterView;
+import view.SignupView;
+import view.TriedRecipesView;
+import view.ViewManager;
 
-import javax.swing.*;
-import java.awt.*;
-import java.io.File;
-import java.io.IOException;
-
+/**
+ * Code to Build the Application.
+ */
 public class AppBuilder {
 
     private final JPanel cardPanel = new JPanel();
@@ -55,19 +71,23 @@ public class AppBuilder {
     private FridgeView loggedInViewFridge;
     private FavouriteRecipesView loggedInViewFavouriteRecipes;
 
-
     public AppBuilder() {
         cardPanel.setLayout(cardLayout);
 
         try {
             String jsonPath = new File("users.json").getAbsolutePath();
             userDataAccessObject = new FileUserDataAccessObject(jsonPath);
-        } catch (IOException e) {
+        }
+        catch (IOException e) {
             e.printStackTrace();
             throw new RuntimeException("Failed to initialize FileUserDataAccessObject");
         }
     }
 
+    /**
+     * Returns the Signup View.
+     * @return signup view
+     */
     public AppBuilder addSignupView() {
         signupViewModel = new SignupViewModel();
         signupView = new SignupView(signupViewModel);
@@ -75,6 +95,10 @@ public class AppBuilder {
         return this;
     }
 
+    /**
+     * Returns the Login View.
+     * @return login view
+     */
     public AppBuilder addLoginView() {
         loginViewModel = new LoginViewModel();
         loginView = new LoginView(loginViewModel);
@@ -82,15 +106,24 @@ public class AppBuilder {
         return this;
     }
 
+    /**
+     * Returns Home View.
+     * @return home view
+     */
     public AppBuilder addHomeView() {
         LoggedInState loggedInState = new LoggedInState();
-        RecipeRecViewModel recipeRecViewModel = new RecipeRecViewModel();
+        RecipeRecViewModel recipeRecViewModel;
+        recipeRecViewModel = new RecipeRecViewModel();
         loggedInViewHome = new HomeView(recipeRecViewModel, cardLayout, cardPanel, loggedInState);
         cardPanel.add(loggedInViewHome, loggedInViewHome.getViewName());
         System.out.println("AppBuilder: Registered 'home' view in CardLayout.");
         return this;
     }
 
+    /**
+     * Returns Fridge View.
+     * @return fridge view
+     */
     public AppBuilder addFridgeView() {
         LoggedInState loggedInState = new LoggedInState();
         FridgeViewModel fridgeViewModel = new FridgeViewModel();
@@ -99,6 +132,10 @@ public class AppBuilder {
         return this;
     }
 
+    /**
+     * Returns Favourite Recipe View.
+     * @return favourite recipe
+     */
     public AppBuilder addFavouritedRecipesView() {
         FavouriteRecipesViewModel favouriteRecipesViewModel = new FavouriteRecipesViewModel();
         // Pass the correct parameters: FavouriteRecipesViewModel and LoggedInState
@@ -107,6 +144,10 @@ public class AppBuilder {
         return this;
     }
 
+    /**
+     * Returns Tried Recipes view.
+     * @return tried recipes view
+     */
     public AppBuilder addTriedRecipeView() {
         TriedRecipesViewModel triedRecipesViewModel = new TriedRecipesViewModel();
         loggedInViewTriedRecipes = new TriedRecipesView(triedRecipesViewModel, cardLayout, cardPanel);
@@ -114,6 +155,10 @@ public class AppBuilder {
         return this;
     }
 
+    /**
+     * Returns save for later view.
+     * @return dave for later view
+     */
     public AppBuilder addSavedForLaterView() {
         SaveForLaterViewModel saveForLaterViewModel = new SaveForLaterViewModel();
         loggedInViewSavedForLaters = new SavedForLaterView(saveForLaterViewModel, cardLayout, cardPanel);
@@ -122,37 +167,47 @@ public class AppBuilder {
         return this;
     }
 
+    /**
+     * Returns Logged in State Listener.
+     * @return logged in state listener
+     */
     public AppBuilder addLoggedInStateListener() {
         loggedInState.addPropertyChangeListener(evt -> {
             if ("viewName".equals(evt.getPropertyName())) {
                 String viewName = (String) evt.getNewValue();
                 System.out.println("AppBuilder: Switching to view " + viewName);
 
-                cardLayout.show(cardPanel, viewName); // Attempt to switch views
+                // Attempt to switch views
+                cardLayout.show(cardPanel, viewName);
                 cardPanel.revalidate();
                 cardPanel.repaint();
 
                 // Debug: Check visibility of all components in cardPanel
                 for (Component component : cardPanel.getComponents()) {
-                    System.out.println("Component: " + component.getClass().getName() +
-                            ", Name: " + ((component instanceof SavedForLaterView) ? "savedForLater" : "unknown") +
-                            ", Visible: " + component.isVisible());
+                    System.out.println("Component: " + component.getClass().getName()
+                            + ", Name: " + ((component instanceof SavedForLaterView) ? "savedForLater" : "unknown")
+                            + ", Visible: " + component.isVisible());
                 }
             }
         });
 
-
         // Link the ViewManagerModel to the LoggedInState
         loggedInState.setViewManagerModel(viewManagerModel);
-
         return this;
     }
 
-
+    /**
+     * Returns the Logged in State.
+     * @return logged in state
+     */
     public LoggedInState loggedInState() {
         return loggedInState;
     }
 
+    /**
+     * Returns the view classes.
+     * @return view classes
+     */
     public AppBuilder addViews() {
         cardPanel.add(loggedInViewHome, "home");
         cardPanel.add(loggedInViewSavedForLaters, "savedForLater");
@@ -160,11 +215,18 @@ public class AppBuilder {
         return this;
     }
 
+    /**
+     * Returns Logged in View.
+     * @return logged in view
+     */
     public AppBuilder addLoggedInView() {
         return addHomeView().addTriedRecipeView().addSavedForLaterView().addFridgeView().addFavouritedRecipesView();
     }
 
-
+    /**
+     * Returns Sign up Use Case.
+     * @return sign up use case
+     */
     public AppBuilder addSignupUseCase() {
         final SignupOutputBoundary signupOutputBoundary = new SignupPresenter(viewManagerModel,
                 signupViewModel, loginViewModel);
@@ -176,6 +238,10 @@ public class AppBuilder {
         return this;
     }
 
+    /**
+     * Returns Login Use Case.
+     * @return login use case
+     */
     public AppBuilder addLoginUseCase() {
         final LoginOutputBoundary loginOutputBoundary = new LoginPresenter(viewManagerModel,
                 recipeRecViewModel, loginViewModel);
@@ -188,31 +254,36 @@ public class AppBuilder {
         return this;
     }
 
-//    public AppBuilder addChangePasswordUseCase() {
-//        final ChangePasswordOutputBoundary changePasswordOutputBoundary =
-//                new ChangePasswordPresenter(loggedInViewModel);
-//
-//        final ChangePasswordInputBoundary changePasswordInteractor =
-//                new ChangePasswordInteractor(userDataAccessObject, changePasswordOutputBoundary, userFactory);
-//
-//        final ChangePasswordController changePasswordController =
-//                new ChangePasswordController(changePasswordInteractor);
-//        loggedInViewHome.setChangePasswordController(changePasswordController);
-//        return this;
-//    }
-//
-//    public AppBuilder addLogoutUseCase() {
-//        final LogoutOutputBoundary logoutOutputBoundary = new LogoutPresenter(viewManagerModel,
-//                loggedInViewModel, loginViewModel);
-//
-//        final LogoutInputBoundary logoutInteractor =
-//                new LogoutInteractor((LogoutUserDataAccessInterface) this.userDataAccessObject, logoutOutputBoundary);
-//
-//        final LogoutController logoutController = new LogoutController(logoutInteractor);
-//        loggedInViewHome.setLogoutController(logoutController);
-//        return this;
-//    }
+    //    public AppBuilder addChangePasswordUseCase() {
+    //        final ChangePasswordOutputBoundary changePasswordOutputBoundary =
+    //                new ChangePasswordPresenter(loggedInViewModel);
+    //
+    //        final ChangePasswordInputBoundary changePasswordInteractor =
+    //                new ChangePasswordInteractor(userDataAccessObject, changePasswordOutputBoundary, userFactory);
+    //
+    //        final ChangePasswordController changePasswordController =
+    //                new ChangePasswordController(changePasswordInteractor);
+    //        loggedInViewHome.setChangePasswordController(changePasswordController);
+    //        return this;
+    //    }
+    //
+    //    public AppBuilder addLogoutUseCase() {
+    //        final LogoutOutputBoundary logoutOutputBoundary = new LogoutPresenter(viewManagerModel,
+    //                loggedInViewModel, loginViewModel);
+    //
+    //        final LogoutInputBoundary logoutInteractor =
+    //                new LogoutInteractor((LogoutUserDataAccessInterface) this.userDataAccessObject,
+    //                logoutOutputBoundary);
+    //
+    //        final LogoutController logoutController = new LogoutController(logoutInteractor);
+    //        loggedInViewHome.setLogoutController(logoutController);
+    //        return this;
+    //    }
 
+    /**
+     * Returns Tried Recipes Use Case.
+     * @return tried recipes use case
+     */
     public AppBuilder addTriedRecipesUseCase() {
         TriedRecipesViewModel triedRecipesViewModel = new TriedRecipesViewModel();
         TriedRecipesInteractor interactor = new TriedRecipesInteractor(userDataAccessObject, triedRecipesViewModel);
@@ -222,6 +293,10 @@ public class AppBuilder {
         return this;
     }
 
+    /**
+     * Returns Main Application window.
+     * @return application window
+     */
     public JFrame build() {
         final JFrame application = new JFrame("PantryPal");
         application.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
