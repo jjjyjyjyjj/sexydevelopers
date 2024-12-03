@@ -7,9 +7,7 @@ import java.awt.Dimension;
 import java.io.File;
 import java.io.IOException;
 
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.WindowConstants;
+import javax.swing.*;
 
 import data_access.FileUserDataAccessObject;
 import entity.CommonIngredientFactory;
@@ -17,6 +15,7 @@ import entity.IngredientFactory;
 import entity.PantryPalUserFactory;
 import entity.UserFactory;
 import interfaceadapter.LoggedInState;
+import interfaceadapter.LoggedInViewModel;
 import interfaceadapter.ViewManagerModel;
 import interfaceadapter.add_ingredient.AddIngredientController;
 import interfaceadapter.add_ingredient.AddIngredientPresenter;
@@ -83,7 +82,8 @@ public class AppBuilder {
     private AddIngredientView loggedInViewAddIngredient;
     private AddIngredientPresenter loggedInViewAddIngredientPresenter;
     private AddIngredientInteractor loggedInViewAddIngredientInteractor;
-    private AddIngredientViewModel loggedInViewAddIngredientViewModel;
+    private AddIngredientViewModel loggedInViewAddIngredientViewModel = new AddIngredientViewModel();
+    private LoggedInViewModel loggedInViewModel = new LoggedInViewModel();
     private FridgeViewModel loggedInFridgeViewModel;
 
     public AppBuilder() {
@@ -270,11 +270,13 @@ public class AppBuilder {
      * @return add ingredient use case
      */
     public AppBuilder addAddIngredientUseCase() {
+
         final AddIngredientOutputBoundary addIngredientOutputBoundary =
                 new AddIngredientPresenter(loggedInViewAddIngredientViewModel,
                         loggedInFridgeViewModel, viewManagerModel);
         final AddIngredientInputBoundary addIngredientInputInteractor =
                 new AddIngredientInteractor(userDataAccessObject, addIngredientOutputBoundary, ingredientFactory);
+
         final AddIngredientController controller = new AddIngredientController(addIngredientInputInteractor);
         loggedInViewAddIngredient.setAddIngredientController(controller);
         return this;
@@ -343,12 +345,15 @@ public class AppBuilder {
         final JFrame application = new JFrame("PantryPal");
         application.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         application.setLocationRelativeTo(null);
-
         application.setMinimumSize(new Dimension(800, 600));
 
-        application.setLocationRelativeTo(null);
+        JScrollPane scrollPane = new JScrollPane(cardPanel);
+        scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER); // Disable horizontal scrolling
+        scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED); // Enable vertical scrolling when necessary
 
-        application.add(cardPanel, BorderLayout.CENTER);
+        application.add(scrollPane, BorderLayout.CENTER);
+
+        application.setLocationRelativeTo(null);
 
         viewManagerModel.setState(signupView.getViewName());
         viewManagerModel.firePropertyChanged();
