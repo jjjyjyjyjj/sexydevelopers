@@ -12,8 +12,10 @@ import javax.swing.JPanel;
 import javax.swing.WindowConstants;
 
 import data_access.FileUserDataAccessObject;
+import entity.CommonIngredientFactory;
 import entity.PantryPalUserFactory;
 import entity.UserFactory;
+import entity.IngredientFactory;
 import interfaceadapter.LoggedInState;
 import interfaceadapter.ViewManagerModel;
 import interfaceadapter.favourite_recipe.FavouriteRecipesViewModel;
@@ -28,6 +30,15 @@ import interfaceadapter.signup.SignupPresenter;
 import interfaceadapter.signup.SignupViewModel;
 import interfaceadapter.triedRecipes.TriedRecipesController;
 import interfaceadapter.triedRecipes.TriedRecipesViewModel;
+import interfaceadapter.saveforlater.SaveForLaterViewModel;
+import interfaceadapter.ViewManagerModel;
+import interfaceadapter.add_ingredient.AddIngredientViewModel;
+import interfaceadapter.add_ingredient.AddIngredientController;
+import interfaceadapter.add_ingredient.AddIngredientPresenter;
+
+import usecase.add_ingredient.AddIngredientInputBoundary;
+import usecase.add_ingredient.AddIngredientInteractor;
+import usecase.add_ingredient.AddIngredientOutputBoundary;
 import usecase.login.LoginInputBoundary;
 import usecase.login.LoginInteractor;
 import usecase.login.LoginOutputBoundary;
@@ -35,6 +46,7 @@ import usecase.signup.SignupInputBoundary;
 import usecase.signup.SignupInteractor;
 import usecase.signup.SignupOutputBoundary;
 import usecase.tried_recipes.TriedRecipesInteractor;
+
 import view.FavouriteRecipesView;
 import view.FridgeView;
 import view.HomeView;
@@ -52,6 +64,7 @@ public class AppBuilder {
     private final JPanel cardPanel = new JPanel();
     private final CardLayout cardLayout = new CardLayout();
     private final UserFactory userFactory = new PantryPalUserFactory();
+    private final IngredientFactory ingredientFactory = new CommonIngredientFactory();
     private final ViewManagerModel viewManagerModel = new ViewManagerModel();
     private final ViewManager viewManager = new ViewManager(cardPanel, cardLayout, viewManagerModel);
 
@@ -70,6 +83,11 @@ public class AppBuilder {
     private SavedForLaterView loggedInViewSavedForLaters;
     private FridgeView loggedInViewFridge;
     private FavouriteRecipesView loggedInViewFavouriteRecipes;
+    private AddIngredientView loggedInViewAddIngredient;
+    private AddIngredientPresenter loggedInViewAddIngredientPresenter;
+    private AddIngredientInteractor loggedInViewAddIngredientInteractor;
+    private AddIngredientViewModel loggedInViewAddIngredientViewModel;
+    private FridgeViewModel loggedInFridgeViewModel;
 
     public AppBuilder() {
         cardPanel.setLayout(cardLayout);
@@ -171,6 +189,13 @@ public class AppBuilder {
      * Returns Logged in State Listener.
      * @return logged in state listener
      */
+    public AppBuilder addAddIngredientView() {
+        AddIngredientViewModel addIngredientViewModel = new AddIngredientViewModel();
+        loggedInViewAddIngredient = new AddIngredientView(addIngredientViewModel, loggedInState);
+        cardPanel.add(loggedInViewAddIngredient, loggedInViewAddIngredient.getViewName());
+        return this;
+    }
+    
     public AppBuilder addLoggedInStateListener() {
         loggedInState.addPropertyChangeListener(evt -> {
             if ("viewName".equals(evt.getPropertyName())) {
@@ -220,7 +245,7 @@ public class AppBuilder {
      * @return logged in view
      */
     public AppBuilder addLoggedInView() {
-        return addHomeView().addTriedRecipeView().addSavedForLaterView().addFridgeView().addFavouritedRecipesView();
+        return addHomeView().addTriedRecipeView().addSavedForLaterView().addFridgeView().addAddIngredientView().addFavouritedRecipesView();
     }
 
     /**
@@ -237,11 +262,19 @@ public class AppBuilder {
         signupView.setSignupController(controller);
         return this;
     }
-
+    
     /**
      * Returns Login Use Case.
      * @return login use case
      */
+    public AppBuilder addAddIngredientUseCase() {
+        final AddIngredientOutputBoundary addIngredientOutputBoundary = new AddIngredientPresenter(loggedInViewAddIngredientViewModel, loggedInFridgeViewModel, viewManagerModel);
+        final AddIngredientInputBoundary addIngredientInputInteractor = new AddIngredientInteractor(userDataAccessObject, addIngredientOutputBoundary, ingredientFactory);
+        final AddIngredientController controller = new AddIngredientController(addIngredientInputInteractor);
+        loggedInViewAddIngredient.setAddIngredientController(controller);
+        return this;
+    }
+
     public AppBuilder addLoginUseCase() {
         final LoginOutputBoundary loginOutputBoundary = new LoginPresenter(viewManagerModel,
                 recipeRecViewModel, loginViewModel);

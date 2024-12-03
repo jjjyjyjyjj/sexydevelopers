@@ -1,5 +1,10 @@
 package interfaceadapter.add_ingredient;
 
+import entity.User;
+import interfaceadapter.ViewManagerModel;
+
+import java.beans.PropertyChangeSupport;
+
 /**
  * The State for the Add Ingredient Use Case.
  */
@@ -8,6 +13,10 @@ public class AddIngredientState {
     private String unit = "";
     private double quantity;
     private String addError;
+    private User user;
+    private ViewManagerModel viewManagerModel;
+    private final PropertyChangeSupport support = new PropertyChangeSupport(this);
+
 
     /**
      * Returns the name of the ingredient.
@@ -71,6 +80,34 @@ public class AddIngredientState {
      */
     public void setAddError(String addError) {
         this.addError = addError;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {this.user = user; }
+
+    private String viewName = "add ingredient";
+
+    public String getViewName() {
+        return viewName;
+    }
+
+    public void setViewManagerModel(ViewManagerModel viewManagerModel) {
+        this.viewManagerModel = viewManagerModel;
+    }
+
+    public void setViewName(String viewName) {
+        String oldViewName = this.viewName;
+        this.viewName = viewName;
+
+        support.firePropertyChange("viewName", oldViewName, viewName);
+
+        if (viewManagerModel != null) {
+            viewManagerModel.setState(viewName);
+            viewManagerModel.firePropertyChanged();
+        }
     }
 
     @Override
