@@ -2,6 +2,7 @@ package use_case.add_ingredient;
 import entity.Fridge;
 import entity.Ingredient;
 import entity.IngredientFactory;
+import entity.User;
 
 public class AddIngredientInteractor implements AddIngredientInputBoundary{
     private final AddIngredientDataAccessInterface addIngredientDataAccessInterface;
