@@ -20,7 +20,7 @@ public class AddIngredientInputData {
     }
 
     /**
-     * Returns name of ingredient
+     * Returns name of ingredient.
      * @return name of ingredient
      */
     public String getName() {
@@ -28,15 +28,15 @@ public class AddIngredientInputData {
     }
 
     /**
-     * Returns unit number of ingredient
-     * @return unit number
+     * Returns unit measurement of the ingredient.
+     * @return unit measurement
      */
     public String getUnit() {
         return unit;
     }
 
     /**
-     * Return quantity of ingredient.
+     * Return quantity of ingredient user has.
      * @return quantity of ingredient
      */
     public double getQuantity() {
