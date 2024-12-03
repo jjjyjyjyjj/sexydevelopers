@@ -39,7 +39,7 @@ public class AddIngredientPresenter implements AddIngredientOutputBoundary {
 
     @Override
     public void prepareFailView(String error) {
-        final LoggedInState addIngredientState = addIngredientViewModel.getState();
+        final AddIngredientState addIngredientState = addIngredientViewModel.getState();
         addIngredientState.setAddError(error);
         addIngredientViewModel.firePropertyChanged();
     }

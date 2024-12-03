@@ -47,14 +47,7 @@ import usecase.signup.SignupInteractor;
 import usecase.signup.SignupOutputBoundary;
 import usecase.tried_recipes.TriedRecipesInteractor;
 
-import view.FavouriteRecipesView;
-import view.FridgeView;
-import view.HomeView;
-import view.LoginView;
-import view.SavedForLaterView;
-import view.SignupView;
-import view.TriedRecipesView;
-import view.ViewManager;
+import view.*;
 
 /**
  * Code to Build the Application.

@@ -19,6 +19,6 @@ public class AddIngredientViewModel extends ViewModel<AddIngredientState> {
 
     public AddIngredientViewModel() {
         super("add ingredient");
-        setState(new LoggedInState());
+        setState(new AddIngredientState());
     }
 }
