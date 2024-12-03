@@ -68,7 +68,7 @@ public class HomeViewTest {
         cardPanel.add(homeView, "HomeView");
 
         JScrollPane scrollPane = new JScrollPane(cardPanel);
-        scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+        scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
         scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
 
         // Set up JFrame to display the cardPanel
