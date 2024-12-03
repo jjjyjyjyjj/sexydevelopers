@@ -20,7 +20,10 @@ public class FridgeView extends JPanel {
         this.fridgeViewModel = fridgeViewModel;
         this.loggedInState = new LoggedInState();
         setupUI(cardLayout, cardPanel);
-        setupListeners();
+        addIngredientButton.addActionListener(e -> {
+            System.out.println("NavBarPanel: Switching to Add Ingredient.");
+            cardLayout.show(cardPanel, "add ingredient");
+        });
     }
 
     private void setupUI(CardLayout cardLayout, JPanel cardPanel) {
@@ -54,15 +57,6 @@ public class FridgeView extends JPanel {
 
     }
 
-    private void setupListeners() {
-        //Add Ingredient Button
-        addIngredientButton.addActionListener(e -> {
-        });
-
-        //Remove Ingredient Button
-        removeIngredientButton.addActionListener(e -> {
-        });
-    }
 
     public String getViewName() {
         return "fridge";

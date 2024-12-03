@@ -34,4 +34,9 @@ public class AddIngredientInteractor implements AddIngredientInputBoundary{
             addIngredientOutputBoundary.prepareSuccessView(addIngredientOutputData);
         }
     }
+
+    @Override
+    public void switchToFridgeView() {
+        addIngredientOutputBoundary.switchToFridgeView();
+    }
 }

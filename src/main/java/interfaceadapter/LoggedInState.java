@@ -5,12 +5,7 @@ import java.beans.PropertyChangeSupport;
 import java.util.ArrayList;
 import java.util.List;
 
-import entity.CommonFridge;
-import entity.Fridge;
-import entity.PantryPalUser;
-import entity.Recipe;
-import entity.SavedRecipes;
-import entity.Ingredient;
+import entity.*;
 
 /**
  * The State information representing the logged-in user.
@@ -29,6 +24,10 @@ public class LoggedInState {
     private ViewManagerModel viewManagerModel;
     private String savedRecipesError;
     private Recipe recommendedRecipe;
+    private String name = "";
+    private String unit = "";
+    private double quantity = 0;
+    private String addError;
 
     private String viewName = "home";
 
@@ -167,5 +166,37 @@ public class LoggedInState {
 
     public List<Ingredient> getFridgeContents() {
         return this.fridge.getIngredients();
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getUnit() {
+        return unit;
+    }
+
+    public void setUnit(String unit) {
+        this.unit = unit;
+    }
+
+    public double getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(double quantity) {
+        this.quantity = quantity;
+    }
+
+    public String getAddError() {
+        return addError;
+    }
+
+    public void setAddError(String addError) {
+        this.addError = addError;
     }
 }
