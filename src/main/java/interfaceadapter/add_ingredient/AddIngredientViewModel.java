@@ -1,6 +1,5 @@
 package interfaceadapter.add_ingredient;
 
-import interfaceadapter.LoggedInState;
 import interfaceadapter.ViewModel;
 
 /**
@@ -15,7 +14,6 @@ public class AddIngredientViewModel extends ViewModel<AddIngredientState> {
 
     public static final String DONE_LABEL = "Done";
     public static final String CANCEL_BUTTON_LABEL = "Cancel";
-
 
     public AddIngredientViewModel() {
         super("add ingredient");

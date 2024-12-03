@@ -1,7 +1,8 @@
 package usecase.save_for_later;
 
-
-import entity.*;
+import entity.Recipe;
+import entity.SavedRecipes;
+import entity.User;
 
 /**
  * The Save For Later Interactor.
@@ -35,7 +36,5 @@ public class SaveForLaterInteractor implements SaveForLaterInputBoundary {
         );
         userPresenter.prepareSuccessView(saveForLaterOutputData);
     }
-
 }
-
 

@@ -20,7 +20,7 @@ public class FavouriteRecipesInteractor implements FavouriteRecipesInputBoundary
     }
 
     /**
-     * Executing the new recipe to favourite recipes list.
+     * Executes the new recipe to favourite recipes list.
      *
      * @param favouriteRecipesInputData the input data for this use case
      *

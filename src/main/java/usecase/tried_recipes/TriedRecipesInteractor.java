@@ -1,13 +1,11 @@
 package usecase.tried_recipes;
 
+import java.util.List;
+
 import data_access.FileUserDataAccessObject;
 import entity.Recipe;
 import entity.User;
-
 import interfaceadapter.triedRecipes.TriedRecipesViewModel;
-
-
-import java.util.List;
 
 /**
  * Interactor for managing the tried recipes use case.
@@ -39,8 +37,8 @@ public class TriedRecipesInteractor implements TriedRecipesInputBoundary {
 
         user.getTriedRecipes().addRecipe(recipe);
         userDataAccess.save(user);
-
-        viewModel.getState().setErrorMessage(null); // Clear error message on success
+        // Clear error message on success
+        viewModel.getState().setErrorMessage(null);
         viewModel.firePropertyChanged();
     }
 

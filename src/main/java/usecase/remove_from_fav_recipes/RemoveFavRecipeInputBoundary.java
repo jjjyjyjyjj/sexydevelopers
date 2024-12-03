@@ -1,7 +1,7 @@
 package usecase.remove_from_fav_recipes;
 
 /**
- * The Remove a Recipe from Favourite Recipes List Use Case.
+ * Input Boundary for Remove a Recipe from Favourite Recipes List Use Case.
  */
 
 public interface RemoveFavRecipeInputBoundary {

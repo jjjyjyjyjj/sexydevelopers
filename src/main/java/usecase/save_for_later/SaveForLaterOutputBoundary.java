@@ -1,6 +1,8 @@
 package usecase.save_for_later;
 
-
+/**
+ * The output boundary for the Save for Later Use Case.
+ */
 public interface SaveForLaterOutputBoundary {
     /**
      * Prepares the success view for the Save For Later Use Case.
