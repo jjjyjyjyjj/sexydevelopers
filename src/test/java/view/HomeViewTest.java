@@ -3,10 +3,10 @@ package view;
 import javax.swing.*;
 
 import entity.*;
-import interface_adapter.LoggedInState;
-import interface_adapter.recipeRecommendation.RecipeRecController;
-import interface_adapter.recipeRecommendation.RecipeRecViewModel;
-import interface_adapter.saveforlater.SaveForLaterViewModel;
+import interfaceadapter.LoggedInState;
+import interfaceadapter.recipeRecommendation.RecipeRecController;
+import interfaceadapter.recipeRecommendation.RecipeRecViewModel;
+import interfaceadapter.saveforlater.SaveForLaterViewModel;
 import view.HomeView;
 
 import java.awt.*;
