@@ -1,11 +1,22 @@
 package view;
 
+import java.awt.CardLayout;
+import java.awt.Color;
+import java.awt.Component;
+import java.awt.Font;
+
+import javax.swing.BorderFactory;
+import javax.swing.BoxLayout;
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+
 import interfaceadapter.LoggedInState;
 import interfaceadapter.fridge.FridgeViewModel;
 
-import javax.swing.*;
-import java.awt.*;
-
+/**
+ * The View for Fridge.
+ */
 public class FridgeView extends JPanel {
 
     private final LoggedInState loggedInState;
@@ -55,15 +66,19 @@ public class FridgeView extends JPanel {
     }
 
     private void setupListeners() {
-        //Add Ingredient Button
+        // Add Ingredient Button
         addIngredientButton.addActionListener(e -> {
         });
 
-        //Remove Ingredient Button
+        // Remove Ingredient Button
         removeIngredientButton.addActionListener(e -> {
         });
     }
 
+    /**
+     * Returns the View name.
+     * @return view name
+     */
     public String getViewName() {
         return "fridge";
     }
