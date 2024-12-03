@@ -3,7 +3,7 @@ package interfaceadapter.triedRecipes;
 import java.util.List;
 
 import entity.Recipe;
-import use_case.tried_recipes.TriedRecipesOutputBoundary;
+import usecase.tried_recipes.TriedRecipesOutputBoundary;
 
 /**
  * Presenter for Tried Recipes Use Case.

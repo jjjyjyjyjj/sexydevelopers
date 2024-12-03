@@ -30,6 +30,15 @@ public class CommonFridge implements Fridge {
         };
         return false;
     }
+    @Override
+    public Boolean hasIngredientByName(String name) {
+        for (Ingredient i : ingredients) {
+            if (i.getName().equals(name)) {
+                return true;
+            }
+        };
+        return false;
+    }
 
     @Override
     public void addIngredient(Ingredient ingredient) {

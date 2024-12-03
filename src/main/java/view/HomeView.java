@@ -13,7 +13,7 @@ import interfaceadapter.saveforlater.SaveForLaterController;
 import interfaceadapter.saveforlater.SaveForLaterViewModel;
 import interfaceadapter.triedRecipes.TriedRecipesController;
 import interfaceadapter.triedRecipes.TriedRecipesViewModel;
-import use_case.tried_recipes.TriedRecipesInteractor;
+import usecase.tried_recipes.TriedRecipesInteractor;
 
 
 import java.awt.image.BufferedImage;

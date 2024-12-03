@@ -2,8 +2,8 @@ package interfaceadapter.saveforlater;
 
 import entity.Recipe;
 import entity.User;
-import use_case.save_for_later.SaveForLaterInputBoundary;
-import use_case.save_for_later.SaveForLaterInputData;
+import usecase.save_for_later.SaveForLaterInputBoundary;
+import usecase.save_for_later.SaveForLaterInputData;
 
 public class SaveForLaterController {
     private final SaveForLaterInputBoundary saveForLaterUseCaseInteractor;
