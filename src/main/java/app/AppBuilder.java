@@ -85,7 +85,7 @@ public class AppBuilder {
     public AppBuilder addHomeView() {
         LoggedInState loggedInState = new LoggedInState();
         RecipeRecViewModel recipeRecViewModel = new RecipeRecViewModel();
-        loggedInViewHome = new HomeView(recipeRecViewModel, cardLayout, cardPanel);
+        loggedInViewHome = new HomeView(recipeRecViewModel, cardLayout, cardPanel, loggedInState);
         cardPanel.add(loggedInViewHome, loggedInViewHome.getViewName());
         System.out.println("AppBuilder: Registered 'home' view in CardLayout.");
         return this;

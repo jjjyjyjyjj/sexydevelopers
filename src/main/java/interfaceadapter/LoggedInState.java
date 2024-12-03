@@ -5,12 +5,7 @@ import java.beans.PropertyChangeSupport;
 import java.util.ArrayList;
 import java.util.List;
 
-import entity.CommonFridge;
-import entity.Fridge;
-import entity.PantryPalUser;
-import entity.Recipe;
-import entity.SavedRecipes;
-import entity.Ingredient;
+import entity.*;
 
 /**
  * The State information representing the logged-in user.
@@ -50,6 +45,7 @@ public class LoggedInState {
     public LoggedInState() {
         this.user = new PantryPalUser(username, password);
         this.fridge = new CommonFridge();
+        this.triedRecipes = new TriedRecipes();
     }
 
     public String getUsername() {
@@ -158,6 +154,7 @@ public class LoggedInState {
     }
 
     public void setCurrentRecipe(Recipe recipe) {
+        System.out.println("Setting Current Recipe: " + (recipe != null ? recipe.getName() : "null")); // Log the update
         this.currentRecipe = recipe;
     }
 
@@ -166,6 +163,7 @@ public class LoggedInState {
     }
 
     public List<Ingredient> getFridgeContents() {
+        System.out.println("Accessing fridge contents: " + this.fridge.getIngredients());
         return this.fridge.getIngredients();
     }
 }
