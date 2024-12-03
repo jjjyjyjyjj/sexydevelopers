@@ -1,5 +1,6 @@
-package usecase.add_ingredient;
+package use_case.add_ingredient;
 
+import entity.Fridge;
 import entity.User;
 
 public class AddIngredientInputData {

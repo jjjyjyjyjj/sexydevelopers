@@ -16,12 +16,13 @@ import interfaceadapter.triedRecipes.TriedRecipesViewModel;
 import usecase.tried_recipes.TriedRecipesInteractor;
 
 
+import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.net.URL;
 import javax.imageio.ImageIO;
 import javax.swing.*;
-import java.awt.*;
+import java.util.List;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -120,10 +121,10 @@ public class HomeView extends JPanel {
         System.out.println("LoggedInState in HomeView: " + System.identityHashCode(loggedInState));
 
         viewRecipeButton.addActionListener(evt -> {
-            Recipe currentRecipe = viewModel.getState().getCurrentRecipe();
+            Recipe currentRecipe = loggedInState.getCurrentRecipe();  // Use loggedInState to get currentRecipe
 
             if (currentRecipe != null) {
-                String recipeLink = currentRecipe.getLink(); // Use the recipe's link from the ViewModel
+                String recipeLink = currentRecipe.getLink();  // Get the recipe's link
                 if (recipeLink != null && !recipeLink.isEmpty()) {
                     try {
                         Desktop.getDesktop().browse(new java.net.URI(recipeLink));
@@ -140,6 +141,7 @@ public class HomeView extends JPanel {
                         "No Recipe", JOptionPane.WARNING_MESSAGE);
             }
         });
+
 
 
         try {
@@ -229,9 +231,13 @@ public class HomeView extends JPanel {
 
     public void fetchAndDisplayRecipe() throws IOException {
         // Fetch the recommended recipe based on the current fridge
-        RecipeRecController.getRecipes(loggedInState.getUser());
+        List<Recipe> recommendedRecipe = RecipeRecController.getRecipes(loggedInState.getUser());
+
+        // Set the current recipe in LoggedInState
+        loggedInState.setCurrentRecipe(recommendedRecipe.get(0));
+
         // Update the UI with the fetched recipe
-        updateRecipeDisplay(viewModel.getState().getCurrentRecipe());
+        updateRecipeDisplay(loggedInState.getCurrentRecipe());
     }
 
     private void fetchAndDisplayRecipeSummary(int recipeId) {
