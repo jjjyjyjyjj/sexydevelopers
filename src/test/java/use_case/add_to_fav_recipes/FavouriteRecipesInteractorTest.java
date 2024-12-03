@@ -30,7 +30,6 @@ public class FavouriteRecipesInteractorTest {
         Ingredient bread = ingredientFactory.create("bread crumbs", "", 1);
         Ingredient milk = ingredientFactory.create("milk", "", 1);
         Ingredient egg = ingredientFactory.create("Eggs",  "", 1);
-        
         omlette.add(egg);
         omlette.add(milk);
         omlette.add(bread);

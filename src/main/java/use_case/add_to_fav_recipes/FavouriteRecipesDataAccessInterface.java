@@ -3,6 +3,9 @@ package use_case.add_to_fav_recipes;
 import entity.Recipe;
 import entity.User;
 
+/**
+ * DAO for the Adding a Recipe to Favourite Recipes List Use Case.
+ */
 public interface FavouriteRecipesDataAccessInterface {
     /**
      * Saves the user.
