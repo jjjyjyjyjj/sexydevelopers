@@ -9,7 +9,7 @@ public class CommonIngredientFactory implements IngredientFactory {
      * @return the new ingredient
      */
     
-    public CommonIngredient create(String name, String unit, double quantity) {
+    public Ingredient create(String name, String unit, double quantity) {
         return new CommonIngredient(name, unit, quantity);
     }
 }

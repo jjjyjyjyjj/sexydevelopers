@@ -7,13 +7,13 @@ public class AddIngredientInputData {
     private final String name;
     private final String unit;
     private final double quantity;
-    private final Fridge fridge;
+    private final User user;
 
-    public AddIngredientInputData(String name, String unit, double quantity, Fridge fridge) {
+    public AddIngredientInputData(String name, String unit, double quantity, User user) {
         this.name = name;
         this.unit = unit;
         this.quantity = quantity;
-        this.fridge = fridge;
+        this.user = user;
     }
 
     public String getName() {
@@ -28,7 +28,7 @@ public class AddIngredientInputData {
         return quantity;
     }
 
-    public Fridge getFridge() {
-        return fridge;
+    public User getUser() {
+        return user;
     }
 }

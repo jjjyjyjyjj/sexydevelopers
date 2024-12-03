@@ -175,8 +175,10 @@ public class FileUserDataAccessObject implements SignupUserDataAccessInterface,
     }
 
     @Override
-    public void addIngredient(Fridge fridge, Ingredient ingredient) {
-        fridge.addIngredient(ingredient);
+    public void addIngredient(User user, Ingredient ingredient) {
+
+        user.getFridge().addIngredient(ingredient);
+        save();
     }
 
     @Override
@@ -188,7 +190,7 @@ public class FileUserDataAccessObject implements SignupUserDataAccessInterface,
     public boolean existsByIngredient(Ingredient ingredient, User user) {
         User toCheck = accounts.get(user.getUsername());
         Fridge fridge = toCheck.getFridge();
-        return fridge.getIngredients().contains(ingredient);
+        return fridge.hasIngredient(ingredient);
     }
 
 }

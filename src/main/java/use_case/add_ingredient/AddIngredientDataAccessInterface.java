@@ -5,12 +5,15 @@ import entity.Ingredient;
 import entity.User;
 
 public interface AddIngredientDataAccessInterface {
+
+    void save(User user);
     /**
      * Updates the system to record this added ingredient.
-     * @param fridge the fridge the ingredient is being added to.
+     * @param user the user whose fridge the ingredient is being added to.
      * @param ingredient the ingredient being added.
      */
-    void addIngredient(Fridge fridge, Ingredient ingredient);
+
+    void addIngredient(User user, Ingredient ingredient);
 
     boolean existsByIngredient(Ingredient ingredient, User user);
 }
