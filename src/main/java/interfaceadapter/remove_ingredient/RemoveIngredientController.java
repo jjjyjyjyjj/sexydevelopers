@@ -1,6 +1,7 @@
 package interfaceadapter.remove_ingredient;
 
 import entity.Fridge;
+import entity.User;
 import use_case.remove_ingredient.RemoveIngredientInputBoundary;
 import use_case.remove_ingredient.RemoveIngredientInputData;
 
@@ -18,11 +19,11 @@ public class RemoveIngredientController {
     /**
      * Executes the Remove Ingredient Use Case.
      * @param name the name of the ingredient
-     * @param fridge being removed from
+     * @param user being removed from
      */
-    public void execute(String name, Fridge fridge) {
+    public void execute(String name, User user) {
 
-        final RemoveIngredientInputData removeIngredientInputData = new RemoveIngredientInputData(name, fridge);
+        final RemoveIngredientInputData removeIngredientInputData = new RemoveIngredientInputData(name, user);
 
         removeIngredientUseCaseInteractor.execute(removeIngredientInputData);
     }

@@ -182,7 +182,8 @@ public class FileUserDataAccessObject implements SignupUserDataAccessInterface,
     }
 
     @Override
-    public void removeIngredient(Fridge fridge, String name) {
+    public void removeIngredient(User user, String name) {
+        Fridge fridge = user.getFridge();
         fridge.removeIngredient(name);
     }
 
@@ -192,5 +193,7 @@ public class FileUserDataAccessObject implements SignupUserDataAccessInterface,
         Fridge fridge = toCheck.getFridge();
         return fridge.hasIngredient(ingredient);
     }
+
+
 
 }
