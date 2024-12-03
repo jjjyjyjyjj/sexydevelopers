@@ -12,7 +12,7 @@ public interface AddIngredientInputBoundary {
     void execute(AddIngredientInputData addIngredientInputData);
 
     /**
-     * Switches Fridge View.
+     * Switches View to Fridge View.
      */
     void switchToFridgeView();
 
