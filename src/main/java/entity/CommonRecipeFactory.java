@@ -3,7 +3,7 @@ package entity;
 import java.util.List;
 
 /**
- * Factory for creating recipes.
+ * Factory for creating Common Recipe entity.
  */
 
 public class CommonRecipeFactory implements RecipeFactory {

@@ -4,10 +4,13 @@ import interfaceadapter.LoggedInState;
 import usecase.save_for_later.SaveForLaterOutputBoundary;
 import usecase.save_for_later.SaveForLaterOutputData;
 
+/**
+ * Presenter for Save for Later Use Case.
+ */
 public class SaveForLaterPresenter implements SaveForLaterOutputBoundary {
     private final SaveForLaterViewModel saveForLaterViewModel;
 
-    public SaveForLaterPresenter(SaveForLaterViewModel saveForLaterViewModel){
+    public SaveForLaterPresenter(SaveForLaterViewModel saveForLaterViewModel) {
         this.saveForLaterViewModel = saveForLaterViewModel;
     }
 

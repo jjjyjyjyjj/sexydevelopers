@@ -6,6 +6,9 @@ import interfaceadapter.ViewManagerModel;
 import usecase.remove_ingredient.RemoveIngredientOutputBoundary;
 import usecase.remove_ingredient.RemoveIngredientOutputData;
 
+/**
+ * The presenter for Remove Ingredient Use Case.
+ */
 public class RemoveIngredientPresenter implements RemoveIngredientOutputBoundary {
 
     private final RemoveIngredientViewModel removeIngredientViewModel;

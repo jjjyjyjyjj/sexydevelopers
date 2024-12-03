@@ -1,12 +1,22 @@
 package view;
 
-import interfaceadapter.LoggedInState;
+import java.awt.CardLayout;
+import java.awt.Color;
+import java.awt.Component;
+import java.awt.Font;
+
+import javax.swing.BorderFactory;
+import javax.swing.BoxLayout;
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+
 import interfaceadapter.ViewManagerModel;
 import interfaceadapter.favourite_recipe.FavouriteRecipesViewModel;
 
-import javax.swing.*;
-import java.awt.*;
-
+/**
+ * The View for Favourite Recipes.
+ */
 public class FavouriteRecipesView extends JPanel {
 
     private final String viewName = "favouriteRecipes";
@@ -59,6 +69,10 @@ public class FavouriteRecipesView extends JPanel {
         });
     }
 
+    /**
+     * Returns the View name.
+     * @return view name
+     */
     public String getViewName() {
         return viewName;
     }

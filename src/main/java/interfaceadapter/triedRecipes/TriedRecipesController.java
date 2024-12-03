@@ -5,7 +5,7 @@ import usecase.tried_recipes.TriedRecipesInputBoundary;
 import usecase.tried_recipes.TriedRecipesOutputBoundary;
 
 /**
- * Controller for Tried Recipes Use Case.
+ * The controller for Tried Recipes Use Case.
  */
 public class TriedRecipesController {
     private final TriedRecipesInputBoundary triedRecipesInput;
@@ -42,13 +42,13 @@ public class TriedRecipesController {
      * @param presenter output boundary for this use case
      */
     public void getTriedRecipes(String username, TriedRecipesOutputBoundary presenter) {
-//        triedRecipesInput.getTriedRecipes(username, triedRecipes -> {
-//            LoggedInState state = viewModel.getState();
-//            state.setUsername(username);
-//            state.setTriedRecipes(triedRecipes.stream()
-//                    .map(Recipe::getName) // Extract the recipe names
-//                    .toList());
-//            viewModel.firePropertyChanged(); // Notify the view to refresh
-//        });
+    //        triedRecipesInput.getTriedRecipes(username, triedRecipes -> {
+    //            LoggedInState state = viewModel.getState();
+    //            state.setUsername(username);
+    //            state.setTriedRecipes(triedRecipes.stream()
+    //                    .map(Recipe::getName) // Extract the recipe names
+    //                    .toList());
+    //            viewModel.firePropertyChanged(); // Notify the view to refresh
+    //        });
     }
 }

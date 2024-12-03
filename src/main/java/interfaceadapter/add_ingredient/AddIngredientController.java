@@ -1,6 +1,5 @@
 package interfaceadapter.add_ingredient;
 
-import entity.Fridge;
 import entity.User;
 import usecase.add_ingredient.AddIngredientInputBoundary;
 import usecase.add_ingredient.AddIngredientInputData;

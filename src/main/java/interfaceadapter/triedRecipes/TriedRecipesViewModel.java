@@ -4,7 +4,7 @@ import interfaceadapter.LoggedInState;
 import interfaceadapter.ViewModel;
 
 /**
- * View Model for public class tried Recipes.
+ * The View Model for public class tried Recipes.
  */
 public class TriedRecipesViewModel extends ViewModel<LoggedInState> {
 

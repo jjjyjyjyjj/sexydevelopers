@@ -3,7 +3,10 @@ package interfaceadapter.add_ingredient;
 import interfaceadapter.LoggedInState;
 import interfaceadapter.ViewModel;
 
-public class AddIngredientViewModel extends ViewModel<LoggedInState> {
+/**
+ * The View Model for Add Ingredient Use Case.
+ */
+public class AddIngredientViewModel extends ViewModel<AddIngredientState> {
 
     public static final String TITLE_LABEL = "Add Ingredient View";
     public static final String NAME_LABEL = "Choose name";

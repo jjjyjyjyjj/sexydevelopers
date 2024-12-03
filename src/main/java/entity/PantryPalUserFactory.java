@@ -1,7 +1,7 @@
 package entity;
 
 /**
- * Factory for creating CommonUser objects.
+ * Factory for creating CommonUser entities.
  */
 public class PantryPalUserFactory implements UserFactory {
 

@@ -1,18 +1,32 @@
 package view;
 
-import interfaceadapter.signup.SignupController;
-import interfaceadapter.signup.SignupState;
-import interfaceadapter.signup.SignupViewModel;
-
-import javax.swing.*;
-import javax.swing.event.DocumentEvent;
-import javax.swing.event.DocumentListener;
-import java.awt.*;
+import java.awt.Color;
+import java.awt.Component;
+import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 
+import javax.swing.BorderFactory;
+import javax.swing.BoxLayout;
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JPasswordField;
+import javax.swing.JTextField;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
+
+import interfaceadapter.signup.SignupController;
+import interfaceadapter.signup.SignupState;
+import interfaceadapter.signup.SignupViewModel;
+
+/**
+ * The View for Signup.
+ */
 public class SignupView extends JPanel implements ActionListener, PropertyChangeListener {
     private final String viewName = "Sign Up";
 
@@ -29,7 +43,6 @@ public class SignupView extends JPanel implements ActionListener, PropertyChange
         this.signupViewModel = signupviewModel;
         signupviewModel.addPropertyChangeListener(this);
 
-
         final JLabel title = new JLabel(SignupViewModel.TITLE_LABEL);
         title.setAlignmentX(CENTER_ALIGNMENT);
         title.setFont(new Font("Arial", Font.BOLD, 24));
@@ -38,12 +51,12 @@ public class SignupView extends JPanel implements ActionListener, PropertyChange
         final JPanel inputs = new JPanel();
         inputs.setLayout(new BoxLayout(inputs, BoxLayout.Y_AXIS));
 
-final JLabel signupLabel = new JLabel(SignupViewModel.SIGNUP_LABEL);
-signupLabel.setAlignmentX(CENTER_ALIGNMENT);
-signupLabel.setForeground(Color.BLACK);
-signupLabel.setFont(new Font("Arial", Font.BOLD, 16));
-signupLabel.setBorder(BorderFactory.createEmptyBorder(0, 0, 10, 0));
-inputs.add(signupLabel);
+        final JLabel signupLabel = new JLabel(SignupViewModel.SIGNUP_LABEL);
+        signupLabel.setAlignmentX(CENTER_ALIGNMENT);
+        signupLabel.setForeground(Color.BLACK);
+        signupLabel.setFont(new Font("Arial", Font.BOLD, 16));
+        signupLabel.setBorder(BorderFactory.createEmptyBorder(0, 0, 10, 0));
+        inputs.add(signupLabel);
         final LabelTextPanel usernameInfo = new LabelTextPanel(
                 new JLabel(SignupViewModel.USERNAME_LABEL), usernameInputField);
         usernameInfo.setAlignmentX(Component.CENTER_ALIGNMENT);
@@ -66,7 +79,7 @@ inputs.add(signupLabel);
 
         signUp = new JButton(signupviewModel.SIGNUP_BUTTON_LABEL);
         signUp.setAlignmentX(CENTER_ALIGNMENT);
-        signUp.setPreferredSize(new Dimension(40,40));
+        signUp.setPreferredSize(new Dimension(40, 40));
 
         final JPanel goToLogin = new JPanel();
         final JLabel toLogin = new JLabel("Already have an account?");
@@ -205,10 +218,18 @@ inputs.add(signupLabel);
         }
     }
 
+    /**
+     * Returns the View name.
+     * @return View name.
+     */
     public String getViewName() {
         return viewName;
     }
 
+    /**
+     * Sets up the Controller for Signup Use Case.
+     * @param controller controller foe signup use case.
+     */
     public void setSignupController(SignupController controller) {
         this.signupController = controller;
     }

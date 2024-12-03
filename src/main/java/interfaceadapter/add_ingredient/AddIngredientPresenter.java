@@ -6,6 +6,9 @@ import interfaceadapter.fridge.FridgeViewModel;
 import usecase.add_ingredient.AddIngredientOutputBoundary;
 import usecase.add_ingredient.AddIngredientOutputData;
 
+/**
+ * Presenter for Add Ingredient Use Case.
+ */
 public class AddIngredientPresenter implements AddIngredientOutputBoundary {
 
     private final AddIngredientViewModel addIngredientViewModel;
