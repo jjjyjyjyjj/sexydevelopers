@@ -26,6 +26,7 @@ public interface Fridge {
      */
     Boolean hasIngredient(Ingredient ingredient);
 
+    Boolean hasIngredientByName(String name);
     /**
      *
      * Adds this ingredient to the fridge.

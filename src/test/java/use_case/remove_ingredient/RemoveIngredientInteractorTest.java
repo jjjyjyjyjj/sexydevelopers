@@ -59,7 +59,7 @@ public class RemoveIngredientInteractorTest {
                 Assertions.fail("Use case success is unexpected");}
             @Override
             public void prepareFailView(String error) {
-                Assertions.assertEquals("this ingredient already exists", error);
+                Assertions.assertEquals("this ingredient does not exist", error);
             }
         };
 
