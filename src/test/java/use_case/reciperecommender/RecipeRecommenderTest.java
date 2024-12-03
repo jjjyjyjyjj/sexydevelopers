@@ -31,6 +31,7 @@ public class RecipeRecommenderTest {
 
         // Creates a new recipe
         this.omlette = new ArrayList<>();
+
         Ingredient bread = ingredientFactory.create("bread crumbs",  "", 1);
         Ingredient milk = ingredientFactory.create("milk",  "", 1);
         Ingredient egg = ingredientFactory.create("Eggs",  "", 1);

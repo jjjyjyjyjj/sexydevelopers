@@ -13,4 +13,3 @@ public interface RecipeRecUserDataAccessInterface {
      */
     ArrayList<Ingredient> getFridgeIngredients(User user);
 }
-

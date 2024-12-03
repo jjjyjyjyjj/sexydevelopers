@@ -1,7 +1,4 @@
-package use_case.add_ingredient;
-
-import entity.User;
-
+package use_case.add_ingredient;\
 public class AddIngredientInputData {
 
     private final String name;
@@ -28,7 +25,9 @@ public class AddIngredientInputData {
         return quantity;
     }
 
+
     public User getUser() {
         return user;
+
     }
 }
