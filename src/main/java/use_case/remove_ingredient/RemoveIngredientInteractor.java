@@ -1,7 +1,6 @@
 package use_case.remove_ingredient;
 
 import entity.Fridge;
-import entity.Ingredient;
 import entity.User;
 
 public class RemoveIngredientInteractor implements RemoveIngredientInputBoundary{
@@ -16,13 +15,14 @@ public class RemoveIngredientInteractor implements RemoveIngredientInputBoundary
 
     @Override
     public void execute(RemoveIngredientInputData removeIngredientInputData){
-        Fridge fridge = removeIngredientInputData.getFridge();
+        User user = removeIngredientInputData.getUser();
+        Fridge fridge = user.getFridge();
         String toRemoveName = removeIngredientInputData.getName();
 
         fridge.removeIngredient(toRemoveName);
-        removeIngredientUserDataAccessInterface.removeIngredient(fridge, toRemoveName);
+        removeIngredientUserDataAccessInterface.removeIngredient(user, toRemoveName);
 
-        final RemoveIngredientOutputData removeIngredientOutputData = new RemoveIngredientOutputData(fridge, false);
+        final RemoveIngredientOutputData removeIngredientOutputData = new RemoveIngredientOutputData(user, false);
 
         removeIngredientOutputBoundary.prepareSuccessView(removeIngredientOutputData);
     }

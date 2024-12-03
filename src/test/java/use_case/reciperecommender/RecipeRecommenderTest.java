@@ -2,12 +2,9 @@
 package use_case.reciperecommender;
 
 import api.recipeFinder;
-import data_access.FileUserDataAccessObject;
 import entity.*;
-import interface_adapter.recipeRecommendation.RecipeRecState;
+import interfaceadapter.recipeRecommendation.RecipeRecState;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-import use_case.recipe_recommender.*;
 
 import java.io.File;
 import java.io.IOException;
@@ -34,9 +31,10 @@ public class RecipeRecommenderTest {
 
         // Creates a new recipe
         this.omlette = new ArrayList<>();
-        Ingredient bread = IngredientFactory.create("bread crumbs",  "", 1);
-        Ingredient milk = IngredientFactory.create("milk",  "", 1);
-        Ingredient egg = IngredientFactory.create("Eggs",  "", 1);
+
+        Ingredient bread = ingredientFactory.create("bread crumbs",  "", 1);
+        Ingredient milk = ingredientFactory.create("milk",  "", 1);
+        Ingredient egg = ingredientFactory.create("Eggs",  "", 1);
         omlette.add(egg);
         omlette.add(milk);
         omlette.add(bread);

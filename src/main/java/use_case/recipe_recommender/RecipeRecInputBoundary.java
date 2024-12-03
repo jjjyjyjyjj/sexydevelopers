@@ -10,3 +10,4 @@ public interface RecipeRecInputBoundary {
      */
     void fetchNextRecipe(RecipeRecInputData inputData);
 }
+

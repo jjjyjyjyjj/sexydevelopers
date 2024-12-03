@@ -6,6 +6,7 @@ import entity.User;
 
 import java.util.ArrayList;
 
+
 public class RecipeRecInputData {
     private User currentUser;
     private ArrayList<Ingredient> listIngredients;
@@ -26,6 +27,7 @@ public class RecipeRecInputData {
     }
 
     public ArrayList<Ingredient> getIngredients(){
+
         return listIngredients;
     }
 }

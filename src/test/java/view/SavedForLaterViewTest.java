@@ -1,8 +1,8 @@
 package view;
 
 import javax.swing.*;
-import interface_adapter.LoggedInState;
-import interface_adapter.saveforlater.SaveForLaterViewModel;
+import interfaceadapter.LoggedInState;
+import interfaceadapter.saveforlater.SaveForLaterViewModel;
 import view.SavedForLaterView;
 
 import java.awt.*;

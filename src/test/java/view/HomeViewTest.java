@@ -2,19 +2,17 @@ package view;
 
 import javax.swing.*;
 
-import entity.CommonFridge;
-import entity.CommonIngredient;
-import entity.PantryPalUser;
-import entity.Recipe;
-import interface_adapter.LoggedInState;
-import interface_adapter.recipeRecommendation.RecipeRecController;
-import interface_adapter.recipeRecommendation.RecipeRecViewModel;
-import interface_adapter.saveforlater.SaveForLaterViewModel;
+import entity.*;
+import interfaceadapter.LoggedInState;
+import interfaceadapter.recipeRecommendation.RecipeRecController;
+import interfaceadapter.recipeRecommendation.RecipeRecViewModel;
+import interfaceadapter.saveforlater.SaveForLaterViewModel;
 import view.HomeView;
 
 import java.awt.*;
-import java.util.List;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class HomeViewTest {
 
@@ -24,10 +22,10 @@ public class HomeViewTest {
         RecipeRecViewModel viewModel = new RecipeRecViewModel();
 
         // Create a PantryPalUser object
-        PantryPalUser user = new PantryPalUser("testUser", "password123");
+        User user = new PantryPalUser("testUser", "password123");
 
         // Add ingredients to the user's fridge
-        CommonFridge fridge = user.getFridge();
+        Fridge fridge = user.getFridge();
         fridge.addIngredient(new CommonIngredient("milk", "", 1));
         fridge.addIngredient(new CommonIngredient("bread crumbs", "", 1));
         fridge.addIngredient(new CommonIngredient("eggs", "", 1));

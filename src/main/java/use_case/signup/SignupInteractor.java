@@ -1,6 +1,5 @@
 package use_case.signup;
 
-import entity.PantryPalUser;
 import entity.User;
 import entity.UserFactory;
 
@@ -36,7 +35,6 @@ public class SignupInteractor implements SignupInputBoundary {
             userPresenter.prepareSuccessView(signupOutputData);
         }
     }
-
 
     @Override
     public void switchToLoginView() {

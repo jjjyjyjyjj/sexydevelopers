@@ -1,7 +1,5 @@
 package use_case.skip_recipe;
 
-import use_case.skip_recipe.SkipRecipeInputData;
-
 public interface SkipRecipeInputBoundary {
 
     /**

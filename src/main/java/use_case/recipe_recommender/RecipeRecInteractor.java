@@ -2,7 +2,7 @@ package use_case.recipe_recommender;
 
 import api.recipeFinderInterface;
 import entity.*;
-import interface_adapter.recipeRecommendation.RecipeRecState;
+import interfaceadapter.recipeRecommendation.RecipeRecState;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -31,6 +31,7 @@ public class RecipeRecInteractor implements RecipeRecInputBoundary {
             ArrayList<Ingredient> ingredients = inputData.getIngredients();
 
             // Fetch recommended recipes using the recipe API
+
             List<Recipe> recipes = recipeFinder.getRecipeByIngredient((ingredients)
 //                    1, // Number of recipes to fetch
 //                    1,  // Maximize used ingredients
@@ -48,6 +49,7 @@ public class RecipeRecInteractor implements RecipeRecInputBoundary {
                 // Pass the updated state to the presenter
                 RecipeRecOutputData nextRecipe = new RecipeRecOutputData(recipe,false);
                 outputBoundary.prepareSuccessView(nextRecipe);
+
             } else {
                 // Handle case where no recipes are found
                 state.setErrorMessage("No recipes found for your ingredients.");

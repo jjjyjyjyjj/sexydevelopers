@@ -1,6 +1,5 @@
 package use_case.signup;
 
-import entity.PantryPalUser;
 import entity.User;
 
 /**
