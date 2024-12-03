@@ -101,6 +101,7 @@ public class AppBuilder {
 
     public AppBuilder addFavouritedRecipesView() {
         FavouriteRecipesViewModel favouriteRecipesViewModel = new FavouriteRecipesViewModel();
+        // Pass the correct parameters: FavouriteRecipesViewModel and LoggedInState
         loggedInViewFavouriteRecipes = new FavouriteRecipesView(favouriteRecipesViewModel, cardLayout, cardPanel);
         cardPanel.add(loggedInViewFavouriteRecipes, loggedInViewFavouriteRecipes.getViewName());
         return this;
