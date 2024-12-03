@@ -1,6 +1,5 @@
 package use_case.change_password;
 
-import entity.PantryPalUser;
 import entity.User;
 
 /**

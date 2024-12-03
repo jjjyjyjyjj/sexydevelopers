@@ -2,12 +2,9 @@
 package use_case.reciperecommender;
 
 import api.recipeFinder;
-import data_access.FileUserDataAccessObject;
 import entity.*;
 import interface_adapter.recipeRecommendation.RecipeRecState;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-import use_case.recipe_recommender.*;
 
 import java.io.File;
 import java.io.IOException;

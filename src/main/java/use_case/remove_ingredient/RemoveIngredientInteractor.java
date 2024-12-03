@@ -1,8 +1,6 @@
 package use_case.remove_ingredient;
 
 import entity.Fridge;
-import entity.Ingredient;
-import entity.User;
 
 public class RemoveIngredientInteractor implements RemoveIngredientInputBoundary{
     private final RemoveIngredientDataAccessInterface removeIngredientUserDataAccessInterface;

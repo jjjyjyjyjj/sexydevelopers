@@ -1,6 +1,5 @@
 package use_case.save_for_later;
 
-import entity.SavedForLater;
 import entity.SavedRecipes;
 
 /**

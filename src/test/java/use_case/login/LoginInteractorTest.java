@@ -2,7 +2,6 @@ package use_case.login;
 
 import data_access.FileUserDataAccessObject;
 import entity.PantryPalUserFactory;
-import entity.PantryPalUser;
 import entity.User;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;

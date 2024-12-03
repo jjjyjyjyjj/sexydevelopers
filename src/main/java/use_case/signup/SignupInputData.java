@@ -15,14 +15,26 @@ public class SignupInputData {
         this.repeatPassword = repeatPassword;
     }
 
+    /**
+     * Returns the username of the current user.
+     * @return username of the current user
+     */
     String getUsername() {
         return username;
     }
 
+    /**
+     * Returns the password inputted.
+     * @return password inputted
+     */
     String getPassword() {
         return password;
     }
 
+    /**
+     * Returns the repeat password inputted.
+     * @return repeat password
+     */
     public String getRepeatPassword() {
         return repeatPassword;
     }

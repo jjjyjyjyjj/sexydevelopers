@@ -2,7 +2,7 @@ package use_case.recipe_recommender;
 
 import api.recipeFinderInterface;
 import entity.*;
-import interface_adapter.recipeRecommendation.RecipeRecState;
+import interfaceadapter.recipeRecommendation.RecipeRecState;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,7 +1,7 @@
 package view;
 
-import interface_adapter.LoggedInState;
-import interface_adapter.fridge.FridgeViewModel;
+import interfaceadapter.LoggedInState;
+import interfaceadapter.fridge.FridgeViewModel;
 
 import javax.swing.*;
 import java.awt.*;

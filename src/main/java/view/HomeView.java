@@ -1,25 +1,23 @@
 package view;
 
-import entity.Ingredient;
+import data_access.FileUserDataAccessObject;
 import entity.Recipe;
-import interface_adapter.ViewManagerModel;
-import interface_adapter.ViewModel;
-import interface_adapter.change_password.ChangePasswordController;
-import interface_adapter.LoggedInState;
-import interface_adapter.logout.LogoutController;
-import interface_adapter.recipeRecommendation.RecipeRecViewModel;
-import interface_adapter.recipeRecommendation.RecipeRecController;
-import entity.CommonRecipe;
-import interface_adapter.saveforlater.SaveForLaterController;
-import interface_adapter.saveforlater.SaveForLaterState;
-import interface_adapter.saveforlater.SaveForLaterViewModel;
-import use_case.add_to_favrecipes.FavouriteRecipesInputBoundary;
+import interfaceadapter.ViewManagerModel;
+import interfaceadapter.change_password.ChangePasswordController;
+import interfaceadapter.LoggedInState;
+import interfaceadapter.logout.LogoutController;
+import interfaceadapter.recipeRecommendation.RecipeRecViewModel;
+import interfaceadapter.recipeRecommendation.RecipeRecController;
+import interfaceadapter.saveforlater.SaveForLaterController;
+import interfaceadapter.saveforlater.SaveForLaterViewModel;
+import interfaceadapter.triedRecipes.TriedRecipesController;
+import interfaceadapter.triedRecipes.TriedRecipesViewModel;
+import use_case.tried_recipes.TriedRecipesInteractor;
 
 
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.net.URL;
-import java.util.List;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
@@ -44,6 +42,8 @@ public class HomeView extends JPanel {
     private JLabel homeScreenTitleLabel;
     private JLabel recipeNameLabel;
     private JLabel recipeImageLabel;
+    private JLabel recipeDescriptionLabel;
+    private JButton tryRecipeButton;
     private JButton viewRecipeButton;
     private JButton saveRecipeButton;
     private JButton skipRecipeButton;
@@ -75,14 +75,19 @@ public class HomeView extends JPanel {
         recipeImageLabel = new JLabel(); // Placeholder for recipe image
         recipeImageLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
 
+        recipeDescriptionLabel = new JLabel("Recipe Description");
+        recipeDescriptionLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
+
         // Recipe Buttons
         viewRecipeButton = new JButton("View Recipe");
+        tryRecipeButton = new JButton("Try Recipe");
         saveRecipeButton = new JButton("Save for Later");
         skipRecipeButton = new JButton("Skip");
 
         JPanel recipeButtonPanel = new JPanel();
         recipeButtonPanel.setBackground(Color.ORANGE);
         recipeButtonPanel.add(viewRecipeButton);
+        recipeButtonPanel.add(tryRecipeButton);
         recipeButtonPanel.add(saveRecipeButton);
         recipeButtonPanel.add(skipRecipeButton);
 
@@ -98,6 +103,7 @@ public class HomeView extends JPanel {
         this.add(homeScreenTitleLabel);
         this.add(recipeNameLabel);
         this.add(recipeImageLabel);
+        this.add(recipeDescriptionLabel);
         this.add(recipeButtonPanel);
         this.add(userButtonPanel);
         this.add(navBarPanel);
@@ -115,6 +121,36 @@ public class HomeView extends JPanel {
                 }
             }
         });
+
+        try {
+            // Instantiate FileUserDataAccessObject with proper exception handling
+            FileUserDataAccessObject userDao = new FileUserDataAccessObject("users.json");
+
+            // Create TriedRecipesController with the user DAO and a new TriedRecipesViewModel
+            TriedRecipesController triedRecipesController = new TriedRecipesController(
+                    new TriedRecipesInteractor(userDao, new TriedRecipesViewModel())
+            );
+
+            // Add action listener for "Try Recipe" button
+            tryRecipeButton.addActionListener(evt -> {
+                Recipe currentRecipe = viewModel.getState().getCurrentRecipe();
+                if (currentRecipe != null) {
+                    try {
+                        triedRecipesController.addRecipe(loggedInState.getUsername(), currentRecipe);
+                        JOptionPane.showMessageDialog(this, "Recipe added to Tried Recipes!");
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                        JOptionPane.showMessageDialog(this, "Failed to add recipe to Tried Recipes.");
+                    }
+                } else {
+                    JOptionPane.showMessageDialog(this, "No recipe available to try.");
+                }
+            });
+
+        } catch (IOException e) {
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(this, "Failed to initialize user data access. Please try again.");
+        }
 
         saveRecipeButton.addActionListener(
              new ActionListener() {

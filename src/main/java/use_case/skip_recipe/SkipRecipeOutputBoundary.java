@@ -1,7 +1,5 @@
 package use_case.skip_recipe;
 
-import use_case.skip_recipe.SkipRecipeOutputData;
-
 public interface SkipRecipeOutputBoundary {
     /**
      * Prepares the success view for the Skip Recipe Use Case.

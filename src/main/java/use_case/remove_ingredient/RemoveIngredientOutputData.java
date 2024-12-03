@@ -1,7 +1,6 @@
 package use_case.remove_ingredient;
 
 import entity.Fridge;
-import entity.User;
 
 public class RemoveIngredientOutputData {
     private final Fridge fridge;
