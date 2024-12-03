@@ -349,6 +349,8 @@ public class AppBuilder {
 
         application.add(scrollPane, BorderLayout.CENTER);
 
+        application.setLocationRelativeTo(null);
+
         viewManagerModel.setState(signupView.getViewName());
         viewManagerModel.firePropertyChanged();
 
