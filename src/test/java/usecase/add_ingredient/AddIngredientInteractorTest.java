@@ -40,6 +40,11 @@ public class AddIngredientInteractorTest {
             @Override
             public void prepareFailView(String error) {
                 Assertions.fail("Use case failure is unexpected");}
+
+            @Override
+            public void switchToFridgeView() {
+
+            }
         };
 
         AddIngredientInputBoundary interactor = new AddIngredientInteractor(userRepository, successPresenter, new CommonIngredientFactory());
@@ -62,6 +67,11 @@ public class AddIngredientInteractorTest {
             @Override
             public void prepareFailView(String error) {
                 Assertions.assertEquals("this ingredient already exists", error);
+            }
+
+            @Override
+            public void switchToFridgeView() {
+
             }
         };
 
