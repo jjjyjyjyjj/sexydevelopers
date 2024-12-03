@@ -15,7 +15,7 @@ public class IngredientTest {
     public void testSetUnit() {
         // Arrange
         IngredientFactory ingredientFactory = new CommonIngredientFactory();
-        Ingredient ingredient = IngredientFactory.create("tomato", "tomato", 1);
+        Ingredient ingredient = ingredientFactory.create("tomato", "tomato", 1);
         String newUnit = "g";
 
         // Act
@@ -29,7 +29,7 @@ public class IngredientTest {
     public void testSetQuantity() {
         // Arrange
         IngredientFactory ingredientFactory = new CommonIngredientFactory();
-        Ingredient ingredient = IngredientFactory.create("tomato", "tomato", 1);
+        Ingredient ingredient = ingredientFactory.create("tomato", "tomato", 1);
         double newQuantity = 10.0;
 
         // Act

@@ -23,7 +23,12 @@ public class CommonFridge implements Fridge {
 
     @Override
     public Boolean hasIngredient(Ingredient ingredient) {
-        return null;
+        for (Ingredient i : ingredients) {
+            if (i.getName().equals(ingredient.getName())) {
+                return true;
+            }
+        };
+        return false;
     }
 
     @Override

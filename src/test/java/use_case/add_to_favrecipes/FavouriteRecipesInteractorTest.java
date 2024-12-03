@@ -27,9 +27,9 @@ public class FavouriteRecipesInteractorTest {
 
         // Creates a new recipe
         List<Ingredient> omlette = new ArrayList<>();
-        Ingredient bread = IngredientFactory.create("bread crumbs", "", 1);
-        Ingredient milk = IngredientFactory.create("milk", "", 1);
-        Ingredient egg = IngredientFactory.create("Eggs",  "", 1);
+        Ingredient bread = ingredientFactory.create("bread crumbs", "", 1);
+        Ingredient milk = ingredientFactory.create("milk", "", 1);
+        Ingredient egg = ingredientFactory.create("Eggs",  "", 1);
         omlette.add(egg);
         omlette.add(milk);
         omlette.add(bread);

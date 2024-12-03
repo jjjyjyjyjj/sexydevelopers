@@ -19,17 +19,18 @@ public class AddIngredientInteractor implements AddIngredientInputBoundary{
 
     @Override
     public void execute(AddIngredientInputData addIngredientInputData){
-        Fridge fridge = addIngredientInputData.getFridge();
-        Ingredient toAddIngredient = IngredientFactory.create(addIngredientInputData.getName(),
+        User user = addIngredientInputData.getUser();
+        Fridge fridge = user.getFridge();
+        Ingredient toAddIngredient = ingredientFactory.create(addIngredientInputData.getName(),
                 addIngredientInputData.getUnit(), addIngredientInputData.getQuantity());
 
-        if (!fridge.hasIngredient(toAddIngredient)){
+        if (fridge.hasIngredient(toAddIngredient)){
             addIngredientOutputBoundary.prepareFailView("this ingredient already exists");
         }
         else {
-            addIngredientDataAccessInterface.addIngredient(fridge, toAddIngredient);
+            addIngredientDataAccessInterface.addIngredient(user, toAddIngredient);
             final AddIngredientOutputData addIngredientOutputData
-                    = new AddIngredientOutputData(fridge, false);
+                    = new AddIngredientOutputData(user, false);
             addIngredientOutputBoundary.prepareSuccessView(addIngredientOutputData);
         }
     }
