@@ -1,12 +1,11 @@
 package use_case.triedRecipes;
 
+import java.util.List;
+
 import data_access.FileUserDataAccessObject;
 import entity.Recipe;
 import entity.User;
-
 import interfaceadapter.triedRecipes.TriedRecipesViewModel;
-
-import java.util.List;
 
 /**
  * Interactor for managing the tried recipes use case.
@@ -26,20 +25,19 @@ public class TriedRecipesInteractor implements TriedRecipesInputBoundary {
         if (username == null || username.isEmpty()) {
             viewModel.getState().setErrorMessage("Username cannot be empty.");
             viewModel.firePropertyChanged();
-            return;
         }
 
         User user = userDataAccess.get(username);
         if (user == null) {
             viewModel.getState().setErrorMessage("User not found: " + username);
             viewModel.firePropertyChanged();
-            return;
         }
 
         user.getTriedRecipes().addRecipe(recipe);
         userDataAccess.save(user);
 
-        viewModel.getState().setErrorMessage(null); // Clear error message on success
+        // Clear error message on success
+        viewModel.getState().setErrorMessage(null);
         viewModel.firePropertyChanged();
     }
 
@@ -48,14 +46,12 @@ public class TriedRecipesInteractor implements TriedRecipesInputBoundary {
         if (username == null || username.isEmpty()) {
             viewModel.getState().setErrorMessage("Username cannot be empty.");
             viewModel.firePropertyChanged();
-            return;
         }
 
         User user = userDataAccess.get(username);
         if (user == null) {
             viewModel.getState().setErrorMessage("User not found: " + username);
             viewModel.firePropertyChanged();
-            return;
         }
 
         List<Recipe> triedRecipes = user.getTriedRecipes().getRecipes();

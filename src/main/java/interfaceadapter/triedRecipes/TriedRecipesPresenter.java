@@ -1,9 +1,13 @@
 package interfaceadapter.triedRecipes;
 
-import entity.Recipe;
-import use_case.tried_recipes.TriedRecipesOutputBoundary;
 import java.util.List;
 
+import entity.Recipe;
+import use_case.tried_recipes.TriedRecipesOutputBoundary;
+
+/**
+ * Presenter for Tried Recipes Use Case.
+ */
 public class TriedRecipesPresenter implements TriedRecipesOutputBoundary {
 
     @Override
