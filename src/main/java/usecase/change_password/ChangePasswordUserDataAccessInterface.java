@@ -3,7 +3,7 @@ package usecase.change_password;
 import entity.User;
 
 /**
- * The interface of the DAO for the Change Password Use Case.
+ * DAO for the Change Password Use Case.
  */
 public interface ChangePasswordUserDataAccessInterface {
 
