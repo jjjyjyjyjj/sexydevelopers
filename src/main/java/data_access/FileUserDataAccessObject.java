@@ -1,8 +1,19 @@
 package data_access;
 
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.type.CollectionType;
-import entity.*;
+import entity.Fridge;
+import entity.Ingredient;
+import entity.Recipe;
+import entity.User;
 import usecase.add_ingredient.AddIngredientDataAccessInterface;
 import usecase.add_to_fav_recipes.FavouriteRecipesDataAccessInterface;
 import usecase.change_password.ChangePasswordUserDataAccessInterface;
@@ -13,14 +24,6 @@ import usecase.remove_from_fav_recipes.RemoveFavRecipeDataAccessInterface;
 import usecase.remove_ingredient.RemoveIngredientDataAccessInterface;
 import usecase.save_for_later.SaveForLaterUserDataAccessInterface;
 import usecase.signup.SignupUserDataAccessInterface;
-
-import java.io.FileWriter;
-import java.io.File;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 /**
  * DAO for user data implemented using a JSON file to persist the data.
@@ -34,7 +37,7 @@ public class FileUserDataAccessObject implements SignupUserDataAccessInterface,
         RecipeRecUserDataAccessInterface,
         FavouriteRecipesDataAccessInterface,
         AddIngredientDataAccessInterface,
-        RemoveIngredientDataAccessInterface{
+        RemoveIngredientDataAccessInterface {
     private final File jsonFile;
     private final Map<String, User> accounts = new HashMap<>();
     private final ObjectMapper objectMapper = new ObjectMapper();
@@ -49,14 +52,17 @@ public class FileUserDataAccessObject implements SignupUserDataAccessInterface,
             for (User user : users) {
                 accounts.put(user.getUsername(), user);
             }
-        } else {
+        }
+        else {
             // Create the file if it doesn't exist
             if (jsonFile.createNewFile()) {
                 try (FileWriter writer = new FileWriter(jsonFile)) {
-                    writer.write("[]"); // Write an empty JSON array
+                    // Write an empty JSON array
+                    writer.write("[]");
                 }
                 System.out.println("users.json created successfully.");
-            } else {
+            }
+            else {
                 throw new IOException("Failed to create users.json.");
             }
         }
@@ -71,7 +77,8 @@ public class FileUserDataAccessObject implements SignupUserDataAccessInterface,
     private void save() {
         try {
             objectMapper.writeValue(jsonFile, accounts.values());
-        } catch (IOException e) {
+        }
+        catch (IOException e) {
             throw new RuntimeException("Failed to save user data", e);
         }
     }
@@ -99,7 +106,8 @@ public class FileUserDataAccessObject implements SignupUserDataAccessInterface,
     @Override
     public void save(User user) {
         accounts.put(user.getUsername(), user);
-        save(); // Save the updated accounts to the JSON file
+        // Save the updated accounts to the JSON file
+        save();
     }
 
     @Override
@@ -108,7 +116,8 @@ public class FileUserDataAccessObject implements SignupUserDataAccessInterface,
             User pantryUser = user;
             accounts.put(pantryUser.getUsername(), pantryUser);
             save();
-        } else {
+        }
+        else {
             throw new IllegalArgumentException("Unsupported user type.");
         }
     }
@@ -164,7 +173,7 @@ public class FileUserDataAccessObject implements SignupUserDataAccessInterface,
     }
 
     /**
-     * Gets the Ingredients in the User's fridge
+     * Gets the Ingredients in the User's fridge.
      *
      * @param user Current user
      * @return List of Ingredient user has
@@ -193,7 +202,4 @@ public class FileUserDataAccessObject implements SignupUserDataAccessInterface,
         Fridge fridge = toCheck.getFridge();
         return fridge.hasIngredient(ingredient);
     }
-
-
-
 }
