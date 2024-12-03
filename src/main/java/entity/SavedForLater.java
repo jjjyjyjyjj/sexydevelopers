@@ -1,16 +1,22 @@
 package entity;
 
-import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
-
 import java.util.ArrayList;
 import java.util.List;
 
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+
+/**
+ * SavedforLater class, stores user's saved recipes.
+ */
 @JsonDeserialize(as = SavedForLater.class)
 public class SavedForLater implements SavedRecipes {
     private List<Recipe> savedRecipes;
     private String name;
 
-    public void SavedRecipes() {
+    /**
+     * Initializes the variables for SavedForLater class.
+     */
+    public void setSavedRecipes() {
         this.savedRecipes = new ArrayList<>();
         this.name = "saved for later";
     }

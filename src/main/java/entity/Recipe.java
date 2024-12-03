@@ -1,8 +1,8 @@
 package entity;
 
-import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
-
 import java.util.List;
+
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 
 /**
  * The representation of a recipe in our program.
