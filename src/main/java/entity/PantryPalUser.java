@@ -28,7 +28,7 @@ public class PantryPalUser implements User {
         this.username = username;
         this.password = password;
 
-        this.fridge = new CommonFridge();
+        this.fridge = new Fridge();
         this.favourited = new FavouritedRecipes();
         this.savedForLater = new SavedForLater();
         this.triedRecipes = new TriedRecipes();
