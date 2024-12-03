@@ -138,29 +138,28 @@ public class HomeView extends JPanel {
     private void setupListeners() {
         System.out.println("LoggedInState in HomeView: " + System.identityHashCode(loggedInState));
 
-//        viewRecipeButton.addActionListener(evt -> {
-//            Recipe currentRecipe = viewModel.getState().getCurrentRecipe();
-//
-//            if (currentRecipe != null) {
-//                // Use the sourceURL from the Recipe object
-//                String recipeSourceURL = currentRecipe.getLink();
-//                if (recipeSourceURL != null && !recipeSourceURL.isEmpty()) {
-//                    try {
-//                        Desktop.getDesktop().browse(new java.net.URI(recipeSourceURL));
-//                    } catch (Exception e) {
-//                        JOptionPane.showMessageDialog(this, "Failed to open recipe link. Please try again.",
-//                                "Error", JOptionPane.ERROR_MESSAGE);
-//                    }
-//                } else {
-//                    JOptionPane.showMessageDialog(this, "No recipe link available.",
-//                            "No Link Found", JOptionPane.WARNING_MESSAGE);
-//                }
-//            } else {
-//                JOptionPane.showMessageDialog(this, "No recipe selected. Please try again later.",
-//                        "No Recipe", JOptionPane.WARNING_MESSAGE);
-//            }
-//        });
-
+        //        viewRecipeButton.addActionListener(evt -> {
+        //            Recipe currentRecipe = viewModel.getState().getCurrentRecipe();
+        //
+        //            if (currentRecipe != null) {
+        //                // Use the sourceURL from the Recipe object
+        //                String recipeSourceURL = currentRecipe.getLink();
+        //                if (recipeSourceURL != null && !recipeSourceURL.isEmpty()) {
+        //                    try {
+        //                        Desktop.getDesktop().browse(new java.net.URI(recipeSourceURL));
+        //                    } catch (Exception e) {
+        //                        JOptionPane.showMessageDialog(this, "Failed to open recipe link. Please try again.",
+        //                                "Error", JOptionPane.ERROR_MESSAGE);
+        //                    }
+        //                } else {
+        //                    JOptionPane.showMessageDialog(this, "No recipe link available.",
+        //                            "No Link Found", JOptionPane.WARNING_MESSAGE);
+        //                }
+        //            } else {
+        //                JOptionPane.showMessageDialog(this, "No recipe selected. Please try again later.",
+        //                        "No Recipe", JOptionPane.WARNING_MESSAGE);
+        //            }
+        //        });
 
         try {
             // Instantiate FileUserDataAccessObject with proper exception handling
@@ -214,10 +213,14 @@ public class HomeView extends JPanel {
                 }
         );
 
-        // Skip Recipe
-        // skipRecipeButton.addActionListener(evt -> {
-        // TODO: Implement skip recipe functionality
-        // });
+         skipRecipeButton.addActionListener(evt -> {
+            try {
+                fetchAndDisplayNextRecipe();
+            } catch (Exception e) {
+                e.printStackTrace();
+                JOptionPane.showMessageDialog(this, "Failed to skip to next recipe.");
+            }
+         });
 
         // Logout
         logoutButton.addActionListener(evt -> {
@@ -355,11 +358,13 @@ public class HomeView extends JPanel {
                         if (recipeSourceURL != null && !recipeSourceURL.isEmpty()) {
                             try {
                                 Desktop.getDesktop().browse(new java.net.URI(recipeSourceURL));
-                            } catch (Exception e) {
+                            }
+                            catch (Exception e) {
                                 JOptionPane.showMessageDialog(this, "Failed to open recipe link. Please try again.",
                                         "Error", JOptionPane.ERROR_MESSAGE);
                             }
-                        } else {
+                        }
+                        else {
                             JOptionPane.showMessageDialog(this, "No recipe link available.",
                                     "No Link Found", JOptionPane.WARNING_MESSAGE);
                         }
@@ -367,8 +372,10 @@ public class HomeView extends JPanel {
 
                     skipRecipeButton.addActionListener(evt -> {
                         try {
-                            fetchAndDisplayNextRecipe(); // Fetch and display the next recipe
-                        } catch (Exception e) {
+                            // Fetch and display the next recipe
+                            fetchAndDisplayNextRecipe();
+                        }
+                        catch (Exception e) {
                             e.printStackTrace();
                             JOptionPane.showMessageDialog(this, "Failed to skip to the next recipe.");
                         }
@@ -394,7 +401,8 @@ public class HomeView extends JPanel {
 
                                     }
                                 };
-                                TriedRecipesController controller = new TriedRecipesController(triedRecipesInputBoundary);
+                                TriedRecipesController controller =
+                                        new TriedRecipesController(triedRecipesInputBoundary);
                                 controller.addRecipe("user", recipe);
 
                                 // Notify the user of success
@@ -404,13 +412,15 @@ public class HomeView extends JPanel {
 
                                 // Fetch and display the next recipe
                                 fetchAndDisplayNextRecipe();
-                            } catch (Exception e) {
+                            }
+                            catch (Exception e) {
                                 e.printStackTrace();
                                 JOptionPane.showMessageDialog(this,
                                         "Failed to add the recipe to Tried Recipes. Please try again.",
                                         "Error", JOptionPane.ERROR_MESSAGE);
                             }
-                        } else {
+                        }
+                        else {
                             JOptionPane.showMessageDialog(this,
                                     "No recipe available to try.",
                                     "Warning", JOptionPane.WARNING_MESSAGE);

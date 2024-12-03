@@ -7,18 +7,19 @@ import java.awt.Dimension;
 import java.io.File;
 import java.io.IOException;
 
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.WindowConstants;
+import javax.swing.*;
 
 import data_access.FileUserDataAccessObject;
 import entity.CommonIngredientFactory;
+import entity.IngredientFactory;
 import entity.PantryPalUserFactory;
 import entity.UserFactory;
-import entity.IngredientFactory;
 import interfaceadapter.LoggedInState;
 import interfaceadapter.LoggedInViewModel;
 import interfaceadapter.ViewManagerModel;
+import interfaceadapter.add_ingredient.AddIngredientController;
+import interfaceadapter.add_ingredient.AddIngredientPresenter;
+import interfaceadapter.add_ingredient.AddIngredientViewModel;
 import interfaceadapter.favourite_recipe.FavouriteRecipesViewModel;
 import interfaceadapter.fridge.FridgeViewModel;
 import interfaceadapter.login.LoginController;
@@ -31,12 +32,6 @@ import interfaceadapter.signup.SignupPresenter;
 import interfaceadapter.signup.SignupViewModel;
 import interfaceadapter.triedRecipes.TriedRecipesController;
 import interfaceadapter.triedRecipes.TriedRecipesViewModel;
-import interfaceadapter.saveforlater.SaveForLaterViewModel;
-import interfaceadapter.ViewManagerModel;
-import interfaceadapter.add_ingredient.AddIngredientViewModel;
-import interfaceadapter.add_ingredient.AddIngredientController;
-import interfaceadapter.add_ingredient.AddIngredientPresenter;
-
 import usecase.add_ingredient.AddIngredientInputBoundary;
 import usecase.add_ingredient.AddIngredientInteractor;
 import usecase.add_ingredient.AddIngredientOutputBoundary;
@@ -47,11 +42,18 @@ import usecase.signup.SignupInputBoundary;
 import usecase.signup.SignupInteractor;
 import usecase.signup.SignupOutputBoundary;
 import usecase.tried_recipes.TriedRecipesInteractor;
-
-import view.*;
+import view.AddIngredientView;
+import view.FavouriteRecipesView;
+import view.FridgeView;
+import view.HomeView;
+import view.LoginView;
+import view.SavedForLaterView;
+import view.SignupView;
+import view.TriedRecipesView;
+import view.ViewManager;
 
 /**
- * Code to Build the Application.
+ * The Application Builder.
  */
 public class AppBuilder {
 
@@ -190,7 +192,11 @@ public class AppBuilder {
         cardPanel.add(loggedInViewAddIngredient, loggedInViewAddIngredient.getViewName());
         return this;
     }
-    
+
+    /**
+     * Adds a Listener to LoggedinState.
+     * @return LoggedinState Listener
+     */
     public AppBuilder addLoggedInStateListener() {
         loggedInState.addPropertyChangeListener(evt -> {
             if ("viewName".equals(evt.getPropertyName())) {
@@ -225,7 +231,7 @@ public class AppBuilder {
     }
 
     /**
-     * Returns the view classes.
+     * Adds the View classes to the application.
      * @return view classes
      */
     public AppBuilder addViews() {
@@ -236,15 +242,16 @@ public class AppBuilder {
     }
 
     /**
-     * Returns Logged in View.
+     * Adds Logged in View to the application.
      * @return logged in view
      */
     public AppBuilder addLoggedInView() {
-        return addHomeView().addTriedRecipeView().addSavedForLaterView().addFridgeView().addAddIngredientView().addFavouritedRecipesView();
+        return addHomeView().addTriedRecipeView().addSavedForLaterView().addFridgeView()
+                .addAddIngredientView().addFavouritedRecipesView();
     }
 
     /**
-     * Returns Sign up Use Case.
+     * Adds Sign up Use Case to the application.
      * @return sign up use case
      */
     public AppBuilder addSignupUseCase() {
@@ -259,17 +266,26 @@ public class AppBuilder {
     }
     
     /**
-     * Returns Login Use Case.
-     * @return login use case
+     * Adds Add Ingredient Use Case to the application.
+     * @return add ingredient use case
      */
     public AppBuilder addAddIngredientUseCase() {
-        final AddIngredientOutputBoundary addIngredientOutputBoundary = new AddIngredientPresenter(loggedInViewAddIngredientViewModel, loggedInViewModel, viewManagerModel);
-        final AddIngredientInputBoundary addIngredientInputInteractor = new AddIngredientInteractor(userDataAccessObject, addIngredientOutputBoundary, ingredientFactory);
+
+        final AddIngredientOutputBoundary addIngredientOutputBoundary =
+                new AddIngredientPresenter(loggedInViewAddIngredientViewModel,
+                        loggedInFridgeViewModel, viewManagerModel);
+        final AddIngredientInputBoundary addIngredientInputInteractor =
+                new AddIngredientInteractor(userDataAccessObject, addIngredientOutputBoundary, ingredientFactory);
+
         final AddIngredientController controller = new AddIngredientController(addIngredientInputInteractor);
         loggedInViewAddIngredient.setAddIngredientController(controller);
         return this;
     }
 
+    /**
+     * Adds Log In Use Case to the application.
+     * @return log in use case
+     */
     public AppBuilder addLoginUseCase() {
         final LoginOutputBoundary loginOutputBoundary = new LoginPresenter(viewManagerModel,
                 recipeRecViewModel, loginViewModel);
@@ -309,7 +325,7 @@ public class AppBuilder {
     //    }
 
     /**
-     * Returns Tried Recipes Use Case.
+     * Adds Tried Recipes Use Case to the application.
      * @return tried recipes use case
      */
     public AppBuilder addTriedRecipesUseCase() {
@@ -329,12 +345,15 @@ public class AppBuilder {
         final JFrame application = new JFrame("PantryPal");
         application.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         application.setLocationRelativeTo(null);
-
         application.setMinimumSize(new Dimension(800, 600));
 
-        application.setLocationRelativeTo(null);
+        JScrollPane scrollPane = new JScrollPane(cardPanel);
+        scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER); // Disable horizontal scrolling
+        scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED); // Enable vertical scrolling when necessary
 
-        application.add(cardPanel, BorderLayout.CENTER);
+        application.add(scrollPane, BorderLayout.CENTER);
+
+        application.setLocationRelativeTo(null);
 
         viewManagerModel.setState(signupView.getViewName());
         viewManagerModel.firePropertyChanged();

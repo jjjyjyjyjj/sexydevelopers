@@ -1,5 +1,8 @@
 package usecase.add_ingredient;
 
+/**
+ * The output boundary for Add Ingredient Use Case.
+ */
 public interface AddIngredientOutputBoundary {
     /**
      * Prepares the success view for the Add Ingredient Use Case.
@@ -13,5 +16,8 @@ public interface AddIngredientOutputBoundary {
      */
     void prepareFailView(String errorMessage);
 
+    /**
+     * Switches View to Fridge View.
+     */
     void switchToFridgeView();
 }

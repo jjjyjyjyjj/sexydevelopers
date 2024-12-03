@@ -1,9 +1,9 @@
 package interfaceadapter.add_ingredient;
 
+import java.beans.PropertyChangeSupport;
+
 import entity.User;
 import interfaceadapter.ViewManagerModel;
-
-import java.beans.PropertyChangeSupport;
 
 /**
  * The State for the Add Ingredient Use Case.
@@ -16,7 +16,7 @@ public class AddIngredientState {
     private User user;
     private ViewManagerModel viewManagerModel;
     private final PropertyChangeSupport support = new PropertyChangeSupport(this);
-
+    private String viewName = "add ingredient";
 
     /**
      * Returns the name of the ingredient.
@@ -75,29 +75,49 @@ public class AddIngredientState {
     }
 
     /**
-     * SEt the error message for this use case.
+     * Set the error message for this use case.
       * @param addError error message
      */
     public void setAddError(String addError) {
         this.addError = addError;
     }
 
+    /**
+     * Returns current user.
+     * @return user
+     */
     public User getUser() {
         return user;
     }
 
-    public void setUser(User user) {this.user = user; }
+    /**
+     * Sets current user.
+     * @param user user
+     */
+    public void setUser(User user) {
+        this.user = user;
+    }
 
-    private String viewName = "add ingredient";
-
+    /**
+     * Returns the View name.
+     * @return view name
+     */
     public String getViewName() {
         return viewName;
     }
 
+    /**
+     * Sets the View Manager Model.
+     * @param viewManagerModel view manager model
+     */
     public void setViewManagerModel(ViewManagerModel viewManagerModel) {
         this.viewManagerModel = viewManagerModel;
     }
 
+    /**
+     * Sets the View name.
+     * @param viewName View name
+     */
     public void setViewName(String viewName) {
         String oldViewName = this.viewName;
         this.viewName = viewName;
