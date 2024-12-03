@@ -1,12 +1,16 @@
 package interfaceadapter;
 
-import entity.*;
-
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 import java.util.ArrayList;
 import java.util.List;
 
+import entity.CommonFridge;
+import entity.Fridge;
+import entity.PantryPalUser;
+import entity.Recipe;
+import entity.SavedRecipes;
+import entity.Ingredient;
 
 /**
  * The State information representing the logged-in user.

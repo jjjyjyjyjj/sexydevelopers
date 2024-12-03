@@ -1,6 +1,5 @@
 package use_case.add_ingredient;
 import entity.Fridge;
-import entity.User;
 import entity.Ingredient;
 import entity.IngredientFactory;
 
@@ -31,6 +30,7 @@ public class AddIngredientInteractor implements AddIngredientInputBoundary{
             addIngredientDataAccessInterface.addIngredient(user, toAddIngredient);
             final AddIngredientOutputData addIngredientOutputData
                     = new AddIngredientOutputData(user, false);
+
             addIngredientOutputBoundary.prepareSuccessView(addIngredientOutputData);
         }
     }
