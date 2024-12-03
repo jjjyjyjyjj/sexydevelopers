@@ -13,6 +13,7 @@ public class MainApplication {
                 .addLoggedInView()
                 .addSignupUseCase()
                 .addLoginUseCase()
+                .addAddIngredientUseCase()
                 .addViews()
                 .build();
         application.setVisible(true);

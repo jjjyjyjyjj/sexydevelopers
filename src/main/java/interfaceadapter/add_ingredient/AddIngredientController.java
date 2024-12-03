@@ -30,4 +30,6 @@ public class AddIngredientController {
         addIngredientUseCaseInteractor.execute(addIngredientInputData);
     }
 
+    public void switchToFridgeView() {addIngredientUseCaseInteractor.switchToFridgeView(); }
+
 }
