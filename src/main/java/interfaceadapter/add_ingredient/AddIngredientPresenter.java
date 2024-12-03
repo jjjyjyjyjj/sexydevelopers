@@ -3,8 +3,8 @@ package interfaceadapter.add_ingredient;
 import interfaceadapter.LoggedInState;
 import interfaceadapter.LoggedInViewModel;
 import interfaceadapter.ViewManagerModel;
-import use_case.add_ingredient.AddIngredientOutputBoundary;
-import use_case.add_ingredient.AddIngredientOutputData;
+import usecase.add_ingredient.AddIngredientOutputBoundary;
+import usecase.add_ingredient.AddIngredientOutputData;
 
 public class AddIngredientPresenter implements AddIngredientOutputBoundary {
 

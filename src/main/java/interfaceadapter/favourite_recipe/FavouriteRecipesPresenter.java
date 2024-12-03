@@ -1,9 +1,9 @@
 package interfaceadapter.favourite_recipe;
 
-import use_case.add_to_fav_recipes.FavouriteRecipesOutputBoundary;
-import use_case.add_to_fav_recipes.FavouriteRecipesOutputData;
-import use_case.remove_from_fav_recipes.RemoveFavRecipeOutputBoundary;
-import use_case.remove_from_fav_recipes.RemoveFavRecipeOutputData;
+import usecase.add_to_fav_recipes.FavouriteRecipesOutputBoundary;
+import usecase.add_to_fav_recipes.FavouriteRecipesOutputData;
+import usecase.remove_from_fav_recipes.RemoveFavRecipeOutputBoundary;
+import usecase.remove_from_fav_recipes.RemoveFavRecipeOutputData;
 
 /**
  * The Presenter for the Favourite Recipes Use Case.

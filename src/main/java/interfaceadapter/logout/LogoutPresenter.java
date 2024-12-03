@@ -3,8 +3,8 @@ package interfaceadapter.logout;
 import interfaceadapter.ViewManagerModel;
 import interfaceadapter.LoggedInViewModel;
 import interfaceadapter.login.LoginViewModel;
-import use_case.logout.LogoutOutputBoundary;
-import use_case.logout.LogoutOutputData;
+import usecase.logout.LogoutOutputBoundary;
+import usecase.logout.LogoutOutputData;
 
 /**
  * The Presenter for the Logout Use Case.
