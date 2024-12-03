@@ -4,7 +4,7 @@ import entity.Recipe;
 import entity.User;
 
 /**
- * The interface of the DAO for the Add a Recipe to Favourite Recipes List Use Case.
+ * DAO for the Adding a Recipe to Favourite Recipes List Use Case.
  */
 public interface FavouriteRecipesDataAccessInterface {
     /**
