@@ -52,9 +52,10 @@ public class HomeView extends JPanel {
     private JButton logoutButton;
     private JButton changePasswordButton;
 
-    public HomeView(RecipeRecViewModel viewModel, CardLayout cardLayout, JPanel cardPanel) {
+    public HomeView(RecipeRecViewModel viewModel, CardLayout cardLayout, JPanel cardPanel, LoggedInState loggedInState) {
         this.viewModel = viewModel;
         this.loggedInState = new LoggedInState();
+        System.out.println("LoggedInState in HomeView: " + System.identityHashCode(loggedInState));
         this.summarizeRecipe = new summarizeRecipe();
         setupUI(cardLayout, cardPanel);
         setupListeners();
@@ -74,9 +75,11 @@ public class HomeView extends JPanel {
         // Recipe Information
         recipeNameLabel = new JLabel("Recipe Name");
         recipeNameLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
+        recipeNameLabel.setFont(new Font("Arial", Font.BOLD, 18));
 
         recipeImageLabel = new JLabel(); // Placeholder for recipe image
         recipeImageLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
+        recipeImageLabel.setBorder(BorderFactory.createEmptyBorder(20, 0, 20, 0));
 
         recipeDescriptionLabel = new JLabel("Recipe Description");
         recipeDescriptionLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
@@ -114,6 +117,8 @@ public class HomeView extends JPanel {
     }
 
     private void setupListeners() {
+        System.out.println("LoggedInState in HomeView: " + System.identityHashCode(loggedInState));
+
         viewRecipeButton.addActionListener(evt -> {
             Recipe currentRecipe = viewModel.getState().getCurrentRecipe();
 
@@ -148,11 +153,13 @@ public class HomeView extends JPanel {
 
             // Add action listener for "Try Recipe" button
             tryRecipeButton.addActionListener(evt -> {
-                Recipe currentRecipe = viewModel.getState().getCurrentRecipe();
+                Recipe currentRecipe = loggedInState.getCurrentRecipe();
+                System.out.println("Try Recipe Button Clicked: Current Recipe = " + (currentRecipe != null ? currentRecipe.getName() : "null"));
                 if (currentRecipe != null) {
                     try {
-                        triedRecipesController.addRecipe(loggedInState.getUsername(), currentRecipe);
-                        JOptionPane.showMessageDialog(this, "Recipe added to Tried Recipes!");
+                        loggedInState.getTriedRecipes().addRecipe(currentRecipe); // Add to Tried Recipes
+                        System.out.println("Added to Tried Recipes: " + currentRecipe.getName());
+                        fetchAndDisplayNextRecipe(); // Move to next recipe
                     } catch (Exception e) {
                         e.printStackTrace();
                         JOptionPane.showMessageDialog(this, "Failed to add recipe to Tried Recipes.");
@@ -162,10 +169,12 @@ public class HomeView extends JPanel {
                 }
             });
 
+
         } catch (IOException e) {
             e.printStackTrace();
             JOptionPane.showMessageDialog(this, "Failed to initialize user data access. Please try again.");
         }
+
 
         saveRecipeButton.addActionListener(
              new ActionListener() {
@@ -246,9 +255,41 @@ public class HomeView extends JPanel {
         }).start();
     }
 
+    //Holding off for testing purposes:
+
+//    public void updateRecipeDisplay(Recipe recipe) {
+//        SwingUtilities.invokeLater(() -> {
+//            if (recipe != null) {
+//                recipeNameLabel.setText(recipe.getName());
+//
+//                try {
+//                    // Load and display the recipe image
+//                    URL imageUrl = new URL(recipe.getImage());
+//                    BufferedImage image = ImageIO.read(imageUrl);
+//                    ImageIcon imageIcon = new ImageIcon(image.getScaledInstance(200, 200, Image.SCALE_SMOOTH));
+//                    recipeImageLabel.setIcon(imageIcon);
+//                } catch (Exception e) {
+//                    System.out.println("Failed to load image: " + e.getMessage());
+//                    recipeImageLabel.setIcon(new ImageIcon("path/to/default_image.jpg"));
+//                }
+//
+//                // Fetch and display the recipe summary
+//                fetchAndDisplayRecipeSummary(recipe.getID());
+//            } else {
+//                recipeNameLabel.setText("No Recipe Found");
+//                recipeImageLabel.setIcon(null);
+//                recipeDescriptionLabel.setText("No description available.");
+//            }
+//        });
+//    }
+
     public void updateRecipeDisplay(Recipe recipe) {
         SwingUtilities.invokeLater(() -> {
             if (recipe != null) {
+                // Update the current recipe in LoggedInState
+                loggedInState.setCurrentRecipe(recipe);
+
+                // Update the UI components
                 recipeNameLabel.setText(recipe.getName());
 
                 try {
@@ -265,12 +306,42 @@ public class HomeView extends JPanel {
                 // Fetch and display the recipe summary
                 fetchAndDisplayRecipeSummary(recipe.getID());
             } else {
+                // Update the UI to reflect no recipe found
+                loggedInState.setCurrentRecipe(null); // Clear the current recipe
                 recipeNameLabel.setText("No Recipe Found");
                 recipeImageLabel.setIcon(null);
                 recipeDescriptionLabel.setText("No description available.");
             }
         });
     }
+
+
+    private void fetchAndDisplayNextRecipe() {
+        try {
+            // Log fridge contents for debugging
+            System.out.println("Fridge Contents Before API Call: " + loggedInState.getFridgeContents());
+            System.out.println("LoggedInState Identity: " + System.identityHashCode(loggedInState));
+
+            Recipe nextRecipe = RecipeRecController.getNextRecipe(loggedInState.getFridgeContents());
+            System.out.println("Fetched Next Recipe: " + (nextRecipe != null ? nextRecipe.getName() : "null"));
+
+            if (nextRecipe != null) {
+                loggedInState.setCurrentRecipe(nextRecipe); // Update LoggedInState
+                updateRecipeDisplay(nextRecipe); // Update UI
+            } else {
+                JOptionPane.showMessageDialog(this, "No more recipes available.");
+            }
+        } catch (IOException e) {
+            e.printStackTrace(); // Log the exception for debugging
+            JOptionPane.showMessageDialog(this, "Failed to fetch the next recipe. Please check your internet connection or fridge contents.");
+        }
+    }
+
+
+
+
+
+
 
 //    public void updateRecipeDisplay(Recipe recipe) {
 //        recipeNameLabel.setText(recipe.getName());
