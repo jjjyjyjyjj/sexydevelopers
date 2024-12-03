@@ -15,6 +15,7 @@ import entity.IngredientFactory;
 import entity.PantryPalUserFactory;
 import entity.UserFactory;
 import interfaceadapter.LoggedInState;
+import interfaceadapter.LoggedInViewModel;
 import interfaceadapter.ViewManagerModel;
 import interfaceadapter.add_ingredient.AddIngredientController;
 import interfaceadapter.add_ingredient.AddIngredientPresenter;
@@ -81,7 +82,8 @@ public class AppBuilder {
     private AddIngredientView loggedInViewAddIngredient;
     private AddIngredientPresenter loggedInViewAddIngredientPresenter;
     private AddIngredientInteractor loggedInViewAddIngredientInteractor;
-    private AddIngredientViewModel loggedInViewAddIngredientViewModel;
+    private AddIngredientViewModel loggedInViewAddIngredientViewModel = new AddIngredientViewModel();
+    private LoggedInViewModel loggedInViewModel = new LoggedInViewModel();
     private FridgeViewModel loggedInFridgeViewModel;
 
     public AppBuilder() {
@@ -268,11 +270,13 @@ public class AppBuilder {
      * @return add ingredient use case
      */
     public AppBuilder addAddIngredientUseCase() {
+
         final AddIngredientOutputBoundary addIngredientOutputBoundary =
                 new AddIngredientPresenter(loggedInViewAddIngredientViewModel,
                         loggedInFridgeViewModel, viewManagerModel);
         final AddIngredientInputBoundary addIngredientInputInteractor =
                 new AddIngredientInteractor(userDataAccessObject, addIngredientOutputBoundary, ingredientFactory);
+
         final AddIngredientController controller = new AddIngredientController(addIngredientInputInteractor);
         loggedInViewAddIngredient.setAddIngredientController(controller);
         return this;

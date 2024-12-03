@@ -5,7 +5,7 @@ import interfaceadapter.ViewModel;
 /**
  * The View Model for Add Ingredient Use Case.
  */
-public class AddIngredientViewModel extends ViewModel<AddIngredientState> {
+public class AddIngredientViewModel extends ViewModel<LoggedInState> {
 
     public static final String TITLE_LABEL = "Add Ingredient View";
     public static final String NAME_LABEL = "Choose name";
@@ -17,6 +17,6 @@ public class AddIngredientViewModel extends ViewModel<AddIngredientState> {
 
     public AddIngredientViewModel() {
         super("add ingredient");
-        setState(new AddIngredientState());
+        setState(new LoggedInState());
     }
 }
