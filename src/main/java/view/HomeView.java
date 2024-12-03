@@ -213,10 +213,14 @@ public class HomeView extends JPanel {
                 }
         );
 
-        // Skip Recipe
-        // skipRecipeButton.addActionListener(evt -> {
-        // TODO: Implement skip recipe functionality
-        // });
+         skipRecipeButton.addActionListener(evt -> {
+            try {
+                fetchAndDisplayNextRecipe();
+            } catch (Exception e) {
+                e.printStackTrace();
+                JOptionPane.showMessageDialog(this, "Failed to skip to next recipe.");
+            }
+         });
 
         // Logout
         logoutButton.addActionListener(evt -> {
