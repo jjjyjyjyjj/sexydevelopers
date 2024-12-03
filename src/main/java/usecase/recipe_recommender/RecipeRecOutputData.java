@@ -2,6 +2,9 @@ package usecase.recipe_recommender;
 
 import entity.Recipe;
 
+/**
+ * Output Data for the Recipe Recommender Use Case.
+ */
 public class RecipeRecOutputData {
     private final Recipe nextRecipe;
     private final boolean useCaseFailed;
@@ -11,6 +14,10 @@ public class RecipeRecOutputData {
         this.useCaseFailed = useCaseFailed;
     }
 
+    /**
+     * Returns the recommended recipe.
+     * @return recommended recipe
+     */
     public Recipe getRecommendedRecipe() {
         return this.nextRecipe;
     }

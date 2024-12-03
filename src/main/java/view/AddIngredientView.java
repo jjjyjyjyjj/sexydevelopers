@@ -1,20 +1,31 @@
 package view;
 
-import interfaceadapter.LoggedInState;
-import interfaceadapter.ViewManagerModel;
-import interfaceadapter.add_ingredient.AddIngredientController;
-import interfaceadapter.add_ingredient.AddIngredientState;
-import interfaceadapter.add_ingredient.AddIngredientViewModel;
-
-import javax.swing.*;
-import javax.swing.event.DocumentEvent;
-import javax.swing.event.DocumentListener;
-import java.awt.*;
+import java.awt.Color;
+import java.awt.Component;
+import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 
+import javax.swing.BorderFactory;
+import javax.swing.BoxLayout;
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
+
+import interfaceadapter.LoggedInState;
+import interfaceadapter.add_ingredient.AddIngredientController;
+import interfaceadapter.add_ingredient.AddIngredientState;
+import interfaceadapter.add_ingredient.AddIngredientViewModel;
+
+/**
+ * The View for Add Ingredient Use Case.
+ */
 public class AddIngredientView extends JPanel implements ActionListener, PropertyChangeListener {
     private final String viewName = "add ingredient";
     private final AddIngredientViewModel viewModel;
@@ -205,13 +216,19 @@ public class AddIngredientView extends JPanel implements ActionListener, Propert
         quantityField.setText(String.valueOf(state.getQuantity()));
     }
 
+    /**
+     * Returns the View name.
+     * @return view name
+     */
     public String getViewName() {
         return viewName;
     }
 
+    /**
+     * Sets the Add Ingredient Use Case Controller.
+     * @param addIngredientController Add ingredient Use Case Controller
+     */
     public void setAddIngredientController(AddIngredientController addIngredientController) {
         this.addIngredientController = addIngredientController;
     }
-
-
 }
