@@ -1,8 +1,8 @@
 package interfaceadapter.add_ingredient;
 
 import entity.User;
-import use_case.add_ingredient.AddIngredientInputBoundary;
-import use_case.add_ingredient.AddIngredientInputData;
+import usecase.add_ingredient.AddIngredientInputBoundary;
+import usecase.add_ingredient.AddIngredientInputData;
 
 /**
  * The controller for the Add Ingredient Use Case.

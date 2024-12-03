@@ -1,4 +1,4 @@
-package use_case.add_ingredient;
+package usecase.add_ingredient;
 
 import entity.Fridge;
 import entity.User;
