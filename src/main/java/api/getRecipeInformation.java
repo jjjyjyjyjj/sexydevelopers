@@ -10,13 +10,11 @@ import java.io.IOException;
 
 public class getRecipeInformation implements getRecipeInformationInterface {
     private static final String API_URL = "https://api.spoonacular.com/recipes/%d/information";
-    private static final String CONTENT_TYPE = "Content-Type";
-    private static final String APPLICATION_JSON = "application/json";
-    private static final String APP_KEY = "00ab640014494f1ab81008310af8ec28";
+    private static final String APP_KEY = "5ec040755f3843c0831136f62dffb896";
     private static final int SUCCESS_CODE = 200;
 
     public static String getAPIKey() {
-        return APP_KEY; // Returning the API key directly.
+        return APP_KEY;
     }
 
     /**
@@ -33,7 +31,6 @@ public class getRecipeInformation implements getRecipeInformationInterface {
         OkHttpClient client = new OkHttpClient();
         Request request = new Request.Builder()
                 .url(url)
-                .addHeader(CONTENT_TYPE, APPLICATION_JSON)
                 .build();
 
         // Execute the request and process the response.

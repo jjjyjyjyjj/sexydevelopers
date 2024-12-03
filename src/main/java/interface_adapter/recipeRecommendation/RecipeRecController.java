@@ -19,11 +19,10 @@ public class RecipeRecController {
      */
     public static List<Recipe> getRecipes(PantryPalUser user) throws IOException {
 
-        CommonFridge fridge = user.getFridge();
+        Fridge fridge = user.getFridge();
         ArrayList<Ingredient> ingredients = fridge.getIngredients();
 
         recipeFinder finder = new recipeFinder();
-
         return finder.getRecipeByIngredient(ingredients);
     }
 }

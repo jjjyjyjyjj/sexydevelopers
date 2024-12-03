@@ -11,7 +11,6 @@ public class FavouriteRecipesView extends JPanel {
 
     private final String viewName = "favouriteRecipes";
     private final FavouriteRecipesViewModel viewModel;
-    private final LoggedInState loggedInState;
     private ViewManagerModel viewManagerModel;
 
     private JLabel favRecipesLabel;
@@ -20,7 +19,6 @@ public class FavouriteRecipesView extends JPanel {
 
     public FavouriteRecipesView(FavouriteRecipesViewModel viewModel, CardLayout cardLayout, JPanel cardPanel) {
         this.viewModel = viewModel;
-        this.loggedInState = new LoggedInState();
         setupUI(cardLayout, cardPanel);
         setupListeners();
     }

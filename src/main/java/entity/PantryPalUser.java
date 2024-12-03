@@ -55,11 +55,6 @@ public class PantryPalUser implements User {
 
     }
 
-    @Override
-    public void setFridge(CommonFridge fridge) {
-        this.fridge = fridge;
-    }
-
     public SavedRecipes getFavourited() {
         return favourited;
     }

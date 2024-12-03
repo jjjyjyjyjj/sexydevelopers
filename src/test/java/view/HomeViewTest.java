@@ -1,12 +1,20 @@
 package view;
 
 import javax.swing.*;
+
+import entity.CommonFridge;
+import entity.CommonIngredient;
+import entity.PantryPalUser;
+import entity.Recipe;
 import interface_adapter.LoggedInState;
+import interface_adapter.recipeRecommendation.RecipeRecController;
 import interface_adapter.recipeRecommendation.RecipeRecViewModel;
 import interface_adapter.saveforlater.SaveForLaterViewModel;
 import view.HomeView;
 
 import java.awt.*;
+import java.util.List;
+import java.io.IOException;
 
 public class HomeViewTest {
 
