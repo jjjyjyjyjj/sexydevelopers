@@ -1,9 +1,11 @@
 package use_case.add_ingredient;
 
+import entity.Fridge;
 import entity.Ingredient;
 import entity.User;
 
 public interface AddIngredientDataAccessInterface {
+
     void save(User user);
     /**
      * Updates the system to record this added ingredient.
@@ -12,6 +14,6 @@ public interface AddIngredientDataAccessInterface {
      */
 
     void addIngredient(User user, Ingredient ingredient);
-  
+
     boolean existsByIngredient(Ingredient ingredient, User user);
 }

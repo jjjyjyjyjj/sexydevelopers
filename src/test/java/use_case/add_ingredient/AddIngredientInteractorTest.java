@@ -2,12 +2,15 @@ package use_case.add_ingredient;
 
 import data_access.FileUserDataAccessObject;
 import entity.*;
-
+import org.junit.Assert;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.io.File;
 import java.io.IOException;
 
+import static org.junit.Assert.*;
 
 public class AddIngredientInteractorTest {
     private File testFile;
@@ -43,7 +46,7 @@ public class AddIngredientInteractorTest {
         AddIngredientInputBoundary interactor = new AddIngredientInteractor(userRepository, successPresenter, new CommonIngredientFactory());
         interactor.execute(inputData);
     }
-  
+
     @Test
     void failTest() throws IOException {
         AddIngredientDataAccessInterface userRepository = new FileUserDataAccessObject(testFile.getPath());

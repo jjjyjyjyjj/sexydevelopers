@@ -23,7 +23,6 @@ public class RecipeRecController {
         ArrayList<Ingredient> ingredients = fridge.getIngredients();
 
         recipeFinder finder = new recipeFinder();
-
         return finder.getRecipeByIngredient(ingredients);
     }
 }
