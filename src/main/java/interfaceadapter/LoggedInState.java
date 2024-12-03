@@ -10,6 +10,7 @@ import entity.Fridge;
 import entity.PantryPalUser;
 import entity.Recipe;
 import entity.SavedRecipes;
+import entity.Ingredient;
 
 /**
  * The State information representing the logged-in user.
