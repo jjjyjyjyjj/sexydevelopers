@@ -2,8 +2,8 @@ package interfaceadapter.favourite_recipe;
 
 import entity.Recipe;
 import entity.User;
-import usecase.add_to_fav_recipes.FavouriteRecipesInputBoundary;
-import usecase.add_to_fav_recipes.FavouriteRecipesInputData;
+import use_case.add_to_fav_recipes.FavouriteRecipesInputBoundary;
+import use_case.add_to_fav_recipes.FavouriteRecipesInputData;
 
 /**
  * Controller for Favourite Recipes Use Cases.

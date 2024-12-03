@@ -3,8 +3,8 @@ package interfaceadapter.signup;
 import interfaceadapter.login.LoginState;
 import interfaceadapter.login.LoginViewModel;
 import interfaceadapter.ViewManagerModel;
-import usecase.signup.SignupOutputBoundary;
-import usecase.signup.SignupOutputData;
+import use_case.signup.SignupOutputBoundary;
+import use_case.signup.SignupOutputData;
 
 /**
  * The Presenter for the Signup Use Case.

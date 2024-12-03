@@ -3,8 +3,8 @@ package interfaceadapter.remove_ingredient;
 import interfaceadapter.LoggedInState;
 import interfaceadapter.LoggedInViewModel;
 import interfaceadapter.ViewManagerModel;
-import usecase.remove_ingredient.RemoveIngredientOutputBoundary;
-import usecase.remove_ingredient.RemoveIngredientOutputData;
+import use_case.remove_ingredient.RemoveIngredientOutputBoundary;
+import use_case.remove_ingredient.RemoveIngredientOutputData;
 
 public class RemoveIngredientPresenter implements RemoveIngredientOutputBoundary {
 

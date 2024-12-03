@@ -3,8 +3,8 @@ package interfaceadapter.login;
 import interfaceadapter.LoggedInState;
 import interfaceadapter.ViewManagerModel;
 import interfaceadapter.recipeRecommendation.RecipeRecViewModel;
-import usecase.login.LoginOutputBoundary;
-import usecase.login.LoginOutputData;
+import use_case.login.LoginOutputBoundary;
+import use_case.login.LoginOutputData;
 
 /**
  * The Presenter for the Login Use Case.

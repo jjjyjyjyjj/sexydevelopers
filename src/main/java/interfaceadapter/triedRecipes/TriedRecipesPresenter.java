@@ -1,7 +1,7 @@
 package interfaceadapter.triedRecipes;
 
 import entity.Recipe;
-import usecase.tried_recipes.TriedRecipesOutputBoundary;
+import use_case.tried_recipes.TriedRecipesOutputBoundary;
 import java.util.List;
 
 public class TriedRecipesPresenter implements TriedRecipesOutputBoundary {

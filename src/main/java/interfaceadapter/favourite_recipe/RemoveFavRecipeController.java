@@ -2,8 +2,8 @@ package interfaceadapter.favourite_recipe;
 
 import entity.Recipe;
 import entity.User;
-import usecase.remove_from_fav_recipes.RemoveFavRecipeInputBoundary;
-import usecase.remove_from_fav_recipes.RemoveFavRecipeInputData;
+import use_case.remove_from_fav_recipes.RemoveFavRecipeInputBoundary;
+import use_case.remove_from_fav_recipes.RemoveFavRecipeInputData;
 
 /**
  * The Controller for Removing a Recipe from Favourite Recipes Use Case.

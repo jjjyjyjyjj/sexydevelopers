@@ -14,8 +14,6 @@ public interface IngredientFactory {
      * @param quantity the quantity of the ingredient
      * @return the new ingredient.
      */
-    static Ingredient create(String name, String unit, double quantity) {
-        return new CommonIngredient(name, unit, quantity);
-    }
+    Ingredient create(String name, String unit, double quantity);
 }
 

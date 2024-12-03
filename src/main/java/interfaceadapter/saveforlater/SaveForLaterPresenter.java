@@ -1,8 +1,8 @@
 package interfaceadapter.saveforlater;
 
 import interfaceadapter.LoggedInState;
-import usecase.save_for_later.SaveForLaterOutputBoundary;
-import usecase.save_for_later.SaveForLaterOutputData;
+import use_case.save_for_later.SaveForLaterOutputBoundary;
+import use_case.save_for_later.SaveForLaterOutputData;
 
 public class SaveForLaterPresenter implements SaveForLaterOutputBoundary {
     private final SaveForLaterViewModel saveForLaterViewModel;

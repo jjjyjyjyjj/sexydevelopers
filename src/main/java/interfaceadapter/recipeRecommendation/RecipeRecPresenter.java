@@ -2,8 +2,8 @@ package interfaceadapter.recipeRecommendation;
 
 import entity.Recipe;
 import interfaceadapter.LoggedInState;
-import usecase.recipe_recommender.RecipeRecOutputBoundary;
-import usecase.recipe_recommender.RecipeRecOutputData;
+import use_case.recipe_recommender.RecipeRecOutputBoundary;
+import use_case.recipe_recommender.RecipeRecOutputData;
 
 /**
  * RecipeRecPresenter prepares the output data from the recipe recommendation use case
